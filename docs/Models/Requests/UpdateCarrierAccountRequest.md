@@ -1,0 +1,10 @@
+# UpdateCarrierAccountRequest
+
+
+## Fields
+
+| Field                                                               | Type                                                                | Required                                                            | Description                                                         | Example                                                             |
+| ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| `CarrierAccountId`                                                  | *string*                                                            | :heavy_check_mark:                                                  | Object ID of the carrier account                                    |                                                                     |
+| `ShippoApiVersion`                                                  | *string*                                                            | :heavy_minus_sign:                                                  | String used to pick a non-default API version to use                | 2018-02-08                                                          |
+| `CarrierAccountBase`                                                | [CarrierAccountBase](../../Models/Components/CarrierAccountBase.md) | :heavy_minus_sign:                                                  | Examples.                                                           |                                                                     |

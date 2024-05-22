@@ -1,0 +1,9 @@
+# UpdateServiceGroupRequest
+
+
+## Fields
+
+| Field                                                                             | Type                                                                              | Required                                                                          | Description                                                                       | Example                                                                           |
+| --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| `ShippoApiVersion`                                                                | *string*                                                                          | :heavy_minus_sign:                                                                | String used to pick a non-default API version to use                              | 2018-02-08                                                                        |
+| `ServiceGroupUpdateRequest`                                                       | [ServiceGroupUpdateRequest](../../Models/Components/ServiceGroupUpdateRequest.md) | :heavy_minus_sign:                                                                | N/A                                                                               |                                                                                   |

@@ -1,0 +1,9 @@
+# GetTransactionResponse
+
+
+## Fields
+
+| Field                                                   | Type                                                    | Required                                                | Description                                             |
+| ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- | ------------------------------------------------------- |
+| `HttpMeta`                                              | [HTTPMetadata](../../Models/Components/HTTPMetadata.md) | :heavy_check_mark:                                      | N/A                                                     |
+| `Transaction`                                           | [Transaction](../../Models/Components/Transaction.md)   | :heavy_minus_sign:                                      | N/A                                                     |

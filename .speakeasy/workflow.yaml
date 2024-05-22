@@ -1,0 +1,11 @@
+workflowVersion: 1.0.0
+sources:
+    openapi:
+        inputs:
+            - location: https://docs.goshippo.com/spec/shippoapi/public-api.yaml
+        registry:
+            location: registry.speakeasyapi.dev/shippo/shippo/openapi
+targets:
+    my-first-target:
+        target: csharp
+        source: openapi
