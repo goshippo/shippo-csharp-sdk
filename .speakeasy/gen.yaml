@@ -1,0 +1,34 @@
+configVersion: 2.0.0
+generation:
+  sdkClassName: Shippo
+  maintainOpenAPIOrder: true
+  usageSnippets:
+    optionalPropertyRendering: withExample
+  useClassNamesForArrayFields: true
+  fixes:
+    nameResolutionDec2023: true
+    parameterOrderingFeb2024: true
+    requestResponseComponentNamesFeb2024: true
+  auth:
+    oAuth2ClientCredentialsEnabled: true
+csharp:
+  version: 0.0.1
+  additionalDependencies: []
+  author: Speakeasy
+  clientServerStatusCodesAsErrors: true
+  disableNamespacePascalCasingApr2024: true
+  dotnetVersion: net6.0
+  flattenGlobalSecurity: true
+  imports:
+    option: openapi
+    paths:
+      callbacks: Models/Callbacks
+      errors: Models/Errors
+      operations: Models/Requests
+      shared: Models/Components
+      webhooks: Models/Webhooks
+  inputModelSuffix: input
+  maxMethodParams: 4
+  outputModelSuffix: output
+  packageName: Shippo
+  responseFormat: envelope-http
