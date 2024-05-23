@@ -6,6 +6,6 @@ sources:
         registry:
             location: registry.speakeasyapi.dev/shippo/shippo/openapi
 targets:
-    my-first-target:
+    csharp:
         target: csharp
         source: openapi

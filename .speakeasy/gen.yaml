@@ -14,7 +14,7 @@ generation:
 csharp:
   version: 0.0.1
   additionalDependencies: []
-  author: Speakeasy
+  author: Shippo
   clientServerStatusCodesAsErrors: true
   disableNamespacePascalCasingApr2024: true
   dotnetVersion: net6.0
@@ -28,7 +28,7 @@ csharp:
       shared: Models/Components
       webhooks: Models/Webhooks
   inputModelSuffix: input
-  maxMethodParams: 4
+  maxMethodParams: 3
   outputModelSuffix: output
   packageName: Shippo
   responseFormat: envelope-http
