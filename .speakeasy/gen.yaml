@@ -31,4 +31,4 @@ csharp:
   maxMethodParams: 3
   outputModelSuffix: output
   packageName: Shippo
-  responseFormat: envelope-http
+  responseFormat: flat
