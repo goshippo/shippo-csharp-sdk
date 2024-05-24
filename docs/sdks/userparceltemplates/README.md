@@ -48,7 +48,7 @@ var res = await sdk.UserParcelTemplates.ListAsync(shippoApiVersion: "2018-02-08"
 
 ### Response
 
-**[ListUserParcelTemplatesResponse](../../Models/Requests/ListUserParcelTemplatesResponse.md)**
+**[UserParcelTemplateList](../../Models/Components/UserParcelTemplateList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -98,7 +98,7 @@ var res = await sdk.UserParcelTemplates.CreateAsync(
 
 ### Response
 
-**[CreateUserParcelTemplateResponse](../../Models/Requests/CreateUserParcelTemplateResponse.md)**
+**[UserParcelTemplate](../../Models/Components/UserParcelTemplate.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -120,11 +120,11 @@ var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
-var res = await sdk.UserParcelTemplates.DeleteAsync(
+await sdk.UserParcelTemplates.DeleteAsync(
     userParcelTemplateObjectId: "<value>",
     shippoApiVersion: "2018-02-08");
 
-// handle response
+
 ```
 
 ### Parameters
@@ -134,10 +134,6 @@ var res = await sdk.UserParcelTemplates.DeleteAsync(
 | `UserParcelTemplateObjectId`                         | *string*                                             | :heavy_check_mark:                                   | Object ID of the user parcel template                |                                                      |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
-### Response
-
-**[DeleteUserParcelTemplateResponse](../../Models/Requests/DeleteUserParcelTemplateResponse.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -177,7 +173,7 @@ var res = await sdk.UserParcelTemplates.GetAsync(
 
 ### Response
 
-**[GetUserParcelTemplateResponse](../../Models/Requests/GetUserParcelTemplateResponse.md)**
+**[UserParcelTemplate](../../Models/Components/UserParcelTemplate.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -226,7 +222,7 @@ var res = await sdk.UserParcelTemplates.UpdateAsync(
 
 ### Response
 
-**[UpdateUserParcelTemplateResponse](../../Models/Requests/UpdateUserParcelTemplateResponse.md)**
+**[UserParcelTemplate](../../Models/Components/UserParcelTemplate.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

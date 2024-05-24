@@ -10,7 +10,6 @@
 namespace Shippo.Models.Errors
 {
     using Newtonsoft.Json;
-    using Shippo.Models.Components;
     using Shippo.Utils;
     using System;
     
@@ -25,8 +24,5 @@ namespace Shippo.Models.Errors
 
         [JsonProperty("detail")]
         public string? Detail { get; set; }
-
-        [JsonProperty("-")]
-        public HTTPMetadata HttpMeta { get; set; } = default!;
     }
 }

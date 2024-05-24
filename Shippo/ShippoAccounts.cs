@@ -41,7 +41,7 @@ namespace Shippo
         /// Returns a list of Shippo Accounts objects
         /// </remarks>
         /// </summary>
-        Task<ListShippoAccountsResponse> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null);
+        Task<ShippoAccountPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null);
 
         /// <summary>
         /// Create a Shippo Account
@@ -50,7 +50,7 @@ namespace Shippo
         /// Creates a Shippo Account object
         /// </remarks>
         /// </summary>
-        Task<CreateShippoAccountResponse> CreateAsync(ShippoAccountUpdateRequest shippoAccountUpdateRequest, string? shippoApiVersion = null);
+        Task<ShippoAccount> CreateAsync(ShippoAccountUpdateRequest shippoAccountUpdateRequest, string? shippoApiVersion = null);
 
         /// <summary>
         /// Retrieve a Shippo Account
@@ -59,7 +59,7 @@ namespace Shippo
         /// Returns a Shippo Account using an object ID
         /// </remarks>
         /// </summary>
-        Task<GetShippoAccountResponse> GetAsync(string shippoAccountId, string? shippoApiVersion = null);
+        Task<ShippoAccount> GetAsync(string shippoAccountId, string? shippoApiVersion = null);
 
         /// <summary>
         /// Update a Shippo Account
@@ -68,7 +68,7 @@ namespace Shippo
         /// Updates a Shippo Account object
         /// </remarks>
         /// </summary>
-        Task<UpdateShippoAccountResponse> UpdateAsync(string shippoAccountId, string? shippoApiVersion = null, ShippoAccountUpdateRequest? shippoAccountUpdateRequest = null);
+        Task<ShippoAccount> UpdateAsync(string shippoAccountId, string? shippoApiVersion = null, ShippoAccountUpdateRequest? shippoAccountUpdateRequest = null);
     }
 
     /// <summary>
@@ -84,10 +84,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
-        private const string _sdkGenVersion = "2.335.5";
+        private const string _sdkVersion = "0.1.0";
+        private const string _sdkGenVersion = "2.337.1";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.335.5 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.337.1 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _defaultClient;
         private Func<Security>? _securitySource;
@@ -100,7 +100,7 @@ namespace Shippo
             SDKConfiguration = config;
         }
 
-        public async Task<ListShippoAccountsResponse> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null)
+        public async Task<ShippoAccountPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null)
         {
             var request = new ListShippoAccountsRequest()
             {
@@ -163,33 +163,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<ShippoAccountPaginatedList>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new ListShippoAccountsResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.ShippoAccountPaginatedList = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<CreateShippoAccountResponse> CreateAsync(ShippoAccountUpdateRequest shippoAccountUpdateRequest, string? shippoApiVersion = null)
+        public async Task<ShippoAccount> CreateAsync(ShippoAccountUpdateRequest shippoAccountUpdateRequest, string? shippoApiVersion = null)
         {
             var request = new CreateShippoAccountRequest()
             {
@@ -258,33 +246,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<ShippoAccount>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new CreateShippoAccountResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.ShippoAccount = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<GetShippoAccountResponse> GetAsync(string shippoAccountId, string? shippoApiVersion = null)
+        public async Task<ShippoAccount> GetAsync(string shippoAccountId, string? shippoApiVersion = null)
         {
             var request = new GetShippoAccountRequest()
             {
@@ -346,33 +322,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<ShippoAccount>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new GetShippoAccountResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.ShippoAccount = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<UpdateShippoAccountResponse> UpdateAsync(string shippoAccountId, string? shippoApiVersion = null, ShippoAccountUpdateRequest? shippoAccountUpdateRequest = null)
+        public async Task<ShippoAccount> UpdateAsync(string shippoAccountId, string? shippoApiVersion = null, ShippoAccountUpdateRequest? shippoAccountUpdateRequest = null)
         {
             var request = new UpdateShippoAccountRequest()
             {
@@ -441,29 +405,17 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<ShippoAccount>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new UpdateShippoAccountResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.ShippoAccount = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
     }

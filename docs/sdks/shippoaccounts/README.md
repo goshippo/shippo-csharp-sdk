@@ -49,7 +49,7 @@ var res = await sdk.ShippoAccounts.ListAsync(
 
 ### Response
 
-**[ListShippoAccountsResponse](../../Models/Requests/ListShippoAccountsResponse.md)**
+**[ShippoAccountPaginatedList](../../Models/Components/ShippoAccountPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -93,7 +93,7 @@ var res = await sdk.ShippoAccounts.CreateAsync(
 
 ### Response
 
-**[CreateShippoAccountResponse](../../Models/Requests/CreateShippoAccountResponse.md)**
+**[ShippoAccount](../../Models/Components/ShippoAccount.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -132,7 +132,7 @@ var res = await sdk.ShippoAccounts.GetAsync(
 
 ### Response
 
-**[GetShippoAccountResponse](../../Models/Requests/GetShippoAccountResponse.md)**
+**[ShippoAccount](../../Models/Components/ShippoAccount.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -178,7 +178,7 @@ var res = await sdk.ShippoAccounts.UpdateAsync(
 
 ### Response
 
-**[UpdateShippoAccountResponse](../../Models/Requests/UpdateShippoAccountResponse.md)**
+**[ShippoAccount](../../Models/Components/ShippoAccount.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

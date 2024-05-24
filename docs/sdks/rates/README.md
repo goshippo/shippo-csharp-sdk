@@ -44,7 +44,7 @@ var res = await sdk.Rates.GetAsync(
 
 ### Response
 
-**[GetRateResponse](../../Models/Requests/GetRateResponse.md)**
+**[Rate](../../Models/Components/Rate.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -66,28 +66,25 @@ var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
-var res = await sdk.Rates.ListShipmentRatesAsync(
-    shipmentId: "<value>",
-    page: 1,
-    results: 25,
-    shippoApiVersion: "2018-02-08");
+ListShipmentRatesRequest req = new ListShipmentRatesRequest() {
+    ShipmentId = "<value>",
+};
+
+var res = await sdk.Rates.ListShipmentRatesAsync(req);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `ShipmentId`                                         | *string*                                             | :heavy_check_mark:                                   | Object ID of the shipment to update                  |                                                      |
-| `Page`                                               | *long*                                               | :heavy_minus_sign:                                   | The page number you want to select                   |                                                      |
-| `Results`                                            | *long*                                               | :heavy_minus_sign:                                   | The number of results to return per page (max 100)   |                                                      |
-| `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
+| Parameter                                                                     | Type                                                                          | Required                                                                      | Description                                                                   |
+| ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| `request`                                                                     | [ListShipmentRatesRequest](../../Models/Requests/ListShipmentRatesRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
 
 ### Response
 
-**[ListShipmentRatesResponse](../../Models/Requests/ListShipmentRatesResponse.md)**
+**[RatePaginatedList](../../Models/Components/RatePaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -134,7 +131,7 @@ var res = await sdk.Rates.ListShipmentRatesByCurrencyCodeAsync(req);
 
 ### Response
 
-**[ListShipmentRatesByCurrencyCodeResponse](../../Models/Requests/ListShipmentRatesByCurrencyCodeResponse.md)**
+**[RatePaginatedList](../../Models/Components/RatePaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

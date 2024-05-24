@@ -72,7 +72,7 @@ var res = await sdk.Pickups.CreateAsync(
 
 ### Response
 
-**[CreatePickupResponse](../../Models/Requests/CreatePickupResponse.md)**
+**[Pickup](../../Models/Components/Pickup.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

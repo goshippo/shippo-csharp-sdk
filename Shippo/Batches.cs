@@ -47,7 +47,7 @@ namespace Shippo
         /// Creates a new batch object for purchasing shipping labels for many shipments at once. Batches are created asynchronously. This means that the API response won&apos;t include your batch shipments yet. You need to retrieve the batch later to verify that all batch shipments are valid.
         /// </remarks>
         /// </summary>
-        Task<CreateBatchResponse> CreateAsync(BatchCreateRequest batchCreateRequest, string? shippoApiVersion = null);
+        Task<Batch> CreateAsync(BatchCreateRequest batchCreateRequest, string? shippoApiVersion = null);
 
         /// <summary>
         /// Retrieve a batch
@@ -59,7 +59,7 @@ namespace Shippo
         /// For more details on filtering results, see our guide on &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/filtering/&quot; target=&quot;blank&quot;&gt; filtering&lt;/a&gt;.
         /// </remarks>
         /// </summary>
-        Task<GetBatchResponse> GetAsync(string batchId, string? shippoApiVersion = null);
+        Task<Batch> GetAsync(string batchId, string? shippoApiVersion = null);
 
         /// <summary>
         /// Add shipments to a batch
@@ -68,7 +68,7 @@ namespace Shippo
         /// Adds batch shipments to an existing batch.
         /// </remarks>
         /// </summary>
-        Task<AddShipmentsToBatchResponse> AddShipmentsAsync(string batchId, List<BatchShipmentBase> requestBody, string? shippoApiVersion = null);
+        Task<Batch> AddShipmentsAsync(string batchId, List<BatchShipmentBase> requestBody, string? shippoApiVersion = null);
 
         /// <summary>
         /// Purchase a batch
@@ -80,7 +80,7 @@ namespace Shippo
         /// `batch_purchased` webhook indicating that the batch has been purchased
         /// </remarks>
         /// </summary>
-        Task<PurchaseBatchResponse> PurchaseAsync(string batchId, string? shippoApiVersion = null);
+        Task<Batch> PurchaseAsync(string batchId, string? shippoApiVersion = null);
 
         /// <summary>
         /// Remove shipments from a batch
@@ -89,7 +89,7 @@ namespace Shippo
         /// Removes shipments from an existing batch shipment.
         /// </remarks>
         /// </summary>
-        Task<RemoveShipmentsFromBatchResponse> RemoveShipmentsAsync(string batchId, List<string> requestBody, string? shippoApiVersion = null);
+        Task<Batch> RemoveShipmentsAsync(string batchId, List<string> requestBody, string? shippoApiVersion = null);
     }
 
     /// <summary>
@@ -111,10 +111,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
-        private const string _sdkGenVersion = "2.335.5";
+        private const string _sdkVersion = "0.1.0";
+        private const string _sdkGenVersion = "2.337.1";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.335.5 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.337.1 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _defaultClient;
         private Func<Security>? _securitySource;
@@ -127,7 +127,7 @@ namespace Shippo
             SDKConfiguration = config;
         }
 
-        public async Task<CreateBatchResponse> CreateAsync(BatchCreateRequest batchCreateRequest, string? shippoApiVersion = null)
+        public async Task<Batch> CreateAsync(BatchCreateRequest batchCreateRequest, string? shippoApiVersion = null)
         {
             var request = new CreateBatchRequest()
             {
@@ -196,33 +196,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<Batch>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new CreateBatchResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.Batch = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<GetBatchResponse> GetAsync(string batchId, string? shippoApiVersion = null)
+        public async Task<Batch> GetAsync(string batchId, string? shippoApiVersion = null)
         {
             var request = new GetBatchRequest()
             {
@@ -284,33 +272,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<Batch>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new GetBatchResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.Batch = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<AddShipmentsToBatchResponse> AddShipmentsAsync(string batchId, List<BatchShipmentBase> requestBody, string? shippoApiVersion = null)
+        public async Task<Batch> AddShipmentsAsync(string batchId, List<BatchShipmentBase> requestBody, string? shippoApiVersion = null)
         {
             var request = new AddShipmentsToBatchRequest()
             {
@@ -379,33 +355,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<Batch>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new AddShipmentsToBatchResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.Batch = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<PurchaseBatchResponse> PurchaseAsync(string batchId, string? shippoApiVersion = null)
+        public async Task<Batch> PurchaseAsync(string batchId, string? shippoApiVersion = null)
         {
             var request = new PurchaseBatchRequest()
             {
@@ -467,33 +431,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<Batch>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new PurchaseBatchResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.Batch = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<RemoveShipmentsFromBatchResponse> RemoveShipmentsAsync(string batchId, List<string> requestBody, string? shippoApiVersion = null)
+        public async Task<Batch> RemoveShipmentsAsync(string batchId, List<string> requestBody, string? shippoApiVersion = null)
         {
             var request = new RemoveShipmentsFromBatchRequest()
             {
@@ -562,29 +514,17 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<Batch>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new RemoveShipmentsFromBatchResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.Batch = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
     }

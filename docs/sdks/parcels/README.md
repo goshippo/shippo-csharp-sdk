@@ -50,7 +50,7 @@ var res = await sdk.Parcels.ListAsync(
 
 ### Response
 
-**[ListParcelsResponse](../../Models/Requests/ListParcelsResponse.md)**
+**[ParcelPaginatedList](../../Models/Components/ParcelPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -109,7 +109,7 @@ var res = await sdk.Parcels.CreateAsync(
 
 ### Response
 
-**[CreateParcelResponse](../../Models/Requests/CreateParcelResponse.md)**
+**[Parcel](../../Models/Components/Parcel.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -148,7 +148,7 @@ var res = await sdk.Parcels.GetAsync(
 
 ### Response
 
-**[GetParcelResponse](../../Models/Requests/GetParcelResponse.md)**
+**[Parcel](../../Models/Components/Parcel.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

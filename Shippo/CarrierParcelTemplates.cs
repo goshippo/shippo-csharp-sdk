@@ -40,7 +40,7 @@ namespace Shippo
         /// List all carrier parcel template objects. &lt;br&gt; Use the following query string params to filter the results as needed. &lt;br&gt; &lt;ul&gt; &lt;li&gt;`include=all` (the default). Includes templates from all carriers &lt;/li&gt; &lt;li&gt;`include=user`. Includes templates only from carriers which the user has added (whether or not they&apos;re currently enabled) &lt;/li&gt; &lt;li&gt;`include=enabled`. includes templates only for carriers which the user has added and enabled &lt;/li&gt; &lt;li&gt;`carrier=*token*`. filter by specific carrier, e.g. fedex, usps &lt;/li&gt; &lt;/ul&gt;
         /// </remarks>
         /// </summary>
-        Task<ListCarrierParcelTemplatesResponse> ListAsync(Include? include = null, string? carrier = null, string? shippoApiVersion = null);
+        Task<CarrierParcelTemplateList> ListAsync(Include? include = null, string? carrier = null, string? shippoApiVersion = null);
 
         /// <summary>
         /// Retrieve a carrier parcel templates
@@ -49,7 +49,7 @@ namespace Shippo
         /// Fetches the parcel template information for a specific carrier parcel template, identified by the token.
         /// </remarks>
         /// </summary>
-        Task<GetCarrierParcelTemplateResponse> GetAsync(string carrierParcelTemplateToken, string? shippoApiVersion = null);
+        Task<CarrierParcelTemplate> GetAsync(string carrierParcelTemplateToken, string? shippoApiVersion = null);
     }
 
     /// <summary>
@@ -64,10 +64,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
-        private const string _sdkGenVersion = "2.335.5";
+        private const string _sdkVersion = "0.1.0";
+        private const string _sdkGenVersion = "2.337.1";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.335.5 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.337.1 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _defaultClient;
         private Func<Security>? _securitySource;
@@ -80,7 +80,7 @@ namespace Shippo
             SDKConfiguration = config;
         }
 
-        public async Task<ListCarrierParcelTemplatesResponse> ListAsync(Include? include = null, string? carrier = null, string? shippoApiVersion = null)
+        public async Task<CarrierParcelTemplateList> ListAsync(Include? include = null, string? carrier = null, string? shippoApiVersion = null)
         {
             var request = new ListCarrierParcelTemplatesRequest()
             {
@@ -143,33 +143,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<CarrierParcelTemplateList>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new ListCarrierParcelTemplatesResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.CarrierParcelTemplateList = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<GetCarrierParcelTemplateResponse> GetAsync(string carrierParcelTemplateToken, string? shippoApiVersion = null)
+        public async Task<CarrierParcelTemplate> GetAsync(string carrierParcelTemplateToken, string? shippoApiVersion = null)
         {
             var request = new GetCarrierParcelTemplateRequest()
             {
@@ -231,29 +219,17 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<CarrierParcelTemplate>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new GetCarrierParcelTemplateResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.CarrierParcelTemplate = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
     }

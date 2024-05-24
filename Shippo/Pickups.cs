@@ -40,7 +40,7 @@ namespace Shippo
         /// Creates a pickup object. This request is for a carrier to come to a specified location to take a package for shipping.
         /// </remarks>
         /// </summary>
-        Task<CreatePickupResponse> CreateAsync(PickupBase pickupBase, string? shippoApiVersion = null);
+        Task<Pickup> CreateAsync(PickupBase pickupBase, string? shippoApiVersion = null);
     }
 
     /// <summary>
@@ -55,10 +55,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
-        private const string _sdkGenVersion = "2.335.5";
+        private const string _sdkVersion = "0.1.0";
+        private const string _sdkGenVersion = "2.337.1";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.335.5 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.337.1 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _defaultClient;
         private Func<Security>? _securitySource;
@@ -71,7 +71,7 @@ namespace Shippo
             SDKConfiguration = config;
         }
 
-        public async Task<CreatePickupResponse> CreateAsync(PickupBase pickupBase, string? shippoApiVersion = null)
+        public async Task<Pickup> CreateAsync(PickupBase pickupBase, string? shippoApiVersion = null)
         {
             var request = new CreatePickupRequest()
             {
@@ -140,29 +140,17 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<Pickup>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new CreatePickupResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.Pickup = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
     }

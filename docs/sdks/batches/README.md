@@ -231,7 +231,7 @@ var res = await sdk.Batches.CreateAsync(
 
 ### Response
 
-**[CreateBatchResponse](../../Models/Requests/CreateBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -273,7 +273,7 @@ var res = await sdk.Batches.GetAsync(
 
 ### Response
 
-**[GetBatchResponse](../../Models/Requests/GetBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -470,7 +470,7 @@ var res = await sdk.Batches.AddShipmentsAsync(
 
 ### Response
 
-**[AddShipmentsToBatchResponse](../../Models/Requests/AddShipmentsToBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -512,7 +512,7 @@ var res = await sdk.Batches.PurchaseAsync(
 
 ### Response
 
-**[PurchaseBatchResponse](../../Models/Requests/PurchaseBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -556,7 +556,7 @@ var res = await sdk.Batches.RemoveShipmentsAsync(
 
 ### Response
 
-**[RemoveShipmentsFromBatchResponse](../../Models/Requests/RemoveShipmentsFromBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

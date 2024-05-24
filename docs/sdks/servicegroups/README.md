@@ -43,7 +43,7 @@ var res = await sdk.ServiceGroups.ListAsync(shippoApiVersion: "2018-02-08");
 
 ### Response
 
-**[ListServiceGroupsResponse](../../Models/Requests/ListServiceGroupsResponse.md)**
+**[List<ServiceGroup>](../../Models/.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -98,7 +98,7 @@ var res = await sdk.ServiceGroups.CreateAsync(
 
 ### Response
 
-**[CreateServiceGroupResponse](../../Models/Requests/CreateServiceGroupResponse.md)**
+**[ServiceGroup](../../Models/Components/ServiceGroup.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -155,7 +155,7 @@ var res = await sdk.ServiceGroups.UpdateAsync(
 
 ### Response
 
-**[UpdateServiceGroupResponse](../../Models/Requests/UpdateServiceGroupResponse.md)**
+**[ServiceGroup](../../Models/Components/ServiceGroup.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -177,11 +177,11 @@ var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
-var res = await sdk.ServiceGroups.DeleteAsync(
+await sdk.ServiceGroups.DeleteAsync(
     serviceGroupId: "<value>",
     shippoApiVersion: "2018-02-08");
 
-// handle response
+
 ```
 
 ### Parameters
@@ -191,10 +191,6 @@ var res = await sdk.ServiceGroups.DeleteAsync(
 | `ServiceGroupId`                                     | *string*                                             | :heavy_check_mark:                                   | Object ID of the service group                       |                                                      |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
-### Response
-
-**[DeleteServiceGroupResponse](../../Models/Requests/DeleteServiceGroupResponse.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

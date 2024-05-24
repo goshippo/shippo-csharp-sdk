@@ -56,7 +56,7 @@ var res = await sdk.TrackingStatus.CreateAsync(
 
 ### Response
 
-**[CreateTrackResponse](../../Models/Requests/CreateTrackResponse.md)**
+**[Track](../../Models/Components/Track.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -97,7 +97,7 @@ var res = await sdk.TrackingStatus.GetAsync(
 
 ### Response
 
-**[GetTrackResponse](../../Models/Requests/GetTrackResponse.md)**
+**[Track](../../Models/Components/Track.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

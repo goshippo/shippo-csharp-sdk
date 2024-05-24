@@ -239,13 +239,14 @@ var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
+InitiateOauth2SigninRequest req = new InitiateOauth2SigninRequest() {
+    CarrierAccountObjectId = "<value>",
+    RedirectUri = "http://fine-cummerbund.biz",
+};
+
 try
 {
-    var res = await sdk.CarrierAccounts.InitiateOauth2SigninAsync(
-    carrierAccountObjectId: "<value>",
-    redirectUri: "http://fine-cummerbund.biz",
-    state: "<value>",
-    shippoApiVersion: "2018-02-08");
+    var res = await sdk.CarrierAccounts.InitiateOauth2SigninAsync(req);
     // handle response
 }
 catch (Exception ex)

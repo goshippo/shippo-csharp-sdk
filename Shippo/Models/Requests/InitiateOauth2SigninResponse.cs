@@ -9,16 +9,11 @@
 #nullable enable
 namespace Shippo.Models.Requests
 {
-    using Newtonsoft.Json;
-    using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
     
     public class InitiateOauth2SigninResponse
     {
-
-        [JsonProperty("-")]
-        public HTTPMetadata HttpMeta { get; set; } = default!;
 
         public Dictionary<string, List<string>> Headers { get; set; } = default!;
     }

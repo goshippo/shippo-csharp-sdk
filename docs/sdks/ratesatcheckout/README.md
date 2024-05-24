@@ -82,7 +82,7 @@ var res = await sdk.RatesAtCheckout.CreateAsync(
 
 ### Response
 
-**[CreateLiveRateResponse](../../Models/Requests/CreateLiveRateResponse.md)**
+**[LiveRatePaginatedList](../../Models/Components/LiveRatePaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -118,7 +118,7 @@ var res = await sdk.RatesAtCheckout.GetDefaultParcelTemplateAsync(shippoApiVersi
 
 ### Response
 
-**[GetDefaultParcelTemplateResponse](../../Models/Requests/GetDefaultParcelTemplateResponse.md)**
+**[DefaultParcelTemplate](../../Models/Components/DefaultParcelTemplate.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -159,7 +159,7 @@ var res = await sdk.RatesAtCheckout.UpdateDefaultParcelTemplateAsync(
 
 ### Response
 
-**[UpdateDefaultParcelTemplateResponse](../../Models/Requests/UpdateDefaultParcelTemplateResponse.md)**
+**[DefaultParcelTemplate](../../Models/Components/DefaultParcelTemplate.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -181,9 +181,9 @@ var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
-var res = await sdk.RatesAtCheckout.DeleteDefaultParcelTemplateAsync(shippoApiVersion: "2018-02-08");
+await sdk.RatesAtCheckout.DeleteDefaultParcelTemplateAsync(shippoApiVersion: "2018-02-08");
 
-// handle response
+
 ```
 
 ### Parameters
@@ -192,10 +192,6 @@ var res = await sdk.RatesAtCheckout.DeleteDefaultParcelTemplateAsync(shippoApiVe
 | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
-### Response
-
-**[DeleteDefaultParcelTemplateResponse](../../Models/Requests/DeleteDefaultParcelTemplateResponse.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

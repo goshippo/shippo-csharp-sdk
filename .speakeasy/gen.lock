@@ -3,15 +3,15 @@ id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
   docChecksum: e1e3414831374f36f67e4420d9b2c848
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.295.1
-  generationVersion: 2.335.5
-  releaseVersion: 0.0.1
-  configChecksum: 1a413413c94197bc35243f9dd8ea7663
+  speakeasyVersion: 1.296.0
+  generationVersion: 2.337.1
+  releaseVersion: 0.1.0
+  configChecksum: 43306601b281ca75b160efa205714cf9
 features:
   csharp:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.0.1
-    core: 3.8.3
+    core: 3.9.0
     flattening: 2.81.2
     globalSecurity: 2.83.4
     globalSecurityCallbacks: 0.1.0
@@ -66,147 +66,12 @@ generatedFiles:
   - Shippo/Utils/Utilities.cs
   - Shippo/Shippo.csproj
   - Shippo/Models/Errors/SDKException.cs
-  - Shippo/Models/Requests/ListAddressesRequest.cs
-  - Shippo/Models/Requests/ListAddressesResponse.cs
-  - Shippo/Models/Requests/CreateAddressRequest.cs
-  - Shippo/Models/Requests/CreateAddressResponse.cs
-  - Shippo/Models/Requests/GetAddressRequest.cs
-  - Shippo/Models/Requests/GetAddressResponse.cs
-  - Shippo/Models/Requests/ValidateAddressRequest.cs
-  - Shippo/Models/Requests/ValidateAddressResponse.cs
-  - Shippo/Models/Requests/CreateBatchRequest.cs
-  - Shippo/Models/Requests/CreateBatchResponse.cs
-  - Shippo/Models/Requests/GetBatchRequest.cs
-  - Shippo/Models/Requests/GetBatchResponse.cs
-  - Shippo/Models/Requests/AddShipmentsToBatchRequest.cs
-  - Shippo/Models/Requests/AddShipmentsToBatchResponse.cs
-  - Shippo/Models/Requests/PurchaseBatchRequest.cs
-  - Shippo/Models/Requests/PurchaseBatchResponse.cs
-  - Shippo/Models/Requests/RemoveShipmentsFromBatchRequest.cs
-  - Shippo/Models/Requests/RemoveShipmentsFromBatchResponse.cs
-  - Shippo/Models/Requests/ListCarrierAccountsRequest.cs
-  - Shippo/Models/Requests/ListCarrierAccountsResponse.cs
-  - Shippo/Models/Requests/CreateCarrierAccountRequest.cs
-  - Shippo/Models/Requests/CreateCarrierAccountResponse.cs
-  - Shippo/Models/Requests/GetCarrierAccountRequest.cs
-  - Shippo/Models/Requests/GetCarrierAccountResponse.cs
-  - Shippo/Models/Requests/UpdateCarrierAccountRequest.cs
-  - Shippo/Models/Requests/UpdateCarrierAccountResponse.cs
-  - Shippo/Models/Requests/InitiateOauth2SigninRequest.cs
-  - Shippo/Models/Requests/InitiateOauth2SigninResponse.cs
-  - Shippo/Models/Requests/RegisterCarrierAccountRequestBody.cs
-  - Shippo/Models/Requests/RegisterCarrierAccountRequest.cs
-  - Shippo/Models/Requests/RegisterCarrierAccountResponse.cs
-  - Shippo/Models/Requests/Carrier.cs
-  - Shippo/Models/Requests/GetCarrierRegistrationStatusRequest.cs
-  - Shippo/Models/Requests/GetCarrierRegistrationStatusResponse.cs
-  - Shippo/Models/Requests/ListCustomsDeclarationsRequest.cs
-  - Shippo/Models/Requests/ListCustomsDeclarationsResponse.cs
-  - Shippo/Models/Requests/CreateCustomsDeclarationRequest.cs
-  - Shippo/Models/Requests/CreateCustomsDeclarationResponse.cs
-  - Shippo/Models/Requests/GetCustomsDeclarationRequest.cs
-  - Shippo/Models/Requests/GetCustomsDeclarationResponse.cs
-  - Shippo/Models/Requests/ListCustomsItemsRequest.cs
-  - Shippo/Models/Requests/ListCustomsItemsResponse.cs
-  - Shippo/Models/Requests/CreateCustomsItemRequest.cs
-  - Shippo/Models/Requests/CreateCustomsItemResponse.cs
-  - Shippo/Models/Requests/GetCustomsItemRequest.cs
-  - Shippo/Models/Requests/GetCustomsItemResponse.cs
-  - Shippo/Models/Requests/CreateLiveRateRequest.cs
-  - Shippo/Models/Requests/CreateLiveRateResponse.cs
-  - Shippo/Models/Requests/GetDefaultParcelTemplateRequest.cs
-  - Shippo/Models/Requests/GetDefaultParcelTemplateResponse.cs
-  - Shippo/Models/Requests/UpdateDefaultParcelTemplateRequest.cs
-  - Shippo/Models/Requests/UpdateDefaultParcelTemplateResponse.cs
-  - Shippo/Models/Requests/DeleteDefaultParcelTemplateRequest.cs
-  - Shippo/Models/Requests/DeleteDefaultParcelTemplateResponse.cs
-  - Shippo/Models/Requests/ListManifestsRequest.cs
-  - Shippo/Models/Requests/ListManifestsResponse.cs
-  - Shippo/Models/Requests/CreateManifestRequest.cs
-  - Shippo/Models/Requests/CreateManifestResponse.cs
-  - Shippo/Models/Requests/GetManifestRequest.cs
-  - Shippo/Models/Requests/GetManifestResponse.cs
-  - Shippo/Models/Requests/ListOrdersRequest.cs
-  - Shippo/Models/Requests/ListOrdersResponse.cs
-  - Shippo/Models/Requests/CreateOrderRequest.cs
-  - Shippo/Models/Requests/CreateOrderResponse.cs
-  - Shippo/Models/Requests/GetOrderRequest.cs
-  - Shippo/Models/Requests/GetOrderResponse.cs
-  - Shippo/Models/Requests/Include.cs
-  - Shippo/Models/Requests/ListCarrierParcelTemplatesRequest.cs
-  - Shippo/Models/Requests/ListCarrierParcelTemplatesResponse.cs
-  - Shippo/Models/Requests/GetCarrierParcelTemplateRequest.cs
-  - Shippo/Models/Requests/GetCarrierParcelTemplateResponse.cs
-  - Shippo/Models/Requests/ListParcelsRequest.cs
-  - Shippo/Models/Requests/ListParcelsResponse.cs
-  - Shippo/Models/Requests/CreateParcelRequest.cs
-  - Shippo/Models/Requests/CreateParcelResponse.cs
-  - Shippo/Models/Requests/GetParcelRequest.cs
-  - Shippo/Models/Requests/GetParcelResponse.cs
-  - Shippo/Models/Requests/CreatePickupRequest.cs
-  - Shippo/Models/Requests/CreatePickupResponse.cs
-  - Shippo/Models/Requests/GetRateRequest.cs
-  - Shippo/Models/Requests/GetRateResponse.cs
-  - Shippo/Models/Requests/ListShipmentRatesRequest.cs
-  - Shippo/Models/Requests/ListShipmentRatesResponse.cs
-  - Shippo/Models/Requests/ListShipmentRatesByCurrencyCodeRequest.cs
-  - Shippo/Models/Requests/ListShipmentRatesByCurrencyCodeResponse.cs
-  - Shippo/Models/Requests/CreateRefundRequest.cs
-  - Shippo/Models/Requests/CreateRefundResponse.cs
-  - Shippo/Models/Requests/ListRefundsRequest.cs
-  - Shippo/Models/Requests/ListRefundsResponse.cs
-  - Shippo/Models/Requests/GetRefundRequest.cs
-  - Shippo/Models/Requests/GetRefundResponse.cs
-  - Shippo/Models/Requests/ListServiceGroupsRequest.cs
-  - Shippo/Models/Requests/ListServiceGroupsResponse.cs
-  - Shippo/Models/Requests/CreateServiceGroupRequest.cs
-  - Shippo/Models/Requests/CreateServiceGroupResponse.cs
-  - Shippo/Models/Requests/UpdateServiceGroupRequest.cs
-  - Shippo/Models/Requests/UpdateServiceGroupResponse.cs
-  - Shippo/Models/Requests/DeleteServiceGroupRequest.cs
-  - Shippo/Models/Requests/DeleteServiceGroupResponse.cs
-  - Shippo/Models/Requests/ListShipmentsRequest.cs
-  - Shippo/Models/Requests/ListShipmentsResponse.cs
-  - Shippo/Models/Requests/CreateShipmentRequest.cs
-  - Shippo/Models/Requests/CreateShipmentResponse.cs
-  - Shippo/Models/Requests/GetShipmentRequest.cs
-  - Shippo/Models/Requests/GetShipmentResponse.cs
-  - Shippo/Models/Requests/CreateTrackRequest.cs
-  - Shippo/Models/Requests/CreateTrackResponse.cs
-  - Shippo/Models/Requests/GetTrackRequest.cs
-  - Shippo/Models/Requests/GetTrackResponse.cs
-  - Shippo/Models/Requests/ListTransactionsRequest.cs
-  - Shippo/Models/Requests/ListTransactionsResponse.cs
-  - Shippo/Models/Requests/CreateTransactionRequestBody.cs
-  - Shippo/Models/Requests/CreateTransactionRequest.cs
-  - Shippo/Models/Requests/CreateTransactionResponse.cs
-  - Shippo/Models/Requests/GetTransactionRequest.cs
-  - Shippo/Models/Requests/GetTransactionResponse.cs
-  - Shippo/Models/Requests/ListUserParcelTemplatesRequest.cs
-  - Shippo/Models/Requests/ListUserParcelTemplatesResponse.cs
-  - Shippo/Models/Requests/CreateUserParcelTemplateRequest.cs
-  - Shippo/Models/Requests/CreateUserParcelTemplateResponse.cs
-  - Shippo/Models/Requests/DeleteUserParcelTemplateRequest.cs
-  - Shippo/Models/Requests/DeleteUserParcelTemplateResponse.cs
-  - Shippo/Models/Requests/GetUserParcelTemplateRequest.cs
-  - Shippo/Models/Requests/GetUserParcelTemplateResponse.cs
-  - Shippo/Models/Requests/UpdateUserParcelTemplateRequest.cs
-  - Shippo/Models/Requests/UpdateUserParcelTemplateResponse.cs
-  - Shippo/Models/Requests/ListShippoAccountsRequest.cs
-  - Shippo/Models/Requests/ListShippoAccountsResponse.cs
-  - Shippo/Models/Requests/CreateShippoAccountRequest.cs
-  - Shippo/Models/Requests/CreateShippoAccountResponse.cs
-  - Shippo/Models/Requests/GetShippoAccountRequest.cs
-  - Shippo/Models/Requests/GetShippoAccountResponse.cs
-  - Shippo/Models/Requests/UpdateShippoAccountRequest.cs
-  - Shippo/Models/Requests/UpdateShippoAccountResponse.cs
   - Shippo/Models/Components/AddressPaginatedList.cs
   - Shippo/Models/Components/Address.cs
   - Shippo/Models/Components/AddressValidationResults.cs
   - Shippo/Models/Components/Code.cs
   - Shippo/Models/Components/Source.cs
   - Shippo/Models/Components/AddressValidationResultsMessage.cs
-  - Shippo/Models/Components/HTTPMetadata.cs
   - Shippo/Models/Components/AddressCreateRequest.cs
   - Shippo/Models/Components/ObjectResults.cs
   - Shippo/Models/Components/BatchStatus.cs
@@ -445,150 +310,85 @@ generatedFiles:
   - Shippo/Models/Components/ServiceLevelFedExEnum.cs
   - Shippo/Models/Components/ServiceLevelUSPSEnum.cs
   - Shippo/Models/Components/ServiceLevelEnumSet.cs
+  - Shippo/Models/Requests/ListAddressesRequest.cs
+  - Shippo/Models/Requests/CreateAddressRequest.cs
+  - Shippo/Models/Requests/GetAddressRequest.cs
+  - Shippo/Models/Requests/ValidateAddressRequest.cs
+  - Shippo/Models/Requests/CreateBatchRequest.cs
+  - Shippo/Models/Requests/GetBatchRequest.cs
+  - Shippo/Models/Requests/AddShipmentsToBatchRequest.cs
+  - Shippo/Models/Requests/PurchaseBatchRequest.cs
+  - Shippo/Models/Requests/RemoveShipmentsFromBatchRequest.cs
+  - Shippo/Models/Requests/ListCarrierAccountsRequest.cs
+  - Shippo/Models/Requests/CreateCarrierAccountRequest.cs
+  - Shippo/Models/Requests/GetCarrierAccountRequest.cs
+  - Shippo/Models/Requests/UpdateCarrierAccountRequest.cs
+  - Shippo/Models/Requests/InitiateOauth2SigninRequest.cs
+  - Shippo/Models/Requests/InitiateOauth2SigninResponse.cs
+  - Shippo/Models/Requests/RegisterCarrierAccountRequestBody.cs
+  - Shippo/Models/Requests/RegisterCarrierAccountRequest.cs
+  - Shippo/Models/Requests/Carrier.cs
+  - Shippo/Models/Requests/GetCarrierRegistrationStatusRequest.cs
+  - Shippo/Models/Requests/ListCustomsDeclarationsRequest.cs
+  - Shippo/Models/Requests/CreateCustomsDeclarationRequest.cs
+  - Shippo/Models/Requests/GetCustomsDeclarationRequest.cs
+  - Shippo/Models/Requests/ListCustomsItemsRequest.cs
+  - Shippo/Models/Requests/CreateCustomsItemRequest.cs
+  - Shippo/Models/Requests/GetCustomsItemRequest.cs
+  - Shippo/Models/Requests/CreateLiveRateRequest.cs
+  - Shippo/Models/Requests/GetDefaultParcelTemplateRequest.cs
+  - Shippo/Models/Requests/UpdateDefaultParcelTemplateRequest.cs
+  - Shippo/Models/Requests/DeleteDefaultParcelTemplateRequest.cs
+  - Shippo/Models/Requests/ListManifestsRequest.cs
+  - Shippo/Models/Requests/CreateManifestRequest.cs
+  - Shippo/Models/Requests/GetManifestRequest.cs
+  - Shippo/Models/Requests/ListOrdersRequest.cs
+  - Shippo/Models/Requests/CreateOrderRequest.cs
+  - Shippo/Models/Requests/GetOrderRequest.cs
+  - Shippo/Models/Requests/Include.cs
+  - Shippo/Models/Requests/ListCarrierParcelTemplatesRequest.cs
+  - Shippo/Models/Requests/GetCarrierParcelTemplateRequest.cs
+  - Shippo/Models/Requests/ListParcelsRequest.cs
+  - Shippo/Models/Requests/CreateParcelRequest.cs
+  - Shippo/Models/Requests/GetParcelRequest.cs
+  - Shippo/Models/Requests/CreatePickupRequest.cs
+  - Shippo/Models/Requests/GetRateRequest.cs
+  - Shippo/Models/Requests/ListShipmentRatesRequest.cs
+  - Shippo/Models/Requests/ListShipmentRatesByCurrencyCodeRequest.cs
+  - Shippo/Models/Requests/CreateRefundRequest.cs
+  - Shippo/Models/Requests/ListRefundsRequest.cs
+  - Shippo/Models/Requests/GetRefundRequest.cs
+  - Shippo/Models/Requests/ListServiceGroupsRequest.cs
+  - Shippo/Models/Requests/CreateServiceGroupRequest.cs
+  - Shippo/Models/Requests/UpdateServiceGroupRequest.cs
+  - Shippo/Models/Requests/DeleteServiceGroupRequest.cs
+  - Shippo/Models/Requests/ListShipmentsRequest.cs
+  - Shippo/Models/Requests/CreateShipmentRequest.cs
+  - Shippo/Models/Requests/GetShipmentRequest.cs
+  - Shippo/Models/Requests/CreateTrackRequest.cs
+  - Shippo/Models/Requests/GetTrackRequest.cs
+  - Shippo/Models/Requests/ListTransactionsRequest.cs
+  - Shippo/Models/Requests/CreateTransactionRequestBody.cs
+  - Shippo/Models/Requests/CreateTransactionRequest.cs
+  - Shippo/Models/Requests/GetTransactionRequest.cs
+  - Shippo/Models/Requests/ListUserParcelTemplatesRequest.cs
+  - Shippo/Models/Requests/CreateUserParcelTemplateRequest.cs
+  - Shippo/Models/Requests/DeleteUserParcelTemplateRequest.cs
+  - Shippo/Models/Requests/GetUserParcelTemplateRequest.cs
+  - Shippo/Models/Requests/UpdateUserParcelTemplateRequest.cs
+  - Shippo/Models/Requests/ListShippoAccountsRequest.cs
+  - Shippo/Models/Requests/CreateShippoAccountRequest.cs
+  - Shippo/Models/Requests/GetShippoAccountRequest.cs
+  - Shippo/Models/Requests/UpdateShippoAccountRequest.cs
   - Shippo/Models/Errors/InitiateOauth2SigninCarrierAccountsResponseResponseBody.cs
   - Shippo/Models/Errors/InitiateOauth2SigninCarrierAccountsResponseBody.cs
   - Shippo/Models/Errors/InitiateOauth2SigninResponseBody.cs
-  - docs/Models/Requests/ListAddressesRequest.md
-  - docs/Models/Requests/ListAddressesResponse.md
-  - docs/Models/Requests/CreateAddressRequest.md
-  - docs/Models/Requests/CreateAddressResponse.md
-  - docs/Models/Requests/GetAddressRequest.md
-  - docs/Models/Requests/GetAddressResponse.md
-  - docs/Models/Requests/ValidateAddressRequest.md
-  - docs/Models/Requests/ValidateAddressResponse.md
-  - docs/Models/Requests/CreateBatchRequest.md
-  - docs/Models/Requests/CreateBatchResponse.md
-  - docs/Models/Requests/GetBatchRequest.md
-  - docs/Models/Requests/GetBatchResponse.md
-  - docs/Models/Requests/AddShipmentsToBatchRequest.md
-  - docs/Models/Requests/AddShipmentsToBatchResponse.md
-  - docs/Models/Requests/PurchaseBatchRequest.md
-  - docs/Models/Requests/PurchaseBatchResponse.md
-  - docs/Models/Requests/RemoveShipmentsFromBatchRequest.md
-  - docs/Models/Requests/RemoveShipmentsFromBatchResponse.md
-  - docs/Models/Requests/ListCarrierAccountsRequest.md
-  - docs/Models/Requests/ListCarrierAccountsResponse.md
-  - docs/Models/Requests/CreateCarrierAccountRequest.md
-  - docs/Models/Requests/CreateCarrierAccountResponse.md
-  - docs/Models/Requests/GetCarrierAccountRequest.md
-  - docs/Models/Requests/GetCarrierAccountResponse.md
-  - docs/Models/Requests/UpdateCarrierAccountRequest.md
-  - docs/Models/Requests/UpdateCarrierAccountResponse.md
-  - docs/Models/Requests/InitiateOauth2SigninRequest.md
-  - docs/Models/Requests/InitiateOauth2SigninResponse.md
-  - docs/Models/Requests/RegisterCarrierAccountRequestBody.md
-  - docs/Models/Requests/RegisterCarrierAccountRequest.md
-  - docs/Models/Requests/RegisterCarrierAccountResponse.md
-  - docs/Models/Requests/Carrier.md
-  - docs/Models/Requests/GetCarrierRegistrationStatusRequest.md
-  - docs/Models/Requests/GetCarrierRegistrationStatusResponse.md
-  - docs/Models/Requests/ListCustomsDeclarationsRequest.md
-  - docs/Models/Requests/ListCustomsDeclarationsResponse.md
-  - docs/Models/Requests/CreateCustomsDeclarationRequest.md
-  - docs/Models/Requests/CreateCustomsDeclarationResponse.md
-  - docs/Models/Requests/GetCustomsDeclarationRequest.md
-  - docs/Models/Requests/GetCustomsDeclarationResponse.md
-  - docs/Models/Requests/ListCustomsItemsRequest.md
-  - docs/Models/Requests/ListCustomsItemsResponse.md
-  - docs/Models/Requests/CreateCustomsItemRequest.md
-  - docs/Models/Requests/CreateCustomsItemResponse.md
-  - docs/Models/Requests/GetCustomsItemRequest.md
-  - docs/Models/Requests/GetCustomsItemResponse.md
-  - docs/Models/Requests/CreateLiveRateRequest.md
-  - docs/Models/Requests/CreateLiveRateResponse.md
-  - docs/Models/Requests/GetDefaultParcelTemplateRequest.md
-  - docs/Models/Requests/GetDefaultParcelTemplateResponse.md
-  - docs/Models/Requests/UpdateDefaultParcelTemplateRequest.md
-  - docs/Models/Requests/UpdateDefaultParcelTemplateResponse.md
-  - docs/Models/Requests/DeleteDefaultParcelTemplateRequest.md
-  - docs/Models/Requests/DeleteDefaultParcelTemplateResponse.md
-  - docs/Models/Requests/ListManifestsRequest.md
-  - docs/Models/Requests/ListManifestsResponse.md
-  - docs/Models/Requests/CreateManifestRequest.md
-  - docs/Models/Requests/CreateManifestResponse.md
-  - docs/Models/Requests/GetManifestRequest.md
-  - docs/Models/Requests/GetManifestResponse.md
-  - docs/Models/Requests/ListOrdersRequest.md
-  - docs/Models/Requests/ListOrdersResponse.md
-  - docs/Models/Requests/CreateOrderRequest.md
-  - docs/Models/Requests/CreateOrderResponse.md
-  - docs/Models/Requests/GetOrderRequest.md
-  - docs/Models/Requests/GetOrderResponse.md
-  - docs/Models/Requests/Include.md
-  - docs/Models/Requests/ListCarrierParcelTemplatesRequest.md
-  - docs/Models/Requests/ListCarrierParcelTemplatesResponse.md
-  - docs/Models/Requests/GetCarrierParcelTemplateRequest.md
-  - docs/Models/Requests/GetCarrierParcelTemplateResponse.md
-  - docs/Models/Requests/ListParcelsRequest.md
-  - docs/Models/Requests/ListParcelsResponse.md
-  - docs/Models/Requests/CreateParcelRequest.md
-  - docs/Models/Requests/CreateParcelResponse.md
-  - docs/Models/Requests/GetParcelRequest.md
-  - docs/Models/Requests/GetParcelResponse.md
-  - docs/Models/Requests/CreatePickupRequest.md
-  - docs/Models/Requests/CreatePickupResponse.md
-  - docs/Models/Requests/GetRateRequest.md
-  - docs/Models/Requests/GetRateResponse.md
-  - docs/Models/Requests/ListShipmentRatesRequest.md
-  - docs/Models/Requests/ListShipmentRatesResponse.md
-  - docs/Models/Requests/ListShipmentRatesByCurrencyCodeRequest.md
-  - docs/Models/Requests/ListShipmentRatesByCurrencyCodeResponse.md
-  - docs/Models/Requests/CreateRefundRequest.md
-  - docs/Models/Requests/CreateRefundResponse.md
-  - docs/Models/Requests/ListRefundsRequest.md
-  - docs/Models/Requests/ListRefundsResponse.md
-  - docs/Models/Requests/GetRefundRequest.md
-  - docs/Models/Requests/GetRefundResponse.md
-  - docs/Models/Requests/ListServiceGroupsRequest.md
-  - docs/Models/Requests/ListServiceGroupsResponse.md
-  - docs/Models/Requests/CreateServiceGroupRequest.md
-  - docs/Models/Requests/CreateServiceGroupResponse.md
-  - docs/Models/Requests/UpdateServiceGroupRequest.md
-  - docs/Models/Requests/UpdateServiceGroupResponse.md
-  - docs/Models/Requests/DeleteServiceGroupRequest.md
-  - docs/Models/Requests/DeleteServiceGroupResponse.md
-  - docs/Models/Requests/ListShipmentsRequest.md
-  - docs/Models/Requests/ListShipmentsResponse.md
-  - docs/Models/Requests/CreateShipmentRequest.md
-  - docs/Models/Requests/CreateShipmentResponse.md
-  - docs/Models/Requests/GetShipmentRequest.md
-  - docs/Models/Requests/GetShipmentResponse.md
-  - docs/Models/Requests/CreateTrackRequest.md
-  - docs/Models/Requests/CreateTrackResponse.md
-  - docs/Models/Requests/GetTrackRequest.md
-  - docs/Models/Requests/GetTrackResponse.md
-  - docs/Models/Requests/ListTransactionsRequest.md
-  - docs/Models/Requests/ListTransactionsResponse.md
-  - docs/Models/Requests/CreateTransactionRequestBody.md
-  - docs/Models/Requests/CreateTransactionRequest.md
-  - docs/Models/Requests/CreateTransactionResponse.md
-  - docs/Models/Requests/GetTransactionRequest.md
-  - docs/Models/Requests/GetTransactionResponse.md
-  - docs/Models/Requests/ListUserParcelTemplatesRequest.md
-  - docs/Models/Requests/ListUserParcelTemplatesResponse.md
-  - docs/Models/Requests/CreateUserParcelTemplateRequest.md
-  - docs/Models/Requests/CreateUserParcelTemplateResponse.md
-  - docs/Models/Requests/DeleteUserParcelTemplateRequest.md
-  - docs/Models/Requests/DeleteUserParcelTemplateResponse.md
-  - docs/Models/Requests/GetUserParcelTemplateRequest.md
-  - docs/Models/Requests/GetUserParcelTemplateResponse.md
-  - docs/Models/Requests/UpdateUserParcelTemplateRequest.md
-  - docs/Models/Requests/UpdateUserParcelTemplateResponse.md
-  - docs/Models/Requests/ListShippoAccountsRequest.md
-  - docs/Models/Requests/ListShippoAccountsResponse.md
-  - docs/Models/Requests/CreateShippoAccountRequest.md
-  - docs/Models/Requests/CreateShippoAccountResponse.md
-  - docs/Models/Requests/GetShippoAccountRequest.md
-  - docs/Models/Requests/GetShippoAccountResponse.md
-  - docs/Models/Requests/UpdateShippoAccountRequest.md
-  - docs/Models/Requests/UpdateShippoAccountResponse.md
   - docs/Models/Components/AddressPaginatedList.md
   - docs/Models/Components/Address.md
   - docs/Models/Components/AddressValidationResults.md
   - docs/Models/Components/Code.md
   - docs/Models/Components/Source.md
   - docs/Models/Components/AddressValidationResultsMessage.md
-  - docs/Models/Components/HTTPMetadata.md
   - docs/Models/Components/AddressCreateRequest.md
   - docs/Models/Components/ObjectResults.md
   - docs/Models/Components/BatchStatus.md
@@ -827,6 +627,76 @@ generatedFiles:
   - docs/Models/Components/ServiceLevelFedExEnum.md
   - docs/Models/Components/ServiceLevelUSPSEnum.md
   - docs/Models/Components/ServiceLevelEnumSet.md
+  - docs/Models/Requests/ListAddressesRequest.md
+  - docs/Models/Requests/CreateAddressRequest.md
+  - docs/Models/Requests/GetAddressRequest.md
+  - docs/Models/Requests/ValidateAddressRequest.md
+  - docs/Models/Requests/CreateBatchRequest.md
+  - docs/Models/Requests/GetBatchRequest.md
+  - docs/Models/Requests/AddShipmentsToBatchRequest.md
+  - docs/Models/Requests/PurchaseBatchRequest.md
+  - docs/Models/Requests/RemoveShipmentsFromBatchRequest.md
+  - docs/Models/Requests/ListCarrierAccountsRequest.md
+  - docs/Models/Requests/CreateCarrierAccountRequest.md
+  - docs/Models/Requests/GetCarrierAccountRequest.md
+  - docs/Models/Requests/UpdateCarrierAccountRequest.md
+  - docs/Models/Requests/InitiateOauth2SigninRequest.md
+  - docs/Models/Requests/InitiateOauth2SigninResponse.md
+  - docs/Models/Requests/RegisterCarrierAccountRequestBody.md
+  - docs/Models/Requests/RegisterCarrierAccountRequest.md
+  - docs/Models/Requests/Carrier.md
+  - docs/Models/Requests/GetCarrierRegistrationStatusRequest.md
+  - docs/Models/Requests/ListCustomsDeclarationsRequest.md
+  - docs/Models/Requests/CreateCustomsDeclarationRequest.md
+  - docs/Models/Requests/GetCustomsDeclarationRequest.md
+  - docs/Models/Requests/ListCustomsItemsRequest.md
+  - docs/Models/Requests/CreateCustomsItemRequest.md
+  - docs/Models/Requests/GetCustomsItemRequest.md
+  - docs/Models/Requests/CreateLiveRateRequest.md
+  - docs/Models/Requests/GetDefaultParcelTemplateRequest.md
+  - docs/Models/Requests/UpdateDefaultParcelTemplateRequest.md
+  - docs/Models/Requests/DeleteDefaultParcelTemplateRequest.md
+  - docs/Models/Requests/ListManifestsRequest.md
+  - docs/Models/Requests/CreateManifestRequest.md
+  - docs/Models/Requests/GetManifestRequest.md
+  - docs/Models/Requests/ListOrdersRequest.md
+  - docs/Models/Requests/CreateOrderRequest.md
+  - docs/Models/Requests/GetOrderRequest.md
+  - docs/Models/Requests/Include.md
+  - docs/Models/Requests/ListCarrierParcelTemplatesRequest.md
+  - docs/Models/Requests/GetCarrierParcelTemplateRequest.md
+  - docs/Models/Requests/ListParcelsRequest.md
+  - docs/Models/Requests/CreateParcelRequest.md
+  - docs/Models/Requests/GetParcelRequest.md
+  - docs/Models/Requests/CreatePickupRequest.md
+  - docs/Models/Requests/GetRateRequest.md
+  - docs/Models/Requests/ListShipmentRatesRequest.md
+  - docs/Models/Requests/ListShipmentRatesByCurrencyCodeRequest.md
+  - docs/Models/Requests/CreateRefundRequest.md
+  - docs/Models/Requests/ListRefundsRequest.md
+  - docs/Models/Requests/GetRefundRequest.md
+  - docs/Models/Requests/ListServiceGroupsRequest.md
+  - docs/Models/Requests/CreateServiceGroupRequest.md
+  - docs/Models/Requests/UpdateServiceGroupRequest.md
+  - docs/Models/Requests/DeleteServiceGroupRequest.md
+  - docs/Models/Requests/ListShipmentsRequest.md
+  - docs/Models/Requests/CreateShipmentRequest.md
+  - docs/Models/Requests/GetShipmentRequest.md
+  - docs/Models/Requests/CreateTrackRequest.md
+  - docs/Models/Requests/GetTrackRequest.md
+  - docs/Models/Requests/ListTransactionsRequest.md
+  - docs/Models/Requests/CreateTransactionRequestBody.md
+  - docs/Models/Requests/CreateTransactionRequest.md
+  - docs/Models/Requests/GetTransactionRequest.md
+  - docs/Models/Requests/ListUserParcelTemplatesRequest.md
+  - docs/Models/Requests/CreateUserParcelTemplateRequest.md
+  - docs/Models/Requests/DeleteUserParcelTemplateRequest.md
+  - docs/Models/Requests/GetUserParcelTemplateRequest.md
+  - docs/Models/Requests/UpdateUserParcelTemplateRequest.md
+  - docs/Models/Requests/ListShippoAccountsRequest.md
+  - docs/Models/Requests/CreateShippoAccountRequest.md
+  - docs/Models/Requests/GetShippoAccountRequest.md
+  - docs/Models/Requests/UpdateShippoAccountRequest.md
   - docs/Models/Errors/InitiateOauth2SigninCarrierAccountsResponseResponseBody.md
   - docs/Models/Errors/InitiateOauth2SigninCarrierAccountsResponseBody.md
   - docs/Models/Errors/InitiateOauth2SigninResponseBody.md
