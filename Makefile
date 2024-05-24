@@ -21,12 +21,16 @@ speakeasy-auth: # dev task
 
 clean: # dev task
 	rm -fr Shippo/bin Shippo/obj
+	rm -fr ShippoTests/bin ShippoTests/obj ShippoTests/TestResults
 	rm -fr .speakeasy/temp
 	rm -fr build
 
 .PHONY: build
 build: # dev task
 	dotnet build
+
+test: # dev task
+	dotnet test
 
 download-public-spec: # dev task, download the current public spec, in preparation for modifying and running speakeasy-generate
 	@mkdir -p build
