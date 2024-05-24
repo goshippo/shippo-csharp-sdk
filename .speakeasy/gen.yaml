@@ -28,6 +28,7 @@ csharp:
       shared: Models/Components
       webhooks: Models/Webhooks
   inputModelSuffix: input
+  license: MIT License
   maxMethodParams: 3
   outputModelSuffix: output
   packageName: Shippo
