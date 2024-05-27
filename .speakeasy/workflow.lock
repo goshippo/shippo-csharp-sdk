@@ -1,12 +1,19 @@
-speakeasyVersion: 1.295.1
+speakeasyVersion: 1.296.1
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:9920da8577d9bb20b80b89cc17bd4ba1fec5570bb3106af1d05556f60349a998
-        sourceBlobDigest: sha256:587db21ce418171f1cae00b4490cdd5af1a3b7117debe10ba19f4ba678920d62
+        sourceRevisionDigest: sha256:bcf4fca34d81574fc8ab3da56873fa79d8cb3f80f21fd6c57f7fd20c1b77d06d
+        sourceBlobDigest: sha256:3614953d2eca87712c85ffc57d5a8d6333741b4c2ebf86ab073ca733ddd9f506
         tags:
             - latest
+            - main
 targets:
+    csharp:
+        source: openapi
+        sourceNamespace: openapi
+        sourceRevisionDigest: sha256:bcf4fca34d81574fc8ab3da56873fa79d8cb3f80f21fd6c57f7fd20c1b77d06d
+        sourceBlobDigest: sha256:3614953d2eca87712c85ffc57d5a8d6333741b4c2ebf86ab073ca733ddd9f506
+        outLocation: /github/workspace/repo
     my-first-target:
         source: openapi
         sourceNamespace: openapi
@@ -15,6 +22,7 @@ targets:
         outLocation: /Users/ma/src/github.com/goshippo/shippo-csharp-sdk
 workflow:
     workflowVersion: 1.0.0
+    speakeasyVersion: latest
     sources:
         openapi:
             inputs:
@@ -22,6 +30,6 @@ workflow:
             registry:
                 location: registry.speakeasyapi.dev/shippo/shippo/openapi
     targets:
-        my-first-target:
+        csharp:
             target: csharp
             source: openapi

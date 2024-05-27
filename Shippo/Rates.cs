@@ -77,10 +77,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.1.0";
-        private const string _sdkGenVersion = "2.337.1";
+        private const string _sdkVersion = "0.1.1";
+        private const string _sdkGenVersion = "2.338.1";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.337.1 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.1 2.338.1 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _defaultClient;
         private Func<Security>? _securitySource;

@@ -3,10 +3,11 @@ id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
   docChecksum: e1e3414831374f36f67e4420d9b2c848
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.296.0
-  generationVersion: 2.337.1
-  releaseVersion: 0.1.0
-  configChecksum: 43306601b281ca75b160efa205714cf9
+  speakeasyVersion: 1.296.1
+  generationVersion: 2.338.1
+  releaseVersion: 0.1.1
+  configChecksum: 2e2eb000b2f275efc973ae8f25961d4e
+  repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
 features:
   csharp:
     additionalDependencies: 0.1.0
@@ -46,7 +47,6 @@ generatedFiles:
   - Shippo/ShippoAccounts.cs
   - Shippo/ShippoSDK.cs
   - global.json
-  - Shippo.sln
   - Shippo/Utils/AnyDeserializer.cs
   - Shippo/Utils/BigIntStrConverter.cs
   - Shippo/Utils/DecimalStrConverter.cs
