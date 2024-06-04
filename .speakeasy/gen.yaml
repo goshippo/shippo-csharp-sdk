@@ -1,6 +1,6 @@
 configVersion: 2.0.0
 generation:
-  sdkClassName: Shippo
+  sdkClassName: ShippoSDK
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
@@ -28,7 +28,7 @@ csharp:
       shared: Models/Components
       webhooks: Models/Webhooks
   inputModelSuffix: input
-  maxMethodParams: 4
+  maxMethodParams: 3
   outputModelSuffix: output
   packageName: Shippo
-  responseFormat: envelope-http
+  responseFormat: flat
