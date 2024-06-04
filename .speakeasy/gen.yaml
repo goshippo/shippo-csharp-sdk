@@ -14,7 +14,7 @@ generation:
 csharp:
   version: 0.0.1
   additionalDependencies: []
-  author: Speakeasy
+  author: Shippo
   clientServerStatusCodesAsErrors: true
   disableNamespacePascalCasingApr2024: true
   dotnetVersion: net6.0
