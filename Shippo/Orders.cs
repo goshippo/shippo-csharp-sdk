@@ -50,7 +50,7 @@ namespace Shippo
         /// Returns a list of all order objects.
         /// </remarks>
         /// </summary>
-        Task<ListOrdersResponse> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null);
+        Task<OrderPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null);
 
         /// <summary>
         /// Create a new order
@@ -59,7 +59,7 @@ namespace Shippo
         /// Creates a new order object.
         /// </remarks>
         /// </summary>
-        Task<CreateOrderResponse> CreateAsync(OrderCreateRequest orderCreateRequest, string? shippoApiVersion = null);
+        Task<Order> CreateAsync(OrderCreateRequest orderCreateRequest, string? shippoApiVersion = null);
 
         /// <summary>
         /// Retrieve an order
@@ -68,7 +68,7 @@ namespace Shippo
         /// Retrieves an existing order using an object ID.
         /// </remarks>
         /// </summary>
-        Task<GetOrderResponse> GetAsync(string orderId, string? shippoApiVersion = null);
+        Task<Order> GetAsync(string orderId, string? shippoApiVersion = null);
     }
 
     /// <summary>
@@ -93,23 +93,23 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
-        private const string _sdkGenVersion = "2.335.5";
+        private const string _sdkVersion = "0.1.0";
+        private const string _sdkGenVersion = "2.338.12";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.335.5 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.338.12 2018-02-08 Shippo";
         private string _serverUrl = "";
-        private ISpeakeasyHttpClient _defaultClient;
+        private ISpeakeasyHttpClient _client;
         private Func<Security>? _securitySource;
 
-        public Orders(ISpeakeasyHttpClient defaultClient, Func<Security>? securitySource, string serverUrl, SDKConfig config)
+        public Orders(ISpeakeasyHttpClient client, Func<Security>? securitySource, string serverUrl, SDKConfig config)
         {
-            _defaultClient = defaultClient;
+            _client = client;
             _securitySource = securitySource;
             _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
-        public async Task<ListOrdersResponse> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null)
+        public async Task<OrderPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null)
         {
             var request = new ListOrdersRequest()
             {
@@ -138,7 +138,7 @@ namespace Shippo
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -172,33 +172,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<OrderPaginatedList>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new ListOrdersResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.OrderPaginatedList = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<CreateOrderResponse> CreateAsync(OrderCreateRequest orderCreateRequest, string? shippoApiVersion = null)
+        public async Task<Order> CreateAsync(OrderCreateRequest orderCreateRequest, string? shippoApiVersion = null)
         {
             var request = new CreateOrderRequest()
             {
@@ -233,7 +221,7 @@ namespace Shippo
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -267,33 +255,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<Order>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new CreateOrderResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.Order = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<GetOrderResponse> GetAsync(string orderId, string? shippoApiVersion = null)
+        public async Task<Order> GetAsync(string orderId, string? shippoApiVersion = null)
         {
             var request = new GetOrderRequest()
             {
@@ -321,7 +297,7 @@ namespace Shippo
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -355,29 +331,17 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<Order>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new GetOrderResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.Order = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
     }

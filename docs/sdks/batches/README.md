@@ -44,8 +44,8 @@ var res = await sdk.Batches.CreateAsync(
     DefaultServicelevelToken = "usps_priority",
     LabelFiletype = LabelFileTypeEnum.Pdf4x6,
     Metadata = "BATCH #1",
-    BatchShipments = new List<BatchShipmentBase>() {
-        new BatchShipmentBase() {
+    BatchShipments = new List<BatchShipmentCreateRequest>() {
+        new BatchShipmentCreateRequest() {
             CarrierAccount = "a4391cd4ab974f478f55dc08b5c8e3b3",
             Metadata = "SHIPMENT #1",
             ServicelevelToken = "fedex_ground",
@@ -231,7 +231,7 @@ var res = await sdk.Batches.CreateAsync(
 
 ### Response
 
-**[CreateBatchResponse](../../Models/Requests/CreateBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -273,7 +273,7 @@ var res = await sdk.Batches.GetAsync(
 
 ### Response
 
-**[GetBatchResponse](../../Models/Requests/GetBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -298,8 +298,8 @@ var sdk = new ShippoSDK(
 
 var res = await sdk.Batches.AddShipmentsAsync(
     batchId: "<value>",
-    requestBody: new List<BatchShipmentBase>() {
-    new BatchShipmentBase() {
+    requestBody: new List<BatchShipmentCreateRequest>() {
+    new BatchShipmentCreateRequest() {
         CarrierAccount = "a4391cd4ab974f478f55dc08b5c8e3b3",
         Metadata = "SHIPMENT #1",
         ServicelevelToken = "fedex_ground",
@@ -461,16 +461,16 @@ var res = await sdk.Batches.AddShipmentsAsync(
 
 ### Parameters
 
-| Parameter                                                               | Type                                                                    | Required                                                                | Description                                                             | Example                                                                 |
-| ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| `BatchId`                                                               | *string*                                                                | :heavy_check_mark:                                                      | Object ID of the batch                                                  |                                                                         |
-| `RequestBody`                                                           | List<[BatchShipmentBase](../../Models/Components/BatchShipmentBase.md)> | :heavy_check_mark:                                                      | Array of shipments to add to the batch                                  |                                                                         |
-| `ShippoApiVersion`                                                      | *string*                                                                | :heavy_minus_sign:                                                      | String used to pick a non-default API version to use                    | 2018-02-08                                                              |
+| Parameter                                                                                 | Type                                                                                      | Required                                                                                  | Description                                                                               | Example                                                                                   |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `BatchId`                                                                                 | *string*                                                                                  | :heavy_check_mark:                                                                        | Object ID of the batch                                                                    |                                                                                           |
+| `RequestBody`                                                                             | List<[BatchShipmentCreateRequest](../../Models/Components/BatchShipmentCreateRequest.md)> | :heavy_check_mark:                                                                        | Array of shipments to add to the batch                                                    |                                                                                           |
+| `ShippoApiVersion`                                                                        | *string*                                                                                  | :heavy_minus_sign:                                                                        | String used to pick a non-default API version to use                                      | 2018-02-08                                                                                |
 
 
 ### Response
 
-**[AddShipmentsToBatchResponse](../../Models/Requests/AddShipmentsToBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -512,7 +512,7 @@ var res = await sdk.Batches.PurchaseAsync(
 
 ### Response
 
-**[PurchaseBatchResponse](../../Models/Requests/PurchaseBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -556,7 +556,7 @@ var res = await sdk.Batches.RemoveShipmentsAsync(
 
 ### Response
 
-**[RemoveShipmentsFromBatchResponse](../../Models/Requests/RemoveShipmentsFromBatchResponse.md)**
+**[Batch](../../Models/Components/Batch.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

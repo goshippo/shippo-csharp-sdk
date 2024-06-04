@@ -47,7 +47,7 @@ var res = await sdk.CustomsDeclarations.ListAsync(
 
 ### Response
 
-**[ListCustomsDeclarationsResponse](../../Models/Requests/ListCustomsDeclarationsResponse.md)**
+**[CustomsDeclarationPaginatedList](../../Models/Components/CustomsDeclarationPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -126,7 +126,7 @@ var res = await sdk.CustomsDeclarations.CreateAsync(
 
 ### Response
 
-**[CreateCustomsDeclarationResponse](../../Models/Requests/CreateCustomsDeclarationResponse.md)**
+**[CustomsDeclaration](../../Models/Components/CustomsDeclaration.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -167,7 +167,7 @@ var res = await sdk.CustomsDeclarations.GetAsync(
 
 ### Response
 
-**[GetCustomsDeclarationResponse](../../Models/Requests/GetCustomsDeclarationResponse.md)**
+**[CustomsDeclaration](../../Models/Components/CustomsDeclaration.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

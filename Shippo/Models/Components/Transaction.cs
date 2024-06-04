@@ -108,6 +108,18 @@ namespace Shippo.Models.Components
         public string? QrCodeUrl { get; set; }
 
         /// <summary>
+        /// ID of the Rate object for which a Label has to be obtained.  <br/>
+        /// 
+        /// <remarks>
+        /// If you purchase a label by calling the transaction endpoint without a rate (instalabel), <br/>
+        /// this field will be a simplified Rate object in the Transaction model returned from the POST request.<br/>
+        /// &lt;/br&gt;Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
+        /// </remarks>
+        /// </summary>
+        [JsonProperty("rate")]
+        public TransactionRate? Rate { get; set; }
+
+        /// <summary>
         /// Indicates the status of the Transaction.
         /// </summary>
         [JsonProperty("status")]
@@ -144,15 +156,5 @@ namespace Shippo.Models.Components
         /// </summary>
         [JsonProperty("tracking_url_provider")]
         public string? TrackingUrlProvider { get; set; }
-
-        /// <summary>
-        /// ID of the Rate object for which a Label has to be obtained. <br/>
-        /// 
-        /// <remarks>
-        /// Please note that only rates that are not older than 7 days can be purchased in order to ensure up-to-date pricing.
-        /// </remarks>
-        /// </summary>
-        [JsonProperty("rate")]
-        public string? Rate { get; set; }
     }
 }

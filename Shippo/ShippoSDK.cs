@@ -303,13 +303,13 @@ namespace Shippo
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
-        private const string _sdkGenVersion = "2.335.5";
+        private const string _sdkVersion = "0.1.0";
+        private const string _sdkGenVersion = "2.338.12";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.335.5 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.338.12 2018-02-08 Shippo";
         private string _serverUrl = "";
         private int _serverIndex = 0;
-        private ISpeakeasyHttpClient _defaultClient;
+        private ISpeakeasyHttpClient _client;
         private Func<Security>? _securitySource;
         public IAddresses Addresses { get; private set; }
         public IBatches Batches { get; private set; }
@@ -351,7 +351,7 @@ namespace Shippo
                 _serverUrl = serverUrl;
             }
 
-            _defaultClient = new SpeakeasyHttpClient(client);
+            _client = client ?? new SpeakeasyHttpClient();
 
             if(apiKeyHeaderSource != null)
             {
@@ -374,64 +374,64 @@ namespace Shippo
                 RetryConfig = retryConfig
             };
 
-            _defaultClient = SDKConfiguration.InitHooks(_defaultClient);
+            _client = SDKConfiguration.InitHooks(_client);
 
 
-            Addresses = new Addresses(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Addresses = new Addresses(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Batches = new Batches(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Batches = new Batches(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            CarrierAccounts = new CarrierAccounts(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            CarrierAccounts = new CarrierAccounts(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            CustomsDeclarations = new CustomsDeclarations(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            CustomsDeclarations = new CustomsDeclarations(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            CustomsItems = new CustomsItems(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            CustomsItems = new CustomsItems(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            RatesAtCheckout = new RatesAtCheckout(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            RatesAtCheckout = new RatesAtCheckout(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Manifests = new Manifests(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Manifests = new Manifests(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Orders = new Orders(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Orders = new Orders(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            CarrierParcelTemplates = new CarrierParcelTemplates(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            CarrierParcelTemplates = new CarrierParcelTemplates(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Parcels = new Parcels(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Parcels = new Parcels(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Pickups = new Pickups(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Pickups = new Pickups(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Rates = new Rates(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Rates = new Rates(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Refunds = new Refunds(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Refunds = new Refunds(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            ServiceGroups = new ServiceGroups(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            ServiceGroups = new ServiceGroups(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Shipments = new Shipments(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Shipments = new Shipments(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            TrackingStatus = new TrackingStatus(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            TrackingStatus = new TrackingStatus(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            Transactions = new Transactions(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            Transactions = new Transactions(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            UserParcelTemplates = new UserParcelTemplates(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            UserParcelTemplates = new UserParcelTemplates(_client, _securitySource, _serverUrl, SDKConfiguration);
 
 
-            ShippoAccounts = new ShippoAccounts(_defaultClient, _securitySource, _serverUrl, SDKConfiguration);
+            ShippoAccounts = new ShippoAccounts(_client, _securitySource, _serverUrl, SDKConfiguration);
         }
     }
 }

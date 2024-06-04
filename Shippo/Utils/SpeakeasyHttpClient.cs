@@ -35,11 +35,11 @@ namespace Shippo.Utils
         Task<HttpRequestMessage> CloneAsync(HttpRequestMessage request);
     }
 
-    public class BaseHttpClient : ISpeakeasyHttpClient
+    internal class SpeakeasyHttpClient : ISpeakeasyHttpClient
     {
         protected readonly HttpClient httpClient;
 
-        public BaseHttpClient()
+        public SpeakeasyHttpClient()
         {
             httpClient = new System.Net.Http.HttpClient();
         }
@@ -76,21 +76,6 @@ namespace Shippo.Utils
             }
 
             return clone;
-        }
-    }
-
-    public class SpeakeasyHttpClient : BaseHttpClient
-    {
-        private ISpeakeasyHttpClient client;
-
-        internal SpeakeasyHttpClient(ISpeakeasyHttpClient? client = null)
-        {
-            if (client == null)
-            {
-                client = new BaseHttpClient();
-            }
-
-            this.client = client;
         }
     }
 }

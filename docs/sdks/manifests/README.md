@@ -52,7 +52,7 @@ var res = await sdk.Manifests.ListAsync(
 
 ### Response
 
-**[ListManifestsResponse](../../Models/Requests/ListManifestsResponse.md)**
+**[ManifestPaginatedList](../../Models/Components/ManifestPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -116,7 +116,7 @@ var res = await sdk.Manifests.CreateAsync(
 
 ### Response
 
-**[CreateManifestResponse](../../Models/Requests/CreateManifestResponse.md)**
+**[Manifest](../../Models/Components/Manifest.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -155,7 +155,7 @@ var res = await sdk.Manifests.GetAsync(
 
 ### Response
 
-**[GetManifestResponse](../../Models/Requests/GetManifestResponse.md)**
+**[Manifest](../../Models/Components/Manifest.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

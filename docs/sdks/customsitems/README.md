@@ -46,7 +46,7 @@ var res = await sdk.CustomsItems.ListAsync(
 
 ### Response
 
-**[ListCustomsItemsResponse](../../Models/Requests/ListCustomsItemsResponse.md)**
+**[CustomsItemPaginatedList](../../Models/Components/CustomsItemPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -95,7 +95,7 @@ var res = await sdk.CustomsItems.CreateAsync(
 
 ### Response
 
-**[CreateCustomsItemResponse](../../Models/Requests/CreateCustomsItemResponse.md)**
+**[CustomsItem](../../Models/Components/CustomsItem.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -136,7 +136,7 @@ var res = await sdk.CustomsItems.GetAsync(
 
 ### Response
 
-**[GetCustomsItemResponse](../../Models/Requests/GetCustomsItemResponse.md)**
+**[CustomsItem](../../Models/Components/CustomsItem.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

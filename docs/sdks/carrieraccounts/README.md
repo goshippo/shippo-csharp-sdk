@@ -52,7 +52,7 @@ var res = await sdk.CarrierAccounts.ListAsync(req);
 
 ### Response
 
-**[ListCarrierAccountsResponse](../../Models/Requests/ListCarrierAccountsResponse.md)**
+**[CarrierAccountPaginatedList](../../Models/Components/CarrierAccountPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -108,7 +108,7 @@ var res = await sdk.CarrierAccounts.CreateAsync(
 
 ### Response
 
-**[CreateCarrierAccountResponse](../../Models/Requests/CreateCarrierAccountResponse.md)**
+**[CarrierAccount](../../Models/Components/CarrierAccount.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -147,7 +147,7 @@ var res = await sdk.CarrierAccounts.GetAsync(
 
 ### Response
 
-**[GetCarrierAccountResponse](../../Models/Requests/GetCarrierAccountResponse.md)**
+**[CarrierAccount](../../Models/Components/CarrierAccount.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -217,7 +217,7 @@ var res = await sdk.CarrierAccounts.UpdateAsync(
 
 ### Response
 
-**[UpdateCarrierAccountResponse](../../Models/Requests/UpdateCarrierAccountResponse.md)**
+**[CarrierAccount](../../Models/Components/CarrierAccount.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -239,23 +239,21 @@ var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
-var res = await sdk.CarrierAccounts.InitiateOauth2SigninAsync(
-    carrierAccountObjectId: "<value>",
-    redirectUri: "http://fine-cummerbund.biz",
-    state: "<value>",
-    shippoApiVersion: "2018-02-08");
+InitiateOauth2SigninRequest req = new InitiateOauth2SigninRequest() {
+    CarrierAccountObjectId = "<value>",
+    RedirectUri = "http://fine-cummerbund.biz",
+};
+
+var res = await sdk.CarrierAccounts.InitiateOauth2SigninAsync(req);
 
 // handle response
 ```
 
 ### Parameters
 
-| Parameter                                                                                                                                                                                                      | Type                                                                                                                                                                                                           | Required                                                                                                                                                                                                       | Description                                                                                                                                                                                                    | Example                                                                                                                                                                                                        |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `CarrierAccountObjectId`                                                                                                                                                                                       | *string*                                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                             | The carrier account ID (UUID) to start a signin process.                                                                                                                                                       |                                                                                                                                                                                                                |
-| `RedirectUri`                                                                                                                                                                                                  | *string*                                                                                                                                                                                                       | :heavy_check_mark:                                                                                                                                                                                             | Callback URL. The URL that tells the authorization server where to send the user back to after they approve the request.                                                                                       |                                                                                                                                                                                                                |
-| `State`                                                                                                                                                                                                        | *string*                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                             | A random string generated by the consuming application and included in the request to prevent CSRF attacks. The consuming application checks that the same value is returned after the user authorizes Shippo. |                                                                                                                                                                                                                |
-| `ShippoApiVersion`                                                                                                                                                                                             | *string*                                                                                                                                                                                                       | :heavy_minus_sign:                                                                                                                                                                                             | String used to pick a non-default API version to use                                                                                                                                                           | 2018-02-08                                                                                                                                                                                                     |
+| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         |
+| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| `request`                                                                           | [InitiateOauth2SigninRequest](../../Models/Requests/InitiateOauth2SigninRequest.md) | :heavy_check_mark:                                                                  | The request object to use for the request.                                          |
 
 
 ### Response
@@ -307,7 +305,7 @@ var res = await sdk.CarrierAccounts.RegisterAsync(
 
 ### Response
 
-**[RegisterCarrierAccountResponse](../../Models/Requests/RegisterCarrierAccountResponse.md)**
+**[CarrierAccount](../../Models/Components/CarrierAccount.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -346,7 +344,7 @@ var res = await sdk.CarrierAccounts.GetRegistrationStatusAsync(
 
 ### Response
 
-**[GetCarrierRegistrationStatusResponse](../../Models/Requests/GetCarrierRegistrationStatusResponse.md)**
+**[CarrierAccountRegistrationStatus](../../Models/Components/CarrierAccountRegistrationStatus.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

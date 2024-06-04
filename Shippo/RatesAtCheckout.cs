@@ -49,7 +49,7 @@ namespace Shippo
         /// template or a fully formed user parcel template object as the parcel value.
         /// </remarks>
         /// </summary>
-        Task<CreateLiveRateResponse> CreateAsync(LiveRateCreateRequest liveRateCreateRequest, string? shippoApiVersion = null);
+        Task<LiveRatePaginatedList> CreateAsync(LiveRateCreateRequest liveRateCreateRequest, string? shippoApiVersion = null);
 
         /// <summary>
         /// Show current default parcel template
@@ -58,7 +58,7 @@ namespace Shippo
         /// Retrieve and display the currently configured default parcel template for live rates.
         /// </remarks>
         /// </summary>
-        Task<GetDefaultParcelTemplateResponse> GetDefaultParcelTemplateAsync(string? shippoApiVersion = null);
+        Task<DefaultParcelTemplate> GetDefaultParcelTemplateAsync(string? shippoApiVersion = null);
 
         /// <summary>
         /// Update default parcel template
@@ -67,7 +67,7 @@ namespace Shippo
         /// Update the currently configured default parcel template for live rates. The object_id in the request payload should identify the user parcel template to be the new default.
         /// </remarks>
         /// </summary>
-        Task<UpdateDefaultParcelTemplateResponse> UpdateDefaultParcelTemplateAsync(string? shippoApiVersion = null, DefaultParcelTemplateUpdateRequest? defaultParcelTemplateUpdateRequest = null);
+        Task<DefaultParcelTemplate> UpdateDefaultParcelTemplateAsync(string? shippoApiVersion = null, DefaultParcelTemplateUpdateRequest? defaultParcelTemplateUpdateRequest = null);
 
         /// <summary>
         /// Clear current default parcel template
@@ -76,7 +76,7 @@ namespace Shippo
         /// Clears the currently configured default parcel template for live rates.
         /// </remarks>
         /// </summary>
-        Task<DeleteDefaultParcelTemplateResponse> DeleteDefaultParcelTemplateAsync(string? shippoApiVersion = null);
+        Task DeleteDefaultParcelTemplateAsync(string? shippoApiVersion = null);
     }
 
     /// <summary>
@@ -97,23 +97,23 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "0.0.1";
-        private const string _sdkGenVersion = "2.335.5";
+        private const string _sdkVersion = "0.1.0";
+        private const string _sdkGenVersion = "2.338.12";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 0.0.1 2.335.5 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 0.1.0 2.338.12 2018-02-08 Shippo";
         private string _serverUrl = "";
-        private ISpeakeasyHttpClient _defaultClient;
+        private ISpeakeasyHttpClient _client;
         private Func<Security>? _securitySource;
 
-        public RatesAtCheckout(ISpeakeasyHttpClient defaultClient, Func<Security>? securitySource, string serverUrl, SDKConfig config)
+        public RatesAtCheckout(ISpeakeasyHttpClient client, Func<Security>? securitySource, string serverUrl, SDKConfig config)
         {
-            _defaultClient = defaultClient;
+            _client = client;
             _securitySource = securitySource;
             _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
-        public async Task<CreateLiveRateResponse> CreateAsync(LiveRateCreateRequest liveRateCreateRequest, string? shippoApiVersion = null)
+        public async Task<LiveRatePaginatedList> CreateAsync(LiveRateCreateRequest liveRateCreateRequest, string? shippoApiVersion = null)
         {
             var request = new CreateLiveRateRequest()
             {
@@ -148,7 +148,7 @@ namespace Shippo
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -182,33 +182,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<LiveRatePaginatedList>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new CreateLiveRateResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.LiveRatePaginatedList = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<GetDefaultParcelTemplateResponse> GetDefaultParcelTemplateAsync(string? shippoApiVersion = null)
+        public async Task<DefaultParcelTemplate> GetDefaultParcelTemplateAsync(string? shippoApiVersion = null)
         {
             var request = new GetDefaultParcelTemplateRequest()
             {
@@ -236,7 +224,7 @@ namespace Shippo
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -270,33 +258,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<DefaultParcelTemplate>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new GetDefaultParcelTemplateResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.DefaultParcelTemplate = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<UpdateDefaultParcelTemplateResponse> UpdateDefaultParcelTemplateAsync(string? shippoApiVersion = null, DefaultParcelTemplateUpdateRequest? defaultParcelTemplateUpdateRequest = null)
+        public async Task<DefaultParcelTemplate> UpdateDefaultParcelTemplateAsync(string? shippoApiVersion = null, DefaultParcelTemplateUpdateRequest? defaultParcelTemplateUpdateRequest = null)
         {
             var request = new UpdateDefaultParcelTemplateRequest()
             {
@@ -331,7 +307,7 @@ namespace Shippo
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -365,33 +341,21 @@ namespace Shippo
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
                     var obj = ResponseBodyDeserializer.Deserialize<DefaultParcelTemplate>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
-                    var response = new UpdateDefaultParcelTemplateResponse()
-                    {
-                      HttpMeta = new Models.Components.HTTPMetadata()
-                        {
-                            Response = httpResponse,
-                            Request = httpRequest
-                        }
-                    };
-                    response.DefaultParcelTemplate = obj;
-                    return response;
+                    return obj!;
                 }
-                else
-                {
-                    throw new SDKException("Unknown content type received", httpRequest, httpResponse);
-                }
+                throw new SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
 
-        public async Task<DeleteDefaultParcelTemplateResponse> DeleteDefaultParcelTemplateAsync(string? shippoApiVersion = null)
+        public async Task DeleteDefaultParcelTemplateAsync(string? shippoApiVersion = null)
         {
             var request = new DeleteDefaultParcelTemplateRequest()
             {
@@ -419,7 +383,7 @@ namespace Shippo
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _defaultClient.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -450,22 +414,15 @@ namespace Shippo
             int responseStatusCode = (int)httpResponse.StatusCode;
             if(responseStatusCode == 204)
             {                
-                return new DeleteDefaultParcelTemplateResponse()
-                {
-                  HttpMeta = new Models.Components.HTTPMetadata()
-                    {
-                        Response = httpResponse,
-                        Request = httpRequest
-                    }
-                };;
+                return;
             }
             else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new SDKException("API error occurred", httpRequest, httpResponse);
+                throw new SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
             else
             {
-                throw new SDKException("Unknown status code received", httpRequest, httpResponse);
+                throw new SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
         }
     }

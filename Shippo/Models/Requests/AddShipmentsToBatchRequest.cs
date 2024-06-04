@@ -26,7 +26,7 @@ namespace Shippo.Models.Requests
         /// Array of shipments to add to the batch
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public List<BatchShipmentBase> RequestBody { get; set; } = default!;
+        public List<BatchShipmentCreateRequest> RequestBody { get; set; } = default!;
 
         /// <summary>
         /// String used to pick a non-default API version to use

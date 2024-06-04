@@ -57,7 +57,7 @@ var res = await sdk.Orders.ListAsync(
 
 ### Response
 
-**[ListOrdersResponse](../../Models/Requests/ListOrdersResponse.md)**
+**[OrderPaginatedList](../../Models/Components/OrderPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -158,7 +158,7 @@ var res = await sdk.Orders.CreateAsync(
 
 ### Response
 
-**[CreateOrderResponse](../../Models/Requests/CreateOrderResponse.md)**
+**[Order](../../Models/Components/Order.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -197,7 +197,7 @@ var res = await sdk.Orders.GetAsync(
 
 ### Response
 
-**[GetOrderResponse](../../Models/Requests/GetOrderResponse.md)**
+**[Order](../../Models/Components/Order.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

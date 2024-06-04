@@ -46,7 +46,7 @@ var res = await sdk.CarrierParcelTemplates.ListAsync(
 
 ### Response
 
-**[ListCarrierParcelTemplatesResponse](../../Models/Requests/ListCarrierParcelTemplatesResponse.md)**
+**[CarrierParcelTemplateList](../../Models/Components/CarrierParcelTemplateList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -85,7 +85,7 @@ var res = await sdk.CarrierParcelTemplates.GetAsync(
 
 ### Response
 
-**[GetCarrierParcelTemplateResponse](../../Models/Requests/GetCarrierParcelTemplateResponse.md)**
+**[CarrierParcelTemplate](../../Models/Components/CarrierParcelTemplate.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

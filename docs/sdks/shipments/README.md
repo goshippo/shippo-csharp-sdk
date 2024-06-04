@@ -67,7 +67,7 @@ var res = await sdk.Shipments.ListAsync(
 
 ### Response
 
-**[ListShipmentsResponse](../../Models/Requests/ListShipmentsResponse.md)**
+**[ShipmentPaginatedList](../../Models/Components/ShipmentPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -270,7 +270,7 @@ var res = await sdk.Shipments.CreateAsync(
 
 ### Response
 
-**[CreateShipmentResponse](../../Models/Requests/CreateShipmentResponse.md)**
+**[Shipment](../../Models/Components/Shipment.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -309,7 +309,7 @@ var res = await sdk.Shipments.GetAsync(
 
 ### Response
 
-**[GetShipmentResponse](../../Models/Requests/GetShipmentResponse.md)**
+**[Shipment](../../Models/Components/Shipment.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

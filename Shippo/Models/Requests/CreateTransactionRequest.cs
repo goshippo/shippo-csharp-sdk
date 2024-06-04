@@ -10,6 +10,7 @@
 namespace Shippo.Models.Requests
 {
     using Shippo.Models.Components;
+    using Shippo.Models.Requests;
     using Shippo.Utils;
     
     public class CreateTransactionRequest

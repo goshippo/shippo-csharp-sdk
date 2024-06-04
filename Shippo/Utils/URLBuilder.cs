@@ -17,7 +17,7 @@ namespace Shippo.Utils
 
     internal static class URLBuilder
     {
-        public static string Build(string baseUrl, string path, object? request)
+        public static string Build(string baseUrl, string relativeUrl, object? request)
         {
             var url = baseUrl;
 
@@ -26,17 +26,26 @@ namespace Shippo.Utils
                 url = url.Substring(0, url.Length - 1);
             }
 
-            url += path;
+            var pathAndFragment = relativeUrl.Split('#');
+            if (pathAndFragment.Length > 2)
+            {
+                throw new ArgumentException($"Malformed URL: {relativeUrl}");
+            }
+
+            url += pathAndFragment[0];
 
             var parameters = GetPathParameters(request);
-
             url = ReplaceParameters(url, parameters);
 
             var queryParams = SerializeQueryParams(TrySerializeQueryParams(request));
-
             if (queryParams != "")
             {
                 url += $"?{queryParams}";
+            }
+
+            if (pathAndFragment.Length == 2)
+            {
+                url += $"#{pathAndFragment[1]}";
             }
 
             return url;

@@ -46,7 +46,7 @@ var res = await sdk.Transactions.ListAsync(req);
 
 ### Response
 
-**[ListTransactionsResponse](../../Models/Requests/ListTransactionsResponse.md)**
+**[TransactionPaginatedList](../../Models/Components/TransactionPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -93,7 +93,7 @@ var res = await sdk.Transactions.CreateAsync(
 
 ### Response
 
-**[CreateTransactionResponse](../../Models/Requests/CreateTransactionResponse.md)**
+**[Transaction](../../Models/Components/Transaction.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -132,7 +132,7 @@ var res = await sdk.Transactions.GetAsync(
 
 ### Response
 
-**[GetTransactionResponse](../../Models/Requests/GetTransactionResponse.md)**
+**[Transaction](../../Models/Components/Transaction.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

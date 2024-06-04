@@ -47,7 +47,7 @@ var res = await sdk.Refunds.CreateAsync(
 
 ### Response
 
-**[CreateRefundResponse](../../Models/Requests/CreateRefundResponse.md)**
+**[Refund](../../Models/Components/Refund.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -83,7 +83,7 @@ var res = await sdk.Refunds.ListAsync(shippoApiVersion: "2018-02-08");
 
 ### Response
 
-**[ListRefundsResponse](../../Models/Requests/ListRefundsResponse.md)**
+**[RefundPaginatedList](../../Models/Components/RefundPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -122,7 +122,7 @@ var res = await sdk.Refunds.GetAsync(
 
 ### Response
 
-**[GetRefundResponse](../../Models/Requests/GetRefundResponse.md)**
+**[Refund](../../Models/Components/Refund.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

@@ -16,17 +16,25 @@ namespace Shippo.Models.Errors
     {
 
         public override string Message { get; }
-        public HttpRequestMessage Request { get; set; }
-        public HttpResponseMessage Response { get; set; }
-        public SDKException(string message, HttpRequestMessage request, HttpResponseMessage response)
+        public int StatusCode { get; set; }
+        public string Body { get; set; }
+        public HttpResponseMessage RawResponse { get; set; } = default!;
+        public SDKException(string message, int statusCode, string body, HttpResponseMessage rawResponse)
         {
             Message = message;
-            Request = request;
-            Response = response;
+            this.StatusCode = statusCode;
+            StatusCode = statusCode;
+            Body = body;
+            RawResponse = rawResponse;
         }
 
         public override string ToString(){
-            return Message + ": Status " + Response.StatusCode;
+            var body = "";
+            if (Body.Length > 0)
+            {
+                body += $"\n{Body}";
+            }
+            return Message + ": Status " + StatusCode + body;
         }
 
     }

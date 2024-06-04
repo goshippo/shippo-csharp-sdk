@@ -47,7 +47,7 @@ var res = await sdk.Addresses.ListAsync(
 
 ### Response
 
-**[ListAddressesResponse](../../Models/Requests/ListAddressesResponse.md)**
+**[AddressPaginatedList](../../Models/Components/AddressPaginatedList.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -101,7 +101,7 @@ var res = await sdk.Addresses.CreateAsync(
 
 ### Response
 
-**[CreateAddressResponse](../../Models/Requests/CreateAddressResponse.md)**
+**[Address](../../Models/Components/Address.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -140,7 +140,7 @@ var res = await sdk.Addresses.GetAsync(
 
 ### Response
 
-**[GetAddressResponse](../../Models/Requests/GetAddressResponse.md)**
+**[Address](../../Models/Components/Address.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
@@ -179,7 +179,7 @@ var res = await sdk.Addresses.ValidateAsync(
 
 ### Response
 
-**[ValidateAddressResponse](../../Models/Requests/ValidateAddressResponse.md)**
+**[Address](../../Models/Components/Address.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

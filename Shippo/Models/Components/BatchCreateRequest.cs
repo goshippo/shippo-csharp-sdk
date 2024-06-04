@@ -59,6 +59,6 @@ namespace Shippo.Models.Components
         /// Array of BatchShipment objects. The response keeps the same order as in the request array.
         /// </summary>
         [JsonProperty("batch_shipments")]
-        public List<BatchShipmentBase> BatchShipments { get; set; } = default!;
+        public List<BatchShipmentCreateRequest> BatchShipments { get; set; } = default!;
     }
 }
