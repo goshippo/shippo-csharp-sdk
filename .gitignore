@@ -2,3 +2,4 @@ obj/
 bin/
 debug/
 .speakeasy/temp/
+build/
