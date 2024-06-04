@@ -21,15 +21,20 @@ CONFIGURATION ?= Debug
 
 BUILD := $(DOTNET) build --nologo --no-restore -c ${CONFIGURATION}
 RESTORE := $(DOTNET) restore --nologo
+TEST := $(DOTNET) test --nologo --no-build -c ${CONFIGURATION}
 
 build_dir := build
 framework := $(shell $(SED) -nr "s|^[[:blank:]]*<TargetFramework>(.*)</TargetFramework>[[:blank:]]*$$|\1|p" Shippo/Shippo.csproj)
 
 cs_files := $(shell find . -name "*.cs" -not -path "*/obj/*")
 csproj_files := $(wildcard */*.csproj)
-dll := Shippo/bin/${CONFIGURATION}/${framework}/Shippo.dll
+dlls := \
+	Shippo/bin/${CONFIGURATION}/${framework}/Shippo.dll \
+	ShippoTests/bin/${CONFIGURATION}/${framework}/ShippoTests.dll
 packages_lock_files := $(wildcard */packages.lock.json)
-project_assets_files := Shippo/obj/project.assets.json
+project_assets_files := \
+	Shippo/obj/project.assets.json \
+	ShippoTests/obj/project.assets.json
 source_files := \
 	${cs_files} \
 	${csproj_files} \
@@ -45,22 +50,30 @@ ${project_assets_files}: ${csproj_files} ${packages_lock_files}
 	$(RESTORE) --locked-mode
 	@touch -c ${project_assets_files}
 
-${dll}: ${packages_lock_files} ${project_assets_files} ${source_files}
+${dlls}: ${packages_lock_files} ${project_assets_files} ${source_files}
 	$(BUILD)
-	@touch -c ${dll}
+	@touch -c ${dlls}
 
 
 .PHONY: build
-build: ${dll} ## build the library dll (default)
+build: ${dlls} ## build the library and tests dll's (default)
 
 .PHONY: clean
 clean: ## remove all build artifacts and temp directories/files
 	rm -fr Shippo/bin Shippo/obj
+	rm -fr ShippoTests/bin ShippoTests/obj ShippoTests/TestResults
 	rm -fr .speakeasy/temp
 	rm -fr ${build_dir}
 
 .PHONY: update-lock-files
 update-lock-files: ${packages_lock_files} ## update lock files
+
+.PHONY: test
+test: build ## run tests
+ifndef SHIPPO_TOKEN
+	@echo "Note: some tests require a valid SHIPPO_TOKEN-- \`export SHIPPO_TOKEN=<API_TOKEN>\`"
+endif
+	$(TEST)
 
 
 api_spec := ${build_dir}/public-api.yaml
