@@ -7,7 +7,7 @@ sources:
         tags:
             - latest
 targets:
-    my-first-target:
+    csharp:
         source: openapi
         sourceNamespace: openapi
         sourceRevisionDigest: sha256:9920da8577d9bb20b80b89cc17bd4ba1fec5570bb3106af1d05556f60349a998
@@ -21,6 +21,6 @@ workflow:
             registry:
                 location: registry.speakeasyapi.dev/shippo/shippo/openapi
     targets:
-        my-first-target:
+        csharp:
             target: csharp
             source: openapi
