@@ -1,0 +1,26 @@
+#!/usr/bin/env bash
+set -Eeuo pipefail
+
+# remove "Debug|Any CPU" from the list so that "Release|Any CPU" is the default
+f=Shippo.sln
+echo updating $f...
+sed -i "/^[[:blank:]]*Debug|Any CPU.*/d" $f
+
+# add various metadata
+# modify/remove a few generated parts
+f=Shippo/Shippo.csproj
+echo updating $f...
+yq -i -o xml -p xml "
+  ( .Project.PropertyGroup.Copyright = \"Copyright (c) Shippo 2024\"
+  | .Project.PropertyGroup.Description = \".NET library which integrates with Shippo Multi Carrier Shipping API. This library provides access to Shippo ""(goshippo.com)"" API capabilities. Including label generation, rating, tracking and more.\"
+  | .Project.PropertyGroup.PackageLicenseFile = \"LICENSE\"
+  | .Project.PropertyGroup.PackageProjectUrl = \"https://github.com/goshippo/shippo-csharp-sdk\"
+  | .Project.PropertyGroup.PackageTags = \"USPS Fedex UPS API Shippo\"
+  | .Project.PropertyGroup.RepositoryType = \"git\"
+  | del( .Project.ItemGroup.None[] | select(.+@Include == \"..\\docs\\**\\*\") )
+  | .Project.ItemGroup.None += {
+      \"+@Include\": \"..\\LICENSE\",
+      \"+@Pack\": \"true\",
+      \"+@PackagePath\": \"\\\\\"
+    }
+  )" $f
