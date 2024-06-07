@@ -13,6 +13,7 @@ echo updating $f...
 yq -i -o xml -p xml "
   ( .Project.PropertyGroup.Copyright = \"Copyright (c) Shippo 2024\"
   | .Project.PropertyGroup.Description = \".NET library which integrates with Shippo Multi Carrier Shipping API. This library provides access to Shippo ""(goshippo.com)"" API capabilities. Including label generation, rating, tracking and more.\"
+  | .Project.PropertyGroup.PackageIcon = \"shippo.png\"
   | .Project.PropertyGroup.PackageLicenseFile = \"LICENSE\"
   | .Project.PropertyGroup.PackageProjectUrl = \"https://github.com/goshippo/shippo-csharp-sdk\"
   | .Project.PropertyGroup.PackageTags = \"USPS Fedex UPS API Shippo\"
@@ -20,6 +21,11 @@ yq -i -o xml -p xml "
   | del( .Project.ItemGroup.None[] | select(.+@Include == \"..\\docs\\**\\*\") )
   | .Project.ItemGroup.None += {
       \"+@Include\": \"..\\LICENSE\",
+      \"+@Pack\": \"true\",
+      \"+@PackagePath\": \"\\\\\"
+    }
+  | .Project.ItemGroup.None += {
+      \"+@Include\": \"..\\res\\shippo.png\",
       \"+@Pack\": \"true\",
       \"+@PackagePath\": \"\\\\\"
     }
