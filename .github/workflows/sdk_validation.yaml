@@ -1,0 +1,35 @@
+name: Validate
+
+on:
+  pull_request:
+    branches:
+      - main
+    types:
+      - opened
+      - reopened
+      - synchronize
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: csharp-sdk-check
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-dotnet@v4
+        with:
+          cache: true
+          cache-dependency-path: "*/packages.lock.json"
+          dotnet-version: 6.0.x
+      - name: Check
+        env:
+          CONFIGURATION: Release
+          SHIPPO_TOKEN: ${{ secrets.SHIPPO_TOKEN }}
+        run: make ci-check
+      - name: Archive test results
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: TestResults
+          path: ShippoTests/TestResults/

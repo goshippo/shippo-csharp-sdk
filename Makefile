@@ -76,6 +76,11 @@ endif
 	$(TEST)
 
 
+.PHONY: ci-check
+ci-check: build ## run tests (used by CI)
+	$(TEST) --logger html
+
+
 api_spec := ${build_dir}/public-api.yaml
 
 .PHONY: api-spec
