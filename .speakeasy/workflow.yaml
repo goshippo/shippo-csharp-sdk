@@ -10,3 +10,6 @@ targets:
     csharp:
         target: csharp
         source: openapi
+        publish:
+            nuget:
+                apiKey: $nuget_api_key
