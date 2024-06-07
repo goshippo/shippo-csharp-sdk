@@ -2,13 +2,14 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>Shippo</PackageId>
-    <Version>0.1.0</Version>
+    <Version>4.0.0-beta.1</Version>
     <Authors>Shippo</Authors>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591</NoWarn>
+    <RepositoryUrl>https://github.com/goshippo/shippo-csharp-sdk</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>

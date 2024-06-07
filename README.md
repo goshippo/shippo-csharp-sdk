@@ -13,7 +13,7 @@
 ### Nuget
 
 ```bash
-dotnet add reference path/to/Shippo.csproj
+dotnet add package Shippo
 ```
 <!-- End SDK Installation [installation] -->
 
