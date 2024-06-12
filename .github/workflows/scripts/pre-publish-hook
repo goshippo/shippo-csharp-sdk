@@ -10,23 +10,53 @@ sed -i "/^[[:blank:]]*Debug|Any CPU.*/d" $f
 # modify/remove a few generated parts
 f=Shippo/Shippo.csproj
 echo updating $f...
-yq -i -o xml -p xml "
-  ( .Project.PropertyGroup.Copyright = \"Copyright (c) Shippo 2024\"
-  | .Project.PropertyGroup.Description = \".NET library which integrates with Shippo Multi Carrier Shipping API. This library provides access to Shippo ""(goshippo.com)"" API capabilities. Including label generation, rating, tracking and more.\"
-  | .Project.PropertyGroup.PackageIcon = \"shippo.png\"
-  | .Project.PropertyGroup.PackageLicenseFile = \"LICENSE\"
-  | .Project.PropertyGroup.PackageProjectUrl = \"https://github.com/goshippo/shippo-csharp-sdk\"
-  | .Project.PropertyGroup.PackageTags = \"USPS Fedex UPS API Shippo\"
-  | .Project.PropertyGroup.RepositoryType = \"git\"
-  | del( .Project.ItemGroup.None[] | select(.+@Include == \"..\\docs\\**\\*\") )
-  | .Project.ItemGroup.None += {
-      \"+@Include\": \"..\\LICENSE\",
-      \"+@Pack\": \"true\",
-      \"+@PackagePath\": \"\\\\\"
-    }
-  | .Project.ItemGroup.None += {
-      \"+@Include\": \"..\\res\\shippo.png\",
-      \"+@Pack\": \"true\",
-      \"+@PackagePath\": \"\\\\\"
-    }
-  )" $f
+condition="'\$(GITHUB_ACTIONS)' == 'true'"
+yq -i -o xml -p xml '
+  ( del( .Project.ItemGroup.None[] | select(.+@Include == "..\docs\**\*") )
+  | .Project.PropertyGroup = [
+      .Project.PropertyGroup,
+      [
+        {
+          "+@Condition": "'"$condition"'",
+          "ContinuousIntegrationBuild": "true",
+          "EmbedUntrackedSources": "true",
+          "IncludeSymbols": "true",
+          "PublishRepositoryUrl": "true",
+          "SymbolPackageFormat": "snupkg"
+        },
+        {
+          "Copyright": "Copyright (c) Shippo 2024",
+          "Description": ".NET library which integrates with Shippo Multi Carrier Shipping API. This library provides access to Shippo (goshippo.com) API capabilities. Including label generation, rating, tracking and more.",
+          "PackageLicenseFile": "LICENSE",
+          "PackageIcon": "shippo.png",
+          "PackageProjectUrl": "https://github.com/goshippo/shippo-csharp-sdk",
+          "PackageTags": "USPS Fedex UPS API Shippo",
+          "RepositoryType": "git"
+        }
+      ]
+    ]
+  | .Project.ItemGroup = [
+      .Project.ItemGroup,
+      {
+        "None": [
+          {
+            "+@Include": "..\LICENSE",
+            "+@Pack": "true",
+            "+@PackagePath": "\\"
+          },
+          {
+            "+@Include": "..\res\shippo.png",
+            "+@Pack": "true",
+            "+@PackagePath": "\\"
+          }
+        ],
+        "PackageReference": {
+          "+@Include": "Microsoft.SourceLink.GitHub",
+          "+@PrivateAssets": "All",
+          "+@Version": "8.0.0"
+        }
+      }
+    ]
+  )' $f
+# yq escapes single quotes; unescape them
+sed -i "s|&#39;|'|g" $f
