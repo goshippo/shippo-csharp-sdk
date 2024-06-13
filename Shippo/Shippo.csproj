@@ -11,12 +11,30 @@
     <NoWarn>1591</NoWarn>
     <RepositoryUrl>https://github.com/goshippo/shippo-csharp-sdk</RepositoryUrl>
   </PropertyGroup>
-
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <EmbedUntrackedSources>true</EmbedUntrackedSources>
+    <IncludeSymbols>true</IncludeSymbols>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+  <PropertyGroup>
+    <Copyright>Copyright (c) Shippo 2024</Copyright>
+    <Description>.NET library which integrates with Shippo Multi Carrier Shipping API. This library provides access to Shippo (goshippo.com) API capabilities. Including label generation, rating, tracking and more.</Description>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>shippo.png</PackageIcon>
+    <PackageProjectUrl>https://github.com/goshippo/shippo-csharp-sdk</PackageProjectUrl>
+    <PackageTags>USPS Fedex UPS API Shippo</PackageTags>
+    <RepositoryType>git</RepositoryType>
+  </PropertyGroup>
   <ItemGroup>
-    <None Include="..\README.md" Pack="true" PackagePath="\"/>
-    <None Include="..\docs\**\*" Pack="true" PackagePath="\docs"  CopyToOutputDirectory="PreserveNewest"/>
-
-    <PackageReference Include="newtonsoft.json" Version="13.0.3" />
-    <PackageReference Include="nodatime" Version="3.1.9" />
+    <None Include="..\README.md" Pack="true" PackagePath="\"></None>
+    <PackageReference Include="newtonsoft.json" Version="13.0.3"></PackageReference>
+    <PackageReference Include="nodatime" Version="3.1.9"></PackageReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\LICENSE" Pack="true" PackagePath="\"></None>
+    <None Include="..\res\shippo.png" Pack="true" PackagePath="\"></None>
+    <PackageReference Include="Microsoft.SourceLink.GitHub" PrivateAssets="All" Version="8.0.0"></PackageReference>
   </ItemGroup>
 </Project>
