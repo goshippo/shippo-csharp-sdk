@@ -2,7 +2,7 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>Shippo</PackageId>
-    <Version>4.0.0</Version>
+    <Version>5.0.0-beta.1</Version>
     <Authors>Shippo</Authors>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>

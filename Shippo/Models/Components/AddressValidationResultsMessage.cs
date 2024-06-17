@@ -10,17 +10,22 @@
 namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
-    using Shippo.Models.Components;
     using Shippo.Utils;
     
     public class AddressValidationResultsMessage
     {
 
+        /// <summary>
+        /// See &lt;a href=&quot;#tag/Address-Validation-Codes&quot;&gt;Address Validation Codes&lt;/a&gt;
+        /// </summary>
         [JsonProperty("code")]
-        public Code? Code { get; set; }
+        public string? Code { get; set; }
 
+        /// <summary>
+        /// See &lt;a href=&quot;#tag/Address-Validation-Source&quot;&gt;Address Validation Source&lt;/a&gt;
+        /// </summary>
         [JsonProperty("source")]
-        public Source? Source { get; set; }
+        public string? Source { get; set; }
 
         [JsonProperty("text")]
         public string? Text { get; set; }

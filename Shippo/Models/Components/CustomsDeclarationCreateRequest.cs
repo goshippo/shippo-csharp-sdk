@@ -84,6 +84,12 @@ namespace Shippo.Models.Components
         public string? Disclaimer { get; set; }
 
         /// <summary>
+        /// Additional exporter identification that may be required to ship in certain countries
+        /// </summary>
+        [JsonProperty("exporter_identification")]
+        public CustomsExporterIdentification? ExporterIdentification { get; set; }
+
+        /// <summary>
         /// Exporter reference of an export shipment.
         /// </summary>
         [JsonProperty("exporter_reference")]
@@ -99,7 +105,7 @@ namespace Shippo.Models.Components
         /// Indicates whether the shipment&apos;s destination VAT has been collected. May be required for some destinations.
         /// </summary>
         [JsonProperty("is_vat_collected")]
-        public object? IsVatCollected { get; set; }
+        public bool? IsVatCollected { get; set; }
 
         /// <summary>
         /// Invoice reference of the shipment.
