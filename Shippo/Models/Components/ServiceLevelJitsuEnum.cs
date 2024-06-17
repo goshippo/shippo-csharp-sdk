@@ -14,40 +14,33 @@ namespace Shippo.Models.Components
     using System;
     
     /// <summary>
-    /// Specify Lasership Attributes (Lasership only). Multiple options accepted.
+    /// |Token | Service name|<br/>
+    /// 
+    /// <remarks>
+    /// |:---|:---|<br/>
+    /// | axlehire_same_day | Same Day|<br/>
+    /// | axlehire_next_day | Next Day|<br/>
+    /// 
+    /// </remarks>
     /// </summary>
-    public enum LasershipAttrs
+    public enum ServiceLevelJitsuEnum
     {
-        [JsonProperty("TwoPersonDelivery")]
-        TwoPersonDelivery,
-        [JsonProperty("Explosive")]
-        Explosive,
-        [JsonProperty("Alcohol")]
-        Alcohol,
-        [JsonProperty("Hazmat")]
-        Hazmat,
-        [JsonProperty("ControlledSubstance")]
-        ControlledSubstance,
-        [JsonProperty("Refrigerated")]
-        Refrigerated,
-        [JsonProperty("DryIce")]
-        DryIce,
-        [JsonProperty("Perishable")]
-        Perishable,
-        [JsonProperty("NoRTS")]
-        NoRTS,
+        [JsonProperty("axlehire_same_day")]
+        AxlehireSameDay,
+        [JsonProperty("axlehire_next_day")]
+        AxlehireNextDay,
     }
 
-    public static class LasershipAttrsExtension
+    public static class ServiceLevelJitsuEnumExtension
     {
-        public static string Value(this LasershipAttrs value)
+        public static string Value(this ServiceLevelJitsuEnum value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static LasershipAttrs ToEnum(this string value)
+        public static ServiceLevelJitsuEnum ToEnum(this string value)
         {
-            foreach(var field in typeof(LasershipAttrs).GetFields())
+            foreach(var field in typeof(ServiceLevelJitsuEnum).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -60,14 +53,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is LasershipAttrs)
+                    if (enumVal is ServiceLevelJitsuEnum)
                     {
-                        return (LasershipAttrs)enumVal;
+                        return (ServiceLevelJitsuEnum)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum LasershipAttrs");
+            throw new Exception($"Unknown value {value} for enum ServiceLevelJitsuEnum");
         }
     }
 

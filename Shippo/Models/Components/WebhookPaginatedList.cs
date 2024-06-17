@@ -9,12 +9,24 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
+    using Newtonsoft.Json;
+    using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
     
-    /// <summary>
-    /// Object ID of the Importer address.
-    /// </summary>
-    public class CustomsDeclarationAddressImporter
+    public class WebhookPaginatedList
     {
+
+        [JsonProperty("next")]
+        public string? Next { get; set; }
+
+        [JsonProperty("previous")]
+        public string? Previous { get; set; }
+
+        [JsonProperty("count")]
+        public long? Count { get; set; }
+
+        [JsonProperty("results")]
+        public List<Webhook>? Results { get; set; }
     }
 }

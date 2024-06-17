@@ -102,7 +102,7 @@ namespace Shippo.Models.Components
         /// </remarks>
         /// </summary>
         [JsonProperty("included_insurance_price")]
-        public double? IncludedInsurancePrice { get; set; }
+        public string? IncludedInsurancePrice { get; set; }
 
         [JsonProperty("messages")]
         public List<ResponseMessage>? Messages { get; set; }

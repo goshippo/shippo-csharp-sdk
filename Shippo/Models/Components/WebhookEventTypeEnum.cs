@@ -13,24 +13,30 @@ namespace Shippo.Models.Components
     using Shippo.Utils;
     using System;
     
-    public enum Source
+    public enum WebhookEventTypeEnum
     {
-        [JsonProperty("Shippo Address Validator")]
-        ShippoAddressValidator,
-        [JsonProperty("UPS")]
-        Ups,
+        [JsonProperty("transaction_created")]
+        TransactionCreated,
+        [JsonProperty("transaction_updated")]
+        TransactionUpdated,
+        [JsonProperty("track_updated")]
+        TrackUpdated,
+        [JsonProperty("batch_created")]
+        BatchCreated,
+        [JsonProperty("batch_purchased")]
+        BatchPurchased,
     }
 
-    public static class SourceExtension
+    public static class WebhookEventTypeEnumExtension
     {
-        public static string Value(this Source value)
+        public static string Value(this WebhookEventTypeEnum value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static Source ToEnum(this string value)
+        public static WebhookEventTypeEnum ToEnum(this string value)
         {
-            foreach(var field in typeof(Source).GetFields())
+            foreach(var field in typeof(WebhookEventTypeEnum).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -43,14 +49,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is Source)
+                    if (enumVal is WebhookEventTypeEnum)
                     {
-                        return (Source)enumVal;
+                        return (WebhookEventTypeEnum)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum Source");
+            throw new Exception($"Unknown value {value} for enum WebhookEventTypeEnum");
         }
     }
 

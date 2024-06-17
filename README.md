@@ -164,6 +164,14 @@ var res = await sdk.Addresses.ListAsync(
 * [Create](docs/sdks/shippoaccounts/README.md#create) - Create a Shippo Account
 * [Get](docs/sdks/shippoaccounts/README.md#get) - Retrieve a Shippo Account
 * [Update](docs/sdks/shippoaccounts/README.md#update) - Update a Shippo Account
+
+### [Webhooks](docs/sdks/webhooks/README.md)
+
+* [CreateWebhook](docs/sdks/webhooks/README.md#createwebhook) - Create a new webhook
+* [ListWebhooks](docs/sdks/webhooks/README.md#listwebhooks) - List all webhooks
+* [GetWebhook](docs/sdks/webhooks/README.md#getwebhook) - Retrieve a specific webhook
+* [UpdateWebhook](docs/sdks/webhooks/README.md#updatewebhook) - Update an existing webhook
+* [DeleteWebhook](docs/sdks/webhooks/README.md#deletewebhook) - Delete a specific webhook
 <!-- End Available Resources and Operations [operations] -->
 
 <!-- Start Global Parameters [global-parameters] -->

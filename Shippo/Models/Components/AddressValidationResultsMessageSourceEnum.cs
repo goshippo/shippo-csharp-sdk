@@ -13,34 +13,24 @@ namespace Shippo.Models.Components
     using Shippo.Utils;
     using System;
     
-    /// <summary>
-    /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
-    /// |:---|:---|<br/>
-    /// | axlehire_same_day | Same Day|<br/>
-    /// | axlehire_next_day | Next Day|<br/>
-    /// 
-    /// </remarks>
-    /// </summary>
-    public enum ServiceLevelAxleHireEnum
+    public enum AddressValidationResultsMessageSourceEnum
     {
-        [JsonProperty("axlehire_same_day")]
-        AxlehireSameDay,
-        [JsonProperty("axlehire_next_day")]
-        AxlehireNextDay,
+        [JsonProperty("Shippo Address Validator")]
+        ShippoAddressValidator,
+        [JsonProperty("UPS")]
+        Ups,
     }
 
-    public static class ServiceLevelAxleHireEnumExtension
+    public static class AddressValidationResultsMessageSourceEnumExtension
     {
-        public static string Value(this ServiceLevelAxleHireEnum value)
+        public static string Value(this AddressValidationResultsMessageSourceEnum value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ServiceLevelAxleHireEnum ToEnum(this string value)
+        public static AddressValidationResultsMessageSourceEnum ToEnum(this string value)
         {
-            foreach(var field in typeof(ServiceLevelAxleHireEnum).GetFields())
+            foreach(var field in typeof(AddressValidationResultsMessageSourceEnum).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -53,14 +43,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ServiceLevelAxleHireEnum)
+                    if (enumVal is AddressValidationResultsMessageSourceEnum)
                     {
-                        return (ServiceLevelAxleHireEnum)enumVal;
+                        return (AddressValidationResultsMessageSourceEnum)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ServiceLevelAxleHireEnum");
+            throw new Exception($"Unknown value {value} for enum AddressValidationResultsMessageSourceEnum");
         }
     }
 

@@ -73,6 +73,12 @@ namespace Shippo.Models.Components
         public string? SkuCode { get; set; }
 
         /// <summary>
+        /// HS code of the item, which is required by some carriers.
+        /// </summary>
+        [JsonProperty("hs_code")]
+        public string? HsCode { get; set; }
+
+        /// <summary>
         /// The tariff number of the item.
         /// </summary>
         [JsonProperty("tariff_number")]

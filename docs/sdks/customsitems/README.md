@@ -77,6 +77,7 @@ var res = await sdk.CustomsItems.CreateAsync(
     OriginCountry = "<value>",
     Quantity = 20,
     SkuCode = "HM-123",
+    HsCode = "0901.21",
     ValueAmount = "200",
     ValueCurrency = "USD",
 },

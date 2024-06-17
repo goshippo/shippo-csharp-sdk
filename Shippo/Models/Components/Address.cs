@@ -162,13 +162,13 @@ namespace Shippo.Models.Components
         /// Latitude of address
         /// </summary>
         [JsonProperty("latitude")]
-        public double? Latitude { get; set; }
+        public Latitude? Latitude { get; set; }
 
         /// <summary>
         /// Longitude of address
         /// </summary>
         [JsonProperty("longitude")]
-        public double? Longitude { get; set; }
+        public Longitude? Longitude { get; set; }
 
         /// <summary>
         /// Date and time of Address creation.

@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
-  docChecksum: 609002aee5b1500e5e73ec2eb80f268d
+  docChecksum: c1fbfc30ebe7e63d6f7b0d5603bf6099
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.300.1
-  generationVersion: 2.339.1
-  releaseVersion: 4.0.0
-  configChecksum: b5e622d7d391f43a31161fe2b6f5be55
+  speakeasyVersion: 1.308.1
+  generationVersion: 2.342.6
+  releaseVersion: 5.0.0-beta.1
+  configChecksum: 4b61d37a92d42a0f787b98dc41e37eae
   repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
   published: true
 features:
   csharp:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.0.1
-    core: 3.9.4
+    core: 3.9.6
     flattening: 2.81.2
     globalSecurity: 2.83.4
     globalSecurityCallbacks: 0.1.0
@@ -23,6 +23,7 @@ features:
     includes: 2.81.1
     intellisenseMarkdownSupport: 0.1.0
     nameOverrides: 2.81.2
+    nullables: 0.1.0
     responseFormat: 0.0.4
     sdkHooks: 0.1.0
     unions: 0.0.5
@@ -46,6 +47,7 @@ generatedFiles:
   - Shippo/Transactions.cs
   - Shippo/UserParcelTemplates.cs
   - Shippo/ShippoAccounts.cs
+  - Shippo/Webhooks.cs
   - Shippo/ShippoSDK.cs
   - global.json
   - Shippo/Utils/AnyDeserializer.cs
@@ -68,10 +70,10 @@ generatedFiles:
   - Shippo/Shippo.csproj
   - Shippo/Models/Errors/SDKException.cs
   - Shippo/Models/Components/AddressPaginatedList.cs
+  - Shippo/Models/Components/Latitude.cs
+  - Shippo/Models/Components/Longitude.cs
   - Shippo/Models/Components/Address.cs
   - Shippo/Models/Components/AddressValidationResults.cs
-  - Shippo/Models/Components/Code.cs
-  - Shippo/Models/Components/Source.cs
   - Shippo/Models/Components/AddressValidationResultsMessage.cs
   - Shippo/Models/Components/AddressCreateRequest.cs
   - Shippo/Models/Components/ObjectResults.cs
@@ -107,10 +109,12 @@ generatedFiles:
   - Shippo/Models/Components/CustomsDeclarationEelPfcEnum.cs
   - Shippo/Models/Components/CustomsDeclarationContentsTypeEnum.cs
   - Shippo/Models/Components/AddressImporter.cs
+  - Shippo/Models/Components/CustomsExporterIdentification.cs
+  - Shippo/Models/Components/CustomsTaxIdentificationType.cs
+  - Shippo/Models/Components/CustomsTaxIdentification.cs
   - Shippo/Models/Components/CustomsDeclarationB13AFilingOptionEnum.cs
   - Shippo/Models/Components/AncillaryEndorsement.cs
   - Shippo/Models/Components/DangerousGoodsCode.cs
-  - Shippo/Models/Components/LasershipAttrs.cs
   - Shippo/Models/Components/PreferredDeliveryTimeframe.cs
   - Shippo/Models/Components/ReturnServiceType.cs
   - Shippo/Models/Components/SignatureConfirmation.cs
@@ -118,6 +122,7 @@ generatedFiles:
   - Shippo/Models/Components/UPSReferenceFields.cs
   - Shippo/Models/Components/RmaNumber.cs
   - Shippo/Models/Components/PoNumber.cs
+  - Shippo/Models/Components/ShipmentExtraLasershipAttributesEnum.cs
   - Shippo/Models/Components/InvoiceNumber.cs
   - Shippo/Models/Components/Provider.cs
   - Shippo/Models/Components/Insurance.cs
@@ -180,13 +185,9 @@ generatedFiles:
   - Shippo/Models/Components/CarrierAccountUSPSCreateRequest.cs
   - Shippo/Models/Components/CarrierAccountRegistrationStatus.cs
   - Shippo/Models/Components/CustomsDeclarationPaginatedList.cs
-  - Shippo/Models/Components/CustomsDeclarationAddressImporter.cs
   - Shippo/Models/Components/CustomsDeclaration.cs
   - Shippo/Models/Components/ObjectStateEnum.cs
   - Shippo/Models/Components/CustomsInvoicedCharges.cs
-  - Shippo/Models/Components/CustomsExporterIdentification.cs
-  - Shippo/Models/Components/CustomsTaxIdentificationType.cs
-  - Shippo/Models/Components/CustomsTaxIdentification.cs
   - Shippo/Models/Components/CustomsItemPaginatedList.cs
   - Shippo/Models/Components/CustomsItem.cs
   - Shippo/Models/Components/LiveRatePaginatedList.cs
@@ -251,6 +252,7 @@ generatedFiles:
   - Shippo/Models/Components/TrackingStatusLocationBase.cs
   - Shippo/Models/Components/TracksRequest.cs
   - Shippo/Models/Components/TransactionPaginatedList.cs
+  - Shippo/Models/Components/CreatedBy.cs
   - Shippo/Models/Components/TransactionRate.cs
   - Shippo/Models/Components/Transaction.cs
   - Shippo/Models/Components/TransactionStatusEnum.cs
@@ -266,13 +268,20 @@ generatedFiles:
   - Shippo/Models/Components/ShippoAccountPaginatedList.cs
   - Shippo/Models/Components/ShippoAccount.cs
   - Shippo/Models/Components/ShippoAccountUpdateRequest.cs
+  - Shippo/Models/Components/Webhook.cs
+  - Shippo/Models/Components/WebhookUpdateRequest.cs
+  - Shippo/Models/Components/WebhookEventTypeEnum.cs
+  - Shippo/Models/Components/WebhookPaginatedList.cs
   - Shippo/Models/Components/Security.cs
+  - Shippo/Models/Components/AddressValidationResultsMessageCodeEnum.cs
+  - Shippo/Models/Components/AddressValidationResultsMessageSourceEnum.cs
   - Shippo/Models/Components/ServiceLevel.cs
   - Shippo/Models/Components/ServiceLevelSwyftEnum.cs
   - Shippo/Models/Components/ServiceLevelVehoEnum.cs
   - Shippo/Models/Components/ServiceLevelUDSEnum.cs
   - Shippo/Models/Components/ServiceLevelEvriUKEnum.cs
   - Shippo/Models/Components/ServiceLevelLasershipEnum.cs
+  - Shippo/Models/Components/ServiceLevelJitsuEnum.cs
   - Shippo/Models/Components/ServiceLevelOnTracEnum.cs
   - Shippo/Models/Components/ServiceLevelSendleEnum.cs
   - Shippo/Models/Components/ServiceLevelRoyalMailEnum.cs
@@ -300,7 +309,6 @@ generatedFiles:
   - Shippo/Models/Components/ServiceLevelCanadaPostEnum.cs
   - Shippo/Models/Components/ServiceLevelBetterTrucksEnum.cs
   - Shippo/Models/Components/ServiceLevelAPGEnum.cs
-  - Shippo/Models/Components/ServiceLevelAxleHireEnum.cs
   - Shippo/Models/Components/ServiceLevelAustraliaPostEnum.cs
   - Shippo/Models/Components/ServiceLevelAsendiaEnum.cs
   - Shippo/Models/Components/ServiceLevelAPCPostalEnum.cs
@@ -379,14 +387,17 @@ generatedFiles:
   - Shippo/Models/Requests/CreateShippoAccountRequest.cs
   - Shippo/Models/Requests/GetShippoAccountRequest.cs
   - Shippo/Models/Requests/UpdateShippoAccountRequest.cs
+  - Shippo/Models/Requests/GetWebhookRequest.cs
+  - Shippo/Models/Requests/UpdateWebhookRequest.cs
+  - Shippo/Models/Requests/DeleteWebhookRequest.cs
   - Shippo/Models/Errors/InitiateOauth2SigninCarrierAccountsResponseResponseBody.cs
   - Shippo/Models/Errors/InitiateOauth2SigninCarrierAccountsResponseBody.cs
   - Shippo/Models/Errors/InitiateOauth2SigninResponseBody.cs
   - docs/Models/Components/AddressPaginatedList.md
+  - docs/Models/Components/Latitude.md
+  - docs/Models/Components/Longitude.md
   - docs/Models/Components/Address.md
   - docs/Models/Components/AddressValidationResults.md
-  - docs/Models/Components/Code.md
-  - docs/Models/Components/Source.md
   - docs/Models/Components/AddressValidationResultsMessage.md
   - docs/Models/Components/AddressCreateRequest.md
   - docs/Models/Components/ObjectResults.md
@@ -422,10 +433,12 @@ generatedFiles:
   - docs/Models/Components/CustomsDeclarationEelPfcEnum.md
   - docs/Models/Components/CustomsDeclarationContentsTypeEnum.md
   - docs/Models/Components/AddressImporter.md
+  - docs/Models/Components/CustomsExporterIdentification.md
+  - docs/Models/Components/CustomsTaxIdentificationType.md
+  - docs/Models/Components/CustomsTaxIdentification.md
   - docs/Models/Components/CustomsDeclarationB13AFilingOptionEnum.md
   - docs/Models/Components/AncillaryEndorsement.md
   - docs/Models/Components/DangerousGoodsCode.md
-  - docs/Models/Components/LasershipAttrs.md
   - docs/Models/Components/PreferredDeliveryTimeframe.md
   - docs/Models/Components/ReturnServiceType.md
   - docs/Models/Components/SignatureConfirmation.md
@@ -433,6 +446,7 @@ generatedFiles:
   - docs/Models/Components/UPSReferenceFields.md
   - docs/Models/Components/RmaNumber.md
   - docs/Models/Components/PoNumber.md
+  - docs/Models/Components/ShipmentExtraLasershipAttributesEnum.md
   - docs/Models/Components/InvoiceNumber.md
   - docs/Models/Components/Provider.md
   - docs/Models/Components/Insurance.md
@@ -495,13 +509,9 @@ generatedFiles:
   - docs/Models/Components/CarrierAccountUSPSCreateRequest.md
   - docs/Models/Components/CarrierAccountRegistrationStatus.md
   - docs/Models/Components/CustomsDeclarationPaginatedList.md
-  - docs/Models/Components/CustomsDeclarationAddressImporter.md
   - docs/Models/Components/CustomsDeclaration.md
   - docs/Models/Components/ObjectStateEnum.md
   - docs/Models/Components/CustomsInvoicedCharges.md
-  - docs/Models/Components/CustomsExporterIdentification.md
-  - docs/Models/Components/CustomsTaxIdentificationType.md
-  - docs/Models/Components/CustomsTaxIdentification.md
   - docs/Models/Components/CustomsItemPaginatedList.md
   - docs/Models/Components/CustomsItem.md
   - docs/Models/Components/LiveRatePaginatedList.md
@@ -566,6 +576,7 @@ generatedFiles:
   - docs/Models/Components/TrackingStatusLocationBase.md
   - docs/Models/Components/TracksRequest.md
   - docs/Models/Components/TransactionPaginatedList.md
+  - docs/Models/Components/CreatedBy.md
   - docs/Models/Components/TransactionRate.md
   - docs/Models/Components/Transaction.md
   - docs/Models/Components/TransactionStatusEnum.md
@@ -581,13 +592,20 @@ generatedFiles:
   - docs/Models/Components/ShippoAccountPaginatedList.md
   - docs/Models/Components/ShippoAccount.md
   - docs/Models/Components/ShippoAccountUpdateRequest.md
+  - docs/Models/Components/Webhook.md
+  - docs/Models/Components/WebhookUpdateRequest.md
+  - docs/Models/Components/WebhookEventTypeEnum.md
+  - docs/Models/Components/WebhookPaginatedList.md
   - docs/Models/Components/Security.md
+  - docs/Models/Components/AddressValidationResultsMessageCodeEnum.md
+  - docs/Models/Components/AddressValidationResultsMessageSourceEnum.md
   - docs/Models/Components/ServiceLevel.md
   - docs/Models/Components/ServiceLevelSwyftEnum.md
   - docs/Models/Components/ServiceLevelVehoEnum.md
   - docs/Models/Components/ServiceLevelUDSEnum.md
   - docs/Models/Components/ServiceLevelEvriUKEnum.md
   - docs/Models/Components/ServiceLevelLasershipEnum.md
+  - docs/Models/Components/ServiceLevelJitsuEnum.md
   - docs/Models/Components/ServiceLevelOnTracEnum.md
   - docs/Models/Components/ServiceLevelSendleEnum.md
   - docs/Models/Components/ServiceLevelRoyalMailEnum.md
@@ -615,7 +633,6 @@ generatedFiles:
   - docs/Models/Components/ServiceLevelCanadaPostEnum.md
   - docs/Models/Components/ServiceLevelBetterTrucksEnum.md
   - docs/Models/Components/ServiceLevelAPGEnum.md
-  - docs/Models/Components/ServiceLevelAxleHireEnum.md
   - docs/Models/Components/ServiceLevelAustraliaPostEnum.md
   - docs/Models/Components/ServiceLevelAsendiaEnum.md
   - docs/Models/Components/ServiceLevelAPCPostalEnum.md
@@ -694,6 +711,9 @@ generatedFiles:
   - docs/Models/Requests/CreateShippoAccountRequest.md
   - docs/Models/Requests/GetShippoAccountRequest.md
   - docs/Models/Requests/UpdateShippoAccountRequest.md
+  - docs/Models/Requests/GetWebhookRequest.md
+  - docs/Models/Requests/UpdateWebhookRequest.md
+  - docs/Models/Requests/DeleteWebhookRequest.md
   - docs/Models/Errors/InitiateOauth2SigninCarrierAccountsResponseResponseBody.md
   - docs/Models/Errors/InitiateOauth2SigninCarrierAccountsResponseBody.md
   - docs/Models/Errors/InitiateOauth2SigninResponseBody.md
@@ -717,6 +737,7 @@ generatedFiles:
   - docs/sdks/transactions/README.md
   - docs/sdks/userparceltemplates/README.md
   - docs/sdks/shippoaccounts/README.md
+  - docs/sdks/webhooks/README.md
   - USAGE.md
   - .gitattributes
   - Shippo/Hooks/SDKHooks.cs

@@ -76,6 +76,13 @@ var res = await sdk.CustomsDeclarations.CreateAsync(
     Certify = true,
     CertifySigner = "Shawn Ippotle",
     ContentsExplanation = "T-Shirt purchase",
+    ExporterIdentification = new CustomsExporterIdentification() {
+        EoriNumber = "PL123456790ABCDE",
+        TaxId = new CustomsTaxIdentification() {
+            Number = "123456789",
+            Type = CustomsTaxIdentificationType.Ein,
+        },
+    },
     Invoice = "#123123",
     Metadata = "Order ID #123123",
     AddressImporter = new AddressImporter() {
@@ -104,6 +111,7 @@ var res = await sdk.CustomsDeclarations.CreateAsync(
             OriginCountry = "<value>",
             Quantity = 20,
             SkuCode = "HM-123",
+            HsCode = "0901.21",
             ValueAmount = "200",
             ValueCurrency = "USD",
         },

@@ -12,6 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
     
     /// <summary>
     /// An object holding optional extra services to be requested.
@@ -187,7 +188,7 @@ namespace Shippo.Models.Components
         /// Specify Lasership Attributes (Lasership only). Multiple options accepted.
         /// </summary>
         [JsonProperty("lasership_attrs")]
-        public LasershipAttrs? LasershipAttrs { get; set; }
+        public List<ShipmentExtraLasershipAttributesEnum>? LasershipAttrs { get; set; }
 
         /// <summary>
         /// Declared value (Lasership only). Defaults to `50.00`.
