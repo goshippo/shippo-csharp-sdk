@@ -10,6 +10,7 @@ on:
   push:
     branches:
       - main
+      - 4.0
     paths:
       - RELEASES.md
       - "*/RELEASES.md"
