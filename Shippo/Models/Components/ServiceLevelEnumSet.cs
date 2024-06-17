@@ -36,8 +36,6 @@ namespace Shippo.Models.Components
         
         public static ServiceLevelEnumSetType ServiceLevelAustraliaPostEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAustraliaPostEnum"); } }
         
-        public static ServiceLevelEnumSetType ServiceLevelAxleHireEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAxleHireEnum"); } }
-        
         public static ServiceLevelEnumSetType ServiceLevelAPGEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAPGEnum"); } }
         
         public static ServiceLevelEnumSetType ServiceLevelBetterTrucksEnum { get { return new ServiceLevelEnumSetType("ServiceLevelBetterTrucksEnum"); } }
@@ -92,6 +90,8 @@ namespace Shippo.Models.Components
         
         public static ServiceLevelEnumSetType ServiceLevelOnTracEnum { get { return new ServiceLevelEnumSetType("ServiceLevelOnTracEnum"); } }
         
+        public static ServiceLevelEnumSetType ServiceLevelJitsuEnum { get { return new ServiceLevelEnumSetType("ServiceLevelJitsuEnum"); } }
+        
         public static ServiceLevelEnumSetType ServiceLevelLasershipEnum { get { return new ServiceLevelEnumSetType("ServiceLevelLasershipEnum"); } }
         
         public static ServiceLevelEnumSetType ServiceLevelEvriUKEnum { get { return new ServiceLevelEnumSetType("ServiceLevelEvriUKEnum"); } }
@@ -115,7 +115,6 @@ namespace Shippo.Models.Components
                 case "ServiceLevelAPCPostalEnum": return ServiceLevelAPCPostalEnum;
                 case "ServiceLevelAsendiaEnum": return ServiceLevelAsendiaEnum;
                 case "ServiceLevelAustraliaPostEnum": return ServiceLevelAustraliaPostEnum;
-                case "ServiceLevelAxleHireEnum": return ServiceLevelAxleHireEnum;
                 case "ServiceLevelAPGEnum": return ServiceLevelAPGEnum;
                 case "ServiceLevelBetterTrucksEnum": return ServiceLevelBetterTrucksEnum;
                 case "ServiceLevelCanadaPostEnum": return ServiceLevelCanadaPostEnum;
@@ -143,6 +142,7 @@ namespace Shippo.Models.Components
                 case "ServiceLevelRoyalMailEnum": return ServiceLevelRoyalMailEnum;
                 case "ServiceLevelSendleEnum": return ServiceLevelSendleEnum;
                 case "ServiceLevelOnTracEnum": return ServiceLevelOnTracEnum;
+                case "ServiceLevelJitsuEnum": return ServiceLevelJitsuEnum;
                 case "ServiceLevelLasershipEnum": return ServiceLevelLasershipEnum;
                 case "ServiceLevelEvriUKEnum": return ServiceLevelEvriUKEnum;
                 case "ServiceLevelUDSEnum": return ServiceLevelUDSEnum;
@@ -180,7 +180,6 @@ namespace Shippo.Models.Components
         public ServiceLevelAPCPostalEnum? ServiceLevelAPCPostalEnum { get; set; } 
         public ServiceLevelAsendiaEnum? ServiceLevelAsendiaEnum { get; set; } 
         public ServiceLevelAustraliaPostEnum? ServiceLevelAustraliaPostEnum { get; set; } 
-        public ServiceLevelAxleHireEnum? ServiceLevelAxleHireEnum { get; set; } 
         public ServiceLevelAPGEnum? ServiceLevelAPGEnum { get; set; } 
         public ServiceLevelBetterTrucksEnum? ServiceLevelBetterTrucksEnum { get; set; } 
         public ServiceLevelCanadaPostEnum? ServiceLevelCanadaPostEnum { get; set; } 
@@ -208,6 +207,7 @@ namespace Shippo.Models.Components
         public ServiceLevelRoyalMailEnum? ServiceLevelRoyalMailEnum { get; set; } 
         public ServiceLevelSendleEnum? ServiceLevelSendleEnum { get; set; } 
         public ServiceLevelOnTracEnum? ServiceLevelOnTracEnum { get; set; } 
+        public ServiceLevelJitsuEnum? ServiceLevelJitsuEnum { get; set; } 
         public ServiceLevelLasershipEnum? ServiceLevelLasershipEnum { get; set; } 
         public ServiceLevelEvriUKEnum? ServiceLevelEvriUKEnum { get; set; } 
         public ServiceLevelUDSEnum? ServiceLevelUDSEnum { get; set; } 
@@ -270,14 +270,6 @@ namespace Shippo.Models.Components
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelAustraliaPostEnum = serviceLevelAustraliaPostEnum;
-            return res;
-        }
-
-        public static ServiceLevelEnumSet CreateServiceLevelAxleHireEnum(ServiceLevelAxleHireEnum serviceLevelAxleHireEnum) {
-            ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelAxleHireEnum;
-
-            ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
-            res.ServiceLevelAxleHireEnum = serviceLevelAxleHireEnum;
             return res;
         }
 
@@ -497,6 +489,14 @@ namespace Shippo.Models.Components
             return res;
         }
 
+        public static ServiceLevelEnumSet CreateServiceLevelJitsuEnum(ServiceLevelJitsuEnum serviceLevelJitsuEnum) {
+            ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelJitsuEnum;
+
+            ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
+            res.ServiceLevelJitsuEnum = serviceLevelJitsuEnum;
+            return res;
+        }
+
         public static ServiceLevelEnumSet CreateServiceLevelLasershipEnum(ServiceLevelLasershipEnum serviceLevelLasershipEnum) {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelLasershipEnum;
 
@@ -639,19 +639,6 @@ namespace Shippo.Models.Components
                     ServiceLevelAustraliaPostEnum? serviceLevelAustraliaPostEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelAustraliaPostEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
                     return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAustraliaPostEnum) {
                         ServiceLevelAustraliaPostEnum = serviceLevelAustraliaPostEnum
-                    };
-                }
-                catch (Exception ex)
-                {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
-                }
-                try
-                {
-                    ServiceLevelAxleHireEnum? serviceLevelAxleHireEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelAxleHireEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAxleHireEnum) {
-                        ServiceLevelAxleHireEnum = serviceLevelAxleHireEnum
                     };
                 }
                 catch (Exception ex)
@@ -1013,6 +1000,19 @@ namespace Shippo.Models.Components
                 }
                 try
                 {
+                    ServiceLevelJitsuEnum? serviceLevelJitsuEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelJitsuEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelJitsuEnum) {
+                        ServiceLevelJitsuEnum = serviceLevelJitsuEnum
+                    };
+                }
+                catch (Exception ex)
+                {
+                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
+                        throw ex;
+                    }
+                }
+                try
+                {
                     ServiceLevelLasershipEnum? serviceLevelLasershipEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelLasershipEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
                     return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelLasershipEnum) {
                         ServiceLevelLasershipEnum = serviceLevelLasershipEnum
@@ -1125,11 +1125,6 @@ namespace Shippo.Models.Components
                 if (res.ServiceLevelAustraliaPostEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelAustraliaPostEnum));
-                    return;
-                }
-                if (res.ServiceLevelAxleHireEnum != null)
-                {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelAxleHireEnum));
                     return;
                 }
                 if (res.ServiceLevelAPGEnum != null)
@@ -1265,6 +1260,11 @@ namespace Shippo.Models.Components
                 if (res.ServiceLevelOnTracEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelOnTracEnum));
+                    return;
+                }
+                if (res.ServiceLevelJitsuEnum != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelJitsuEnum));
                     return;
                 }
                 if (res.ServiceLevelLasershipEnum != null)

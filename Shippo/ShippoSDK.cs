@@ -257,6 +257,15 @@ namespace Shippo
         /// </remarks>
         /// </summary>
         public IShippoAccounts ShippoAccounts { get; }
+
+        /// <summary>
+        /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.<br/>
+        /// 
+        /// <remarks>
+        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Webhook&quot;/&gt;
+        /// </remarks>
+        /// </summary>
+        public IWebhooks Webhooks { get; }
     }
 
     public class SDKConfig
@@ -303,10 +312,10 @@ namespace Shippo
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "4.0.0";
-        private const string _sdkGenVersion = "2.339.1";
+        private const string _sdkVersion = "4.1.0";
+        private const string _sdkGenVersion = "2.342.6";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 4.0.0 2.339.1 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 4.1.0 2.342.6 2018-02-08 Shippo";
         private string _serverUrl = "";
         private int _serverIndex = 0;
         private ISpeakeasyHttpClient _client;
@@ -330,6 +339,7 @@ namespace Shippo
         public ITransactions Transactions { get; private set; }
         public IUserParcelTemplates UserParcelTemplates { get; private set; }
         public IShippoAccounts ShippoAccounts { get; private set; }
+        public IWebhooks Webhooks { get; private set; }
 
         public ShippoSDK(string? apiKeyHeader = null, Func<string>? apiKeyHeaderSource = null, string? shippoApiVersion = null, int? serverIndex = null, string? serverUrl = null, Dictionary<string, string>? urlParams = null, ISpeakeasyHttpClient? client = null, RetryConfig? retryConfig = null)
         {
@@ -432,6 +442,9 @@ namespace Shippo
 
 
             ShippoAccounts = new ShippoAccounts(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            Webhooks = new Webhooks(_client, _securitySource, _serverUrl, SDKConfiguration);
         }
     }
 }

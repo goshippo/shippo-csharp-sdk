@@ -28,6 +28,9 @@ namespace Shippo.Models.Components
         [JsonProperty("commercial_invoice_url")]
         public string? CommercialInvoiceUrl { get; set; }
 
+        [JsonProperty("created_by")]
+        public CreatedBy? CreatedBy { get; set; } = null;
+
         /// <summary>
         /// The estimated time of arrival according to the carrier.
         /// </summary>

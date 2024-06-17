@@ -93,6 +93,12 @@ namespace Shippo.Models.Components
         public string? Disclaimer { get; set; }
 
         /// <summary>
+        /// Additional exporter identification that may be required to ship in certain countries
+        /// </summary>
+        [JsonProperty("exporter_identification")]
+        public CustomsExporterIdentification? ExporterIdentification { get; set; }
+
+        /// <summary>
         /// Exporter reference of an export shipment.
         /// </summary>
         [JsonProperty("exporter_reference")]
@@ -108,7 +114,7 @@ namespace Shippo.Models.Components
         /// Indicates whether the shipment&apos;s destination VAT has been collected. May be required for some destinations.
         /// </summary>
         [JsonProperty("is_vat_collected")]
-        public object? IsVatCollected { get; set; }
+        public bool? IsVatCollected { get; set; }
 
         /// <summary>
         /// Invoice reference of the shipment.
@@ -142,7 +148,7 @@ namespace Shippo.Models.Components
         /// Object ID of the Importer address.
         /// </summary>
         [JsonProperty("address_importer")]
-        public CustomsDeclarationAddressImporter? AddressImporter { get; set; }
+        public string? AddressImporter { get; set; }
 
         /// <summary>
         /// Type of goods of the shipment.  <br/>
@@ -164,12 +170,6 @@ namespace Shippo.Models.Components
         /// </summary>
         [JsonProperty("eel_pfc")]
         public string? EelPfc { get; set; }
-
-        /// <summary>
-        /// Additional exporter identification that may be required to ship in certain countries
-        /// </summary>
-        [JsonProperty("exporter_identification")]
-        public CustomsExporterIdentification? ExporterIdentification { get; set; }
 
         /// <summary>
         /// The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only. <br/>

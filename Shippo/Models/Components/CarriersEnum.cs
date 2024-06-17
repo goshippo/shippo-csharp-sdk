@@ -24,7 +24,7 @@ namespace Shippo.Models.Components
     /// | aramex | Aramex|<br/>
     /// | asendia_us | Asendia US|<br/>
     /// | australia_post | Australia Post (also used for Startrack)|<br/>
-    /// | axlehire | Axlehire|<br/>
+    /// | axlehire | Jitsu|<br/>
     /// | better_trucks | BetterTrucks|<br/>
     /// | borderguru | BorderGuru|<br/>
     /// | boxberry | Boxberry|<br/>

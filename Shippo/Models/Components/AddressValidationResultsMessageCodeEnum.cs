@@ -13,7 +13,7 @@ namespace Shippo.Models.Components
     using Shippo.Utils;
     using System;
     
-    public enum Code
+    public enum AddressValidationResultsMessageCodeEnum
     {
         [JsonProperty("verification_error")]
         VerificationError,
@@ -137,16 +137,16 @@ namespace Shippo.Models.Components
         AmbiguousAddress,
     }
 
-    public static class CodeExtension
+    public static class AddressValidationResultsMessageCodeEnumExtension
     {
-        public static string Value(this Code value)
+        public static string Value(this AddressValidationResultsMessageCodeEnum value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static Code ToEnum(this string value)
+        public static AddressValidationResultsMessageCodeEnum ToEnum(this string value)
         {
-            foreach(var field in typeof(Code).GetFields())
+            foreach(var field in typeof(AddressValidationResultsMessageCodeEnum).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -159,14 +159,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is Code)
+                    if (enumVal is AddressValidationResultsMessageCodeEnum)
                     {
-                        return (Code)enumVal;
+                        return (AddressValidationResultsMessageCodeEnum)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum Code");
+            throw new Exception($"Unknown value {value} for enum AddressValidationResultsMessageCodeEnum");
         }
     }
 

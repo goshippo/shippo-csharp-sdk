@@ -19,3 +19,13 @@ Based on:
 - [csharp v4.0.0] .
 ### Releases
 - [NuGet v4.0.0] https://www.nuget.org/packages/Shippo/4.0.0 - .
+
+## 2024-06-17 00:05:06
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.308.1 (2.342.6) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [csharp v4.1.0] .
+### Releases
+- [NuGet v4.1.0] https://www.nuget.org/packages/Shippo/4.1.0 - .

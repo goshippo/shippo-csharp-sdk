@@ -35,7 +35,7 @@ namespace Shippo.Utils
         Task<HttpRequestMessage> CloneAsync(HttpRequestMessage request);
     }
 
-    internal class SpeakeasyHttpClient : ISpeakeasyHttpClient
+    public class SpeakeasyHttpClient : ISpeakeasyHttpClient
     {
         protected readonly HttpClient httpClient;
 
