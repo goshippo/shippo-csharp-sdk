@@ -32,6 +32,9 @@
     <Using Include="Shippo.Hooks" />
     <Using Include="Shippo.Models.Components" />
     <Using Include="Shippo.Models.Requests" />
+    <Using Include="Shippo.Utils" />
+    <Using Include="System.Text" />
+    <Using Include="System.Text.Json" />
     <Using Include="Xunit" />
   </ItemGroup>
 

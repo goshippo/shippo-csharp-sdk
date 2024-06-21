@@ -40,6 +40,47 @@ var res = await sdk.Addresses.ListAsync(
 ```
 <!-- End SDK Example Usage [usage] -->
 
+<!-- Start Custom HTTP Client [http-client] -->
+## Custom HTTP Client
+
+The following is taken from [Speakeasy's C# design](https://www.speakeasyapi.dev/docs/sdk-design/csharp/methodology-csharp#http-client):
+
+> By default the C# SDK will instantiate its own `SpeakeasyHttpClient`, which uses the
+`System.Net.HttpClient` under the hood. The default client can be overridden by passing
+a custom HTTP client when initializing the SDK:
+
+```csharp
+var sdk = new ShippoSDK(client: new CustomHttpClient());
+```
+
+> The provided HTTP Client must implement the `ISpeakeasyHttpClient` interface as defined
+in `Utils.SpeakeasyHttpClient.cs`: ...
+
+> This can be useful if you want to use a custom HTTP Client that supports a proxy or
+other custom configuration.
+
+> Below is an example of custom client that inherits from the internal
+`SpeakeasyHttpClient` class, which itself implements the `ISpekeasyHttpClient` interface.
+This client simply adds a header to all requests before sending them:
+
+```csharp
+using Shippo.Utils;
+
+public class CustomHttpClient : SpeakeasyHttpClient
+{
+    public CustomHttpClient() {}
+
+    public override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
+    {
+        request.Headers.Add("X-Custom-Header", "custom value");
+        return await base.SendAsync(request);
+    }
+}
+```
+
+A further example is included in the `ShippoTests` project in this repo.
+<!-- End Custom HTTP Client [http-client] -->
+
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 

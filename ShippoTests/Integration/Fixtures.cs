@@ -8,6 +8,8 @@ public class SDKFixture
     {
         SDK = new ShippoSDK(
             apiKeyHeader: Environment.GetEnvironmentVariable("SHIPPO_TOKEN"),
+            client: Environment.GetEnvironmentVariable("SHIPPO_TESTHTTPCLIENT") == "true"
+                ? new TestHttpClient() : null,
             serverUrl: Environment.GetEnvironmentVariable("SHIPPO_URL"),
             shippoApiVersion: Environment.GetEnvironmentVariable("SHIPPO_API_VERSION")
         );
