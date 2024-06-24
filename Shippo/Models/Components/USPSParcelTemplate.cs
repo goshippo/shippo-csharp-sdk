@@ -41,7 +41,7 @@ namespace Shippo.Models.Components
     /// 
     /// </remarks>
     /// </summary>
-    public enum ParcelTemplateUSPSEnum
+    public enum USPSParcelTemplate
     {
         [JsonProperty("USPS_FlatRateCardboardEnvelope")]
         USPSFlatRateCardboardEnvelope,
@@ -85,16 +85,16 @@ namespace Shippo.Models.Components
         USPSSoftPack,
     }
 
-    public static class ParcelTemplateUSPSEnumExtension
+    public static class USPSParcelTemplateExtension
     {
-        public static string Value(this ParcelTemplateUSPSEnum value)
+        public static string Value(this USPSParcelTemplate value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ParcelTemplateUSPSEnum ToEnum(this string value)
+        public static USPSParcelTemplate ToEnum(this string value)
         {
-            foreach(var field in typeof(ParcelTemplateUSPSEnum).GetFields())
+            foreach(var field in typeof(USPSParcelTemplate).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -107,14 +107,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ParcelTemplateUSPSEnum)
+                    if (enumVal is USPSParcelTemplate)
                     {
-                        return (ParcelTemplateUSPSEnum)enumVal;
+                        return (USPSParcelTemplate)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ParcelTemplateUSPSEnum");
+            throw new Exception($"Unknown value {value} for enum USPSParcelTemplate");
         }
     }
 

@@ -25,7 +25,7 @@ namespace Shippo.Models.Components
     /// 
     /// </remarks>
     /// </summary>
-    public enum ParcelTemplateCouriersPleaseEnum
+    public enum CouriersPleaseParcelTemplate
     {
         [JsonProperty("couriersplease_500g_satchel")]
         Couriersplease500gSatchel,
@@ -37,16 +37,16 @@ namespace Shippo.Models.Components
         Couriersplease5kgSatchel,
     }
 
-    public static class ParcelTemplateCouriersPleaseEnumExtension
+    public static class CouriersPleaseParcelTemplateExtension
     {
-        public static string Value(this ParcelTemplateCouriersPleaseEnum value)
+        public static string Value(this CouriersPleaseParcelTemplate value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ParcelTemplateCouriersPleaseEnum ToEnum(this string value)
+        public static CouriersPleaseParcelTemplate ToEnum(this string value)
         {
-            foreach(var field in typeof(ParcelTemplateCouriersPleaseEnum).GetFields())
+            foreach(var field in typeof(CouriersPleaseParcelTemplate).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -59,14 +59,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ParcelTemplateCouriersPleaseEnum)
+                    if (enumVal is CouriersPleaseParcelTemplate)
                     {
-                        return (ParcelTemplateCouriersPleaseEnum)enumVal;
+                        return (CouriersPleaseParcelTemplate)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ParcelTemplateCouriersPleaseEnum");
+            throw new Exception($"Unknown value {value} for enum CouriersPleaseParcelTemplate");
         }
     }
 

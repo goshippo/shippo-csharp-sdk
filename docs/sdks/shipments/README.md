@@ -242,15 +242,27 @@ var res = await sdk.Shipments.CreateAsync(
         "73f706f4bdb94b54a337563840ce52b0",
     },
     Parcels = new List<Models.Components.Parcels>() {
-        Parcels.CreateParcelsParcelCreateRequest(
-            new ParcelCreateRequest() {
-                DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
-                Height = "1",
-                Length = "1",
+        Parcels.CreateParcelsParcelCreateFromTemplateRequest(
+            new ParcelCreateFromTemplateRequest() {
+                Extra = new ParcelExtra() {
+                    Cod = new Cod() {
+                        Amount = "5.5",
+                        Currency = "USD",
+                        PaymentMethod = PaymentMethod.Cash,
+                    },
+                    Insurance = new ParcelInsurance() {
+                        Amount = "5.5",
+                        Content = "Laptop",
+                        Currency = "USD",
+                        Provider = ParcelInsuranceProvider.Ups,
+                    },
+                },
+                Metadata = "Customer ID 123456",
                 MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
                 Weight = "1",
-                Width = "1",
-                Metadata = "Customer ID 123456",
+                Template = ParcelTemplateEnumSet.CreateParcelTemplateEnumSetUSPSParcelTemplate(
+                Shippo.Models.Components.USPSParcelTemplate.USPSFlatRateGiftCardEnvelope,
+                ),
             },
         ),
     },

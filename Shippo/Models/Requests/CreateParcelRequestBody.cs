@@ -7,7 +7,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 #nullable enable
-namespace Shippo.Models.Components
+namespace Shippo.Models.Requests
 {
     using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
@@ -19,28 +19,25 @@ namespace Shippo.Models.Components
     using System;
     
 
-    public class ParcelsType
+    public class CreateParcelRequestBodyType
     {
-        private ParcelsType(string value) { Value = value; }
+        private CreateParcelRequestBodyType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        public static ParcelsType ParcelCreateRequest { get { return new ParcelsType("ParcelCreateRequest"); } }
+        public static CreateParcelRequestBodyType ParcelCreateRequest { get { return new CreateParcelRequestBodyType("ParcelCreateRequest"); } }
         
-        public static ParcelsType ParcelCreateFromTemplateRequest { get { return new ParcelsType("ParcelCreateFromTemplateRequest"); } }
+        public static CreateParcelRequestBodyType ParcelCreateFromTemplateRequest { get { return new CreateParcelRequestBodyType("ParcelCreateFromTemplateRequest"); } }
         
-        public static ParcelsType Str { get { return new ParcelsType("str"); } }
-        
-        public static ParcelsType Null { get { return new ParcelsType("null"); } }
+        public static CreateParcelRequestBodyType Null { get { return new CreateParcelRequestBodyType("null"); } }
 
         public override string ToString() { return Value; }
-        public static implicit operator String(ParcelsType v) { return v.Value; }
-        public static ParcelsType FromString(string v) {
+        public static implicit operator String(CreateParcelRequestBodyType v) { return v.Value; }
+        public static CreateParcelRequestBodyType FromString(string v) {
             switch(v) {
                 case "ParcelCreateRequest": return ParcelCreateRequest;
                 case "ParcelCreateFromTemplateRequest": return ParcelCreateFromTemplateRequest;
-                case "str": return Str;
                 case "null": return Null;
-                default: throw new ArgumentException("Invalid value for ParcelsType");
+                default: throw new ArgumentException("Invalid value for CreateParcelRequestBodyType");
             }
         }
         public override bool Equals(object? obj)
@@ -49,7 +46,7 @@ namespace Shippo.Models.Components
             {
                 return false;
             }
-            return Value.Equals(((ParcelsType)obj).Value);
+            return Value.Equals(((CreateParcelRequestBodyType)obj).Value);
         }
 
         public override int GetHashCode()
@@ -58,52 +55,45 @@ namespace Shippo.Models.Components
         }
     }
     
-
-    [JsonConverter(typeof(Parcels.ParcelsConverter))]
-    public class Parcels {
-        public Parcels(ParcelsType type) {
+/// <summary>
+/// Parcel details.
+/// </summary>
+    [JsonConverter(typeof(CreateParcelRequestBody.CreateParcelRequestBodyConverter))]
+    public class CreateParcelRequestBody {
+        public CreateParcelRequestBody(CreateParcelRequestBodyType type) {
             Type = type;
         }
         public ParcelCreateRequest? ParcelCreateRequest { get; set; } 
         public ParcelCreateFromTemplateRequest? ParcelCreateFromTemplateRequest { get; set; } 
-        public string? Str { get; set; } 
 
-        public ParcelsType Type { get; set; }
+        public CreateParcelRequestBodyType Type { get; set; }
 
 
-        public static Parcels CreateParcelCreateRequest(ParcelCreateRequest parcelCreateRequest) {
-            ParcelsType typ = ParcelsType.ParcelCreateRequest;
+        public static CreateParcelRequestBody CreateParcelCreateRequest(ParcelCreateRequest parcelCreateRequest) {
+            CreateParcelRequestBodyType typ = CreateParcelRequestBodyType.ParcelCreateRequest;
 
-            Parcels res = new Parcels(typ);
+            CreateParcelRequestBody res = new CreateParcelRequestBody(typ);
             res.ParcelCreateRequest = parcelCreateRequest;
             return res;
         }
 
-        public static Parcels CreateParcelCreateFromTemplateRequest(ParcelCreateFromTemplateRequest parcelCreateFromTemplateRequest) {
-            ParcelsType typ = ParcelsType.ParcelCreateFromTemplateRequest;
+        public static CreateParcelRequestBody CreateParcelCreateFromTemplateRequest(ParcelCreateFromTemplateRequest parcelCreateFromTemplateRequest) {
+            CreateParcelRequestBodyType typ = CreateParcelRequestBodyType.ParcelCreateFromTemplateRequest;
 
-            Parcels res = new Parcels(typ);
+            CreateParcelRequestBody res = new CreateParcelRequestBody(typ);
             res.ParcelCreateFromTemplateRequest = parcelCreateFromTemplateRequest;
             return res;
         }
 
-        public static Parcels CreateStr(string str) {
-            ParcelsType typ = ParcelsType.Str;
-
-            Parcels res = new Parcels(typ);
-            res.Str = str;
-            return res;
+        public static CreateParcelRequestBody CreateNull() {
+            CreateParcelRequestBodyType typ = CreateParcelRequestBodyType.Null;
+            return new CreateParcelRequestBody(typ);
         }
 
-        public static Parcels CreateNull() {
-            ParcelsType typ = ParcelsType.Null;
-            return new Parcels(typ);
-        }
-
-        public class ParcelsConverter : JsonConverter
+        public class CreateParcelRequestBodyConverter : JsonConverter
         {
 
-            public override bool CanConvert(System.Type objectType) => objectType == typeof(Parcels);
+            public override bool CanConvert(System.Type objectType) => objectType == typeof(CreateParcelRequestBody);
 
             public override bool CanRead => true;
 
@@ -118,14 +108,14 @@ namespace Shippo.Models.Components
                 var fallbackCandidates = new List<(System.Type, object, string)>();
                 try
                 {
-                    return new Parcels(ParcelsType.ParcelCreateFromTemplateRequest)
+                    return new CreateParcelRequestBody(CreateParcelRequestBodyType.ParcelCreateFromTemplateRequest)
                     {
                         ParcelCreateFromTemplateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ParcelCreateFromTemplateRequest>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(ParcelCreateFromTemplateRequest), new Parcels(ParcelsType.ParcelCreateFromTemplateRequest), "ParcelCreateFromTemplateRequest"));
+                    fallbackCandidates.Add((typeof(ParcelCreateFromTemplateRequest), new CreateParcelRequestBody(CreateParcelRequestBodyType.ParcelCreateFromTemplateRequest), "ParcelCreateFromTemplateRequest"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -138,14 +128,14 @@ namespace Shippo.Models.Components
             
                 try
                 {
-                    return new Parcels(ParcelsType.ParcelCreateRequest)
+                    return new CreateParcelRequestBody(CreateParcelRequestBodyType.ParcelCreateRequest)
                     {
                         ParcelCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ParcelCreateRequest>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(ParcelCreateRequest), new Parcels(ParcelsType.ParcelCreateRequest), "ParcelCreateRequest"));
+                    fallbackCandidates.Add((typeof(ParcelCreateRequest), new CreateParcelRequestBody(CreateParcelRequestBodyType.ParcelCreateRequest), "ParcelCreateRequest"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -154,13 +144,6 @@ namespace Shippo.Models.Components
                 catch (Exception)
                 {
                     throw;
-                }
-            
-                if (json[0] == '"' && json[^1] == '"'){
-                    return new Parcels(ParcelsType.Str)
-                    {
-                        Str = json[1..^1]
-                    };
                 }
             
                 if (fallbackCandidates.Count > 0)
@@ -193,8 +176,8 @@ namespace Shippo.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
-                Parcels res = (Parcels)value;
-                if (ParcelsType.FromString(res.Type).Equals(ParcelsType.Null))
+                CreateParcelRequestBody res = (CreateParcelRequestBody)value;
+                if (CreateParcelRequestBodyType.FromString(res.Type).Equals(CreateParcelRequestBodyType.Null))
                 {
                     writer.WriteRawValue("null");
                     return;
@@ -207,11 +190,6 @@ namespace Shippo.Models.Components
                 if (res.ParcelCreateFromTemplateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelCreateFromTemplateRequest));
-                    return;
-                }
-                if (res.Str != null)
-                {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.Str));
                     return;
                 }
 

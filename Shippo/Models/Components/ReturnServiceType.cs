@@ -9,56 +9,193 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
+    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
+    using System.Numerics;
+    using System.Reflection;
     using System;
     
-    /// <summary>
-    /// Request additional return option for return shipments (UPS only).
-    /// </summary>
-    public enum ReturnServiceType
-    {
-        [JsonProperty("PRINT_AND_MAIL")]
-        PrintAndMail,
-        [JsonProperty("ATTEMPT_1")]
-        Attempt1,
-        [JsonProperty("ATTEMPT_3")]
-        Attempt3,
-        [JsonProperty("ELECTRONIC_LABEL")]
-        ElectronicLabel,
-    }
 
-    public static class ReturnServiceTypeExtension
+    public class ReturnServiceTypeType
     {
-        public static string Value(this ReturnServiceType value)
+        private ReturnServiceTypeType(string value) { Value = value; }
+
+        public string Value { get; private set; }
+        public static ReturnServiceTypeType ShipmentExtraReturnServiceTypeUPSEnum { get { return new ReturnServiceTypeType("ShipmentExtraReturnServiceTypeUPSEnum"); } }
+        
+        public static ReturnServiceTypeType ShipmentExtraReturnServiceTypeLasershipEnum { get { return new ReturnServiceTypeType("ShipmentExtraReturnServiceTypeLasershipEnum"); } }
+        
+        public static ReturnServiceTypeType Null { get { return new ReturnServiceTypeType("null"); } }
+
+        public override string ToString() { return Value; }
+        public static implicit operator String(ReturnServiceTypeType v) { return v.Value; }
+        public static ReturnServiceTypeType FromString(string v) {
+            switch(v) {
+                case "ShipmentExtraReturnServiceTypeUPSEnum": return ShipmentExtraReturnServiceTypeUPSEnum;
+                case "ShipmentExtraReturnServiceTypeLasershipEnum": return ShipmentExtraReturnServiceTypeLasershipEnum;
+                case "null": return Null;
+                default: throw new ArgumentException("Invalid value for ReturnServiceTypeType");
+            }
+        }
+        public override bool Equals(object? obj)
         {
-            return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
+            if (obj == null || GetType() != obj.GetType())
+            {
+                return false;
+            }
+            return Value.Equals(((ReturnServiceTypeType)obj).Value);
         }
 
-        public static ReturnServiceType ToEnum(this string value)
+        public override int GetHashCode()
         {
-            foreach(var field in typeof(ReturnServiceType).GetFields())
+            return Value.GetHashCode();
+        }
+    }
+    
+/// <summary>
+/// Request additional return option for return shipments (UPS and Lasership only).
+/// </summary>
+    [JsonConverter(typeof(ReturnServiceType.ReturnServiceTypeConverter))]
+    public class ReturnServiceType {
+        public ReturnServiceType(ReturnServiceTypeType type) {
+            Type = type;
+        }
+        public ShipmentExtraReturnServiceTypeUPSEnum? ShipmentExtraReturnServiceTypeUPSEnum { get; set; } 
+        public ShipmentExtraReturnServiceTypeLasershipEnum? ShipmentExtraReturnServiceTypeLasershipEnum { get; set; } 
+
+        public ReturnServiceTypeType Type { get; set; }
+
+
+        public static ReturnServiceType CreateShipmentExtraReturnServiceTypeUPSEnum(ShipmentExtraReturnServiceTypeUPSEnum shipmentExtraReturnServiceTypeUPSEnum) {
+            ReturnServiceTypeType typ = ReturnServiceTypeType.ShipmentExtraReturnServiceTypeUPSEnum;
+
+            ReturnServiceType res = new ReturnServiceType(typ);
+            res.ShipmentExtraReturnServiceTypeUPSEnum = shipmentExtraReturnServiceTypeUPSEnum;
+            return res;
+        }
+
+        public static ReturnServiceType CreateShipmentExtraReturnServiceTypeLasershipEnum(ShipmentExtraReturnServiceTypeLasershipEnum shipmentExtraReturnServiceTypeLasershipEnum) {
+            ReturnServiceTypeType typ = ReturnServiceTypeType.ShipmentExtraReturnServiceTypeLasershipEnum;
+
+            ReturnServiceType res = new ReturnServiceType(typ);
+            res.ShipmentExtraReturnServiceTypeLasershipEnum = shipmentExtraReturnServiceTypeLasershipEnum;
+            return res;
+        }
+
+        public static ReturnServiceType CreateNull() {
+            ReturnServiceTypeType typ = ReturnServiceTypeType.Null;
+            return new ReturnServiceType(typ);
+        }
+
+        public class ReturnServiceTypeConverter : JsonConverter
+        {
+
+            public override bool CanConvert(System.Type objectType) => objectType == typeof(ReturnServiceType);
+
+            public override bool CanRead => true;
+
+            public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
-                if (attributes.Length == 0)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    continue;
+                    return null;
                 }
 
-                var attribute = attributes[0] as JsonPropertyAttribute;
-                if (attribute != null && attribute.PropertyName == value)
+                var fallbackCandidates = new List<(System.Type, object, string)>();
+                try
                 {
-                    var enumVal = field.GetValue(null);
-
-                    if (enumVal is ReturnServiceType)
+                    return new ReturnServiceType(ReturnServiceTypeType.ShipmentExtraReturnServiceTypeUPSEnum)
                     {
-                        return (ReturnServiceType)enumVal;
+                        ShipmentExtraReturnServiceTypeUPSEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ShipmentExtraReturnServiceTypeUPSEnum>(json)
+                    };
+                }
+                catch (ResponseBodyDeserializer.MissingMemberException)
+                {
+                    fallbackCandidates.Add((typeof(ShipmentExtraReturnServiceTypeUPSEnum), new ReturnServiceType(ReturnServiceTypeType.ShipmentExtraReturnServiceTypeUPSEnum), "ShipmentExtraReturnServiceTypeUPSEnum"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
+                try
+                {
+                    return new ReturnServiceType(ReturnServiceTypeType.ShipmentExtraReturnServiceTypeLasershipEnum)
+                    {
+                        ShipmentExtraReturnServiceTypeLasershipEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ShipmentExtraReturnServiceTypeLasershipEnum>(json)
+                    };
+                }
+                catch (ResponseBodyDeserializer.MissingMemberException)
+                {
+                    fallbackCandidates.Add((typeof(ShipmentExtraReturnServiceTypeLasershipEnum), new ReturnServiceType(ReturnServiceTypeType.ShipmentExtraReturnServiceTypeLasershipEnum), "ShipmentExtraReturnServiceTypeLasershipEnum"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
+
+          
+                throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 
-            throw new Exception($"Unknown value {value} for enum ReturnServiceType");
+            public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
+            {
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
+                }
+                ReturnServiceType res = (ReturnServiceType)value;
+                if (ReturnServiceTypeType.FromString(res.Type).Equals(ReturnServiceTypeType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
+                if (res.ShipmentExtraReturnServiceTypeUPSEnum != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.ShipmentExtraReturnServiceTypeUPSEnum));
+                    return;
+                }
+                if (res.ShipmentExtraReturnServiceTypeLasershipEnum != null)
+                {
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.ShipmentExtraReturnServiceTypeLasershipEnum));
+                    return;
+                }
+
+            }
         }
+
     }
 
 }

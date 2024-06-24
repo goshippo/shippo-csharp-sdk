@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
-  docChecksum: c1fbfc30ebe7e63d6f7b0d5603bf6099
+  docChecksum: 41c0262ad846794c25bcac117519320e
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.308.1
-  generationVersion: 2.342.6
-  releaseVersion: 5.0.0-beta.1
-  configChecksum: 4b61d37a92d42a0f787b98dc41e37eae
+  speakeasyVersion: 1.314.2
+  generationVersion: 2.349.6
+  releaseVersion: 5.0.0-beta.2
+  configChecksum: 9842347bd30bb5b594a1ae4010a10d0d
   repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
   published: true
 features:
   csharp:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.0.1
-    core: 3.9.6
+    core: 3.9.8
     flattening: 2.81.2
     globalSecurity: 2.83.4
     globalSecurityCallbacks: 0.1.0
@@ -26,7 +26,7 @@ features:
     nullables: 0.1.0
     responseFormat: 0.0.4
     sdkHooks: 0.1.0
-    unions: 0.0.5
+    unions: 0.1.0
 generatedFiles:
   - Shippo/Addresses.cs
   - Shippo/Batches.cs
@@ -92,16 +92,22 @@ generatedFiles:
   - Shippo/Models/Components/Parcels.cs
   - Shippo/Models/Components/ShipmentCreateRequest.cs
   - Shippo/Models/Components/ParcelCreateRequest.cs
-  - Shippo/Models/Components/ParcelTemplateAramexAustraliaEnum.cs
-  - Shippo/Models/Components/ParcelTemplateCouriersPleaseEnum.cs
-  - Shippo/Models/Components/ParcelTemplateDPDUKEnum.cs
-  - Shippo/Models/Components/ParcelTemplateDHLeCommerceEnum.cs
-  - Shippo/Models/Components/ParcelTemplateUSPSEnum.cs
-  - Shippo/Models/Components/ParcelTemplateUPSEnum.cs
-  - Shippo/Models/Components/ParcelTemplateFedExEnum.cs
-  - Shippo/Models/Components/ParcelTemplateEnumSet.cs
-  - Shippo/Models/Components/WeightUnitEnum.cs
   - Shippo/Models/Components/DistanceUnitEnum.cs
+  - Shippo/Models/Components/WeightUnitEnum.cs
+  - Shippo/Models/Components/ParcelExtra.cs
+  - Shippo/Models/Components/ParcelInsuranceProvider.cs
+  - Shippo/Models/Components/ParcelInsurance.cs
+  - Shippo/Models/Components/PaymentMethod.cs
+  - Shippo/Models/Components/Cod.cs
+  - Shippo/Models/Components/ParcelCreateFromTemplateRequest.cs
+  - Shippo/Models/Components/AramexAustraliaParcelTemplate.cs
+  - Shippo/Models/Components/CouriersPleaseParcelTemplate.cs
+  - Shippo/Models/Components/DPDUKParcelTemplate.cs
+  - Shippo/Models/Components/DHLECommerceParcelTemplate.cs
+  - Shippo/Models/Components/USPSParcelTemplate.cs
+  - Shippo/Models/Components/UPSParcelTemplate.cs
+  - Shippo/Models/Components/FedExParcelTemplate.cs
+  - Shippo/Models/Components/ParcelTemplateEnumSet.cs
   - Shippo/Models/Components/CustomsDeclarationCreateRequest.cs
   - Shippo/Models/Components/CustomsDeclarationNonDeliveryOptionEnum.cs
   - Shippo/Models/Components/CustomsItemCreateRequest.cs
@@ -121,6 +127,8 @@ generatedFiles:
   - Shippo/Models/Components/ShipmentExtra.cs
   - Shippo/Models/Components/UPSReferenceFields.cs
   - Shippo/Models/Components/RmaNumber.cs
+  - Shippo/Models/Components/ShipmentExtraReturnServiceTypeUPSEnum.cs
+  - Shippo/Models/Components/ShipmentExtraReturnServiceTypeLasershipEnum.cs
   - Shippo/Models/Components/PoNumber.cs
   - Shippo/Models/Components/ShipmentExtraLasershipAttributesEnum.cs
   - Shippo/Models/Components/InvoiceNumber.cs
@@ -132,8 +140,6 @@ generatedFiles:
   - Shippo/Models/Components/DangerousGoodsLithiumBatteries.cs
   - Shippo/Models/Components/DangerousGoodsBiologicalMaterial.cs
   - Shippo/Models/Components/CustomerReference.cs
-  - Shippo/Models/Components/PaymentMethod.cs
-  - Shippo/Models/Components/Cod.cs
   - Shippo/Models/Components/Type.cs
   - Shippo/Models/Components/Billing.cs
   - Shippo/Models/Components/RecipientType.cs
@@ -198,9 +204,6 @@ generatedFiles:
   - Shippo/Models/Components/LiveRateCreateRequest.cs
   - Shippo/Models/Components/ObjectState.cs
   - Shippo/Models/Components/Parcel.cs
-  - Shippo/Models/Components/ParcelExtra.cs
-  - Shippo/Models/Components/ParcelInsuranceProvider.cs
-  - Shippo/Models/Components/ParcelInsurance.cs
   - Shippo/Models/Components/LineItem.cs
   - Shippo/Models/Components/AddressCompleteCreateRequest.cs
   - Shippo/Models/Components/DefaultParcelTemplate.cs
@@ -220,7 +223,6 @@ generatedFiles:
   - Shippo/Models/Components/LineItemBase.cs
   - Shippo/Models/Components/CarrierParcelTemplateList.cs
   - Shippo/Models/Components/ParcelPaginatedList.cs
-  - Shippo/Models/Components/ParcelRequest.cs
   - Shippo/Models/Components/PickupStatus.cs
   - Shippo/Models/Components/Pickup.cs
   - Shippo/Models/Components/BuildingLocationType.cs
@@ -356,6 +358,7 @@ generatedFiles:
   - Shippo/Models/Requests/ListCarrierParcelTemplatesRequest.cs
   - Shippo/Models/Requests/GetCarrierParcelTemplateRequest.cs
   - Shippo/Models/Requests/ListParcelsRequest.cs
+  - Shippo/Models/Requests/CreateParcelRequestBody.cs
   - Shippo/Models/Requests/CreateParcelRequest.cs
   - Shippo/Models/Requests/GetParcelRequest.cs
   - Shippo/Models/Requests/CreatePickupRequest.cs
@@ -416,16 +419,22 @@ generatedFiles:
   - docs/Models/Components/Parcels.md
   - docs/Models/Components/ShipmentCreateRequest.md
   - docs/Models/Components/ParcelCreateRequest.md
-  - docs/Models/Components/ParcelTemplateAramexAustraliaEnum.md
-  - docs/Models/Components/ParcelTemplateCouriersPleaseEnum.md
-  - docs/Models/Components/ParcelTemplateDPDUKEnum.md
-  - docs/Models/Components/ParcelTemplateDHLeCommerceEnum.md
-  - docs/Models/Components/ParcelTemplateUSPSEnum.md
-  - docs/Models/Components/ParcelTemplateUPSEnum.md
-  - docs/Models/Components/ParcelTemplateFedExEnum.md
-  - docs/Models/Components/ParcelTemplateEnumSet.md
-  - docs/Models/Components/WeightUnitEnum.md
   - docs/Models/Components/DistanceUnitEnum.md
+  - docs/Models/Components/WeightUnitEnum.md
+  - docs/Models/Components/ParcelExtra.md
+  - docs/Models/Components/ParcelInsuranceProvider.md
+  - docs/Models/Components/ParcelInsurance.md
+  - docs/Models/Components/PaymentMethod.md
+  - docs/Models/Components/Cod.md
+  - docs/Models/Components/ParcelCreateFromTemplateRequest.md
+  - docs/Models/Components/AramexAustraliaParcelTemplate.md
+  - docs/Models/Components/CouriersPleaseParcelTemplate.md
+  - docs/Models/Components/DPDUKParcelTemplate.md
+  - docs/Models/Components/DHLECommerceParcelTemplate.md
+  - docs/Models/Components/USPSParcelTemplate.md
+  - docs/Models/Components/UPSParcelTemplate.md
+  - docs/Models/Components/FedExParcelTemplate.md
+  - docs/Models/Components/ParcelTemplateEnumSet.md
   - docs/Models/Components/CustomsDeclarationCreateRequest.md
   - docs/Models/Components/CustomsDeclarationNonDeliveryOptionEnum.md
   - docs/Models/Components/CustomsItemCreateRequest.md
@@ -445,6 +454,8 @@ generatedFiles:
   - docs/Models/Components/ShipmentExtra.md
   - docs/Models/Components/UPSReferenceFields.md
   - docs/Models/Components/RmaNumber.md
+  - docs/Models/Components/ShipmentExtraReturnServiceTypeUPSEnum.md
+  - docs/Models/Components/ShipmentExtraReturnServiceTypeLasershipEnum.md
   - docs/Models/Components/PoNumber.md
   - docs/Models/Components/ShipmentExtraLasershipAttributesEnum.md
   - docs/Models/Components/InvoiceNumber.md
@@ -456,8 +467,6 @@ generatedFiles:
   - docs/Models/Components/DangerousGoodsLithiumBatteries.md
   - docs/Models/Components/DangerousGoodsBiologicalMaterial.md
   - docs/Models/Components/CustomerReference.md
-  - docs/Models/Components/PaymentMethod.md
-  - docs/Models/Components/Cod.md
   - docs/Models/Components/Type.md
   - docs/Models/Components/Billing.md
   - docs/Models/Components/RecipientType.md
@@ -522,9 +531,6 @@ generatedFiles:
   - docs/Models/Components/LiveRateCreateRequest.md
   - docs/Models/Components/ObjectState.md
   - docs/Models/Components/Parcel.md
-  - docs/Models/Components/ParcelExtra.md
-  - docs/Models/Components/ParcelInsuranceProvider.md
-  - docs/Models/Components/ParcelInsurance.md
   - docs/Models/Components/LineItem.md
   - docs/Models/Components/AddressCompleteCreateRequest.md
   - docs/Models/Components/DefaultParcelTemplate.md
@@ -544,7 +550,6 @@ generatedFiles:
   - docs/Models/Components/LineItemBase.md
   - docs/Models/Components/CarrierParcelTemplateList.md
   - docs/Models/Components/ParcelPaginatedList.md
-  - docs/Models/Components/ParcelRequest.md
   - docs/Models/Components/PickupStatus.md
   - docs/Models/Components/Pickup.md
   - docs/Models/Components/BuildingLocationType.md
@@ -680,6 +685,7 @@ generatedFiles:
   - docs/Models/Requests/ListCarrierParcelTemplatesRequest.md
   - docs/Models/Requests/GetCarrierParcelTemplateRequest.md
   - docs/Models/Requests/ListParcelsRequest.md
+  - docs/Models/Requests/CreateParcelRequestBody.md
   - docs/Models/Requests/CreateParcelRequest.md
   - docs/Models/Requests/GetParcelRequest.md
   - docs/Models/Requests/CreatePickupRequest.md
@@ -738,6 +744,7 @@ generatedFiles:
   - docs/sdks/userparceltemplates/README.md
   - docs/sdks/shippoaccounts/README.md
   - docs/sdks/webhooks/README.md
+  - NUGET.md
   - USAGE.md
   - .gitattributes
   - Shippo/Hooks/SDKHooks.cs

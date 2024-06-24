@@ -12,7 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
     using Shippo.Utils;
+    using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection;
     using System;
     
 
@@ -93,26 +95,56 @@ namespace Shippo.Models.Components
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
-            { 
+            {
                 var json = JRaw.Create(reader).ToString();
-
-                if (json == "null") {
+                if (json == "null")
+                {
                     return null;
-                } 
-                try {
+                }
+
+                var fallbackCandidates = new List<(System.Type, object, string)>();
+
+                try
+                {
                     var converted = Convert.ToDouble(json);
-                    return new Latitude(LatitudeType.Number) {
+                    return new Latitude(LatitudeType.Number)
+                    {
                         Number = converted
                     };
-                } catch (System.FormatException) {
+                }
+                catch (System.FormatException)
+                {
                     // try next option
                 }
+            
                 if (json[0] == '"' && json[^1] == '"'){
-                    return new Latitude(LatitudeType.Str) {
+                    return new Latitude(LatitudeType.Str)
+                    {
                         Str = json[1..^1]
                     };
                 }
+            
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                    }
+                }
 
+          
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 

@@ -2,18 +2,20 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>Shippo</PackageId>
-    <Version>5.0.0-beta.1</Version>
+    <Version>5.0.0-beta.2</Version>
     <Authors>Shippo</Authors>
     <TargetFramework>net6.0</TargetFramework>
     <Nullable>enable</Nullable>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <NoWarn>1591</NoWarn>
     <RepositoryUrl>https://github.com/goshippo/shippo-csharp-sdk</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
-    <None Include="..\README.md" Pack="true" PackagePath="\"/>
+    <None Include="..\NUGET.md" Pack="true" PackagePath="README.md"/>
+    <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
     <None Include="..\docs\**\*" Pack="true" PackagePath="\docs"  CopyToOutputDirectory="PreserveNewest"/>
 
     <PackageReference Include="newtonsoft.json" Version="13.0.3" />

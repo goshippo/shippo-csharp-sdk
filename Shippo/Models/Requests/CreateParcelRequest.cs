@@ -10,6 +10,7 @@
 namespace Shippo.Models.Requests
 {
     using Shippo.Models.Components;
+    using Shippo.Models.Requests;
     using Shippo.Utils;
     
     public class CreateParcelRequest
@@ -19,7 +20,7 @@ namespace Shippo.Models.Requests
         /// Parcel details.
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
-        public ParcelRequest ParcelRequest { get; set; } = default!;
+        public CreateParcelRequestBody RequestBody { get; set; } = default!;
 
         /// <summary>
         /// String used to pick a non-default API version to use

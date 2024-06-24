@@ -15,6 +15,7 @@ namespace Shippo.Models.Components
     using Shippo.Utils;
     using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection;
     using System;
     
 
@@ -107,52 +108,95 @@ namespace Shippo.Models.Components
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
-            { 
+            {
                 var json = JRaw.Create(reader).ToString();
-
-                if (json == "null") {
+                if (json == "null")
+                {
                     return null;
                 }
+
+                var fallbackCandidates = new List<(System.Type, object, string)>();
                 try
                 {
-                    FedExConnectExistingOwnAccountParameters? fedExConnectExistingOwnAccountParameters = ResponseBodyDeserializer.Deserialize<FedExConnectExistingOwnAccountParameters>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new CarrierAccountParameters(CarrierAccountParametersType.FedExConnectExistingOwnAccountParameters) {
-                        FedExConnectExistingOwnAccountParameters = fedExConnectExistingOwnAccountParameters
+                    return new CarrierAccountParameters(CarrierAccountParametersType.FedExConnectExistingOwnAccountParameters)
+                    {
+                        FedExConnectExistingOwnAccountParameters = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<FedExConnectExistingOwnAccountParameters>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(FedExConnectExistingOwnAccountParameters), new CarrierAccountParameters(CarrierAccountParametersType.FedExConnectExistingOwnAccountParameters), "FedExConnectExistingOwnAccountParameters"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    UPSConnectExistingOwnAccountParameters? upsConnectExistingOwnAccountParameters = ResponseBodyDeserializer.Deserialize<UPSConnectExistingOwnAccountParameters>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new CarrierAccountParameters(CarrierAccountParametersType.UPSConnectExistingOwnAccountParameters) {
-                        UPSConnectExistingOwnAccountParameters = upsConnectExistingOwnAccountParameters
+                    return new CarrierAccountParameters(CarrierAccountParametersType.UPSConnectExistingOwnAccountParameters)
+                    {
+                        UPSConnectExistingOwnAccountParameters = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<UPSConnectExistingOwnAccountParameters>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(UPSConnectExistingOwnAccountParameters), new CarrierAccountParameters(CarrierAccountParametersType.UPSConnectExistingOwnAccountParameters), "UPSConnectExistingOwnAccountParameters"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    Dictionary<string, object>? mapOfAny = ResponseBodyDeserializer.Deserialize<Dictionary<string, object>>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new CarrierAccountParameters(CarrierAccountParametersType.MapOfAny) {
-                        MapOfAny = mapOfAny
+                    return new CarrierAccountParameters(CarrierAccountParametersType.MapOfAny)
+                    {
+                        MapOfAny = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<Dictionary<string, object>>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
+                    fallbackCandidates.Add((typeof(Dictionary<string, object>), new CarrierAccountParameters(CarrierAccountParametersType.MapOfAny), "MapOfAny"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
 
+          
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 

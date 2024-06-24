@@ -13,7 +13,9 @@ namespace Shippo.Models.Requests
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection;
     using System;
     
 
@@ -96,39 +98,75 @@ namespace Shippo.Models.Requests
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
-            { 
+            {
                 var json = JRaw.Create(reader).ToString();
-
-                if (json == "null") {
+                if (json == "null")
+                {
                     return null;
                 }
+
+                var fallbackCandidates = new List<(System.Type, object, string)>();
                 try
                 {
-                    TransactionCreateRequest? transactionCreateRequest = ResponseBodyDeserializer.Deserialize<TransactionCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new CreateTransactionRequestBody(CreateTransactionRequestBodyType.TransactionCreateRequest) {
-                        TransactionCreateRequest = transactionCreateRequest
+                    return new CreateTransactionRequestBody(CreateTransactionRequestBodyType.TransactionCreateRequest)
+                    {
+                        TransactionCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<TransactionCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(TransactionCreateRequest), new CreateTransactionRequestBody(CreateTransactionRequestBodyType.TransactionCreateRequest), "TransactionCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    InstantTransactionCreateRequest? instantTransactionCreateRequest = ResponseBodyDeserializer.Deserialize<InstantTransactionCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new CreateTransactionRequestBody(CreateTransactionRequestBodyType.InstantTransactionCreateRequest) {
-                        InstantTransactionCreateRequest = instantTransactionCreateRequest
+                    return new CreateTransactionRequestBody(CreateTransactionRequestBodyType.InstantTransactionCreateRequest)
+                    {
+                        InstantTransactionCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<InstantTransactionCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
+                    fallbackCandidates.Add((typeof(InstantTransactionCreateRequest), new CreateTransactionRequestBody(CreateTransactionRequestBodyType.InstantTransactionCreateRequest), "InstantTransactionCreateRequest"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
 
+          
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 

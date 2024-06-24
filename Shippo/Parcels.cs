@@ -52,7 +52,7 @@ namespace Shippo
         /// Creates a new parcel object.
         /// </remarks>
         /// </summary>
-        Task<Parcel> CreateAsync(ParcelRequest parcelRequest, string? shippoApiVersion = null);
+        Task<Parcel> CreateAsync(CreateParcelRequestBody requestBody, string? shippoApiVersion = null);
 
         /// <summary>
         /// Retrieve an existing parcel
@@ -79,10 +79,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.1";
-        private const string _sdkGenVersion = "2.342.6";
+        private const string _sdkVersion = "5.0.0-beta.2";
+        private const string _sdkGenVersion = "2.349.6";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.1 2.342.6 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.2 2.349.6 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Security>? _securitySource;
@@ -172,11 +172,11 @@ namespace Shippo
             }
         }
 
-        public async Task<Parcel> CreateAsync(ParcelRequest parcelRequest, string? shippoApiVersion = null)
+        public async Task<Parcel> CreateAsync(CreateParcelRequestBody requestBody, string? shippoApiVersion = null)
         {
             var request = new CreateParcelRequest()
             {
-                ParcelRequest = parcelRequest,
+                RequestBody = requestBody,
                 ShippoApiVersion = shippoApiVersion,
             };
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
@@ -189,7 +189,7 @@ namespace Shippo
             httpRequest.Headers.Add("user-agent", _userAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            var serializedBody = RequestBodySerializer.Serialize(request, "ParcelRequest", "json", false, false);
+            var serializedBody = RequestBodySerializer.Serialize(request, "RequestBody", "json", false, false);
             if (serializedBody != null)
             {
                 httpRequest.Content = serializedBody;

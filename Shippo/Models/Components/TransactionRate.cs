@@ -13,7 +13,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection;
     using System;
     
 
@@ -102,31 +104,62 @@ namespace Shippo.Models.Components
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
-            { 
+            {
                 var json = JRaw.Create(reader).ToString();
-
-                if (json == "null") {
+                if (json == "null")
+                {
                     return null;
                 }
+
+                var fallbackCandidates = new List<(System.Type, object, string)>();
                 try
                 {
-                    CoreRate? coreRate = ResponseBodyDeserializer.Deserialize<CoreRate>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new TransactionRate(TransactionRateType.CoreRate) {
-                        CoreRate = coreRate
+                    return new TransactionRate(TransactionRateType.CoreRate)
+                    {
+                        CoreRate = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CoreRate>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CoreRate), new TransactionRate(TransactionRateType.CoreRate), "CoreRate"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 if (json[0] == '"' && json[^1] == '"'){
-                    return new TransactionRate(TransactionRateType.Str) {
+                    return new TransactionRate(TransactionRateType.Str)
+                    {
                         Str = json[1..^1]
                     };
                 }
+            
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
+                    }
+                }
 
+          
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 

@@ -13,7 +13,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection;
     using System;
     
 
@@ -550,533 +552,835 @@ namespace Shippo.Models.Components
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
-            { 
+            {
                 var json = JRaw.Create(reader).ToString();
-
-                if (json == "null") {
+                if (json == "null")
+                {
                     return null;
                 }
+
+                var fallbackCandidates = new List<(System.Type, object, string)>();
                 try
                 {
-                    ServiceLevelUSPSEnum? serviceLevelUSPSEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelUSPSEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUSPSEnum) {
-                        ServiceLevelUSPSEnum = serviceLevelUSPSEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUSPSEnum)
+                    {
+                        ServiceLevelUSPSEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelUSPSEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelUSPSEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUSPSEnum), "ServiceLevelUSPSEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelFedExEnum? serviceLevelFedExEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelFedExEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelFedExEnum) {
-                        ServiceLevelFedExEnum = serviceLevelFedExEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelFedExEnum)
+                    {
+                        ServiceLevelFedExEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelFedExEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelFedExEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelFedExEnum), "ServiceLevelFedExEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelUPSEnum? serviceLevelUPSEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelUPSEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUPSEnum) {
-                        ServiceLevelUPSEnum = serviceLevelUPSEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUPSEnum)
+                    {
+                        ServiceLevelUPSEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelUPSEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelUPSEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUPSEnum), "ServiceLevelUPSEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelAirterraEnum? serviceLevelAirterraEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelAirterraEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAirterraEnum) {
-                        ServiceLevelAirterraEnum = serviceLevelAirterraEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAirterraEnum)
+                    {
+                        ServiceLevelAirterraEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelAirterraEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelAirterraEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAirterraEnum), "ServiceLevelAirterraEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelAPCPostalEnum? serviceLevelAPCPostalEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelAPCPostalEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAPCPostalEnum) {
-                        ServiceLevelAPCPostalEnum = serviceLevelAPCPostalEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAPCPostalEnum)
+                    {
+                        ServiceLevelAPCPostalEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelAPCPostalEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelAPCPostalEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAPCPostalEnum), "ServiceLevelAPCPostalEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelAsendiaEnum? serviceLevelAsendiaEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelAsendiaEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAsendiaEnum) {
-                        ServiceLevelAsendiaEnum = serviceLevelAsendiaEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAsendiaEnum)
+                    {
+                        ServiceLevelAsendiaEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelAsendiaEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelAsendiaEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAsendiaEnum), "ServiceLevelAsendiaEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelAustraliaPostEnum? serviceLevelAustraliaPostEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelAustraliaPostEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAustraliaPostEnum) {
-                        ServiceLevelAustraliaPostEnum = serviceLevelAustraliaPostEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAustraliaPostEnum)
+                    {
+                        ServiceLevelAustraliaPostEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelAustraliaPostEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelAustraliaPostEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAustraliaPostEnum), "ServiceLevelAustraliaPostEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelAPGEnum? serviceLevelAPGEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelAPGEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAPGEnum) {
-                        ServiceLevelAPGEnum = serviceLevelAPGEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAPGEnum)
+                    {
+                        ServiceLevelAPGEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelAPGEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelAPGEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAPGEnum), "ServiceLevelAPGEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelBetterTrucksEnum? serviceLevelBetterTrucksEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelBetterTrucksEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelBetterTrucksEnum) {
-                        ServiceLevelBetterTrucksEnum = serviceLevelBetterTrucksEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelBetterTrucksEnum)
+                    {
+                        ServiceLevelBetterTrucksEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelBetterTrucksEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelBetterTrucksEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelBetterTrucksEnum), "ServiceLevelBetterTrucksEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelCanadaPostEnum? serviceLevelCanadaPostEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelCanadaPostEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCanadaPostEnum) {
-                        ServiceLevelCanadaPostEnum = serviceLevelCanadaPostEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCanadaPostEnum)
+                    {
+                        ServiceLevelCanadaPostEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelCanadaPostEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelCanadaPostEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCanadaPostEnum), "ServiceLevelCanadaPostEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelCDLEnum? serviceLevelCDLEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelCDLEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCDLEnum) {
-                        ServiceLevelCDLEnum = serviceLevelCDLEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCDLEnum)
+                    {
+                        ServiceLevelCDLEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelCDLEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelCDLEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCDLEnum), "ServiceLevelCDLEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelChronopostEnum? serviceLevelChronopostEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelChronopostEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelChronopostEnum) {
-                        ServiceLevelChronopostEnum = serviceLevelChronopostEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelChronopostEnum)
+                    {
+                        ServiceLevelChronopostEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelChronopostEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelChronopostEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelChronopostEnum), "ServiceLevelChronopostEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelCouriersPleaseEnum? serviceLevelCouriersPleaseEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelCouriersPleaseEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum) {
-                        ServiceLevelCouriersPleaseEnum = serviceLevelCouriersPleaseEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum)
+                    {
+                        ServiceLevelCouriersPleaseEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelCouriersPleaseEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelCouriersPleaseEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum), "ServiceLevelCouriersPleaseEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelCorreosEspanaEnum? serviceLevelCorreosEspanaEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelCorreosEspanaEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCorreosEspanaEnum) {
-                        ServiceLevelCorreosEspanaEnum = serviceLevelCorreosEspanaEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCorreosEspanaEnum)
+                    {
+                        ServiceLevelCorreosEspanaEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelCorreosEspanaEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelCorreosEspanaEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCorreosEspanaEnum), "ServiceLevelCorreosEspanaEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelColissimoEnum? serviceLevelColissimoEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelColissimoEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelColissimoEnum) {
-                        ServiceLevelColissimoEnum = serviceLevelColissimoEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelColissimoEnum)
+                    {
+                        ServiceLevelColissimoEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelColissimoEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelColissimoEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelColissimoEnum), "ServiceLevelColissimoEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelPurolatorEnum? serviceLevelPurolatorEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelPurolatorEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelPurolatorEnum) {
-                        ServiceLevelPurolatorEnum = serviceLevelPurolatorEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelPurolatorEnum)
+                    {
+                        ServiceLevelPurolatorEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelPurolatorEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelPurolatorEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelPurolatorEnum), "ServiceLevelPurolatorEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelDHLExpressEnum? serviceLevelDHLExpressEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelDHLExpressEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLExpressEnum) {
-                        ServiceLevelDHLExpressEnum = serviceLevelDHLExpressEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLExpressEnum)
+                    {
+                        ServiceLevelDHLExpressEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelDHLExpressEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelDHLExpressEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLExpressEnum), "ServiceLevelDHLExpressEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelDHLeCommerceEnum? serviceLevelDHLeCommerceEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelDHLeCommerceEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLeCommerceEnum) {
-                        ServiceLevelDHLeCommerceEnum = serviceLevelDHLeCommerceEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLeCommerceEnum)
+                    {
+                        ServiceLevelDHLeCommerceEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelDHLeCommerceEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelDHLeCommerceEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLeCommerceEnum), "ServiceLevelDHLeCommerceEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelDHLGermanyEnum? serviceLevelDHLGermanyEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelDHLGermanyEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLGermanyEnum) {
-                        ServiceLevelDHLGermanyEnum = serviceLevelDHLGermanyEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLGermanyEnum)
+                    {
+                        ServiceLevelDHLGermanyEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelDHLGermanyEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelDHLGermanyEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDHLGermanyEnum), "ServiceLevelDHLGermanyEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelDPDDEEnum? serviceLevelDPDDEEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelDPDDEEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDPDDEEnum) {
-                        ServiceLevelDPDDEEnum = serviceLevelDPDDEEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDPDDEEnum)
+                    {
+                        ServiceLevelDPDDEEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelDPDDEEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelDPDDEEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDPDDEEnum), "ServiceLevelDPDDEEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelDPDUKEnum? serviceLevelDPDUKEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelDPDUKEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDPDUKEnum) {
-                        ServiceLevelDPDUKEnum = serviceLevelDPDUKEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDPDUKEnum)
+                    {
+                        ServiceLevelDPDUKEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelDPDUKEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelDPDUKEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDPDUKEnum), "ServiceLevelDPDUKEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelDeutschePostEnum? serviceLevelDeutschePostEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelDeutschePostEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDeutschePostEnum) {
-                        ServiceLevelDeutschePostEnum = serviceLevelDeutschePostEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDeutschePostEnum)
+                    {
+                        ServiceLevelDeutschePostEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelDeutschePostEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelDeutschePostEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelDeutschePostEnum), "ServiceLevelDeutschePostEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelAramexAustraliaEnum? serviceLevelAramexAustraliaEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelAramexAustraliaEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAramexAustraliaEnum) {
-                        ServiceLevelAramexAustraliaEnum = serviceLevelAramexAustraliaEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAramexAustraliaEnum)
+                    {
+                        ServiceLevelAramexAustraliaEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelAramexAustraliaEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelAramexAustraliaEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelAramexAustraliaEnum), "ServiceLevelAramexAustraliaEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelGlobegisticsEnum? serviceLevelGlobegisticsEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelGlobegisticsEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelGlobegisticsEnum) {
-                        ServiceLevelGlobegisticsEnum = serviceLevelGlobegisticsEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelGlobegisticsEnum)
+                    {
+                        ServiceLevelGlobegisticsEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelGlobegisticsEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelGlobegisticsEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelGlobegisticsEnum), "ServiceLevelGlobegisticsEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelGLSUSEnum? serviceLevelGLSUSEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelGLSUSEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelGLSUSEnum) {
-                        ServiceLevelGLSUSEnum = serviceLevelGLSUSEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelGLSUSEnum)
+                    {
+                        ServiceLevelGLSUSEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelGLSUSEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelGLSUSEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelGLSUSEnum), "ServiceLevelGLSUSEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelLSOEnum? serviceLevelLSOEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelLSOEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelLSOEnum) {
-                        ServiceLevelLSOEnum = serviceLevelLSOEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelLSOEnum)
+                    {
+                        ServiceLevelLSOEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelLSOEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelLSOEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelLSOEnum), "ServiceLevelLSOEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelMondialRelayEnum? serviceLevelMondialRelayEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelMondialRelayEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelMondialRelayEnum) {
-                        ServiceLevelMondialRelayEnum = serviceLevelMondialRelayEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelMondialRelayEnum)
+                    {
+                        ServiceLevelMondialRelayEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelMondialRelayEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelMondialRelayEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelMondialRelayEnum), "ServiceLevelMondialRelayEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelMaergoEnum? serviceLevelMaergoEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelMaergoEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelMaergoEnum) {
-                        ServiceLevelMaergoEnum = serviceLevelMaergoEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelMaergoEnum)
+                    {
+                        ServiceLevelMaergoEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelMaergoEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelMaergoEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelMaergoEnum), "ServiceLevelMaergoEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelParcelforceEnum? serviceLevelParcelforceEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelParcelforceEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelParcelforceEnum) {
-                        ServiceLevelParcelforceEnum = serviceLevelParcelforceEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelParcelforceEnum)
+                    {
+                        ServiceLevelParcelforceEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelParcelforceEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelParcelforceEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelParcelforceEnum), "ServiceLevelParcelforceEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelPostItalianeEnum? serviceLevelPostItalianeEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelPostItalianeEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelPostItalianeEnum) {
-                        ServiceLevelPostItalianeEnum = serviceLevelPostItalianeEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelPostItalianeEnum)
+                    {
+                        ServiceLevelPostItalianeEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelPostItalianeEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelPostItalianeEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelPostItalianeEnum), "ServiceLevelPostItalianeEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelePostGlobalEnum? serviceLevelePostGlobalEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelePostGlobalEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelePostGlobalEnum) {
-                        ServiceLevelePostGlobalEnum = serviceLevelePostGlobalEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelePostGlobalEnum)
+                    {
+                        ServiceLevelePostGlobalEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelePostGlobalEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelePostGlobalEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelePostGlobalEnum), "ServiceLevelePostGlobalEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelRoyalMailEnum? serviceLevelRoyalMailEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelRoyalMailEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelRoyalMailEnum) {
-                        ServiceLevelRoyalMailEnum = serviceLevelRoyalMailEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelRoyalMailEnum)
+                    {
+                        ServiceLevelRoyalMailEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelRoyalMailEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelRoyalMailEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelRoyalMailEnum), "ServiceLevelRoyalMailEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelSendleEnum? serviceLevelSendleEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelSendleEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelSendleEnum) {
-                        ServiceLevelSendleEnum = serviceLevelSendleEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelSendleEnum)
+                    {
+                        ServiceLevelSendleEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelSendleEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelSendleEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelSendleEnum), "ServiceLevelSendleEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelOnTracEnum? serviceLevelOnTracEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelOnTracEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelOnTracEnum) {
-                        ServiceLevelOnTracEnum = serviceLevelOnTracEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelOnTracEnum)
+                    {
+                        ServiceLevelOnTracEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelOnTracEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelOnTracEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelOnTracEnum), "ServiceLevelOnTracEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelJitsuEnum? serviceLevelJitsuEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelJitsuEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelJitsuEnum) {
-                        ServiceLevelJitsuEnum = serviceLevelJitsuEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelJitsuEnum)
+                    {
+                        ServiceLevelJitsuEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelJitsuEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelJitsuEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelJitsuEnum), "ServiceLevelJitsuEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelLasershipEnum? serviceLevelLasershipEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelLasershipEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelLasershipEnum) {
-                        ServiceLevelLasershipEnum = serviceLevelLasershipEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelLasershipEnum)
+                    {
+                        ServiceLevelLasershipEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelLasershipEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelLasershipEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelLasershipEnum), "ServiceLevelLasershipEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelEvriUKEnum? serviceLevelEvriUKEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelEvriUKEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelEvriUKEnum) {
-                        ServiceLevelEvriUKEnum = serviceLevelEvriUKEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelEvriUKEnum)
+                    {
+                        ServiceLevelEvriUKEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelEvriUKEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelEvriUKEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelEvriUKEnum), "ServiceLevelEvriUKEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelUDSEnum? serviceLevelUDSEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelUDSEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUDSEnum) {
-                        ServiceLevelUDSEnum = serviceLevelUDSEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUDSEnum)
+                    {
+                        ServiceLevelUDSEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelUDSEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelUDSEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelUDSEnum), "ServiceLevelUDSEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelVehoEnum? serviceLevelVehoEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelVehoEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelVehoEnum) {
-                        ServiceLevelVehoEnum = serviceLevelVehoEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelVehoEnum)
+                    {
+                        ServiceLevelVehoEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelVehoEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(ServiceLevelVehoEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelVehoEnum), "ServiceLevelVehoEnum"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ServiceLevelSwyftEnum? serviceLevelSwyftEnum = ResponseBodyDeserializer.Deserialize<ServiceLevelSwyftEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelSwyftEnum) {
-                        ServiceLevelSwyftEnum = serviceLevelSwyftEnum
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelSwyftEnum)
+                    {
+                        ServiceLevelSwyftEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelSwyftEnum>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
+                    fallbackCandidates.Add((typeof(ServiceLevelSwyftEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelSwyftEnum), "ServiceLevelSwyftEnum"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
 
+          
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 

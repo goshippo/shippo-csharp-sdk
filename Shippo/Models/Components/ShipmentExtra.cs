@@ -254,7 +254,7 @@ namespace Shippo.Models.Components
         public bool? RequestRetailRates { get; set; }
 
         /// <summary>
-        /// Request additional return option for return shipments (UPS only).
+        /// Request additional return option for return shipments (UPS and Lasership only).
         /// </summary>
         [JsonProperty("return_service_type")]
         public ReturnServiceType? ReturnServiceType { get; set; }

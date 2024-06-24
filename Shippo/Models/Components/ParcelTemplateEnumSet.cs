@@ -13,7 +13,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection;
     using System;
     
 
@@ -22,19 +24,19 @@ namespace Shippo.Models.Components
         private ParcelTemplateEnumSetType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        public static ParcelTemplateEnumSetType ParcelTemplateFedExEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateFedExEnum"); } }
+        public static ParcelTemplateEnumSetType FedExParcelTemplate { get { return new ParcelTemplateEnumSetType("FedEx Parcel Template"); } }
         
-        public static ParcelTemplateEnumSetType ParcelTemplateUPSEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateUPSEnum"); } }
+        public static ParcelTemplateEnumSetType UPSParcelTemplate { get { return new ParcelTemplateEnumSetType("UPS Parcel Template"); } }
         
-        public static ParcelTemplateEnumSetType ParcelTemplateUSPSEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateUSPSEnum"); } }
+        public static ParcelTemplateEnumSetType USPSParcelTemplate { get { return new ParcelTemplateEnumSetType("USPS Parcel Template"); } }
         
-        public static ParcelTemplateEnumSetType ParcelTemplateDHLeCommerceEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateDHLeCommerceEnum"); } }
+        public static ParcelTemplateEnumSetType DHLECommerceParcelTemplate { get { return new ParcelTemplateEnumSetType("DHL eCommerce Parcel Template"); } }
         
-        public static ParcelTemplateEnumSetType ParcelTemplateDPDUKEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateDPDUKEnum"); } }
+        public static ParcelTemplateEnumSetType DPDUKParcelTemplate { get { return new ParcelTemplateEnumSetType("DPD UK Parcel Template"); } }
         
-        public static ParcelTemplateEnumSetType ParcelTemplateCouriersPleaseEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateCouriersPleaseEnum"); } }
+        public static ParcelTemplateEnumSetType CouriersPleaseParcelTemplate { get { return new ParcelTemplateEnumSetType("Couriers Please Parcel Template"); } }
         
-        public static ParcelTemplateEnumSetType ParcelTemplateAramexAustraliaEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateAramexAustraliaEnum"); } }
+        public static ParcelTemplateEnumSetType AramexAustraliaParcelTemplate { get { return new ParcelTemplateEnumSetType("Aramex Australia Parcel Template"); } }
         
         public static ParcelTemplateEnumSetType Null { get { return new ParcelTemplateEnumSetType("null"); } }
 
@@ -42,13 +44,13 @@ namespace Shippo.Models.Components
         public static implicit operator String(ParcelTemplateEnumSetType v) { return v.Value; }
         public static ParcelTemplateEnumSetType FromString(string v) {
             switch(v) {
-                case "ParcelTemplateFedExEnum": return ParcelTemplateFedExEnum;
-                case "ParcelTemplateUPSEnum": return ParcelTemplateUPSEnum;
-                case "ParcelTemplateUSPSEnum": return ParcelTemplateUSPSEnum;
-                case "ParcelTemplateDHLeCommerceEnum": return ParcelTemplateDHLeCommerceEnum;
-                case "ParcelTemplateDPDUKEnum": return ParcelTemplateDPDUKEnum;
-                case "ParcelTemplateCouriersPleaseEnum": return ParcelTemplateCouriersPleaseEnum;
-                case "ParcelTemplateAramexAustraliaEnum": return ParcelTemplateAramexAustraliaEnum;
+                case "FedEx Parcel Template": return FedExParcelTemplate;
+                case "UPS Parcel Template": return UPSParcelTemplate;
+                case "USPS Parcel Template": return USPSParcelTemplate;
+                case "DHL eCommerce Parcel Template": return DHLECommerceParcelTemplate;
+                case "DPD UK Parcel Template": return DPDUKParcelTemplate;
+                case "Couriers Please Parcel Template": return CouriersPleaseParcelTemplate;
+                case "Aramex Australia Parcel Template": return AramexAustraliaParcelTemplate;
                 case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ParcelTemplateEnumSetType");
             }
@@ -76,70 +78,70 @@ namespace Shippo.Models.Components
         public ParcelTemplateEnumSet(ParcelTemplateEnumSetType type) {
             Type = type;
         }
-        public ParcelTemplateFedExEnum? ParcelTemplateFedExEnum { get; set; } 
-        public ParcelTemplateUPSEnum? ParcelTemplateUPSEnum { get; set; } 
-        public ParcelTemplateUSPSEnum? ParcelTemplateUSPSEnum { get; set; } 
-        public ParcelTemplateDHLeCommerceEnum? ParcelTemplateDHLeCommerceEnum { get; set; } 
-        public ParcelTemplateDPDUKEnum? ParcelTemplateDPDUKEnum { get; set; } 
-        public ParcelTemplateCouriersPleaseEnum? ParcelTemplateCouriersPleaseEnum { get; set; } 
-        public ParcelTemplateAramexAustraliaEnum? ParcelTemplateAramexAustraliaEnum { get; set; } 
+        public FedExParcelTemplate? FedExParcelTemplate { get; set; } 
+        public UPSParcelTemplate? UPSParcelTemplate { get; set; } 
+        public USPSParcelTemplate? USPSParcelTemplate { get; set; } 
+        public DHLECommerceParcelTemplate? DHLECommerceParcelTemplate { get; set; } 
+        public DPDUKParcelTemplate? DPDUKParcelTemplate { get; set; } 
+        public CouriersPleaseParcelTemplate? CouriersPleaseParcelTemplate { get; set; } 
+        public AramexAustraliaParcelTemplate? AramexAustraliaParcelTemplate { get; set; } 
 
         public ParcelTemplateEnumSetType Type { get; set; }
 
 
-        public static ParcelTemplateEnumSet CreateParcelTemplateFedExEnum(ParcelTemplateFedExEnum parcelTemplateFedExEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateFedExEnum;
+        public static ParcelTemplateEnumSet CreateFedExParcelTemplate(FedExParcelTemplate fedExParcelTemplate) {
+            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.FedExParcelTemplate;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateFedExEnum = parcelTemplateFedExEnum;
+            res.FedExParcelTemplate = fedExParcelTemplate;
             return res;
         }
 
-        public static ParcelTemplateEnumSet CreateParcelTemplateUPSEnum(ParcelTemplateUPSEnum parcelTemplateUPSEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateUPSEnum;
+        public static ParcelTemplateEnumSet CreateUPSParcelTemplate(UPSParcelTemplate upsParcelTemplate) {
+            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.UPSParcelTemplate;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateUPSEnum = parcelTemplateUPSEnum;
+            res.UPSParcelTemplate = upsParcelTemplate;
             return res;
         }
 
-        public static ParcelTemplateEnumSet CreateParcelTemplateUSPSEnum(ParcelTemplateUSPSEnum parcelTemplateUSPSEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateUSPSEnum;
+        public static ParcelTemplateEnumSet CreateUSPSParcelTemplate(USPSParcelTemplate uspsParcelTemplate) {
+            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.USPSParcelTemplate;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateUSPSEnum = parcelTemplateUSPSEnum;
+            res.USPSParcelTemplate = uspsParcelTemplate;
             return res;
         }
 
-        public static ParcelTemplateEnumSet CreateParcelTemplateDHLeCommerceEnum(ParcelTemplateDHLeCommerceEnum parcelTemplateDHLeCommerceEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateDHLeCommerceEnum;
+        public static ParcelTemplateEnumSet CreateDHLECommerceParcelTemplate(DHLECommerceParcelTemplate dhlECommerceParcelTemplate) {
+            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.DHLECommerceParcelTemplate;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateDHLeCommerceEnum = parcelTemplateDHLeCommerceEnum;
+            res.DHLECommerceParcelTemplate = dhlECommerceParcelTemplate;
             return res;
         }
 
-        public static ParcelTemplateEnumSet CreateParcelTemplateDPDUKEnum(ParcelTemplateDPDUKEnum parcelTemplateDPDUKEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateDPDUKEnum;
+        public static ParcelTemplateEnumSet CreateDPDUKParcelTemplate(DPDUKParcelTemplate dpdUKParcelTemplate) {
+            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.DPDUKParcelTemplate;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateDPDUKEnum = parcelTemplateDPDUKEnum;
+            res.DPDUKParcelTemplate = dpdUKParcelTemplate;
             return res;
         }
 
-        public static ParcelTemplateEnumSet CreateParcelTemplateCouriersPleaseEnum(ParcelTemplateCouriersPleaseEnum parcelTemplateCouriersPleaseEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateCouriersPleaseEnum;
+        public static ParcelTemplateEnumSet CreateCouriersPleaseParcelTemplate(CouriersPleaseParcelTemplate couriersPleaseParcelTemplate) {
+            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.CouriersPleaseParcelTemplate;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateCouriersPleaseEnum = parcelTemplateCouriersPleaseEnum;
+            res.CouriersPleaseParcelTemplate = couriersPleaseParcelTemplate;
             return res;
         }
 
-        public static ParcelTemplateEnumSet CreateParcelTemplateAramexAustraliaEnum(ParcelTemplateAramexAustraliaEnum parcelTemplateAramexAustraliaEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateAramexAustraliaEnum;
+        public static ParcelTemplateEnumSet CreateAramexAustraliaParcelTemplate(AramexAustraliaParcelTemplate aramexAustraliaParcelTemplate) {
+            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.AramexAustraliaParcelTemplate;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateAramexAustraliaEnum = parcelTemplateAramexAustraliaEnum;
+            res.AramexAustraliaParcelTemplate = aramexAustraliaParcelTemplate;
             return res;
         }
 
@@ -156,104 +158,175 @@ namespace Shippo.Models.Components
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
-            { 
+            {
                 var json = JRaw.Create(reader).ToString();
-
-                if (json == "null") {
+                if (json == "null")
+                {
                     return null;
                 }
+
+                var fallbackCandidates = new List<(System.Type, object, string)>();
                 try
                 {
-                    ParcelTemplateFedExEnum? parcelTemplateFedExEnum = ResponseBodyDeserializer.Deserialize<ParcelTemplateFedExEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateFedExEnum) {
-                        ParcelTemplateFedExEnum = parcelTemplateFedExEnum
+                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.FedExParcelTemplate)
+                    {
+                        FedExParcelTemplate = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<FedExParcelTemplate>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(FedExParcelTemplate), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.FedExParcelTemplate), "FedExParcelTemplate"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ParcelTemplateUPSEnum? parcelTemplateUPSEnum = ResponseBodyDeserializer.Deserialize<ParcelTemplateUPSEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateUPSEnum) {
-                        ParcelTemplateUPSEnum = parcelTemplateUPSEnum
+                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.UPSParcelTemplate)
+                    {
+                        UPSParcelTemplate = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<UPSParcelTemplate>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(UPSParcelTemplate), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.UPSParcelTemplate), "UPSParcelTemplate"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ParcelTemplateUSPSEnum? parcelTemplateUSPSEnum = ResponseBodyDeserializer.Deserialize<ParcelTemplateUSPSEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateUSPSEnum) {
-                        ParcelTemplateUSPSEnum = parcelTemplateUSPSEnum
+                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.USPSParcelTemplate)
+                    {
+                        USPSParcelTemplate = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<USPSParcelTemplate>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(USPSParcelTemplate), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.USPSParcelTemplate), "USPSParcelTemplate"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ParcelTemplateDHLeCommerceEnum? parcelTemplateDHLeCommerceEnum = ResponseBodyDeserializer.Deserialize<ParcelTemplateDHLeCommerceEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateDHLeCommerceEnum) {
-                        ParcelTemplateDHLeCommerceEnum = parcelTemplateDHLeCommerceEnum
+                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.DHLECommerceParcelTemplate)
+                    {
+                        DHLECommerceParcelTemplate = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<DHLECommerceParcelTemplate>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(DHLECommerceParcelTemplate), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.DHLECommerceParcelTemplate), "DHLECommerceParcelTemplate"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ParcelTemplateDPDUKEnum? parcelTemplateDPDUKEnum = ResponseBodyDeserializer.Deserialize<ParcelTemplateDPDUKEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateDPDUKEnum) {
-                        ParcelTemplateDPDUKEnum = parcelTemplateDPDUKEnum
+                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.DPDUKParcelTemplate)
+                    {
+                        DPDUKParcelTemplate = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<DPDUKParcelTemplate>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(DPDUKParcelTemplate), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.DPDUKParcelTemplate), "DPDUKParcelTemplate"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ParcelTemplateCouriersPleaseEnum? parcelTemplateCouriersPleaseEnum = ResponseBodyDeserializer.Deserialize<ParcelTemplateCouriersPleaseEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateCouriersPleaseEnum) {
-                        ParcelTemplateCouriersPleaseEnum = parcelTemplateCouriersPleaseEnum
+                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.CouriersPleaseParcelTemplate)
+                    {
+                        CouriersPleaseParcelTemplate = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CouriersPleaseParcelTemplate>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CouriersPleaseParcelTemplate), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.CouriersPleaseParcelTemplate), "CouriersPleaseParcelTemplate"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    ParcelTemplateAramexAustraliaEnum? parcelTemplateAramexAustraliaEnum = ResponseBodyDeserializer.Deserialize<ParcelTemplateAramexAustraliaEnum>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateAramexAustraliaEnum) {
-                        ParcelTemplateAramexAustraliaEnum = parcelTemplateAramexAustraliaEnum
+                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.AramexAustraliaParcelTemplate)
+                    {
+                        AramexAustraliaParcelTemplate = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<AramexAustraliaParcelTemplate>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
+                    fallbackCandidates.Add((typeof(AramexAustraliaParcelTemplate), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.AramexAustraliaParcelTemplate), "AramexAustraliaParcelTemplate"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
 
+          
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 
@@ -269,39 +342,39 @@ namespace Shippo.Models.Components
                     writer.WriteRawValue("null");
                     return;
                 }
-                if (res.ParcelTemplateFedExEnum != null)
+                if (res.FedExParcelTemplate != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateFedExEnum));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.FedExParcelTemplate));
                     return;
                 }
-                if (res.ParcelTemplateUPSEnum != null)
+                if (res.UPSParcelTemplate != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateUPSEnum));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.UPSParcelTemplate));
                     return;
                 }
-                if (res.ParcelTemplateUSPSEnum != null)
+                if (res.USPSParcelTemplate != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateUSPSEnum));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.USPSParcelTemplate));
                     return;
                 }
-                if (res.ParcelTemplateDHLeCommerceEnum != null)
+                if (res.DHLECommerceParcelTemplate != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateDHLeCommerceEnum));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.DHLECommerceParcelTemplate));
                     return;
                 }
-                if (res.ParcelTemplateDPDUKEnum != null)
+                if (res.DPDUKParcelTemplate != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateDPDUKEnum));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.DPDUKParcelTemplate));
                     return;
                 }
-                if (res.ParcelTemplateCouriersPleaseEnum != null)
+                if (res.CouriersPleaseParcelTemplate != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateCouriersPleaseEnum));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.CouriersPleaseParcelTemplate));
                     return;
                 }
-                if (res.ParcelTemplateAramexAustraliaEnum != null)
+                if (res.AramexAustraliaParcelTemplate != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateAramexAustraliaEnum));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.AramexAustraliaParcelTemplate));
                     return;
                 }
 

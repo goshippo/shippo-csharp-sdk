@@ -10,10 +10,16 @@
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
-### Nuget
+### NuGet
 
 ```bash
 dotnet add package Shippo
+```
+
+### Locally
+
+```bash
+dotnet add reference path/to/Shippo.csproj
 ```
 <!-- End SDK Installation [installation] -->
 

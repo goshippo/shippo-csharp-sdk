@@ -22,22 +22,22 @@ namespace Shippo.Models.Components
     /// 
     /// </remarks>
     /// </summary>
-    public enum ParcelTemplateDPDUKEnum
+    public enum DPDUKParcelTemplate
     {
         [JsonProperty("DPD_UK_Express_Pak")]
         DPDUKExpressPak,
     }
 
-    public static class ParcelTemplateDPDUKEnumExtension
+    public static class DPDUKParcelTemplateExtension
     {
-        public static string Value(this ParcelTemplateDPDUKEnum value)
+        public static string Value(this DPDUKParcelTemplate value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ParcelTemplateDPDUKEnum ToEnum(this string value)
+        public static DPDUKParcelTemplate ToEnum(this string value)
         {
-            foreach(var field in typeof(ParcelTemplateDPDUKEnum).GetFields())
+            foreach(var field in typeof(DPDUKParcelTemplate).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -50,14 +50,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ParcelTemplateDPDUKEnum)
+                    if (enumVal is DPDUKParcelTemplate)
                     {
-                        return (ParcelTemplateDPDUKEnum)enumVal;
+                        return (DPDUKParcelTemplate)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ParcelTemplateDPDUKEnum");
+            throw new Exception($"Unknown value {value} for enum DPDUKParcelTemplate");
         }
     }
 
