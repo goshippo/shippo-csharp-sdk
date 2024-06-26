@@ -18,12 +18,6 @@ namespace Shippo.Models.Components
     {
 
         /// <summary>
-        /// The measure unit used for length, width and height.
-        /// </summary>
-        [JsonProperty("distance_unit")]
-        public DistanceUnitEnum DistanceUnit { get; set; } = default!;
-
-        /// <summary>
         /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment. <br/>
         /// 
         /// <remarks>
@@ -33,25 +27,8 @@ namespace Shippo.Models.Components
         [JsonProperty("extra")]
         public ParcelExtra? Extra { get; set; }
 
-        /// <summary>
-        /// **Required if template is not specified**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// Height of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-        /// </remarks>
-        /// </summary>
-        [JsonProperty("height")]
-        public string Height { get; set; } = default!;
-
-        /// <summary>
-        /// **Required if template is not specified**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// Length of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-        /// </remarks>
-        /// </summary>
-        [JsonProperty("length")]
-        public string Length { get; set; } = default!;
+        [JsonProperty("metadata")]
+        public string? Metadata { get; set; }
 
         /// <summary>
         /// The unit used for weight.
@@ -60,10 +37,34 @@ namespace Shippo.Models.Components
         public WeightUnitEnum MassUnit { get; set; } = default!;
 
         /// <summary>
-        /// A string of up to 100 characters that can be filled with any additional information you want to attach to the object.
+        /// Weight of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
         /// </summary>
-        [JsonProperty("metadata")]
-        public string? Metadata { get; set; }
+        [JsonProperty("weight")]
+        public string Weight { get; set; } = default!;
+
+        /// <summary>
+        /// The measure unit used for length, width and height.
+        /// </summary>
+        [JsonProperty("distance_unit")]
+        public DistanceUnitEnum DistanceUnit { get; set; } = default!;
+
+        /// <summary>
+        /// Height of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+        /// </summary>
+        [JsonProperty("height")]
+        public string Height { get; set; } = default!;
+
+        /// <summary>
+        /// Length of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+        /// </summary>
+        [JsonProperty("length")]
+        public string Length { get; set; } = default!;
+
+        /// <summary>
+        /// Width of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
+        /// </summary>
+        [JsonProperty("width")]
+        public string Width { get; set; } = default!;
 
         /// <summary>
         /// Date and time of Parcel creation.
@@ -106,21 +107,5 @@ namespace Shippo.Models.Components
         /// </summary>
         [JsonProperty("test")]
         public bool? Test { get; set; }
-
-        /// <summary>
-        /// Weight of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-        /// </summary>
-        [JsonProperty("weight")]
-        public string Weight { get; set; } = default!;
-
-        /// <summary>
-        /// **Required if template is not specified**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// Width of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-        /// </remarks>
-        /// </summary>
-        [JsonProperty("width")]
-        public string Width { get; set; } = default!;
     }
 }

@@ -174,16 +174,18 @@ public class Transactions
             }
         );
         var parcelTask = sdkFixture.SDK.Parcels.CreateAsync(
-            new ParcelRequest()
-            {
-                Length = "5",
-                Width = "5",
-                Height = "5",
-                DistanceUnit = DistanceUnitEnum.Cm,
-                Weight = "2",
-                MassUnit = WeightUnitEnum.Lb,
-                Metadata = "Wool Box1",
-            }
+            CreateParcelRequestBody.CreateParcelCreateRequest(
+                new ParcelCreateRequest()
+                {
+                    Length = "5",
+                    Width = "5",
+                    Height = "5",
+                    DistanceUnit = DistanceUnitEnum.Cm,
+                    Weight = "2",
+                    MassUnit = WeightUnitEnum.Lb,
+                    Metadata = "Wool Box1",
+                }
+            )
         );
         await Task.WhenAll(addressFromTask, addressToTask, parcelTask);
         Address addressFrom = await addressFromTask;

@@ -46,7 +46,7 @@ namespace Shippo.Models.Components
     /// 
     /// </remarks>
     /// </summary>
-    public enum ParcelTemplateUPSEnum
+    public enum UPSParcelTemplate
     {
         [JsonProperty("UPS_Box_10kg")]
         UPSBox10kg,
@@ -100,16 +100,16 @@ namespace Shippo.Models.Components
         UPSPallet,
     }
 
-    public static class ParcelTemplateUPSEnumExtension
+    public static class UPSParcelTemplateExtension
     {
-        public static string Value(this ParcelTemplateUPSEnum value)
+        public static string Value(this UPSParcelTemplate value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ParcelTemplateUPSEnum ToEnum(this string value)
+        public static UPSParcelTemplate ToEnum(this string value)
         {
-            foreach(var field in typeof(ParcelTemplateUPSEnum).GetFields())
+            foreach(var field in typeof(UPSParcelTemplate).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -122,14 +122,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ParcelTemplateUPSEnum)
+                    if (enumVal is UPSParcelTemplate)
                     {
-                        return (ParcelTemplateUPSEnum)enumVal;
+                        return (UPSParcelTemplate)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ParcelTemplateUPSEnum");
+            throw new Exception($"Unknown value {value} for enum UPSParcelTemplate");
         }
     }
 

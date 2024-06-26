@@ -18,29 +18,35 @@ namespace Shippo.Models.Components
     /// 
     /// <remarks>
     /// |:---|:---|:---|<br/>
-    /// | DHLeC_Irregular | Irregular Shipment | 10.00 x 10.00 x 10.00 in|<br/>
-    /// | DHLeC_SM_Flats | Flats | 27.00 x 17.00 x 17.00 in|<br/>
+    /// | Fastway_Australia_Satchel_A2 | Satchel A2 | 594.00 x 420.00 x 48.00 mm|<br/>
+    /// | Fastway_Australia_Satchel_A3 | Satchel A3 | 420.00 x 297.00 x 64.00 mm|<br/>
+    /// | Fastway_Australia_Satchel_A4 | Satchel A4 | 297.00 x 210.00 x 64.00 mm|<br/>
+    /// | Fastway_Australia_Satchel_A5 | Satchel A5 | 210.00 x 148.00 x 64.00 mm|<br/>
     /// 
     /// </remarks>
     /// </summary>
-    public enum ParcelTemplateDHLeCommerceEnum
+    public enum AramexAustraliaParcelTemplate
     {
-        [JsonProperty("DHLeC_Irregular")]
-        DHLeCIrregular,
-        [JsonProperty("DHLeC_SM_Flats")]
-        DHLeCSMFlats,
+        [JsonProperty("Fastway_Australia_Satchel_A2")]
+        FastwayAustraliaSatchelA2,
+        [JsonProperty("Fastway_Australia_Satchel_A3")]
+        FastwayAustraliaSatchelA3,
+        [JsonProperty("Fastway_Australia_Satchel_A4")]
+        FastwayAustraliaSatchelA4,
+        [JsonProperty("Fastway_Australia_Satchel_A5")]
+        FastwayAustraliaSatchelA5,
     }
 
-    public static class ParcelTemplateDHLeCommerceEnumExtension
+    public static class AramexAustraliaParcelTemplateExtension
     {
-        public static string Value(this ParcelTemplateDHLeCommerceEnum value)
+        public static string Value(this AramexAustraliaParcelTemplate value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ParcelTemplateDHLeCommerceEnum ToEnum(this string value)
+        public static AramexAustraliaParcelTemplate ToEnum(this string value)
         {
-            foreach(var field in typeof(ParcelTemplateDHLeCommerceEnum).GetFields())
+            foreach(var field in typeof(AramexAustraliaParcelTemplate).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -53,14 +59,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ParcelTemplateDHLeCommerceEnum)
+                    if (enumVal is AramexAustraliaParcelTemplate)
                     {
-                        return (ParcelTemplateDHLeCommerceEnum)enumVal;
+                        return (AramexAustraliaParcelTemplate)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ParcelTemplateDHLeCommerceEnum");
+            throw new Exception($"Unknown value {value} for enum AramexAustraliaParcelTemplate");
         }
     }
 

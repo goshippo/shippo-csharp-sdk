@@ -37,7 +37,7 @@ namespace Shippo.Models.Components
     /// 
     /// </remarks>
     /// </summary>
-    public enum ParcelTemplateFedExEnum
+    public enum FedExParcelTemplate
     {
         [JsonProperty("FedEx_Box_10kg")]
         FedExBox10kg,
@@ -73,16 +73,16 @@ namespace Shippo.Models.Components
         FedExXLPak,
     }
 
-    public static class ParcelTemplateFedExEnumExtension
+    public static class FedExParcelTemplateExtension
     {
-        public static string Value(this ParcelTemplateFedExEnum value)
+        public static string Value(this FedExParcelTemplate value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ParcelTemplateFedExEnum ToEnum(this string value)
+        public static FedExParcelTemplate ToEnum(this string value)
         {
-            foreach(var field in typeof(ParcelTemplateFedExEnum).GetFields())
+            foreach(var field in typeof(FedExParcelTemplate).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -95,14 +95,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ParcelTemplateFedExEnum)
+                    if (enumVal is FedExParcelTemplate)
                     {
-                        return (ParcelTemplateFedExEnum)enumVal;
+                        return (FedExParcelTemplate)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ParcelTemplateFedExEnum");
+            throw new Exception($"Unknown value {value} for enum FedExParcelTemplate");
         }
     }
 

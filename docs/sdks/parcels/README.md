@@ -73,27 +73,30 @@ var sdk = new ShippoSDK(
     shippoApiVersion: "2018-02-08");
 
 var res = await sdk.Parcels.CreateAsync(
-    parcelRequest: new ParcelRequest() {
-    DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
-    Extra = new ParcelExtra() {
-        Cod = new Cod() {
-            Amount = "5.5",
-            Currency = "USD",
-            PaymentMethod = PaymentMethod.Cash,
+    requestBody: CreateParcelRequestBody.CreateCreateParcelRequestBodyParcelCreateRequest(
+    new ParcelCreateRequest() {
+        Extra = new ParcelExtra() {
+            Cod = new Cod() {
+                Amount = "5.5",
+                Currency = "USD",
+                PaymentMethod = PaymentMethod.Cash,
+            },
+            Insurance = new ParcelInsurance() {
+                Amount = "5.5",
+                Content = "Laptop",
+                Currency = "USD",
+                Provider = ParcelInsuranceProvider.Ups,
+            },
         },
-        Insurance = new ParcelInsurance() {
-            Amount = "5.5",
-            Content = "Laptop",
-            Currency = "USD",
-            Provider = ParcelInsuranceProvider.Ups,
-        },
+        Metadata = "Customer ID 123456",
+        MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        Weight = "1",
+        DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
+        Height = "1",
+        Length = "1",
+        Width = "1",
     },
-    Height = "1",
-    Length = "1",
-    MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
-    Weight = "1",
-    Width = "1",
-},
+),
     shippoApiVersion: "2018-02-08");
 
 // handle response
@@ -101,10 +104,10 @@ var res = await sdk.Parcels.CreateAsync(
 
 ### Parameters
 
-| Parameter                                                 | Type                                                      | Required                                                  | Description                                               | Example                                                   |
-| --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- | --------------------------------------------------------- |
-| `ParcelRequest`                                           | [ParcelRequest](../../Models/Components/ParcelRequest.md) | :heavy_check_mark:                                        | Parcel details.                                           |                                                           |
-| `ShippoApiVersion`                                        | *string*                                                  | :heavy_minus_sign:                                        | String used to pick a non-default API version to use      | 2018-02-08                                                |
+| Parameter                                                                   | Type                                                                        | Required                                                                    | Description                                                                 | Example                                                                     |
+| --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| `RequestBody`                                                               | [CreateParcelRequestBody](../../Models/Requests/CreateParcelRequestBody.md) | :heavy_check_mark:                                                          | Parcel details.                                                             |                                                                             |
+| `ShippoApiVersion`                                                          | *string*                                                                    | :heavy_minus_sign:                                                          | String used to pick a non-default API version to use                        | 2018-02-08                                                                  |
 
 
 ### Response

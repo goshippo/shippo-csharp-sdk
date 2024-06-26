@@ -13,7 +13,7 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     
-    public class ParcelCreateRequest
+    public class ParcelCreateFromTemplateRequest
     {
 
         /// <summary>
@@ -42,27 +42,9 @@ namespace Shippo.Models.Components
         public string Weight { get; set; } = default!;
 
         /// <summary>
-        /// The measure unit used for length, width and height.
+        /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
         /// </summary>
-        [JsonProperty("distance_unit")]
-        public DistanceUnitEnum DistanceUnit { get; set; } = default!;
-
-        /// <summary>
-        /// Height of the parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-        /// </summary>
-        [JsonProperty("height")]
-        public string Height { get; set; } = default!;
-
-        /// <summary>
-        /// Length of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-        /// </summary>
-        [JsonProperty("length")]
-        public string Length { get; set; } = default!;
-
-        /// <summary>
-        /// Width of the Parcel. Up to six digits in front and four digits after the decimal separator are accepted.
-        /// </summary>
-        [JsonProperty("width")]
-        public string Width { get; set; } = default!;
+        [JsonProperty("template")]
+        public ParcelTemplateEnumSet Template { get; set; } = default!;
     }
 }

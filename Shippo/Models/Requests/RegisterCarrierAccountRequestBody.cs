@@ -13,7 +13,9 @@ namespace Shippo.Models.Requests
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
     using System.Numerics;
+    using System.Reflection;
     using System;
     
 
@@ -240,195 +242,315 @@ namespace Shippo.Models.Requests
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
-            { 
+            {
                 var json = JRaw.Create(reader).ToString();
-
-                if (json == "null") {
+                if (json == "null")
+                {
                     return null;
                 }
+
+                var fallbackCandidates = new List<(System.Type, object, string)>();
                 try
                 {
-                    CarrierAccountCanadaPostCreateRequest? carrierAccountCanadaPostCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountCanadaPostCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCanadaPostCreateRequest) {
-                        CarrierAccountCanadaPostCreateRequest = carrierAccountCanadaPostCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCanadaPostCreateRequest)
+                    {
+                        CarrierAccountCanadaPostCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountCanadaPostCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountCanadaPostCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCanadaPostCreateRequest), "CarrierAccountCanadaPostCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountChronopostCreateRequest? carrierAccountChronopostCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountChronopostCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountChronopostCreateRequest) {
-                        CarrierAccountChronopostCreateRequest = carrierAccountChronopostCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountChronopostCreateRequest)
+                    {
+                        CarrierAccountChronopostCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountChronopostCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountChronopostCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountChronopostCreateRequest), "CarrierAccountChronopostCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountColissimoCreateRequest? carrierAccountColissimoCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountColissimoCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountColissimoCreateRequest) {
-                        CarrierAccountColissimoCreateRequest = carrierAccountColissimoCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountColissimoCreateRequest)
+                    {
+                        CarrierAccountColissimoCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountColissimoCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountColissimoCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountColissimoCreateRequest), "CarrierAccountColissimoCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountCorreosCreateRequest? carrierAccountCorreosCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountCorreosCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCorreosCreateRequest) {
-                        CarrierAccountCorreosCreateRequest = carrierAccountCorreosCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCorreosCreateRequest)
+                    {
+                        CarrierAccountCorreosCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountCorreosCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountCorreosCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCorreosCreateRequest), "CarrierAccountCorreosCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountDeutschePostCreateRequest? carrierAccountDeutschePostCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountDeutschePostCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDeutschePostCreateRequest) {
-                        CarrierAccountDeutschePostCreateRequest = carrierAccountDeutschePostCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDeutschePostCreateRequest)
+                    {
+                        CarrierAccountDeutschePostCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountDeutschePostCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountDeutschePostCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDeutschePostCreateRequest), "CarrierAccountDeutschePostCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountDHLExpressCreateRequest? carrierAccountDHLExpressCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountDHLExpressCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDHLExpressCreateRequest) {
-                        CarrierAccountDHLExpressCreateRequest = carrierAccountDHLExpressCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDHLExpressCreateRequest)
+                    {
+                        CarrierAccountDHLExpressCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountDHLExpressCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountDHLExpressCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDHLExpressCreateRequest), "CarrierAccountDHLExpressCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountDpdDeCreateRequest? carrierAccountDpdDeCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountDpdDeCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDpdDeCreateRequest) {
-                        CarrierAccountDpdDeCreateRequest = carrierAccountDpdDeCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDpdDeCreateRequest)
+                    {
+                        CarrierAccountDpdDeCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountDpdDeCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountDpdDeCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDpdDeCreateRequest), "CarrierAccountDpdDeCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountDPDUKCreateRequest? carrierAccountDPDUKCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountDPDUKCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDPDUKCreateRequest) {
-                        CarrierAccountDPDUKCreateRequest = carrierAccountDPDUKCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDPDUKCreateRequest)
+                    {
+                        CarrierAccountDPDUKCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountDPDUKCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountDPDUKCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDPDUKCreateRequest), "CarrierAccountDPDUKCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountFedExCreateRequest? carrierAccountFedExCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountFedExCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountFedExCreateRequest) {
-                        CarrierAccountFedExCreateRequest = carrierAccountFedExCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountFedExCreateRequest)
+                    {
+                        CarrierAccountFedExCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountFedExCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountFedExCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountFedExCreateRequest), "CarrierAccountFedExCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountHermesUKCreateRequest? carrierAccountHermesUKCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountHermesUKCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountHermesUKCreateRequest) {
-                        CarrierAccountHermesUKCreateRequest = carrierAccountHermesUKCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountHermesUKCreateRequest)
+                    {
+                        CarrierAccountHermesUKCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountHermesUKCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountHermesUKCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountHermesUKCreateRequest), "CarrierAccountHermesUKCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountMondialRelayCreateRequest? carrierAccountMondialRelayCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountMondialRelayCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountMondialRelayCreateRequest) {
-                        CarrierAccountMondialRelayCreateRequest = carrierAccountMondialRelayCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountMondialRelayCreateRequest)
+                    {
+                        CarrierAccountMondialRelayCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountMondialRelayCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountMondialRelayCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountMondialRelayCreateRequest), "CarrierAccountMondialRelayCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountPosteItalianeCreateRequest? carrierAccountPosteItalianeCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountPosteItalianeCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountPosteItalianeCreateRequest) {
-                        CarrierAccountPosteItalianeCreateRequest = carrierAccountPosteItalianeCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountPosteItalianeCreateRequest)
+                    {
+                        CarrierAccountPosteItalianeCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountPosteItalianeCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountPosteItalianeCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountPosteItalianeCreateRequest), "CarrierAccountPosteItalianeCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountUPSCreateRequest? carrierAccountUPSCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountUPSCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUPSCreateRequest) {
-                        CarrierAccountUPSCreateRequest = carrierAccountUPSCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUPSCreateRequest)
+                    {
+                        CarrierAccountUPSCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountUPSCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
-                    }
+                    fallbackCandidates.Add((typeof(CarrierAccountUPSCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUPSCreateRequest), "CarrierAccountUPSCreateRequest"));
                 }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
                 try
                 {
-                    CarrierAccountUSPSCreateRequest? carrierAccountUSPSCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountUSPSCreateRequest>(json, missingMemberHandling: MissingMemberHandling.Error);
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUSPSCreateRequest) {
-                        CarrierAccountUSPSCreateRequest = carrierAccountUSPSCreateRequest
+                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUSPSCreateRequest)
+                    {
+                        CarrierAccountUSPSCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountUSPSCreateRequest>(json)
                     };
                 }
-                catch (Exception ex)
+                catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    if (!(ex is Newtonsoft.Json.JsonReaderException || ex is Newtonsoft.Json.JsonSerializationException)) {
-                        throw ex;
+                    fallbackCandidates.Add((typeof(CarrierAccountUSPSCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUSPSCreateRequest), "CarrierAccountUSPSCreateRequest"));
+                }
+                catch (ResponseBodyDeserializer.DeserializationException)
+                {
+                    // try next option
+                }
+                catch (Exception)
+                {
+                    throw;
+                }
+            
+                if (fallbackCandidates.Count > 0)
+                {
+                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
+                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
+                    {
+                        try
+                        {
+                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
+                        }
+                        catch (ResponseBodyDeserializer.DeserializationException)
+                        {
+                            // try next fallback option
+                        }
+                        catch (Exception)
+                        {
+                            throw;
+                        }
                     }
                 }
 
+          
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
             }
 
