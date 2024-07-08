@@ -13,6 +13,9 @@ namespace Shippo.Models.Components
     using Shippo.Utils;
     using System;
     
+    /// <summary>
+    /// Type of event that triggered the webhook.
+    /// </summary>
     public enum WebhookEventTypeEnum
     {
         [JsonProperty("transaction_created")]
@@ -25,6 +28,8 @@ namespace Shippo.Models.Components
         BatchCreated,
         [JsonProperty("batch_purchased")]
         BatchPurchased,
+        [JsonProperty("all")]
+        All,
     }
 
     public static class WebhookEventTypeEnumExtension

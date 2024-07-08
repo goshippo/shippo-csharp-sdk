@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
-  docChecksum: 41c0262ad846794c25bcac117519320e
+  docChecksum: 850c0347c21c750cc8eb3f72361a24af
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.314.2
-  generationVersion: 2.349.6
-  releaseVersion: 5.0.0-beta.2
-  configChecksum: 9842347bd30bb5b594a1ae4010a10d0d
+  speakeasyVersion: 1.327.0
+  generationVersion: 2.359.6
+  releaseVersion: 5.0.0-beta.3
+  configChecksum: fd36f786bd7347a20012813f711541d3
   repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
   published: true
 features:
@@ -26,7 +26,8 @@ features:
     nullables: 0.1.0
     responseFormat: 0.0.4
     sdkHooks: 0.1.0
-    unions: 0.1.0
+    unions: 0.1.1
+    webhooks: 1.0.0
 generatedFiles:
   - Shippo/Addresses.cs
   - Shippo/Batches.cs
@@ -275,6 +276,9 @@ generatedFiles:
   - Shippo/Models/Components/WebhookEventTypeEnum.cs
   - Shippo/Models/Components/WebhookPaginatedList.cs
   - Shippo/Models/Components/Security.cs
+  - Shippo/Models/Components/WebhookPayloadBatch.cs
+  - Shippo/Models/Components/WebhookPayloadTrack.cs
+  - Shippo/Models/Components/WebhookPayloadTransaction.cs
   - Shippo/Models/Components/AddressValidationResultsMessageCodeEnum.cs
   - Shippo/Models/Components/AddressValidationResultsMessageSourceEnum.cs
   - Shippo/Models/Components/ServiceLevel.cs
@@ -602,6 +606,9 @@ generatedFiles:
   - docs/Models/Components/WebhookEventTypeEnum.md
   - docs/Models/Components/WebhookPaginatedList.md
   - docs/Models/Components/Security.md
+  - docs/Models/Components/WebhookPayloadBatch.md
+  - docs/Models/Components/WebhookPayloadTrack.md
+  - docs/Models/Components/WebhookPayloadTransaction.md
   - docs/Models/Components/AddressValidationResultsMessageCodeEnum.md
   - docs/Models/Components/AddressValidationResultsMessageSourceEnum.md
   - docs/Models/Components/ServiceLevel.md

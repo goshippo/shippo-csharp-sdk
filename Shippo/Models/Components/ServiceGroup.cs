@@ -49,7 +49,12 @@ namespace Shippo.Models.Components
         public string? FreeShippingThresholdCurrency { get; set; }
 
         /// <summary>
-        /// For service groups of type `FREE_SHIPPING`, this field must be required to configure the minimum cart total (total cost of items in the cart) for this service group to be returned for rates at checkout. Optional unless type is `FREE_SHIPPING`
+        /// For service groups of type `FREE_SHIPPING`, this field must be required to configure the minimum <br/>
+        /// 
+        /// <remarks>
+        /// cart total (total cost of items in the cart) for this service group to be returned for rates at <br/>
+        /// checkout. Optional unless type is `FREE_SHIPPING`
+        /// </remarks>
         /// </summary>
         [JsonProperty("free_shipping_threshold_min")]
         public string? FreeShippingThresholdMin { get; set; }
@@ -67,7 +72,13 @@ namespace Shippo.Models.Components
         public long? RateAdjustment { get; set; }
 
         /// <summary>
-        /// The type of the service group.&lt;br&gt; `LIVE_RATE` - Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.&lt;br&gt; `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.&lt;br&gt; `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
+        /// The type of the service group.&lt;br&gt; <br/>
+        /// 
+        /// <remarks>
+        /// `LIVE_RATE` - Shippo will make a rating request and return real-time rates for the shipping group, only falling back to the specified flat rate amount if no rates match a service level in the service group.&lt;br&gt; <br/>
+        /// `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.&lt;br&gt; <br/>
+        /// `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
+        /// </remarks>
         /// </summary>
         [JsonProperty("type")]
         public ServiceGroupTypeEnum Type { get; set; } = default!;

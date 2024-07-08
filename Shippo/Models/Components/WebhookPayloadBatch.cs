@@ -13,31 +13,28 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     
-    public class WebhookUpdateRequest
+    /// <summary>
+    /// Content of the webhook posted to the external URL
+    /// </summary>
+    public class WebhookPayloadBatch
     {
 
         /// <summary>
         /// Type of event that triggered the webhook.
         /// </summary>
         [JsonProperty("event")]
-        public WebhookEventTypeEnum Event { get; set; } = default!;
-
-        /// <summary>
-        /// URL webhook events are sent to.
-        /// </summary>
-        [JsonProperty("url")]
-        public string Url { get; set; } = default!;
-
-        /// <summary>
-        /// Determines whether the webhook is active or not.
-        /// </summary>
-        [JsonProperty("active")]
-        public bool? Active { get; set; }
+        public WebhookEventTypeEnum? Event { get; set; }
 
         /// <summary>
         /// Determines whether the webhook is a test webhook or not.
         /// </summary>
-        [JsonProperty("is_test")]
-        public bool? IsTest { get; set; }
+        [JsonProperty("test")]
+        public bool? Test { get; set; }
+
+        /// <summary>
+        /// A string containing the batch object ID, of the form &apos;batch {batchId} (created|processing complete)&apos;.
+        /// </summary>
+        [JsonProperty("data")]
+        public string? Data { get; set; }
     }
 }

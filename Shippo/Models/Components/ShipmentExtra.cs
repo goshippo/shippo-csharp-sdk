@@ -167,7 +167,13 @@ namespace Shippo.Models.Components
         public string? FulfillmentCenter { get; set; }
 
         /// <summary>
-        /// To add 3rd party insurance powered by &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/shippinginsurance/&quot;&gt;XCover&lt;/a&gt;, specify &lt;br&gt; `amount`, `content`, and `currency`. &lt;br&gt; Alternatively, you can choose carrier provided insurance by additionally specifying `provider` (UPS, FedEx and OnTrac only). &lt;br&gt;&lt;br&gt; If you do not want to add insurance to you shipment, do not set these parameters.
+        /// To add 3rd party insurance powered by &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/shippinginsurance/&quot;&gt;XCover&lt;/a&gt;, <br/>
+        /// 
+        /// <remarks>
+        /// specify &lt;br&gt; `amount`, `content`, and `currency`. &lt;br&gt; Alternatively, you can choose carrier provided insurance <br/>
+        /// by additionally specifying `provider` (UPS, FedEx and OnTrac only). &lt;br&gt;&lt;br&gt; If you do not want to add insurance <br/>
+        /// to your shipment, do not set these parameters.
+        /// </remarks>
         /// </summary>
         [JsonProperty("insurance")]
         public Insurance? Insurance { get; set; }

@@ -27,6 +27,30 @@ namespace Shippo.Models.Requests
         public long? Results { get; set; } = 25;
 
         /// <summary>
+        /// Object(s) created greater than a provided date and time.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=object_created_gt")]
+        public string? ObjectCreatedGt { get; set; }
+
+        /// <summary>
+        /// Object(s) created greater than or equal to a provided date and time.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=object_created_gte")]
+        public string? ObjectCreatedGte { get; set; }
+
+        /// <summary>
+        /// Object(s) created lesser than a provided date and time.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=object_created_lt")]
+        public string? ObjectCreatedLt { get; set; }
+
+        /// <summary>
+        /// Object(s) created lesser than or equal to a provided date and time.
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=object_created_lte")]
+        public string? ObjectCreatedLte { get; set; }
+
+        /// <summary>
         /// String used to pick a non-default API version to use
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
