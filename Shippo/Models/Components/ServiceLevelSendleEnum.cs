@@ -19,6 +19,7 @@ namespace Shippo.Models.Components
     /// <remarks>
     /// |:---|:---|<br/>
     /// | sendle_parcel | Sendle Parcel|<br/>
+    /// | sendle_standard_dropoff | Sendle Standard Dropoff|<br/>
     /// 
     /// </remarks>
     /// </summary>
@@ -26,6 +27,8 @@ namespace Shippo.Models.Components
     {
         [JsonProperty("sendle_parcel")]
         SendleParcel,
+        [JsonProperty("sendle_standard_dropoff")]
+        SendleStandardDropoff,
     }
 
     public static class ServiceLevelSendleEnumExtension

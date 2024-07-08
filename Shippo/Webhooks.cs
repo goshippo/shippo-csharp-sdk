@@ -26,7 +26,11 @@ namespace Shippo
     /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.<br/>
     /// 
     /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Webhook&quot;/&gt;
+    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Webhook&quot;/&gt;<br/>
+    /// <br/>
+    /// # Webhook Payload<br/>
+    /// The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.<br/>
+    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/WebhookPayload&quot;/&gt;
     /// </remarks>
     /// </summary>
     public interface IWebhooks
@@ -82,17 +86,21 @@ namespace Shippo
     /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.<br/>
     /// 
     /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Webhook&quot;/&gt;
+    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Webhook&quot;/&gt;<br/>
+    /// <br/>
+    /// # Webhook Payload<br/>
+    /// The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.<br/>
+    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/WebhookPayload&quot;/&gt;
     /// </remarks>
     /// </summary>
     public class Webhooks: IWebhooks
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.2";
-        private const string _sdkGenVersion = "2.349.6";
+        private const string _sdkVersion = "5.0.0-beta.3";
+        private const string _sdkGenVersion = "2.359.6";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.2 2.349.6 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.3 2.359.6 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Security>? _securitySource;

@@ -38,7 +38,7 @@ namespace Shippo.Models.Components
         /// True if the carrier parcel template allows custom dimensions, such as USPS Softpack.
         /// </summary>
         [JsonProperty("is_variable_dimensions")]
-        public string? IsVariableDimensions { get; set; }
+        public bool? IsVariableDimensions { get; set; }
 
         /// <summary>
         /// The length of the package, in units specified by the distance_unit attribute

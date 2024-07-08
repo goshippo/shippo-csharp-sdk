@@ -30,8 +30,8 @@ namespace Shippo.Models.Components
         Queued,
         [JsonProperty("SUCCESS")]
         Success,
-        [JsonProperty("STATUS")]
-        Status,
+        [JsonProperty("WAITING")]
+        Waiting,
     }
 
     public static class ShipmentStatusExtension

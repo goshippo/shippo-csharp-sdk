@@ -60,7 +60,7 @@ namespace Shippo
         ///     `https://api.goshippo.com/shipments/?object_created_gte=2017-01-01T00:00:30&amp;object_created_lt=2017-04-01T00:00:30`
         /// </remarks>
         /// </summary>
-        Task<ShipmentPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null);
+        Task<ShipmentPaginatedList> ListAsync(ListShipmentsRequest request);
 
         /// <summary>
         /// Create a new shipment
@@ -96,10 +96,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.2";
-        private const string _sdkGenVersion = "2.349.6";
+        private const string _sdkVersion = "5.0.0-beta.3";
+        private const string _sdkGenVersion = "2.359.6";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.2 2.349.6 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.3 2.359.6 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Security>? _securitySource;
@@ -112,14 +112,12 @@ namespace Shippo
             SDKConfiguration = config;
         }
 
-        public async Task<ShipmentPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null)
+        public async Task<ShipmentPaginatedList> ListAsync(ListShipmentsRequest request)
         {
-            var request = new ListShipmentsRequest()
+            if (request == null)
             {
-                Page = page,
-                Results = results,
-                ShippoApiVersion = shippoApiVersion,
-            };
+                request = new ListShipmentsRequest();
+            }
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
             
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();

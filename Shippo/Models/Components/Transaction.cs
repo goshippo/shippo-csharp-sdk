@@ -101,6 +101,12 @@ namespace Shippo.Models.Components
         public DateTime? ObjectUpdated { get; set; }
 
         /// <summary>
+        /// Object ID of the Parcel object that is being shipped.
+        /// </summary>
+        [JsonProperty("parcel")]
+        public string? Parcel { get; set; }
+
+        /// <summary>
         /// A URL pointing directly to the QR code in PNG format. <br/>
         /// 
         /// <remarks>

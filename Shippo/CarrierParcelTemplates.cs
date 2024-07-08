@@ -37,7 +37,13 @@ namespace Shippo
         /// List all carrier parcel templates
         /// 
         /// <remarks>
-        /// List all carrier parcel template objects. &lt;br&gt; Use the following query string params to filter the results as needed. &lt;br&gt; &lt;ul&gt; &lt;li&gt;`include=all` (the default). Includes templates from all carriers &lt;/li&gt; &lt;li&gt;`include=user`. Includes templates only from carriers which the user has added (whether or not they&apos;re currently enabled) &lt;/li&gt; &lt;li&gt;`include=enabled`. includes templates only for carriers which the user has added and enabled &lt;/li&gt; &lt;li&gt;`carrier=*token*`. filter by specific carrier, e.g. fedex, usps &lt;/li&gt; &lt;/ul&gt;
+        /// List all carrier parcel template objects. &lt;br&gt; Use the following query string params to filter the results as needed. &lt;br&gt;<br/>
+        /// &lt;ul&gt;<br/>
+        /// &lt;li&gt;`include=all` (the default). Includes templates from all carriers &lt;/li&gt;<br/>
+        /// &lt;li&gt;`include=user`. Includes templates only from carriers which the user has added (whether or not they&apos;re currently enabled) &lt;/li&gt;<br/>
+        /// &lt;li&gt;`include=enabled`. includes templates only for carriers which the user has added and enabled &lt;/li&gt;<br/>
+        /// &lt;li&gt;`carrier=*token*`. filter by specific carrier, e.g. fedex, usps &lt;/li&gt;<br/>
+        /// &lt;/ul&gt;
         /// </remarks>
         /// </summary>
         Task<CarrierParcelTemplateList> ListAsync(Include? include = null, string? carrier = null, string? shippoApiVersion = null);
@@ -64,10 +70,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.2";
-        private const string _sdkGenVersion = "2.349.6";
+        private const string _sdkVersion = "5.0.0-beta.3";
+        private const string _sdkGenVersion = "2.359.6";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.2 2.349.6 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.3 2.359.6 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Security>? _securitySource;
