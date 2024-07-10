@@ -1,11 +1,17 @@
-# Shippo
+# <img src="https://docs.goshippo.com/images/Logo.png" width="30" alt="Shippo logo"> Shippo C# SDK
 
-<div align="left">
-    <a href="https://speakeasyapi.dev/"><img src="https://custom-icon-badges.demolab.com/badge/-Built%20By%20Speakeasy-212015?style=for-the-badge&logoColor=FBE331&logo=speakeasy&labelColor=545454" /></a>
-    <a href="https://opensource.org/licenses/MIT">
-        <img src="https://img.shields.io/badge/License-MIT-blue.svg" style="width: 100px; height: 28px;" />
-    </a>
-</div>
+Shippo is a shipping API that connects you with [multiple shipping carriers](https://goshippo.com/carriers) (such as USPS, UPS, DHL, Canada Post, Australia Post, and many others) through one interface.
+
+You must register for a [Shippo account](https://apps.goshippo.com/join) to use our API. It's free to sign up. Only pay to print a live label, test labels are free.
+
+To use the API, you must generate an [API Token](https://docs.goshippo.com/docs/guides_general/authentication/). In the following examples, replace `<YOUR_API_KEY_HERE>` with your own token.
+
+For example.
+
+```
+apiKeyHeader:"shippo_test_595d9cb0c0e14497bf07e75ecfec6c6d"
+```
+
 
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
@@ -86,6 +92,11 @@ public class CustomHttpClient : SpeakeasyHttpClient
 
 A further example is included in the `ShippoTests` project in this repo.
 <!-- End Custom HTTP Client [http-client] -->
+
+## Documentation
+Review our full guides and references at [https://docs.goshippo.com/](https://docs.goshippo.com/).
+
+
 
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
@@ -221,151 +232,17 @@ A further example is included in the `ShippoTests` project in this repo.
 * [DeleteWebhook](docs/sdks/webhooks/README.md#deletewebhook) - Delete a specific webhook
 <!-- End Available Resources and Operations [operations] -->
 
-<!-- Start Global Parameters [global-parameters] -->
-## Global Parameters
-
-## Global Parameters
-
-A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
-
-For example, you can set `SHIPPO-API-VERSION` to `"2018-02-08"` at SDK initialization and then you do not have to pass the same value on calls to operations like `List`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
-
-
-### Available Globals
-
-The following global parameter is available.
-
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| shippoApiVersion | string |  | String used to pick a non-default API version to use |
-
-
-### Example
-
-```csharp
-using Shippo;
-using Shippo.Models.Components;
-using Shippo.Models.Requests;
-
-var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
-
-var res = await sdk.Addresses.ListAsync(
-    page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08");
-
-// handle response
-```
-<!-- End Global Parameters [global-parameters] -->
-
-<!-- Start Error Handling [errors] -->
-## Error Handling
-
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or thow an exception.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate type.
-
-| Error Object                                                                 | Status Code                                                                  | Content Type                                                                 |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Shippo.Models.Errors.InitiateOauth2SigninResponseBody                        | 400                                                                          | application/json                                                             |
-| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401                                                                          | application/json                                                             |
-| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404                                                                          | application/json                                                             |
-| Shippo.Models.Errors.SDKException                                            | 4xx-5xx                                                                      | */*                                                                          |
-
-### Example
-
-```csharp
-using Shippo;
-using Shippo.Models.Components;
-using System;
-using Shippo.Models.Errors;
-using Shippo.Models.Requests;
-
-var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
-
-InitiateOauth2SigninRequest req = new InitiateOauth2SigninRequest() {
-    CarrierAccountObjectId = "<value>",
-    RedirectUri = "http://fine-cummerbund.biz",
-};
-
-try
-{
-    var res = await sdk.CarrierAccounts.InitiateOauth2SigninAsync(req);
-    // handle response
-}
-catch (Exception ex)
-{
-    if (ex is InitiateOauth2SigninResponseBody)
-    {
-        // handle exception
-    }
-    else if (ex is InitiateOauth2SigninCarrierAccountsResponseBody)
-    {
-        // handle exception
-    }
-    else if (ex is InitiateOauth2SigninCarrierAccountsResponseResponseBody)
-    {
-        // handle exception
-    }
-    else if (ex is Shippo.Models.Errors.SDKException)
-    {
-        // handle exception
-    }
-}
-
-```
-<!-- End Error Handling [errors] -->
-
-<!-- Start Server Selection [server] -->
-## Server Selection
-
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `serverIndex: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.goshippo.com` | None |
 
 
 
 
-### Override Server URL Per-Client
+<!-- No Error Handling [errors] -->
+<!-- No Server Selection [server] -->
+<!-- No Authentication [security] -->
+<!-- No Global Parameters [global-parameters] -->
 
-The default server can also be overridden globally by passing a URL to the `serverUrl: str` optional parameter when initializing the SDK client instance. For example:
-<!-- End Server Selection [server] -->
 
-<!-- Start Authentication [security] -->
-## Authentication
 
-### Per-Client Security Schemes
-
-This SDK supports the following security scheme globally:
-
-| Name           | Type           | Scheme         |
-| -------------- | -------------- | -------------- |
-| `APIKeyHeader` | apiKey         | API key        |
-
-To authenticate with the API the `APIKeyHeader` parameter must be set when initializing the SDK client instance. For example:
-```csharp
-using Shippo;
-using Shippo.Models.Components;
-using Shippo.Models.Requests;
-
-var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
-
-var res = await sdk.Addresses.ListAsync(
-    page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08");
-
-// handle response
-```
-<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->
 
@@ -376,4 +253,5 @@ var res = await sdk.Addresses.ListAsync(
 While we value open-source contributions to this SDK, this library is generated programmatically.
 Feel free to open a PR or a Github issue as a proof of concept and we'll do our best to include it in a future release!
 
-### SDK Created by [Speakeasy](https://docs.speakeasyapi.dev/docs/using-speakeasy/client-sdks)
+## About Shippo
+Connect with multiple different carriers, get discounted shipping labels, track parcels, and much more with just one integration. You can use your own carrier accounts or take advantage of our discounted rates with the Shippo carrier accounts. Using Shippo makes it easy to deal with multiple carrier integrations, rate shopping, tracking and other parts of the shipping workflow. We provide the API and web app for all your shipping needs.
