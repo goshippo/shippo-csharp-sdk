@@ -1,12 +1,12 @@
 lockVersion: 2.0.0
 id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
-  docChecksum: 850c0347c21c750cc8eb3f72361a24af
+  docChecksum: 7a0e076d22d5d3bda37e85081e99e829
   docVersion: "2018-02-08"
   speakeasyVersion: 1.327.0
   generationVersion: 2.359.6
-  releaseVersion: 5.0.0-beta.3
-  configChecksum: fd36f786bd7347a20012813f711541d3
+  releaseVersion: 5.0.0-beta.4
+  configChecksum: dc08e7216cad113f88802add364e4923
   repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
   published: true
 features:
@@ -217,8 +217,8 @@ generatedFiles:
   - Shippo/Models/Components/ManifestCreateRequestAddressFrom.cs
   - Shippo/Models/Components/ManifestCreateRequest.cs
   - Shippo/Models/Components/OrderPaginatedList.cs
-  - Shippo/Models/Components/ShopApp.cs
   - Shippo/Models/Components/Order.cs
+  - Shippo/Models/Components/OrderShopAppEnum.cs
   - Shippo/Models/Components/OrderStatusEnum.cs
   - Shippo/Models/Components/OrderCreateRequest.cs
   - Shippo/Models/Components/LineItemBase.cs
@@ -282,6 +282,10 @@ generatedFiles:
   - Shippo/Models/Components/AddressValidationResultsMessageCodeEnum.cs
   - Shippo/Models/Components/AddressValidationResultsMessageSourceEnum.cs
   - Shippo/Models/Components/ServiceLevel.cs
+  - Shippo/Models/Components/WebhookPayloadWebhookPayloadTransaction.cs
+  - Shippo/Models/Components/WebhookPayloadWebhookPayloadBatch.cs
+  - Shippo/Models/Components/WebhookPayloadWebhookPayloadTrack.cs
+  - Shippo/Models/Components/WebhookPayload.cs
   - Shippo/Models/Components/ServiceLevelSwyftEnum.cs
   - Shippo/Models/Components/ServiceLevelVehoEnum.cs
   - Shippo/Models/Components/ServiceLevelUDSEnum.cs
@@ -547,8 +551,8 @@ generatedFiles:
   - docs/Models/Components/ManifestCreateRequestAddressFrom.md
   - docs/Models/Components/ManifestCreateRequest.md
   - docs/Models/Components/OrderPaginatedList.md
-  - docs/Models/Components/ShopApp.md
   - docs/Models/Components/Order.md
+  - docs/Models/Components/OrderShopAppEnum.md
   - docs/Models/Components/OrderStatusEnum.md
   - docs/Models/Components/OrderCreateRequest.md
   - docs/Models/Components/LineItemBase.md
@@ -612,6 +616,10 @@ generatedFiles:
   - docs/Models/Components/AddressValidationResultsMessageCodeEnum.md
   - docs/Models/Components/AddressValidationResultsMessageSourceEnum.md
   - docs/Models/Components/ServiceLevel.md
+  - docs/Models/Components/WebhookPayloadWebhookPayloadTransaction.md
+  - docs/Models/Components/WebhookPayloadWebhookPayloadBatch.md
+  - docs/Models/Components/WebhookPayloadWebhookPayloadTrack.md
+  - docs/Models/Components/WebhookPayload.md
   - docs/Models/Components/ServiceLevelSwyftEnum.md
   - docs/Models/Components/ServiceLevelVehoEnum.md
   - docs/Models/Components/ServiceLevelUDSEnum.md

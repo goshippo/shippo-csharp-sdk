@@ -150,7 +150,7 @@ namespace Shippo.Models.Components
         /// </remarks>
         /// </summary>
         [JsonProperty("shop_app")]
-        public ShopApp? ShopApp { get; set; }
+        public OrderShopAppEnum? ShopApp { get; set; }
 
         /// <summary>
         /// Array of &lt;a href=&quot;#tag/Transactions&quot;&gt;transaction&lt;/a&gt; objects representing all shipping labels purchased for this order.<br/>

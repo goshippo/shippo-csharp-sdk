@@ -9,7 +9,9 @@
 #nullable enable
 namespace Shippo.Models.Requests
 {
+    using Shippo.Models.Components;
     using Shippo.Utils;
+    using System.Collections.Generic;
     
     public class ListOrdersRequest
     {
@@ -31,5 +33,37 @@ namespace Shippo.Models.Requests
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
         public string? ShippoApiVersion { get; set; }
+
+        /// <summary>
+        /// Filter orders by order status
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=order_status[]")]
+        public List<OrderStatusEnum>? OrderStatus { get; set; }
+
+        /// <summary>
+        /// Filter orders by shop app
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=shop_app")]
+        public OrderShopAppEnum? ShopApp { get; set; }
+
+        /// <summary>
+        /// Filter orders created after the input date and time (ISO 8601 UTC format).  This is based on the <br/>
+        /// 
+        /// <remarks>
+        /// `placed_at` field, meaning when the order has been placed, not when the order object was created.
+        /// </remarks>
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=start_date")]
+        public string? StartDate { get; set; }
+
+        /// <summary>
+        /// Filter orders created before the input date and time (ISO 8601 UTC format).  This is based on the <br/>
+        /// 
+        /// <remarks>
+        /// `placed_at` field, meaning when the order has been placed, not when the order object was created.
+        /// </remarks>
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=end_date")]
+        public string? EndDate { get; set; }
     }
 }
