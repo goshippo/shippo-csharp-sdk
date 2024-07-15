@@ -20,7 +20,7 @@ namespace Shippo.Models.Components
     /// Orders created via the Shippo API or dashboard will have the value &quot;Shippo&quot;.
     /// </remarks>
     /// </summary>
-    public enum ShopApp
+    public enum OrderShopAppEnum
     {
         [JsonProperty("Amazon")]
         Amazon,
@@ -46,22 +46,24 @@ namespace Shippo.Models.Components
         Spreecommerce,
         [JsonProperty("StripeRelay")]
         StripeRelay,
+        [JsonProperty("Walmart")]
+        Walmart,
         [JsonProperty("Weebly")]
         Weebly,
         [JsonProperty("WooCommerce")]
         WooCommerce,
     }
 
-    public static class ShopAppExtension
+    public static class OrderShopAppEnumExtension
     {
-        public static string Value(this ShopApp value)
+        public static string Value(this OrderShopAppEnum value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ShopApp ToEnum(this string value)
+        public static OrderShopAppEnum ToEnum(this string value)
         {
-            foreach(var field in typeof(ShopApp).GetFields())
+            foreach(var field in typeof(OrderShopAppEnum).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -74,14 +76,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ShopApp)
+                    if (enumVal is OrderShopAppEnum)
                     {
-                        return (ShopApp)enumVal;
+                        return (OrderShopAppEnum)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ShopApp");
+            throw new Exception($"Unknown value {value} for enum OrderShopAppEnum");
         }
     }
 
