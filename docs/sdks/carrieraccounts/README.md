@@ -29,8 +29,8 @@ By default, if the query parameter is omitted, the `service_levels` property wil
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -67,8 +67,9 @@ Creates a new carrier account or connects an existing carrier account to the Shi
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -79,7 +80,7 @@ var res = await sdk.CarrierAccounts.CreateAsync(
     AccountId = "321123",
     Carrier = "fedex",
     Metadata = "FEDEX Account",
-    Parameters = ConnectExistingOwnAccountRequestParameters.CreateConnectExistingOwnAccountRequestParametersFedExConnectExistingOwnAccountParameters(
+    Parameters = ConnectExistingOwnAccountRequestParameters.CreateFedExConnectExistingOwnAccountParameters(
             new FedExConnectExistingOwnAccountParameters() {
                 FirstName = "Jena",
                 LastName = "Nienow",
@@ -89,7 +90,7 @@ var res = await sdk.CarrierAccounts.CreateAsync(
                 FromAddressState = "<value>",
                 FromAddressZip = "<value>",
                 FromAddressCountryIso2 = "<value>",
-            },
+            }
     ),
     Test = false,
 },
@@ -123,8 +124,8 @@ Returns an existing carrier account using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -162,8 +163,9 @@ Updates an existing carrier account object. The account_id and carrier can't be 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -175,7 +177,7 @@ var res = await sdk.CarrierAccounts.UpdateAsync(
     carrierAccountBase: new CarrierAccountBase() {
     AccountId = "****",
     Carrier = "usps",
-    Parameters = CarrierAccountBaseParameters.CreateCarrierAccountBaseParametersUPSConnectExistingOwnAccountParameters(
+    Parameters = CarrierAccountBaseParameters.CreateUPSConnectExistingOwnAccountParameters(
             new UPSConnectExistingOwnAccountParameters() {
                 AccountNumber = "94567e",
                 AiaCountryIso2 = "US",
@@ -199,7 +201,7 @@ var res = await sdk.CarrierAccounts.UpdateAsync(
                 Phone = "1112223333",
                 Title = "Manager",
                 UpsAgreements = false,
-            },
+            }
     ),
 });
 
@@ -232,8 +234,8 @@ Used by client applications to setup or reconnect an existing carrier account wi
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -276,19 +278,19 @@ Adds a Shippo carrier account
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
 var res = await sdk.CarrierAccounts.RegisterAsync(
-    requestBody: RegisterCarrierAccountRequestBody.CreateRegisterCarrierAccountRequestBodyCarrierAccountColissimoCreateRequest(
+    requestBody: RegisterCarrierAccountRequestBody.CreateCarrierAccountColissimoCreateRequest(
     new CarrierAccountColissimoCreateRequest() {
         Carrier = "colissimo",
         Parameters = new CarrierAccountColissimoCreateRequestParameters() {},
-    },
+    }
 ),
     shippoApiVersion: "2018-02-08");
 
@@ -320,8 +322,8 @@ Returns the registration status for the given account for the given carrier
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",

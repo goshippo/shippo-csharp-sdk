@@ -21,8 +21,8 @@ Returns a a list of all customs declaration objects
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -62,8 +62,8 @@ Creates a new customs declaration object
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
@@ -72,7 +72,7 @@ var sdk = new ShippoSDK(
 
 var res = await sdk.CustomsDeclarations.CreateAsync(
     customsDeclarationCreateRequest: new CustomsDeclarationCreateRequest() {
-    B13aFilingOption = CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
+    B13aFilingOption = Shippo.Models.Components.CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
     Certify = true,
     CertifySigner = "Shawn Ippotle",
     ContentsExplanation = "T-Shirt purchase",
@@ -80,7 +80,7 @@ var res = await sdk.CustomsDeclarations.CreateAsync(
         EoriNumber = "PL123456790ABCDE",
         TaxId = new CustomsTaxIdentification() {
             Number = "123456789",
-            Type = CustomsTaxIdentificationType.Ein,
+            Type = Shippo.Models.Components.CustomsTaxIdentificationType.Ein,
         },
     },
     Invoice = "#123123",
@@ -100,10 +100,10 @@ var res = await sdk.CustomsDeclarations.CreateAsync(
         IsResidential = true,
     },
     ContentsType = Shippo.Models.Components.CustomsDeclarationContentsTypeEnum.Merchandise,
-    EelPfc = CustomsDeclarationEelPfcEnum.Noeei3037A,
-    Incoterm = CustomsDeclarationIncotermEnum.Ddp,
-    Items = new List<CustomsItemCreateRequest>() {
-        new CustomsItemCreateRequest() {
+    EelPfc = Shippo.Models.Components.CustomsDeclarationEelPfcEnum.Noeei3037A,
+    Incoterm = Shippo.Models.Components.CustomsDeclarationIncotermEnum.Ddp,
+    Items = new List<CustomsItemBase>() {
+        new CustomsItemBase() {
             Description = "T-Shirt",
             MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
             Metadata = "Order ID \"123454\"",
@@ -149,8 +149,8 @@ Returns an existing customs declaration using an object ID
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",

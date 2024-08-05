@@ -31,8 +31,8 @@ template or a fully formed user parcel template object as the parcel value.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
@@ -41,11 +41,11 @@ var sdk = new ShippoSDK(
 
 var res = await sdk.RatesAtCheckout.CreateAsync(
     liveRateCreateRequest: new LiveRateCreateRequest() {
-    AddressFrom = LiveRateCreateRequestAddressFrom.CreateLiveRateCreateRequestAddressFromStr(
-    "<value>",
+    AddressFrom = LiveRateCreateRequestAddressFrom.CreateStr(
+    "<value>"
     ),
-    AddressTo = LiveRateCreateRequestAddressTo.CreateLiveRateCreateRequestAddressToStr(
-    "<value>",
+    AddressTo = LiveRateCreateRequestAddressTo.CreateStr(
+    "<value>"
     ),
     LineItems = new List<LineItem>() {
         new LineItem() {
@@ -59,12 +59,12 @@ var res = await sdk.RatesAtCheckout.CreateAsync(
             TotalPrice = "12.1",
             VariantTitle = "June Edition",
             Weight = "0.4",
-            WeightUnit = WeightUnitEnum.Lb,
+            WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
             ObjectId = "abf7d5675d744b6ea9fdb6f796b28f28",
         },
     },
-    Parcel = LiveRateCreateRequestParcel.CreateLiveRateCreateRequestParcelStr(
-    "5df144dca289442cv7a06",
+    Parcel = LiveRateCreateRequestParcel.CreateStr(
+    "5df144dca289442cv7a06"
     ),
 },
     shippoApiVersion: "2018-02-08");
@@ -97,8 +97,8 @@ Retrieve and display the currently configured default parcel template for live r
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -133,8 +133,8 @@ Update the currently configured default parcel template for live rates. The obje
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -174,8 +174,8 @@ Clears the currently configured default parcel template for live rates.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",

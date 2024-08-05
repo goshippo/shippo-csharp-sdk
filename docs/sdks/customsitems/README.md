@@ -20,8 +20,8 @@ Returns a list all customs items objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -61,15 +61,15 @@ Creates a new customs item object.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
 var res = await sdk.CustomsItems.CreateAsync(
-    customsItemCreateRequest: new CustomsItemCreateRequest() {
+    customsItemBase: new CustomsItemBase() {
     Description = "T-Shirt",
     MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
     Metadata = "Order ID \"123454\"",
@@ -88,10 +88,10 @@ var res = await sdk.CustomsItems.CreateAsync(
 
 ### Parameters
 
-| Parameter                                                                       | Type                                                                            | Required                                                                        | Description                                                                     | Example                                                                         |
-| ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| `CustomsItemCreateRequest`                                                      | [CustomsItemCreateRequest](../../Models/Components/CustomsItemCreateRequest.md) | :heavy_check_mark:                                                              | CustomsItem details.                                                            |                                                                                 |
-| `ShippoApiVersion`                                                              | *string*                                                                        | :heavy_minus_sign:                                                              | String used to pick a non-default API version to use                            | 2018-02-08                                                                      |
+| Parameter                                                     | Type                                                          | Required                                                      | Description                                                   | Example                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- | ------------------------------------------------------------- |
+| `CustomsItemBase`                                             | [CustomsItemBase](../../Models/Components/CustomsItemBase.md) | :heavy_check_mark:                                            | CustomsItem details.                                          |                                                               |
+| `ShippoApiVersion`                                            | *string*                                                      | :heavy_minus_sign:                                            | String used to pick a non-default API version to use          | 2018-02-08                                                    |
 
 
 ### Response
@@ -111,8 +111,8 @@ Returns an existing customs item using an object ID
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",

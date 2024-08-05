@@ -26,8 +26,8 @@ Returns a list of all manifest objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -67,8 +67,8 @@ Creates a new manifest object.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
@@ -82,7 +82,7 @@ var res = await sdk.Manifests.CreateAsync(
     Transactions = new List<string>() {
         "adcfdddf8ec64b84ad22772bce3ea37a",
     },
-    AddressFrom = ManifestCreateRequestAddressFrom.CreateManifestCreateRequestAddressFromAddressCreateRequest(
+    AddressFrom = ManifestCreateRequestAddressFrom.CreateAddressCreateRequest(
             new AddressCreateRequest() {
                 Name = "Shwan Ippotle",
                 Company = "Shippo",
@@ -98,7 +98,7 @@ var res = await sdk.Manifests.CreateAsync(
                 IsResidential = true,
                 Metadata = "Customer ID 123456",
                 Validate = true,
-            },
+            }
     ),
 },
     shippoApiVersion: "2018-02-08");
@@ -131,8 +131,8 @@ Returns an existing manifest using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
