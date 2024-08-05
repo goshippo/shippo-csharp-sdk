@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
-  docChecksum: 7a0e076d22d5d3bda37e85081e99e829
+  docChecksum: 918122d9eae3aebedbff4f23cd4af0b8
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.327.0
-  generationVersion: 2.359.6
-  releaseVersion: 5.0.0-beta.4
-  configChecksum: dc08e7216cad113f88802add364e4923
+  speakeasyVersion: 1.352.1
+  generationVersion: 2.385.1
+  releaseVersion: 5.0.0-beta.5
+  configChecksum: 1523a87618b9afc87a1037ce1dff36d1
   repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
   published: true
 features:
   csharp:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.0.1
-    core: 3.9.8
+    core: 3.9.13
     flattening: 2.81.2
     globalSecurity: 2.83.4
     globalSecurityCallbacks: 0.1.0
@@ -26,7 +26,7 @@ features:
     nullables: 0.1.0
     responseFormat: 0.0.4
     sdkHooks: 0.1.0
-    unions: 0.1.1
+    unions: 0.1.3
     webhooks: 1.0.0
 generatedFiles:
   - Shippo/Addresses.cs
@@ -101,17 +101,17 @@ generatedFiles:
   - Shippo/Models/Components/PaymentMethod.cs
   - Shippo/Models/Components/Cod.cs
   - Shippo/Models/Components/ParcelCreateFromTemplateRequest.cs
-  - Shippo/Models/Components/AramexAustraliaParcelTemplate.cs
-  - Shippo/Models/Components/CouriersPleaseParcelTemplate.cs
-  - Shippo/Models/Components/DPDUKParcelTemplate.cs
-  - Shippo/Models/Components/DHLECommerceParcelTemplate.cs
-  - Shippo/Models/Components/USPSParcelTemplate.cs
-  - Shippo/Models/Components/UPSParcelTemplate.cs
-  - Shippo/Models/Components/FedExParcelTemplate.cs
   - Shippo/Models/Components/ParcelTemplateEnumSet.cs
+  - Shippo/Models/Components/ParcelTemplateFedExEnum.cs
+  - Shippo/Models/Components/ParcelTemplateUPSEnum.cs
+  - Shippo/Models/Components/ParcelTemplateUSPSEnum.cs
+  - Shippo/Models/Components/ParcelTemplateDHLeCommerceEnum.cs
+  - Shippo/Models/Components/ParcelTemplateDPDUKEnum.cs
+  - Shippo/Models/Components/ParcelTemplateCouriersPleaseEnum.cs
+  - Shippo/Models/Components/ParcelTemplateAramexAustraliaEnum.cs
   - Shippo/Models/Components/CustomsDeclarationCreateRequest.cs
   - Shippo/Models/Components/CustomsDeclarationNonDeliveryOptionEnum.cs
-  - Shippo/Models/Components/CustomsItemCreateRequest.cs
+  - Shippo/Models/Components/CustomsItemBase.cs
   - Shippo/Models/Components/CustomsDeclarationIncotermEnum.cs
   - Shippo/Models/Components/CustomsDeclarationEelPfcEnum.cs
   - Shippo/Models/Components/CustomsDeclarationContentsTypeEnum.cs
@@ -232,8 +232,8 @@ generatedFiles:
   - Shippo/Models/Components/PickupBase.cs
   - Shippo/Models/Components/Attributes.cs
   - Shippo/Models/Components/Rate.cs
-  - Shippo/Models/Components/ParentServicelevel.cs
   - Shippo/Models/Components/ServiceLevelWithParent.cs
+  - Shippo/Models/Components/ServiceLevel.cs
   - Shippo/Models/Components/ResponseMessage.cs
   - Shippo/Models/Components/RatePaginatedList.cs
   - Shippo/Models/Components/RefundStatus.cs
@@ -281,52 +281,47 @@ generatedFiles:
   - Shippo/Models/Components/WebhookPayloadTransaction.cs
   - Shippo/Models/Components/AddressValidationResultsMessageCodeEnum.cs
   - Shippo/Models/Components/AddressValidationResultsMessageSourceEnum.cs
-  - Shippo/Models/Components/ServiceLevel.cs
-  - Shippo/Models/Components/WebhookPayloadWebhookPayloadTransaction.cs
-  - Shippo/Models/Components/WebhookPayloadWebhookPayloadBatch.cs
-  - Shippo/Models/Components/WebhookPayloadWebhookPayloadTrack.cs
   - Shippo/Models/Components/WebhookPayload.cs
-  - Shippo/Models/Components/ServiceLevelSwyftEnum.cs
-  - Shippo/Models/Components/ServiceLevelVehoEnum.cs
-  - Shippo/Models/Components/ServiceLevelUDSEnum.cs
-  - Shippo/Models/Components/ServiceLevelEvriUKEnum.cs
-  - Shippo/Models/Components/ServiceLevelLasershipEnum.cs
-  - Shippo/Models/Components/ServiceLevelJitsuEnum.cs
-  - Shippo/Models/Components/ServiceLevelOnTracEnum.cs
-  - Shippo/Models/Components/ServiceLevelSendleEnum.cs
-  - Shippo/Models/Components/ServiceLevelRoyalMailEnum.cs
-  - Shippo/Models/Components/ServiceLevelePostGlobalEnum.cs
-  - Shippo/Models/Components/ServiceLevelPostItalianeEnum.cs
-  - Shippo/Models/Components/ServiceLevelParcelforceEnum.cs
-  - Shippo/Models/Components/ServiceLevelMaergoEnum.cs
-  - Shippo/Models/Components/ServiceLevelMondialRelayEnum.cs
-  - Shippo/Models/Components/ServiceLevelLSOEnum.cs
-  - Shippo/Models/Components/ServiceLevelGLSUSEnum.cs
-  - Shippo/Models/Components/ServiceLevelGlobegisticsEnum.cs
-  - Shippo/Models/Components/ServiceLevelAramexAustraliaEnum.cs
-  - Shippo/Models/Components/ServiceLevelDeutschePostEnum.cs
-  - Shippo/Models/Components/ServiceLevelDPDUKEnum.cs
-  - Shippo/Models/Components/ServiceLevelDPDDEEnum.cs
-  - Shippo/Models/Components/ServiceLevelDHLGermanyEnum.cs
-  - Shippo/Models/Components/ServiceLevelDHLeCommerceEnum.cs
-  - Shippo/Models/Components/ServiceLevelDHLExpressEnum.cs
-  - Shippo/Models/Components/ServiceLevelPurolatorEnum.cs
-  - Shippo/Models/Components/ServiceLevelColissimoEnum.cs
-  - Shippo/Models/Components/ServiceLevelCorreosEspanaEnum.cs
-  - Shippo/Models/Components/ServiceLevelCouriersPleaseEnum.cs
-  - Shippo/Models/Components/ServiceLevelChronopostEnum.cs
-  - Shippo/Models/Components/ServiceLevelCDLEnum.cs
-  - Shippo/Models/Components/ServiceLevelCanadaPostEnum.cs
-  - Shippo/Models/Components/ServiceLevelBetterTrucksEnum.cs
-  - Shippo/Models/Components/ServiceLevelAPGEnum.cs
-  - Shippo/Models/Components/ServiceLevelAustraliaPostEnum.cs
-  - Shippo/Models/Components/ServiceLevelAsendiaEnum.cs
-  - Shippo/Models/Components/ServiceLevelAPCPostalEnum.cs
-  - Shippo/Models/Components/ServiceLevelAirterraEnum.cs
-  - Shippo/Models/Components/ServiceLevelUPSEnum.cs
-  - Shippo/Models/Components/ServiceLevelFedExEnum.cs
-  - Shippo/Models/Components/ServiceLevelUSPSEnum.cs
   - Shippo/Models/Components/ServiceLevelEnumSet.cs
+  - Shippo/Models/Components/ServiceLevelUSPSEnum.cs
+  - Shippo/Models/Components/ServiceLevelFedExEnum.cs
+  - Shippo/Models/Components/ServiceLevelUPSEnum.cs
+  - Shippo/Models/Components/ServiceLevelAirterraEnum.cs
+  - Shippo/Models/Components/ServiceLevelAPCPostalEnum.cs
+  - Shippo/Models/Components/ServiceLevelAsendiaEnum.cs
+  - Shippo/Models/Components/ServiceLevelAustraliaPostEnum.cs
+  - Shippo/Models/Components/ServiceLevelAPGEnum.cs
+  - Shippo/Models/Components/ServiceLevelBetterTrucksEnum.cs
+  - Shippo/Models/Components/ServiceLevelCanadaPostEnum.cs
+  - Shippo/Models/Components/ServiceLevelCDLEnum.cs
+  - Shippo/Models/Components/ServiceLevelChronopostEnum.cs
+  - Shippo/Models/Components/ServiceLevelCouriersPleaseEnum.cs
+  - Shippo/Models/Components/ServiceLevelCorreosEspanaEnum.cs
+  - Shippo/Models/Components/ServiceLevelColissimoEnum.cs
+  - Shippo/Models/Components/ServiceLevelPurolatorEnum.cs
+  - Shippo/Models/Components/ServiceLevelDHLExpressEnum.cs
+  - Shippo/Models/Components/ServiceLevelDHLeCommerceEnum.cs
+  - Shippo/Models/Components/ServiceLevelDHLGermanyEnum.cs
+  - Shippo/Models/Components/ServiceLevelDPDDEEnum.cs
+  - Shippo/Models/Components/ServiceLevelDPDUKEnum.cs
+  - Shippo/Models/Components/ServiceLevelDeutschePostEnum.cs
+  - Shippo/Models/Components/ServiceLevelAramexAustraliaEnum.cs
+  - Shippo/Models/Components/ServiceLevelGlobegisticsEnum.cs
+  - Shippo/Models/Components/ServiceLevelGLSUSEnum.cs
+  - Shippo/Models/Components/ServiceLevelLSOEnum.cs
+  - Shippo/Models/Components/ServiceLevelMondialRelayEnum.cs
+  - Shippo/Models/Components/ServiceLevelParcelforceEnum.cs
+  - Shippo/Models/Components/ServiceLevelPostItalianeEnum.cs
+  - Shippo/Models/Components/ServiceLevelePostGlobalEnum.cs
+  - Shippo/Models/Components/ServiceLevelRoyalMailEnum.cs
+  - Shippo/Models/Components/ServiceLevelSendleEnum.cs
+  - Shippo/Models/Components/ServiceLevelOnTracEnum.cs
+  - Shippo/Models/Components/ServiceLevelJitsuEnum.cs
+  - Shippo/Models/Components/ServiceLevelLasershipEnum.cs
+  - Shippo/Models/Components/ServiceLevelEvriUKEnum.cs
+  - Shippo/Models/Components/ServiceLevelUDSEnum.cs
+  - Shippo/Models/Components/ServiceLevelVehoEnum.cs
+  - Shippo/Models/Components/ServiceLevelSwyftEnum.cs
   - Shippo/Models/Requests/ListAddressesRequest.cs
   - Shippo/Models/Requests/CreateAddressRequest.cs
   - Shippo/Models/Requests/GetAddressRequest.cs
@@ -435,17 +430,17 @@ generatedFiles:
   - docs/Models/Components/PaymentMethod.md
   - docs/Models/Components/Cod.md
   - docs/Models/Components/ParcelCreateFromTemplateRequest.md
-  - docs/Models/Components/AramexAustraliaParcelTemplate.md
-  - docs/Models/Components/CouriersPleaseParcelTemplate.md
-  - docs/Models/Components/DPDUKParcelTemplate.md
-  - docs/Models/Components/DHLECommerceParcelTemplate.md
-  - docs/Models/Components/USPSParcelTemplate.md
-  - docs/Models/Components/UPSParcelTemplate.md
-  - docs/Models/Components/FedExParcelTemplate.md
   - docs/Models/Components/ParcelTemplateEnumSet.md
+  - docs/Models/Components/ParcelTemplateFedExEnum.md
+  - docs/Models/Components/ParcelTemplateUPSEnum.md
+  - docs/Models/Components/ParcelTemplateUSPSEnum.md
+  - docs/Models/Components/ParcelTemplateDHLeCommerceEnum.md
+  - docs/Models/Components/ParcelTemplateDPDUKEnum.md
+  - docs/Models/Components/ParcelTemplateCouriersPleaseEnum.md
+  - docs/Models/Components/ParcelTemplateAramexAustraliaEnum.md
   - docs/Models/Components/CustomsDeclarationCreateRequest.md
   - docs/Models/Components/CustomsDeclarationNonDeliveryOptionEnum.md
-  - docs/Models/Components/CustomsItemCreateRequest.md
+  - docs/Models/Components/CustomsItemBase.md
   - docs/Models/Components/CustomsDeclarationIncotermEnum.md
   - docs/Models/Components/CustomsDeclarationEelPfcEnum.md
   - docs/Models/Components/CustomsDeclarationContentsTypeEnum.md
@@ -566,8 +561,8 @@ generatedFiles:
   - docs/Models/Components/PickupBase.md
   - docs/Models/Components/Attributes.md
   - docs/Models/Components/Rate.md
-  - docs/Models/Components/ParentServicelevel.md
   - docs/Models/Components/ServiceLevelWithParent.md
+  - docs/Models/Components/ServiceLevel.md
   - docs/Models/Components/ResponseMessage.md
   - docs/Models/Components/RatePaginatedList.md
   - docs/Models/Components/RefundStatus.md
@@ -615,52 +610,47 @@ generatedFiles:
   - docs/Models/Components/WebhookPayloadTransaction.md
   - docs/Models/Components/AddressValidationResultsMessageCodeEnum.md
   - docs/Models/Components/AddressValidationResultsMessageSourceEnum.md
-  - docs/Models/Components/ServiceLevel.md
-  - docs/Models/Components/WebhookPayloadWebhookPayloadTransaction.md
-  - docs/Models/Components/WebhookPayloadWebhookPayloadBatch.md
-  - docs/Models/Components/WebhookPayloadWebhookPayloadTrack.md
   - docs/Models/Components/WebhookPayload.md
-  - docs/Models/Components/ServiceLevelSwyftEnum.md
-  - docs/Models/Components/ServiceLevelVehoEnum.md
-  - docs/Models/Components/ServiceLevelUDSEnum.md
-  - docs/Models/Components/ServiceLevelEvriUKEnum.md
-  - docs/Models/Components/ServiceLevelLasershipEnum.md
-  - docs/Models/Components/ServiceLevelJitsuEnum.md
-  - docs/Models/Components/ServiceLevelOnTracEnum.md
-  - docs/Models/Components/ServiceLevelSendleEnum.md
-  - docs/Models/Components/ServiceLevelRoyalMailEnum.md
-  - docs/Models/Components/ServiceLevelePostGlobalEnum.md
-  - docs/Models/Components/ServiceLevelPostItalianeEnum.md
-  - docs/Models/Components/ServiceLevelParcelforceEnum.md
-  - docs/Models/Components/ServiceLevelMaergoEnum.md
-  - docs/Models/Components/ServiceLevelMondialRelayEnum.md
-  - docs/Models/Components/ServiceLevelLSOEnum.md
-  - docs/Models/Components/ServiceLevelGLSUSEnum.md
-  - docs/Models/Components/ServiceLevelGlobegisticsEnum.md
-  - docs/Models/Components/ServiceLevelAramexAustraliaEnum.md
-  - docs/Models/Components/ServiceLevelDeutschePostEnum.md
-  - docs/Models/Components/ServiceLevelDPDUKEnum.md
-  - docs/Models/Components/ServiceLevelDPDDEEnum.md
-  - docs/Models/Components/ServiceLevelDHLGermanyEnum.md
-  - docs/Models/Components/ServiceLevelDHLeCommerceEnum.md
-  - docs/Models/Components/ServiceLevelDHLExpressEnum.md
-  - docs/Models/Components/ServiceLevelPurolatorEnum.md
-  - docs/Models/Components/ServiceLevelColissimoEnum.md
-  - docs/Models/Components/ServiceLevelCorreosEspanaEnum.md
-  - docs/Models/Components/ServiceLevelCouriersPleaseEnum.md
-  - docs/Models/Components/ServiceLevelChronopostEnum.md
-  - docs/Models/Components/ServiceLevelCDLEnum.md
-  - docs/Models/Components/ServiceLevelCanadaPostEnum.md
-  - docs/Models/Components/ServiceLevelBetterTrucksEnum.md
-  - docs/Models/Components/ServiceLevelAPGEnum.md
-  - docs/Models/Components/ServiceLevelAustraliaPostEnum.md
-  - docs/Models/Components/ServiceLevelAsendiaEnum.md
-  - docs/Models/Components/ServiceLevelAPCPostalEnum.md
-  - docs/Models/Components/ServiceLevelAirterraEnum.md
-  - docs/Models/Components/ServiceLevelUPSEnum.md
-  - docs/Models/Components/ServiceLevelFedExEnum.md
-  - docs/Models/Components/ServiceLevelUSPSEnum.md
   - docs/Models/Components/ServiceLevelEnumSet.md
+  - docs/Models/Components/ServiceLevelUSPSEnum.md
+  - docs/Models/Components/ServiceLevelFedExEnum.md
+  - docs/Models/Components/ServiceLevelUPSEnum.md
+  - docs/Models/Components/ServiceLevelAirterraEnum.md
+  - docs/Models/Components/ServiceLevelAPCPostalEnum.md
+  - docs/Models/Components/ServiceLevelAsendiaEnum.md
+  - docs/Models/Components/ServiceLevelAustraliaPostEnum.md
+  - docs/Models/Components/ServiceLevelAPGEnum.md
+  - docs/Models/Components/ServiceLevelBetterTrucksEnum.md
+  - docs/Models/Components/ServiceLevelCanadaPostEnum.md
+  - docs/Models/Components/ServiceLevelCDLEnum.md
+  - docs/Models/Components/ServiceLevelChronopostEnum.md
+  - docs/Models/Components/ServiceLevelCouriersPleaseEnum.md
+  - docs/Models/Components/ServiceLevelCorreosEspanaEnum.md
+  - docs/Models/Components/ServiceLevelColissimoEnum.md
+  - docs/Models/Components/ServiceLevelPurolatorEnum.md
+  - docs/Models/Components/ServiceLevelDHLExpressEnum.md
+  - docs/Models/Components/ServiceLevelDHLeCommerceEnum.md
+  - docs/Models/Components/ServiceLevelDHLGermanyEnum.md
+  - docs/Models/Components/ServiceLevelDPDDEEnum.md
+  - docs/Models/Components/ServiceLevelDPDUKEnum.md
+  - docs/Models/Components/ServiceLevelDeutschePostEnum.md
+  - docs/Models/Components/ServiceLevelAramexAustraliaEnum.md
+  - docs/Models/Components/ServiceLevelGlobegisticsEnum.md
+  - docs/Models/Components/ServiceLevelGLSUSEnum.md
+  - docs/Models/Components/ServiceLevelLSOEnum.md
+  - docs/Models/Components/ServiceLevelMondialRelayEnum.md
+  - docs/Models/Components/ServiceLevelParcelforceEnum.md
+  - docs/Models/Components/ServiceLevelPostItalianeEnum.md
+  - docs/Models/Components/ServiceLevelePostGlobalEnum.md
+  - docs/Models/Components/ServiceLevelRoyalMailEnum.md
+  - docs/Models/Components/ServiceLevelSendleEnum.md
+  - docs/Models/Components/ServiceLevelOnTracEnum.md
+  - docs/Models/Components/ServiceLevelJitsuEnum.md
+  - docs/Models/Components/ServiceLevelLasershipEnum.md
+  - docs/Models/Components/ServiceLevelEvriUKEnum.md
+  - docs/Models/Components/ServiceLevelUDSEnum.md
+  - docs/Models/Components/ServiceLevelVehoEnum.md
+  - docs/Models/Components/ServiceLevelSwyftEnum.md
   - docs/Models/Requests/ListAddressesRequest.md
   - docs/Models/Requests/CreateAddressRequest.md
   - docs/Models/Requests/GetAddressRequest.md
@@ -764,3 +754,4 @@ generatedFiles:
   - .gitattributes
   - Shippo/Hooks/SDKHooks.cs
   - Shippo/Hooks/HookTypes.cs
+  - CONTRIBUTING.md

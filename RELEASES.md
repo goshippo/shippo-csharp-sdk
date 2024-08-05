@@ -59,3 +59,13 @@ Based on:
 - [csharp v5.0.0-beta.4] .
 ### Releases
 - [NuGet v5.0.0-beta.4] https://www.nuget.org/packages/Shippo/5.0.0-beta.4 - .
+
+## 2024-08-05 00:16:35
+### Changes
+Based on:
+- OpenAPI Doc  
+- Speakeasy CLI 1.352.1 (2.385.1) https://github.com/speakeasy-api/speakeasy
+### Generated
+- [csharp v5.0.0-beta.5] .
+### Releases
+- [NuGet v5.0.0-beta.5] https://www.nuget.org/packages/Shippo/5.0.0-beta.5 - .

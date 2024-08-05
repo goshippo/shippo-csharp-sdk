@@ -24,8 +24,8 @@ Returns a list of all parcel objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -65,27 +65,27 @@ Creates a new parcel object.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
 var res = await sdk.Parcels.CreateAsync(
-    requestBody: CreateParcelRequestBody.CreateCreateParcelRequestBodyParcelCreateRequest(
+    requestBody: CreateParcelRequestBody.CreateParcelCreateRequest(
     new ParcelCreateRequest() {
         Extra = new ParcelExtra() {
             Cod = new Cod() {
                 Amount = "5.5",
                 Currency = "USD",
-                PaymentMethod = PaymentMethod.Cash,
+                PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
             },
             Insurance = new ParcelInsurance() {
                 Amount = "5.5",
                 Content = "Laptop",
                 Currency = "USD",
-                Provider = ParcelInsuranceProvider.Ups,
+                Provider = Shippo.Models.Components.ParcelInsuranceProvider.Ups,
             },
         },
         Metadata = "Customer ID 123456",
@@ -95,7 +95,7 @@ var res = await sdk.Parcels.CreateAsync(
         Height = "1",
         Length = "1",
         Width = "1",
-    },
+    }
 ),
     shippoApiVersion: "2018-02-08");
 
@@ -127,8 +127,8 @@ Returns parcel details using an existing parcel object ID (this will not return 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",

@@ -27,8 +27,8 @@ Returns a list all of all user parcel template objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -69,19 +69,19 @@ and depth, as well as their units."
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
     shippoApiVersion: "2018-02-08");
 
 var res = await sdk.UserParcelTemplates.CreateAsync(
-    userParcelTemplateCreateRequest: UserParcelTemplateCreateRequest.CreateUserParcelTemplateCreateRequestUserParcelTemplateWithCarrierTemplateCreateRequest(
+    userParcelTemplateCreateRequest: UserParcelTemplateCreateRequest.CreateUserParcelTemplateWithCarrierTemplateCreateRequest(
     new UserParcelTemplateWithCarrierTemplateCreateRequest() {
         Weight = "12",
-        WeightUnit = WeightUnitEnum.Lb,
-    },
+        WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+    }
 ),
     shippoApiVersion: "2018-02-08");
 
@@ -113,8 +113,8 @@ Deletes a user parcel template using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -149,8 +149,8 @@ template, identified by the object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -188,8 +188,8 @@ Updates an existing user parcel template.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -204,7 +204,7 @@ var res = await sdk.UserParcelTemplates.UpdateAsync(
     Length = "10",
     Name = "My Custom Template",
     Weight = "12",
-    WeightUnit = WeightUnitEnum.Lb,
+    WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
     Width = "8",
 });
 

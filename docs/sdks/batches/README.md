@@ -30,8 +30,8 @@ Creates a new batch object for purchasing shipping labels for many shipments at 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
@@ -42,7 +42,7 @@ var res = await sdk.Batches.CreateAsync(
     batchCreateRequest: new BatchCreateRequest() {
     DefaultCarrierAccount = "078870331023437cb917f5187429b093",
     DefaultServicelevelToken = "usps_priority",
-    LabelFiletype = LabelFileTypeEnum.Pdf4x6,
+    LabelFiletype = Shippo.Models.Components.LabelFileTypeEnum.Pdf4x6,
     Metadata = "BATCH #1",
     BatchShipments = new List<BatchShipmentCreateRequest>() {
         new BatchShipmentCreateRequest() {
@@ -69,7 +69,7 @@ var res = await sdk.Batches.CreateAsync(
                     Cod = new Cod() {
                         Amount = "5.5",
                         Currency = "USD",
-                        PaymentMethod = PaymentMethod.Cash,
+                        PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
                     },
                     CodNumber = new UPSReferenceFields() {
                         Prefix = "ABC",
@@ -153,7 +153,7 @@ var res = await sdk.Batches.CreateAsync(
                 },
                 Metadata = "Customer ID 123456",
                 ShipmentDate = "2021-03-22T12:00:00Z",
-                AddressFrom = AddressFrom.CreateAddressFromAddressCreateRequest(
+                AddressFrom = AddressFrom.CreateAddressCreateRequest(
                         new AddressCreateRequest() {
                             Name = "Shwan Ippotle",
                             Company = "Shippo",
@@ -169,9 +169,9 @@ var res = await sdk.Batches.CreateAsync(
                             IsResidential = true,
                             Metadata = "Customer ID 123456",
                             Validate = true,
-                        },
+                        }
                 ),
-                AddressReturn = AddressReturn.CreateAddressReturnAddressCreateRequest(
+                AddressReturn = AddressReturn.CreateAddressCreateRequest(
                         new AddressCreateRequest() {
                             Name = "Shwan Ippotle",
                             Company = "Shippo",
@@ -187,41 +187,41 @@ var res = await sdk.Batches.CreateAsync(
                             IsResidential = true,
                             Metadata = "Customer ID 123456",
                             Validate = true,
-                        },
+                        }
                 ),
-                AddressTo = AddressTo.CreateAddressToStr(
-                "d799c2679e644279b59fe661ac8fa489",
+                AddressTo = AddressTo.CreateStr(
+                "d799c2679e644279b59fe661ac8fa489"
                 ),
-                CustomsDeclaration = ShipmentCreateRequestCustomsDeclaration.CreateShipmentCreateRequestCustomsDeclarationStr(
-                "adcfdddf8ec64b84ad22772bce3ea37a",
+                CustomsDeclaration = ShipmentCreateRequestCustomsDeclaration.CreateStr(
+                "adcfdddf8ec64b84ad22772bce3ea37a"
                 ),
                 CarrierAccounts = new List<string>() {
                     "065a4a8c10d24a34ab932163a1b87f52",
                     "73f706f4bdb94b54a337563840ce52b0",
                 },
                 Parcels = new List<Models.Components.Parcels>() {
-                    Parcels.CreateParcelsParcelCreateFromTemplateRequest(
+                    Parcels.CreateParcelCreateFromTemplateRequest(
                         new ParcelCreateFromTemplateRequest() {
                             Extra = new ParcelExtra() {
                                 Cod = new Cod() {
                                     Amount = "5.5",
                                     Currency = "USD",
-                                    PaymentMethod = PaymentMethod.Cash,
+                                    PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
                                 },
                                 Insurance = new ParcelInsurance() {
                                     Amount = "5.5",
                                     Content = "Laptop",
                                     Currency = "USD",
-                                    Provider = ParcelInsuranceProvider.Ups,
+                                    Provider = Shippo.Models.Components.ParcelInsuranceProvider.Ups,
                                 },
                             },
                             Metadata = "Customer ID 123456",
                             MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
                             Weight = "1",
-                            Template = ParcelTemplateEnumSet.CreateParcelTemplateEnumSetUSPSParcelTemplate(
-                            Shippo.Models.Components.USPSParcelTemplate.USPSFlatRateGiftCardEnvelope,
+                            Template = ParcelTemplateEnumSet.CreateParcelTemplateUSPSEnum(
+                            Shippo.Models.Components.ParcelTemplateUSPSEnum.USPSFlatRateGiftCardEnvelope
                             ),
-                        },
+                        }
                     ),
                 },
             },
@@ -261,8 +261,8 @@ For more details on filtering results, see our guide on <a href="https://docs.go
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -300,9 +300,9 @@ Adds batch shipments to an existing batch.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
 using System.Collections.Generic;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -335,7 +335,7 @@ var res = await sdk.Batches.AddShipmentsAsync(
                 Cod = new Cod() {
                     Amount = "5.5",
                     Currency = "USD",
-                    PaymentMethod = PaymentMethod.Cash,
+                    PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
                 },
                 CodNumber = new UPSReferenceFields() {
                     Prefix = "ABC",
@@ -419,13 +419,13 @@ var res = await sdk.Batches.AddShipmentsAsync(
             },
             Metadata = "Customer ID 123456",
             ShipmentDate = "2021-03-22T12:00:00Z",
-            AddressFrom = AddressFrom.CreateAddressFromStr(
-            "d799c2679e644279b59fe661ac8fa488",
+            AddressFrom = AddressFrom.CreateStr(
+            "d799c2679e644279b59fe661ac8fa488"
             ),
-            AddressReturn = AddressReturn.CreateAddressReturnStr(
-            "d799c2679e644279b59fe661ac8fa488",
+            AddressReturn = AddressReturn.CreateStr(
+            "d799c2679e644279b59fe661ac8fa488"
             ),
-            AddressTo = AddressTo.CreateAddressToAddressCreateRequest(
+            AddressTo = AddressTo.CreateAddressCreateRequest(
                     new AddressCreateRequest() {
                         Name = "Shwan Ippotle",
                         Company = "Shippo",
@@ -441,29 +441,29 @@ var res = await sdk.Batches.AddShipmentsAsync(
                         IsResidential = true,
                         Metadata = "Customer ID 123456",
                         Validate = true,
-                    },
+                    }
             ),
-            CustomsDeclaration = ShipmentCreateRequestCustomsDeclaration.CreateShipmentCreateRequestCustomsDeclarationStr(
-            "adcfdddf8ec64b84ad22772bce3ea37a",
+            CustomsDeclaration = ShipmentCreateRequestCustomsDeclaration.CreateStr(
+            "adcfdddf8ec64b84ad22772bce3ea37a"
             ),
             CarrierAccounts = new List<string>() {
                 "065a4a8c10d24a34ab932163a1b87f52",
                 "73f706f4bdb94b54a337563840ce52b0",
             },
             Parcels = new List<Models.Components.Parcels>() {
-                Parcels.CreateParcelsParcelCreateRequest(
+                Parcels.CreateParcelCreateRequest(
                     new ParcelCreateRequest() {
                         Extra = new ParcelExtra() {
                             Cod = new Cod() {
                                 Amount = "5.5",
                                 Currency = "USD",
-                                PaymentMethod = PaymentMethod.Cash,
+                                PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
                             },
                             Insurance = new ParcelInsurance() {
                                 Amount = "5.5",
                                 Content = "Laptop",
                                 Currency = "USD",
-                                Provider = ParcelInsuranceProvider.Ups,
+                                Provider = Shippo.Models.Components.ParcelInsuranceProvider.Ups,
                             },
                         },
                         Metadata = "Customer ID 123456",
@@ -473,7 +473,7 @@ var res = await sdk.Batches.AddShipmentsAsync(
                         Height = "1",
                         Length = "1",
                         Width = "1",
-                    },
+                    }
                 ),
             },
         },
@@ -513,8 +513,8 @@ When all the shipments are purchased, the status will change to `PURCHASED` and 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -552,9 +552,9 @@ Removes shipments from an existing batch shipment.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
 using System.Collections.Generic;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
