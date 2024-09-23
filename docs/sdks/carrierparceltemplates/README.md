@@ -26,17 +26,19 @@ List all carrier parcel template objects. <br> Use the following query string pa
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.CarrierParcelTemplates.ListAsync(
-    include: Include.Enabled,
+    include: Shippo.Models.Requests.Include.Enabled,
     carrier: "fedex",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -49,15 +51,16 @@ var res = await sdk.CarrierParcelTemplates.ListAsync(
 | `Carrier`                                            | *string*                                             | :heavy_minus_sign:                                   | filter by specific carrier                           | fedex                                                |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
 ### Response
 
 **[CarrierParcelTemplateList](../../Models/Components/CarrierParcelTemplateList.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## Get
 
@@ -67,16 +70,18 @@ Fetches the parcel template information for a specific carrier parcel template, 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.CarrierParcelTemplates.GetAsync(
     carrierParcelTemplateToken: "<value>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -88,10 +93,10 @@ var res = await sdk.CarrierParcelTemplates.GetAsync(
 | `CarrierParcelTemplateToken`                                    | *string*                                                        | :heavy_check_mark:                                              | The unique string representation of the carrier parcel template |                                                                 |
 | `ShippoApiVersion`                                              | *string*                                                        | :heavy_minus_sign:                                              | String used to pick a non-default API version to use            | 2018-02-08                                                      |
 
-
 ### Response
 
 **[CarrierParcelTemplate](../../Models/Components/CarrierParcelTemplate.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

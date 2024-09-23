@@ -8,60 +8,23 @@
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.Addresses.ListAsync(
     page: 1,
     results: 5,
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
 <!-- End SDK Example Usage [usage] -->
-
-<!-- Start Global Parameters [global-parameters] -->
-## Global Parameters
-
-## Global Parameters
-
-A parameter is configured globally. This parameter may be set on the SDK client instance itself during initialization. When configured as an option during SDK initialization, This global value will be used as the default on the operations that use it. When such operations are called, there is a place in each to override the global value, if needed.
-
-For example, you can set `SHIPPO-API-VERSION` to `"2018-02-08"` at SDK initialization and then you do not have to pass the same value on calls to operations like `List`. But if you want to do so you may, which will locally override the global setting. See the example code below for a demonstration.
-
-
-### Available Globals
-
-The following global parameter is available.
-
-| Name | Type | Required | Description |
-| ---- | ---- |:--------:| ----------- |
-| shippoApiVersion | string |  | String used to pick a non-default API version to use |
-
-
-### Example
-
-```csharp
-using Shippo;
-using Shippo.Models.Components;
-using Shippo.Models.Requests;
-
-var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
-
-var res = await sdk.Addresses.ListAsync(
-    page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08");
-
-// handle response
-```
-<!-- End Global Parameters [global-parameters] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
@@ -79,45 +42,50 @@ Handling errors in this SDK should largely match your expectations.  All operati
 
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System;
 using Shippo.Models.Errors;
-using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
-
-InitiateOauth2SigninRequest req = new InitiateOauth2SigninRequest() {
-    CarrierAccountObjectId = "<value>",
-    RedirectUri = "http://fine-cummerbund.biz",
-};
+    shippoApiVersion: "2018-02-08"
+);
 
 try
 {
+    InitiateOauth2SigninRequest req = new InitiateOauth2SigninRequest() {
+        CarrierAccountObjectId = "<value>",
+        RedirectUri = "https://enlightened-mortise.com/",
+    };
+
     var res = await sdk.CarrierAccounts.InitiateOauth2SigninAsync(req);
+
     // handle response
 }
 catch (Exception ex)
 {
     if (ex is InitiateOauth2SigninResponseBody)
     {
-        // handle exception
+        // Handle exception data
+        throw;
     }
     else if (ex is InitiateOauth2SigninCarrierAccountsResponseBody)
     {
-        // handle exception
+        // Handle exception data
+        throw;
     }
     else if (ex is InitiateOauth2SigninCarrierAccountsResponseResponseBody)
     {
-        // handle exception
+        // Handle exception data
+        throw;
     }
-    else if (ex is Shippo.Models.Errors.SDKException)
+    else if (ex is Models.Errors.SDKException)
     {
-        // handle exception
+        // Handle default exception
+        throw;
     }
 }
-
 ```
 <!-- End Error Handling [errors] -->
 
@@ -154,17 +122,19 @@ This SDK supports the following security scheme globally:
 To authenticate with the API the `APIKeyHeader` parameter must be set when initializing the SDK client instance. For example:
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.Addresses.ListAsync(
     page: 1,
     results: 5,
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```

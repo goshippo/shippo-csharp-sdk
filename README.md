@@ -13,19 +13,38 @@ apiKeyHeader:"shippo_test_595d9cb0c0e14497bf07e75ecfec6c6d"
 ```
 
 
+<!-- Start Summary [summary] -->
+## Summary
+
+Shippo external API.: Use this API to integrate with the Shippo service
+<!-- End Summary [summary] -->
+
+<!-- Start Table of Contents [toc] -->
+## Table of Contents
+
+* [SDK Installation](#sdk-installation)
+* [SDK Example Usage](#sdk-example-usage)
+* [Available Resources and Operations](#available-resources-and-operations)
+* [Error Handling](#error-handling)
+* [Server Selection](#server-selection)
+* [Authentication](#authentication)
+<!-- End Table of Contents [toc] -->
+
 <!-- Start SDK Installation [installation] -->
 ## SDK Installation
 
 ### NuGet
 
+To add the [NuGet](https://www.nuget.org/) package to a .NET project:
 ```bash
 dotnet add package Shippo
 ```
 
 ### Locally
 
+To add a reference to a local instance of the SDK in a .NET project:
 ```bash
-dotnet add reference path/to/Shippo.csproj
+dotnet add reference Shippo/Shippo.csproj
 ```
 <!-- End SDK Installation [installation] -->
 
@@ -36,17 +55,19 @@ dotnet add reference path/to/Shippo.csproj
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.Addresses.ListAsync(
     page: 1,
     results: 5,
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -101,6 +122,9 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 <!-- Start Available Resources and Operations [operations] -->
 ## Available Resources and Operations
 
+<details open>
+<summary>Available methods</summary>
+
 ### [Addresses](docs/sdks/addresses/README.md)
 
 * [List](docs/sdks/addresses/README.md#list) - List all addresses
@@ -126,6 +150,11 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [Register](docs/sdks/carrieraccounts/README.md#register) - Add a Shippo carrier account
 * [GetRegistrationStatus](docs/sdks/carrieraccounts/README.md#getregistrationstatus) - Get Carrier Registration status
 
+### [CarrierParcelTemplates](docs/sdks/carrierparceltemplates/README.md)
+
+* [List](docs/sdks/carrierparceltemplates/README.md#list) - List all carrier parcel templates
+* [Get](docs/sdks/carrierparceltemplates/README.md#get) - Retrieve a carrier parcel templates
+
 ### [CustomsDeclarations](docs/sdks/customsdeclarations/README.md)
 
 * [List](docs/sdks/customsdeclarations/README.md#list) - List all customs declarations
@@ -138,13 +167,6 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [Create](docs/sdks/customsitems/README.md#create) - Create a new customs item
 * [Get](docs/sdks/customsitems/README.md#get) - Retrieve a customs item
 
-### [RatesAtCheckout](docs/sdks/ratesatcheckout/README.md)
-
-* [Create](docs/sdks/ratesatcheckout/README.md#create) - Generate a live rates request
-* [GetDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#getdefaultparceltemplate) - Show current default parcel template
-* [UpdateDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#updatedefaultparceltemplate) - Update default parcel template
-* [DeleteDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#deletedefaultparceltemplate) - Clear current default parcel template
-
 ### [Manifests](docs/sdks/manifests/README.md)
 
 * [List](docs/sdks/manifests/README.md#list) - List all manifests
@@ -156,11 +178,6 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [List](docs/sdks/orders/README.md#list) - List all orders
 * [Create](docs/sdks/orders/README.md#create) - Create a new order
 * [Get](docs/sdks/orders/README.md#get) - Retrieve an order
-
-### [CarrierParcelTemplates](docs/sdks/carrierparceltemplates/README.md)
-
-* [List](docs/sdks/carrierparceltemplates/README.md#list) - List all carrier parcel templates
-* [Get](docs/sdks/carrierparceltemplates/README.md#get) - Retrieve a carrier parcel templates
 
 ### [Parcels](docs/sdks/parcels/README.md)
 
@@ -177,6 +194,13 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [Get](docs/sdks/rates/README.md#get) - Retrieve a rate
 * [ListShipmentRates](docs/sdks/rates/README.md#listshipmentrates) - Retrieve shipment rates
 * [ListShipmentRatesByCurrencyCode](docs/sdks/rates/README.md#listshipmentratesbycurrencycode) - Retrieve shipment rates in currency
+
+### [RatesAtCheckout](docs/sdks/ratesatcheckout/README.md)
+
+* [Create](docs/sdks/ratesatcheckout/README.md#create) - Generate a live rates request
+* [GetDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#getdefaultparceltemplate) - Show current default parcel template
+* [UpdateDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#updatedefaultparceltemplate) - Update default parcel template
+* [DeleteDefaultParcelTemplate](docs/sdks/ratesatcheckout/README.md#deletedefaultparceltemplate) - Clear current default parcel template
 
 ### [Refunds](docs/sdks/refunds/README.md)
 
@@ -197,6 +221,14 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [Create](docs/sdks/shipments/README.md#create) - Create a new shipment
 * [Get](docs/sdks/shipments/README.md#get) - Retrieve a shipment
 
+### [ShippoAccounts](docs/sdks/shippoaccounts/README.md)
+
+* [List](docs/sdks/shippoaccounts/README.md#list) - List all Shippo Accounts
+* [Create](docs/sdks/shippoaccounts/README.md#create) - Create a Shippo Account
+* [Get](docs/sdks/shippoaccounts/README.md#get) - Retrieve a Shippo Account
+* [Update](docs/sdks/shippoaccounts/README.md#update) - Update a Shippo Account
+
+
 ### [TrackingStatus](docs/sdks/trackingstatus/README.md)
 
 * [Create](docs/sdks/trackingstatus/README.md#create) - Register a tracking webhook
@@ -216,13 +248,6 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [Get](docs/sdks/userparceltemplates/README.md#get) - Retrieves a user parcel template
 * [Update](docs/sdks/userparceltemplates/README.md#update) - Update an existing user parcel template
 
-### [ShippoAccounts](docs/sdks/shippoaccounts/README.md)
-
-* [List](docs/sdks/shippoaccounts/README.md#list) - List all Shippo Accounts
-* [Create](docs/sdks/shippoaccounts/README.md#create) - Create a Shippo Account
-* [Get](docs/sdks/shippoaccounts/README.md#get) - Retrieve a Shippo Account
-* [Update](docs/sdks/shippoaccounts/README.md#update) - Update a Shippo Account
-
 ### [Webhooks](docs/sdks/webhooks/README.md)
 
 * [CreateWebhook](docs/sdks/webhooks/README.md#createwebhook) - Create a new webhook
@@ -230,6 +255,8 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [GetWebhook](docs/sdks/webhooks/README.md#getwebhook) - Retrieve a specific webhook
 * [UpdateWebhook](docs/sdks/webhooks/README.md#updatewebhook) - Update an existing webhook
 * [DeleteWebhook](docs/sdks/webhooks/README.md#deletewebhook) - Delete a specific webhook
+
+</details>
 <!-- End Available Resources and Operations [operations] -->
 
 

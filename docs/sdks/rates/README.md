@@ -20,16 +20,18 @@ Returns an existing rate using a rate object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.Rates.GetAsync(
     rateId: "<value>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -41,15 +43,16 @@ var res = await sdk.Rates.GetAsync(
 | `RateId`                                             | *string*                                             | :heavy_check_mark:                                   | Object ID of the rate                                |                                                      |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
 ### Response
 
 **[Rate](../../Models/Components/Rate.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## ListShipmentRates
 
@@ -59,12 +62,13 @@ Returns a paginated list of rates associated with a shipment
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 ListShipmentRatesRequest req = new ListShipmentRatesRequest() {
     ShipmentId = "<value>",
@@ -81,15 +85,16 @@ var res = await sdk.Rates.ListShipmentRatesAsync(req);
 | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | `request`                                                                     | [ListShipmentRatesRequest](../../Models/Requests/ListShipmentRatesRequest.md) | :heavy_check_mark:                                                            | The request object to use for the request.                                    |
 
-
 ### Response
 
 **[RatePaginatedList](../../Models/Components/RatePaginatedList.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## ListShipmentRatesByCurrencyCode
 
@@ -105,12 +110,13 @@ Note: re-requesting the rates with a different currency code will re-queue the s
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 ListShipmentRatesByCurrencyCodeRequest req = new ListShipmentRatesByCurrencyCodeRequest() {
     ShipmentId = "<value>",
@@ -128,10 +134,10 @@ var res = await sdk.Rates.ListShipmentRatesByCurrencyCodeAsync(req);
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
 | `request`                                                                                                 | [ListShipmentRatesByCurrencyCodeRequest](../../Models/Requests/ListShipmentRatesByCurrencyCodeRequest.md) | :heavy_check_mark:                                                                                        | The request object to use for the request.                                                                |
 
-
 ### Response
 
 **[RatePaginatedList](../../Models/Components/RatePaginatedList.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

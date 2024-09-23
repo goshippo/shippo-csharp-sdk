@@ -30,7 +30,8 @@ using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 WebhookUpdateRequest req = new WebhookUpdateRequest() {
     Event = Shippo.Models.Components.WebhookEventTypeEnum.BatchCreated,
@@ -50,15 +51,16 @@ var res = await sdk.Webhooks.CreateWebhookAsync(req);
 | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | `request`                                                               | [WebhookUpdateRequest](../../Models/Components/WebhookUpdateRequest.md) | :heavy_check_mark:                                                      | The request object to use for the request.                              |
 
-
 ### Response
 
 **[Webhook](../../Models/Components/Webhook.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## ListWebhooks
 
@@ -72,22 +74,24 @@ using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.Webhooks.ListWebhooksAsync();
 
 // handle response
 ```
 
-
 ### Response
 
 **[WebhookPaginatedList](../../Models/Components/WebhookPaginatedList.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## GetWebhook
 
@@ -97,12 +101,13 @@ Returns the details of a specific webhook using the webhook object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.Webhooks.GetWebhookAsync(webhookId: "<value>");
 
@@ -115,15 +120,16 @@ var res = await sdk.Webhooks.GetWebhookAsync(webhookId: "<value>");
 | ------------------------------------ | ------------------------------------ | ------------------------------------ | ------------------------------------ |
 | `WebhookId`                          | *string*                             | :heavy_check_mark:                   | Object ID of the webhook to retrieve |
 
-
 ### Response
 
 **[Webhook](../../Models/Components/Webhook.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## UpdateWebhook
 
@@ -133,21 +139,23 @@ Updates an existing webhook using the webhook object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.Webhooks.UpdateWebhookAsync(
     webhookId: "<value>",
     webhookUpdateRequest: new WebhookUpdateRequest() {
-    Event = Shippo.Models.Components.WebhookEventTypeEnum.BatchCreated,
-    Url = "https://example.com/shippo-webhook",
-    Active = true,
-    IsTest = false,
-});
+        Event = Shippo.Models.Components.WebhookEventTypeEnum.BatchCreated,
+        Url = "https://example.com/shippo-webhook",
+        Active = true,
+        IsTest = false,
+    }
+);
 
 // handle response
 ```
@@ -159,15 +167,16 @@ var res = await sdk.Webhooks.UpdateWebhookAsync(
 | `WebhookId`                                                             | *string*                                                                | :heavy_check_mark:                                                      | Object ID of the webhook to retrieve                                    |
 | `WebhookUpdateRequest`                                                  | [WebhookUpdateRequest](../../Models/Components/WebhookUpdateRequest.md) | :heavy_check_mark:                                                      | N/A                                                                     |
 
-
 ### Response
 
 **[Webhook](../../Models/Components/Webhook.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## DeleteWebhook
 
@@ -177,16 +186,17 @@ Deletes a specific webhook using the webhook object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 await sdk.Webhooks.DeleteWebhookAsync(webhookId: "<value>");
 
-
+// handle response
 ```
 
 ### Parameters
