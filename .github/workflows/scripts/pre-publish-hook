@@ -40,12 +40,12 @@ yq -i -o xml -p xml '
       {
         "None": [
           {
-            "+@Include": "..\LICENSE",
+            "+@Include": "..\\LICENSE",
             "+@Pack": "true",
             "+@PackagePath": "\\"
           },
           {
-            "+@Include": "..\res\shippo.png",
+            "+@Include": "..\\res\\shippo.png",
             "+@Pack": "true",
             "+@PackagePath": "\\"
           }
