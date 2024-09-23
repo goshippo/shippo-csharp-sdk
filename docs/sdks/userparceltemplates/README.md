@@ -27,12 +27,13 @@ Returns a list all of all user parcel template objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.UserParcelTemplates.ListAsync(shippoApiVersion: "2018-02-08");
 
@@ -45,15 +46,16 @@ var res = await sdk.UserParcelTemplates.ListAsync(shippoApiVersion: "2018-02-08"
 | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
 ### Response
 
 **[UserParcelTemplateList](../../Models/Components/UserParcelTemplateList.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## Create
 
@@ -69,21 +71,23 @@ and depth, as well as their units."
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.UserParcelTemplates.CreateAsync(
-    userParcelTemplateCreateRequest: UserParcelTemplateCreateRequest.CreateUserParcelTemplateCreateRequestUserParcelTemplateWithCarrierTemplateCreateRequest(
-    new UserParcelTemplateWithCarrierTemplateCreateRequest() {
-        Weight = "12",
-        WeightUnit = WeightUnitEnum.Lb,
-    },
-),
-    shippoApiVersion: "2018-02-08");
+    userParcelTemplateCreateRequest: UserParcelTemplateCreateRequest.CreateUserParcelTemplateWithCarrierTemplateCreateRequest(
+        new UserParcelTemplateWithCarrierTemplateCreateRequest() {
+            Weight = "12",
+            WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        }
+    ),
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -95,15 +99,16 @@ var res = await sdk.UserParcelTemplates.CreateAsync(
 | `UserParcelTemplateCreateRequest`                                                             | [UserParcelTemplateCreateRequest](../../Models/Components/UserParcelTemplateCreateRequest.md) | :heavy_check_mark:                                                                            | N/A                                                                                           |                                                                                               |
 | `ShippoApiVersion`                                                                            | *string*                                                                                      | :heavy_minus_sign:                                                                            | String used to pick a non-default API version to use                                          | 2018-02-08                                                                                    |
 
-
 ### Response
 
 **[UserParcelTemplate](../../Models/Components/UserParcelTemplate.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## Delete
 
@@ -113,52 +118,18 @@ Deletes a user parcel template using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 await sdk.UserParcelTemplates.DeleteAsync(
     userParcelTemplateObjectId: "<value>",
-    shippoApiVersion: "2018-02-08");
-
-
-```
-
-### Parameters
-
-| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `UserParcelTemplateObjectId`                         | *string*                                             | :heavy_check_mark:                                   | Object ID of the user parcel template                |                                                      |
-| `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
-
-### Errors
-
-| Error Object                      | Status Code                       | Content Type                      |
-| --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
-## Get
-
-Returns the parcel template information for a specific user parcel
-template, identified by the object ID.
-
-### Example Usage
-
-```csharp
-using Shippo;
-using Shippo.Models.Components;
-using Shippo.Models.Requests;
-
-var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
-
-var res = await sdk.UserParcelTemplates.GetAsync(
-    userParcelTemplateObjectId: "<value>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -170,15 +141,55 @@ var res = await sdk.UserParcelTemplates.GetAsync(
 | `UserParcelTemplateObjectId`                         | *string*                                             | :heavy_check_mark:                                   | Object ID of the user parcel template                |                                                      |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
-### Response
-
-**[UserParcelTemplate](../../Models/Components/UserParcelTemplate.md)**
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
+
+## Get
+
+Returns the parcel template information for a specific user parcel
+template, identified by the object ID.
+
+### Example Usage
+
+```csharp
+using Shippo;
+using Shippo.Models.Requests;
+using Shippo.Models.Components;
+
+var sdk = new ShippoSDK(
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
+);
+
+var res = await sdk.UserParcelTemplates.GetAsync(
+    userParcelTemplateObjectId: "<value>",
+    shippoApiVersion: "2018-02-08"
+);
+
+// handle response
+```
+
+### Parameters
+
+| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
+| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
+| `UserParcelTemplateObjectId`                         | *string*                                             | :heavy_check_mark:                                   | Object ID of the user parcel template                |                                                      |
+| `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
+
+### Response
+
+**[UserParcelTemplate](../../Models/Components/UserParcelTemplate.md)**
+
+### Errors
+
+| Error Object                      | Status Code                       | Content Type                      |
+| --------------------------------- | --------------------------------- | --------------------------------- |
+| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## Update
 
@@ -188,25 +199,27 @@ Updates an existing user parcel template.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.UserParcelTemplates.UpdateAsync(
     userParcelTemplateObjectId: "<value>",
     shippoApiVersion: "2018-02-08",
     userParcelTemplateUpdateRequest: new UserParcelTemplateUpdateRequest() {
-    DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
-    Height = "6",
-    Length = "10",
-    Name = "My Custom Template",
-    Weight = "12",
-    WeightUnit = WeightUnitEnum.Lb,
-    Width = "8",
-});
+        DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
+        Height = "6",
+        Length = "10",
+        Name = "My Custom Template",
+        Weight = "12",
+        WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        Width = "8",
+    }
+);
 
 // handle response
 ```
@@ -219,10 +232,10 @@ var res = await sdk.UserParcelTemplates.UpdateAsync(
 | `ShippoApiVersion`                                                                            | *string*                                                                                      | :heavy_minus_sign:                                                                            | String used to pick a non-default API version to use                                          | 2018-02-08                                                                                    |
 | `UserParcelTemplateUpdateRequest`                                                             | [UserParcelTemplateUpdateRequest](../../Models/Components/UserParcelTemplateUpdateRequest.md) | :heavy_minus_sign:                                                                            | N/A                                                                                           |                                                                                               |
 
-
 ### Response
 
 **[UserParcelTemplate](../../Models/Components/UserParcelTemplate.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |

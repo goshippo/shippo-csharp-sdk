@@ -20,17 +20,19 @@ Returns a list all customs items objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.CustomsItems.ListAsync(
     page: 1,
     results: 25,
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -43,15 +45,16 @@ var res = await sdk.CustomsItems.ListAsync(
 | `Results`                                            | *long*                                               | :heavy_minus_sign:                                   | The number of results to return per page (max 100)   |                                                      |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
 ### Response
 
 **[CustomsItemPaginatedList](../../Models/Components/CustomsItemPaginatedList.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## Create
 
@@ -61,27 +64,29 @@ Creates a new customs item object.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.CustomsItems.CreateAsync(
     customsItemCreateRequest: new CustomsItemCreateRequest() {
-    Description = "T-Shirt",
-    MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
-    Metadata = "Order ID \"123454\"",
-    NetWeight = "5",
-    OriginCountry = "<value>",
-    Quantity = 20,
-    SkuCode = "HM-123",
-    HsCode = "0901.21",
-    ValueAmount = "200",
-    ValueCurrency = "USD",
-},
-    shippoApiVersion: "2018-02-08");
+        Description = "T-Shirt",
+        MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        Metadata = "Order ID \"123454\"",
+        NetWeight = "5",
+        OriginCountry = "<value>",
+        Quantity = 20,
+        SkuCode = "HM-123",
+        HsCode = "0901.21",
+        ValueAmount = "200",
+        ValueCurrency = "USD",
+    },
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -93,15 +98,16 @@ var res = await sdk.CustomsItems.CreateAsync(
 | `CustomsItemCreateRequest`                                                      | [CustomsItemCreateRequest](../../Models/Components/CustomsItemCreateRequest.md) | :heavy_check_mark:                                                              | CustomsItem details.                                                            |                                                                                 |
 | `ShippoApiVersion`                                                              | *string*                                                                        | :heavy_minus_sign:                                                              | String used to pick a non-default API version to use                            | 2018-02-08                                                                      |
 
-
 ### Response
 
 **[CustomsItem](../../Models/Components/CustomsItem.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
 | Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+
 
 ## Get
 
@@ -111,17 +117,19 @@ Returns an existing customs item using an object ID
 
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 var res = await sdk.CustomsItems.GetAsync(
     customsItemId: "<value>",
     page: 1,
-    shippoApiVersion: "2018-02-08");
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -134,10 +142,10 @@ var res = await sdk.CustomsItems.GetAsync(
 | `Page`                                               | *long*                                               | :heavy_minus_sign:                                   | The page number you want to select                   |                                                      |
 | `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
 
-
 ### Response
 
 **[CustomsItem](../../Models/Components/CustomsItem.md)**
+
 ### Errors
 
 | Error Object                      | Status Code                       | Content Type                      |
