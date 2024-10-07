@@ -5,7 +5,7 @@
 
 Shippo Accounts are used by Shippo Platform Accounts to create and manage Managed Shippo Accounts. 
 Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. 
-They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. 
+They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our <a href="https://docs.goshippo.com/docs/platformaccounts/platform_accounts/">guide</a> for more details.
 <SchemaDefinition schemaRef="#/components/schemas/ShippoAccount"/>
 
 ### Available Operations
@@ -17,7 +17,7 @@ They can be used by marketplaces, e-commerce platforms, and third-party logistic
 
 ## List
 
-Returns a list of Shippo Accounts objects
+Returns a list of Shippo Managed Accounts objects.
 
 ### Example Usage
 
@@ -42,11 +42,11 @@ var res = await sdk.ShippoAccounts.ListAsync(
 
 ### Parameters
 
-| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `Page`                                               | *long*                                               | :heavy_minus_sign:                                   | The page number you want to select                   |                                                      |
-| `Results`                                            | *long*                                               | :heavy_minus_sign:                                   | The number of results to return per page (max 100)   |                                                      |
-| `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
+| Parameter                                                                                                                                                          | Type                                                                                                                                                               | Required                                                                                                                                                           | Description                                                                                                                                                        | Example                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `Page`                                                                                                                                                             | *long*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                 | The page number you want to select                                                                                                                                 |                                                                                                                                                                    |
+| `Results`                                                                                                                                                          | *long*                                                                                                                                                             | :heavy_minus_sign:                                                                                                                                                 | The number of results to return per page (max 100)                                                                                                                 |                                                                                                                                                                    |
+| `ShippoApiVersion`                                                                                                                                                 | *string*                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                 | Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide. | 2018-02-08                                                                                                                                                         |
 
 ### Response
 
@@ -54,14 +54,13 @@ var res = await sdk.ShippoAccounts.ListAsync(
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## Create
 
-Creates a Shippo Account object
+Creates a new <a href="https://docs.goshippo.com/docs/platformaccounts/platform_using_accounts/">Shippo Managed Account</a>.
 
 ### Example Usage
 
@@ -90,10 +89,10 @@ var res = await sdk.ShippoAccounts.CreateAsync(
 
 ### Parameters
 
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `ShippoAccountUpdateRequest`                                                        | [ShippoAccountUpdateRequest](../../Models/Components/ShippoAccountUpdateRequest.md) | :heavy_check_mark:                                                                  | N/A                                                                                 |                                                                                     |
-| `ShippoApiVersion`                                                                  | *string*                                                                            | :heavy_minus_sign:                                                                  | String used to pick a non-default API version to use                                | 2018-02-08                                                                          |
+| Parameter                                                                                                                                                          | Type                                                                                                                                                               | Required                                                                                                                                                           | Description                                                                                                                                                        | Example                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ShippoAccountUpdateRequest`                                                                                                                                       | [ShippoAccountUpdateRequest](../../Models/Components/ShippoAccountUpdateRequest.md)                                                                                | :heavy_check_mark:                                                                                                                                                 | N/A                                                                                                                                                                |                                                                                                                                                                    |
+| `ShippoApiVersion`                                                                                                                                                 | *string*                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                 | Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide. | 2018-02-08                                                                                                                                                         |
 
 ### Response
 
@@ -101,14 +100,13 @@ var res = await sdk.ShippoAccounts.CreateAsync(
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## Get
 
-Returns a Shippo Account using an object ID
+Returns a Shippo Managed Account using an object ID.
 
 ### Example Usage
 
@@ -123,7 +121,7 @@ var sdk = new ShippoSDK(
 );
 
 var res = await sdk.ShippoAccounts.GetAsync(
-    shippoAccountId: "<value>",
+    shippoAccountId: "<id>",
     shippoApiVersion: "2018-02-08"
 );
 
@@ -132,10 +130,10 @@ var res = await sdk.ShippoAccounts.GetAsync(
 
 ### Parameters
 
-| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `ShippoAccountId`                                    | *string*                                             | :heavy_check_mark:                                   | Object ID of the ShippoAccount                       |                                                      |
-| `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
+| Parameter                                                                                                                                                          | Type                                                                                                                                                               | Required                                                                                                                                                           | Description                                                                                                                                                        | Example                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ShippoAccountId`                                                                                                                                                  | *string*                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                 | Object ID of the ShippoAccount                                                                                                                                     |                                                                                                                                                                    |
+| `ShippoApiVersion`                                                                                                                                                 | *string*                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                 | Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide. | 2018-02-08                                                                                                                                                         |
 
 ### Response
 
@@ -143,14 +141,13 @@ var res = await sdk.ShippoAccounts.GetAsync(
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## Update
 
-Updates a Shippo Account object
+Updates a Shippo Managed Account using an object ID.
 
 ### Example Usage
 
@@ -165,7 +162,7 @@ var sdk = new ShippoSDK(
 );
 
 var res = await sdk.ShippoAccounts.UpdateAsync(
-    shippoAccountId: "<value>",
+    shippoAccountId: "<id>",
     shippoApiVersion: "2018-02-08",
     shippoAccountUpdateRequest: new ShippoAccountUpdateRequest() {
         Email = "hippo@shippo.com",
@@ -180,11 +177,11 @@ var res = await sdk.ShippoAccounts.UpdateAsync(
 
 ### Parameters
 
-| Parameter                                                                           | Type                                                                                | Required                                                                            | Description                                                                         | Example                                                                             |
-| ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| `ShippoAccountId`                                                                   | *string*                                                                            | :heavy_check_mark:                                                                  | Object ID of the ShippoAccount                                                      |                                                                                     |
-| `ShippoApiVersion`                                                                  | *string*                                                                            | :heavy_minus_sign:                                                                  | String used to pick a non-default API version to use                                | 2018-02-08                                                                          |
-| `ShippoAccountUpdateRequest`                                                        | [ShippoAccountUpdateRequest](../../Models/Components/ShippoAccountUpdateRequest.md) | :heavy_minus_sign:                                                                  | N/A                                                                                 |                                                                                     |
+| Parameter                                                                                                                                                          | Type                                                                                                                                                               | Required                                                                                                                                                           | Description                                                                                                                                                        | Example                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `ShippoAccountId`                                                                                                                                                  | *string*                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                 | Object ID of the ShippoAccount                                                                                                                                     |                                                                                                                                                                    |
+| `ShippoApiVersion`                                                                                                                                                 | *string*                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                 | Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide. | 2018-02-08                                                                                                                                                         |
+| `ShippoAccountUpdateRequest`                                                                                                                                       | [ShippoAccountUpdateRequest](../../Models/Components/ShippoAccountUpdateRequest.md)                                                                                | :heavy_minus_sign:                                                                                                                                                 | N/A                                                                                                                                                                |                                                                                                                                                                    |
 
 ### Response
 
@@ -192,6 +189,6 @@ var res = await sdk.ShippoAccounts.UpdateAsync(
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |

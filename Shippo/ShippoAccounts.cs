@@ -27,7 +27,7 @@ namespace Shippo
     /// 
     /// <remarks>
     /// Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. <br/>
-    /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. <br/>
+    /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.<br/>
     /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShippoAccount&quot;/&gt;
     /// </remarks>
     /// </summary>
@@ -38,7 +38,7 @@ namespace Shippo
         /// List all Shippo Accounts
         /// 
         /// <remarks>
-        /// Returns a list of Shippo Accounts objects
+        /// Returns a list of Shippo Managed Accounts objects.
         /// </remarks>
         /// </summary>
         Task<ShippoAccountPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null);
@@ -47,7 +47,7 @@ namespace Shippo
         /// Create a Shippo Account
         /// 
         /// <remarks>
-        /// Creates a Shippo Account object
+        /// Creates a new &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_using_accounts/&quot;&gt;Shippo Managed Account&lt;/a&gt;.
         /// </remarks>
         /// </summary>
         Task<ShippoAccount> CreateAsync(ShippoAccountUpdateRequest shippoAccountUpdateRequest, string? shippoApiVersion = null);
@@ -56,7 +56,7 @@ namespace Shippo
         /// Retrieve a Shippo Account
         /// 
         /// <remarks>
-        /// Returns a Shippo Account using an object ID
+        /// Returns a Shippo Managed Account using an object ID.
         /// </remarks>
         /// </summary>
         Task<ShippoAccount> GetAsync(string shippoAccountId, string? shippoApiVersion = null);
@@ -65,7 +65,7 @@ namespace Shippo
         /// Update a Shippo Account
         /// 
         /// <remarks>
-        /// Updates a Shippo Account object
+        /// Updates a Shippo Managed Account using an object ID.
         /// </remarks>
         /// </summary>
         Task<ShippoAccount> UpdateAsync(string shippoAccountId, string? shippoApiVersion = null, ShippoAccountUpdateRequest? shippoAccountUpdateRequest = null);
@@ -76,7 +76,7 @@ namespace Shippo
     /// 
     /// <remarks>
     /// Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. <br/>
-    /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. <br/>
+    /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.<br/>
     /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShippoAccount&quot;/&gt;
     /// </remarks>
     /// </summary>
@@ -84,10 +84,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.5";
-        private const string _sdkGenVersion = "2.421.3";
+        private const string _sdkVersion = "5.0.0-beta.6";
+        private const string _sdkGenVersion = "2.434.1";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.5 2.421.3 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.6 2.434.1 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

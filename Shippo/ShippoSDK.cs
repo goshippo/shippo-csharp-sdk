@@ -252,7 +252,7 @@ namespace Shippo
         /// 
         /// <remarks>
         /// Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. <br/>
-        /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. <br/>
+        /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.<br/>
         /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShippoAccount&quot;/&gt;
         /// </remarks>
         /// </summary>
@@ -316,10 +316,10 @@ namespace Shippo
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.5";
-        private const string _sdkGenVersion = "2.421.3";
+        private const string _sdkVersion = "5.0.0-beta.6";
+        private const string _sdkGenVersion = "2.434.1";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.5 2.421.3 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.6 2.434.1 2018-02-08 Shippo";
         private string _serverUrl = "";
         private int _serverIndex = 0;
         private ISpeakeasyHttpClient _client;

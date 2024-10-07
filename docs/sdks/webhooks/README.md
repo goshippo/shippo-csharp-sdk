@@ -57,10 +57,9 @@ var res = await sdk.Webhooks.CreateWebhookAsync(req);
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## ListWebhooks
 
@@ -88,10 +87,9 @@ var res = await sdk.Webhooks.ListWebhooksAsync();
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## GetWebhook
 
@@ -109,7 +107,7 @@ var sdk = new ShippoSDK(
     shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Webhooks.GetWebhookAsync(webhookId: "<value>");
+var res = await sdk.Webhooks.GetWebhookAsync(webhookId: "<id>");
 
 // handle response
 ```
@@ -126,10 +124,9 @@ var res = await sdk.Webhooks.GetWebhookAsync(webhookId: "<value>");
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## UpdateWebhook
 
@@ -148,7 +145,7 @@ var sdk = new ShippoSDK(
 );
 
 var res = await sdk.Webhooks.UpdateWebhookAsync(
-    webhookId: "<value>",
+    webhookId: "<id>",
     webhookUpdateRequest: new WebhookUpdateRequest() {
         Event = Shippo.Models.Components.WebhookEventTypeEnum.BatchCreated,
         Url = "https://example.com/shippo-webhook",
@@ -173,10 +170,9 @@ var res = await sdk.Webhooks.UpdateWebhookAsync(
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## DeleteWebhook
 
@@ -194,7 +190,7 @@ var sdk = new ShippoSDK(
     shippoApiVersion: "2018-02-08"
 );
 
-await sdk.Webhooks.DeleteWebhookAsync(webhookId: "<value>");
+await sdk.Webhooks.DeleteWebhookAsync(webhookId: "<id>");
 
 // handle response
 ```
@@ -207,6 +203,6 @@ await sdk.Webhooks.DeleteWebhookAsync(webhookId: "<value>");
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |

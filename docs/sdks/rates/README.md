@@ -29,7 +29,7 @@ var sdk = new ShippoSDK(
 );
 
 var res = await sdk.Rates.GetAsync(
-    rateId: "<value>",
+    rateId: "<id>",
     shippoApiVersion: "2018-02-08"
 );
 
@@ -38,10 +38,10 @@ var res = await sdk.Rates.GetAsync(
 
 ### Parameters
 
-| Parameter                                            | Type                                                 | Required                                             | Description                                          | Example                                              |
-| ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- | ---------------------------------------------------- |
-| `RateId`                                             | *string*                                             | :heavy_check_mark:                                   | Object ID of the rate                                |                                                      |
-| `ShippoApiVersion`                                   | *string*                                             | :heavy_minus_sign:                                   | String used to pick a non-default API version to use | 2018-02-08                                           |
+| Parameter                                                                                                                                                          | Type                                                                                                                                                               | Required                                                                                                                                                           | Description                                                                                                                                                        | Example                                                                                                                                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `RateId`                                                                                                                                                           | *string*                                                                                                                                                           | :heavy_check_mark:                                                                                                                                                 | Object ID of the rate                                                                                                                                              |                                                                                                                                                                    |
+| `ShippoApiVersion`                                                                                                                                                 | *string*                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                 | Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide. | 2018-02-08                                                                                                                                                         |
 
 ### Response
 
@@ -49,10 +49,9 @@ var res = await sdk.Rates.GetAsync(
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## ListShipmentRates
 
@@ -71,7 +70,7 @@ var sdk = new ShippoSDK(
 );
 
 ListShipmentRatesRequest req = new ListShipmentRatesRequest() {
-    ShipmentId = "<value>",
+    ShipmentId = "<id>",
 };
 
 var res = await sdk.Rates.ListShipmentRatesAsync(req);
@@ -91,10 +90,9 @@ var res = await sdk.Rates.ListShipmentRatesAsync(req);
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
-
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
 
 ## ListShipmentRatesByCurrencyCode
 
@@ -119,7 +117,7 @@ var sdk = new ShippoSDK(
 );
 
 ListShipmentRatesByCurrencyCodeRequest req = new ListShipmentRatesByCurrencyCodeRequest() {
-    ShipmentId = "<value>",
+    ShipmentId = "<id>",
     CurrencyCode = "USD",
 };
 
@@ -140,6 +138,6 @@ var res = await sdk.Rates.ListShipmentRatesByCurrencyCodeAsync(req);
 
 ### Errors
 
-| Error Object                      | Status Code                       | Content Type                      |
+| Error Type                        | Status Code                       | Content Type                      |
 | --------------------------------- | --------------------------------- | --------------------------------- |
-| Shippo.Models.Errors.SDKException | 4xx-5xx                           | */*                               |
+| Shippo.Models.Errors.SDKException | 4XX, 5XX                          | \*/\*                             |
