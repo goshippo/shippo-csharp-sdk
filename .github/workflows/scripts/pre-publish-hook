@@ -12,7 +12,7 @@ f=Shippo/Shippo.csproj
 echo updating $f...
 condition="'\$(GITHUB_ACTIONS)' == 'true'"
 yq -i -o xml -p xml '
-  ( del( .Project.ItemGroup.None | select(.+@Include == "..\docs\**\*") )
+  ( del( .Project.ItemGroup[0] | select(.+@Include == "..\docs\**\*") )
   | .Project.PropertyGroup = [
       .Project.PropertyGroup,
       [
