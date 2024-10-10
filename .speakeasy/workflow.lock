@@ -1,8 +1,8 @@
-speakeasyVersion: 1.410.0
+speakeasyVersion: 1.416.0
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:1fd4be3f1a19edd1c14cbb3404fa89a16997326be1222a2f6e6e47643e803e9f
+        sourceRevisionDigest: sha256:0ddcda1c29c67f7809b5008579f86846032099e709cf4fccabc3975cfc57c4f8
         sourceBlobDigest: sha256:2c1e7bb5cb50089dd7de31676ff4c85bf469daeb1f81e5d105b34f2ec01b8a34
         tags:
             - latest
@@ -11,7 +11,7 @@ targets:
     csharp:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:1fd4be3f1a19edd1c14cbb3404fa89a16997326be1222a2f6e6e47643e803e9f
+        sourceRevisionDigest: sha256:0ddcda1c29c67f7809b5008579f86846032099e709cf4fccabc3975cfc57c4f8
         sourceBlobDigest: sha256:2c1e7bb5cb50089dd7de31676ff4c85bf469daeb1f81e5d105b34f2ec01b8a34
 workflow:
     workflowVersion: 1.0.0
