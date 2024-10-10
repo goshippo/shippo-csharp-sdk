@@ -3,10 +3,10 @@ id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
   docChecksum: 8b7dbe00ca1ad6842796749f88d08de0
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.410.0
-  generationVersion: 2.434.1
-  releaseVersion: 5.0.0-beta.6
-  configChecksum: 9b11b806c974cf00a07fd293133a0a34
+  speakeasyVersion: 1.416.0
+  generationVersion: 2.438.1
+  releaseVersion: 5.0.0-beta.7
+  configChecksum: d4429a45105d8c3a1b87a1de596ed82a
   repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
   published: true
 features:
