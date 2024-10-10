@@ -1,19 +1,19 @@
 lockVersion: 2.0.0
 id: 24fc7546-e445-46cb-91d2-49cbb44a86ac
 management:
-  docChecksum: 2edac3552b0c3728ec7bf25184e0a6c1
+  docChecksum: 8b7dbe00ca1ad6842796749f88d08de0
   docVersion: "2018-02-08"
-  speakeasyVersion: 1.401.2
-  generationVersion: 2.421.3
-  releaseVersion: 5.0.0-beta.5
-  configChecksum: f2f75205ee3a14863c66c9e45ed16dcb
+  speakeasyVersion: 1.410.0
+  generationVersion: 2.434.1
+  releaseVersion: 5.0.0-beta.6
+  configChecksum: 9b11b806c974cf00a07fd293133a0a34
   repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
   published: true
 features:
   csharp:
     additionalDependencies: 0.1.0
     constsAndDefaults: 0.0.1
-    core: 3.10.0
+    core: 3.10.3
     flattening: 2.81.3
     globalSecurity: 2.83.6
     globalSecurityCallbacks: 0.1.0
@@ -775,6 +775,7 @@ examples:
   ListAddresses:
     speakeasy-default-list-addresses:
       parameters:
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:
@@ -867,6 +868,7 @@ examples:
   ListCarrierAccounts:
     speakeasy-default-list-carrier-accounts:
       parameters:
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:
@@ -926,7 +928,7 @@ examples:
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       requestBody:
-        application/json: {"carrier": "correos"}
+        application/json: {"carrier": "ups", "parameters": {"billing_address_city": "San Francisco", "billing_address_country_iso2": "US", "billing_address_state": "CA", "billing_address_street1": "731 Market St", "billing_address_street2": "STE 200", "billing_address_zip": "94103", "company": "Shippo", "email": "hippo@shippo.com", "full_name": "Shippo Meister", "phone": "1112223333", "pickup_address_city": "San Francisco", "pickup_address_country_iso2": "US", "pickup_address_same_as_billing_address": false, "pickup_address_state": "CA", "pickup_address_street1": "731 Market St", "pickup_address_street2": "STE 200", "pickup_address_zip": "94103", "ups_agreements": true}}
       responses:
         "201":
           application/json: {"account_id": "****", "carrier": "usps", "parameters": {"first_name": "Marlene", "last_name": "Kilback", "phone_number": "(569) 519-5316", "from_address_st": "<value>", "from_address_city": "<value>", "from_address_state": "<value>", "from_address_zip": "<value>", "from_address_country_iso2": "<value>"}, "carrier_name": "USPS", "is_shippo_account": false, "object_id": "6aa34d5f6865448fbb1ee93636e98999", "object_owner": "bob+22@gmail.com", "service_levels": [{"name": "Priority Mail Express", "token": "usps_priority_express", "supports_return_labels": true}], "test": false}
@@ -943,6 +945,7 @@ examples:
   ListCustomsDeclarations:
     speakeasy-default-list-customs-declarations:
       parameters:
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:
@@ -972,6 +975,7 @@ examples:
   ListCustomsItems:
     speakeasy-default-list-customs-items:
       parameters:
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:
@@ -1034,6 +1038,7 @@ examples:
   ListManifests:
     speakeasy-default-list-manifests:
       parameters:
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:
@@ -1113,6 +1118,7 @@ examples:
   ListParcels:
     speakeasy-default-list-parcels:
       parameters:
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:
@@ -1247,6 +1253,7 @@ examples:
   ListShipments:
     speakeasy-default-list-shipments:
       parameters:
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:
@@ -1374,6 +1381,7 @@ examples:
   ListShippoAccounts:
     speakeasy-default-list-shippo-accounts:
       parameters:
+        query: {}
         header:
           SHIPPO-API-VERSION: "2018-02-08"
       responses:

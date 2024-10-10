@@ -3,7 +3,7 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>Shippo</PackageId>
-    <Version>5.0.0-beta.5</Version>
+    <Version>5.0.0-beta.6</Version>
     <TargetFramework>net6.0</TargetFramework>
     <Authors>Shippo</Authors>
     <Copyright>Copyright (c) Shippo 2024</Copyright>

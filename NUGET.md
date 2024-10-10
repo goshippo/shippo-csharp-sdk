@@ -29,14 +29,25 @@ var res = await sdk.Addresses.ListAsync(
 <!-- Start Error Handling [errors] -->
 ## Error Handling
 
-Handling errors in this SDK should largely match your expectations.  All operations return a response object or thow an exception.  If Error objects are specified in your OpenAPI Spec, the SDK will raise the appropriate type.
+Handling errors in this SDK should largely match your expectations. All operations return a response object or throw an exception.
 
-| Error Object                                                                 | Status Code                                                                  | Content Type                                                                 |
+By default, an API error will raise a `Shippo.Models.Errors.SDKException` exception, which has the following properties:
+
+| Property      | Type                  | Description           |
+|---------------|-----------------------|-----------------------|
+| `Message`     | *string*              | The error message     |
+| `StatusCode`  | *int*                 | The HTTP status code  |
+| `RawResponse` | *HttpResponseMessage* | The raw HTTP response |
+| `Body`        | *string*              | The response content  |
+
+When custom error responses are specified for an operation, the SDK may also throw their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `InitiateOauth2SigninAsync` method throws the following exceptions:
+
+| Error Type                                                                   | Status Code                                                                  | Content Type                                                                 |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Shippo.Models.Errors.InitiateOauth2SigninResponseBody                        | 400                                                                          | application/json                                                             |
 | Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401                                                                          | application/json                                                             |
 | Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404                                                                          | application/json                                                             |
-| Shippo.Models.Errors.SDKException                                            | 4xx-5xx                                                                      | */*                                                                          |
+| Shippo.Models.Errors.SDKException                                            | 4XX, 5XX                                                                     | \*/\*                                                                        |
 
 ### Example
 
@@ -55,7 +66,7 @@ var sdk = new ShippoSDK(
 try
 {
     InitiateOauth2SigninRequest req = new InitiateOauth2SigninRequest() {
-        CarrierAccountObjectId = "<value>",
+        CarrierAccountObjectId = "<id>",
         RedirectUri = "https://enlightened-mortise.com/",
     };
 
@@ -80,7 +91,7 @@ catch (Exception ex)
         // Handle exception data
         throw;
     }
-    else if (ex is Models.Errors.SDKException)
+    else if (ex is Shippo.Models.Errors.SDKException)
     {
         // Handle default exception
         throw;
