@@ -12,18 +12,167 @@ namespace Shippo.Models.Requests
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+    using System.ComponentModel;
+    using System.Runtime.CompilerServices;
+
     /// <summary>
     /// filter by specific carrier
     /// </summary>
     public enum Carrier
     {
+        [JsonProperty("airterra")]
+        Airterra,
+        [JsonProperty("apc_postal")]
+        [Description("APC Postal")]
+        APCPostal,
+        [JsonProperty("apg")]
+        APG,
+        [JsonProperty("aramex")]
+        Aramex,
+        [JsonProperty("asendia_us")]
+        [Description("Ascendia US")]
+        AscendiaUS,
+        [JsonProperty("australia_post")]
+        AustraliaPost,
+        [JsonProperty("axlehire")]
+        [Description("Jitsu")]
+        Axlehire,
+        [JsonProperty("better_trucks")]
+        BetterTrucks,
+        [JsonProperty("borderguru")]
+        BorderGuru,
+        [JsonProperty("boxberry")]
+        Boxberry,
+        [JsonProperty("bring")]
+        Bring,
+        [JsonProperty("canada_post")]
+        [Description("Canada Post")]
+        CanadaPost,
+        [JsonProperty("cdl")]
+        CDL,
+        [JsonProperty("chronopost")]
+        Chronopost,
+        [JsonProperty("collect_plus")]
+        CollectPlus,
+        [JsonProperty("correios_br")]
+        CorreiosBR,
+        [JsonProperty("correos_espana")]
+        [Description("Correos España")]
+        CorreosEspana,
+        [JsonProperty("couriersplease")]
+        [Description("Couriers Please")]
+        CouriersPlease,
+        [JsonProperty("colissimo")]
+        Colissimo,
+        [JsonProperty("deutsche_post")]
+        [Description("Deutsche Post")]
+        DeutschePost,
+        [JsonProperty("dhl_benelux")]
+        [Description("DHL Benelux")]
+        DHLBenelux,
+        [JsonProperty("dhl_ecommerce")]
+        [Description("DHL eCommerce")]
+        DHLeCommerce,
+        [JsonProperty("dhl_express")]
+        [Description("DHL Express")]
+        DHLExpress,
+        [JsonProperty("dhl_germany_c2c")]
+        [Description("DHL Germany C2C")]
+        DHLGermanyC2C,
+        [JsonProperty("dhl_germany")]
+        [Description("DHL Germany")]
+        DHLGermany,
+        [JsonProperty("dpd_de")]
+        [Description("DPD Germany")]
+        DPDDE,
+        [JsonProperty("dpd_uk")]
+        [Description("DPD UK")]
+        DPDUK,
+        [JsonProperty("estafeta")]
+        Estafeta,
+        [JsonProperty("fastway_australia")]
+        [Description("Aramex")]
+        FastwayAustralia,
+        [JsonProperty("fedex")]
+        Fedex,
+        [JsonProperty("globegistics")]
+        [Description("Asendia")]
+        GlobeLogistics,
+        [JsonProperty("gls_us")]
+        [Description("GLS US")]
+        GLSUS,
+        [JsonProperty("gophr")]
+        Gophr,
+        [JsonProperty("gso")]
+        GSO,
+        [JsonProperty("hermes_germany_b2c")]
+        [Description("Hermes Germany B2C")]
+        HermesGermanyB2C,
+        [JsonProperty("hermes_uk")]
+        [Description("Evri UK")]
+        HermesUK,
+        [JsonProperty("hongkong_post")]
+        [Description("Hong Kong Post")]
+        HongKongPost,
+        [JsonProperty("lasership")]
+        LaserShip,
+        [JsonProperty("lso")]
+        LSO,
+        [JsonProperty("mondial_relay")]
+        [Description("Mondial Relay")]
+        MondialRelay,
+        [JsonProperty("new_zealand_post")]
+        [Description("New Zealand Post")]
+        NewZealandPost,
+        [JsonProperty("nippon_express")]
+        [Description("Nippon Express")]
+        NipponExpress,
+        [JsonProperty("ontrac")]
+        OnTrac,
+        [JsonProperty("orangeds")]
+        [Description("OrangeDS")]
+        OrangeDS,
+        [JsonProperty("parcelforce")]
+        Parcelforce,
+        [JsonProperty("passport")]
+        Passport,
+        [JsonProperty("pcf")]
+        PCF,
+        [JsonProperty("poste_italiane")]
+        [Description("Poste Italiane")]
+        PosteItaliane,
+        [JsonProperty("posti")]
+        Posti,
+        [JsonProperty("purolator")]
+        Purolator,
+        [JsonProperty("royal_mail")]
+        [Description("Royal Mail")]
+        RoyalMail,
+        [JsonProperty("rr_donnelley")]
+        [Description("ePost Global")]
+        RRDonnelley,
+        [JsonProperty("russian_post")]
+        [Description("Russian Post")]
+        RussianPost,
+        [JsonProperty("sendle")]
+        Sendle,
+        [JsonProperty("skypostal")]
+        SkyPostal,
+        [JsonProperty("stuart")]
+        Stuart,
+        [JsonProperty("swyft")]
+        Swyft,
+        [JsonProperty("uds")]
+        [Description("United Delivery Service")]
+        UDS,
         [JsonProperty("ups")]
+        [Description("United Postal Service")]
         Ups,
         [JsonProperty("usps")]
+        [Description("United States Postal Service")]
         Usps,
-        [JsonProperty("canada_post")]
-        CanadaPost,
+        [JsonProperty("veho")]
+        Veho
     }
 
     public static class CarrierExtension
@@ -31,6 +180,11 @@ namespace Shippo.Models.Requests
         public static string Value(this Carrier value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
+        }
+
+        public static string Description(this Carrier value)
+        {
+            return ((DescriptionAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(DescriptionAttribute), false)[0]).Description ?? value.ToString();
         }
 
         public static Carrier ToEnum(this string value)
