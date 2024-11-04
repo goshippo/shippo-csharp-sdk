@@ -13,50 +13,6 @@ echo updating $f...
 condition="'\$(GITHUB_ACTIONS)' == 'true'"
 yq -i -o xml -p xml '
   ( del( .Project.ItemGroup[0] | select(.+@Include == "..\docs\**\*") )
-  | .Project.PropertyGroup = [
-      .Project.PropertyGroup,
-      [
-        {
-          "+@Condition": "'"$condition"'",
-          "ContinuousIntegrationBuild": "true",
-          "EmbedUntrackedSources": "true",
-          "IncludeSymbols": "true",
-          "PublishRepositoryUrl": "true",
-          "SymbolPackageFormat": "snupkg"
-        },
-        {
-          "Copyright": "Copyright (c) Shippo 2024",
-          "Description": ".NET library which integrates with Shippo Multi Carrier Shipping API. This library provides access to Shippo (goshippo.com) API capabilities. Including label generation, rating, tracking and more.",
-          "PackageLicenseFile": "LICENSE",
-          "PackageIcon": "shippo.png",
-          "PackageProjectUrl": "https://github.com/goshippo/shippo-csharp-sdk",
-          "PackageTags": "USPS Fedex UPS API Shippo",
-          "RepositoryType": "git"
-        }
-      ]
-    ]
-  | .Project.ItemGroup = [
-      .Project.ItemGroup,
-      {
-        "None": [
-          {
-            "+@Include": "..\LICENSE",
-            "+@Pack": "true",
-            "+@PackagePath": "\\"
-          },
-          {
-            "+@Include": "..\res\shippo.png",
-            "+@Pack": "true",
-            "+@PackagePath": "\\"
-          }
-        ],
-        "PackageReference": {
-          "+@Include": "Microsoft.SourceLink.GitHub",
-          "+@PrivateAssets": "All",
-          "+@Version": "8.0.0"
-        }
-      }
-    ]
   )' $f
 # yq escapes single quotes; unescape them
 sed -i "s|&#39;|'|g" $f
