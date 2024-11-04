@@ -11,10 +11,6 @@ generation:
     requestResponseComponentNamesFeb2024: true
   auth:
     oAuth2ClientCredentialsEnabled: true
-info:
-  description: .NET library which integrates with Shippo Multi Carrier Shipping API. This library provides access to Shippo (goshippo.com) API capabilities. Including label generation, rating, tracking and more.
-externalDocs:
-  url: https://github.com/goshippo/shippo-csharp-sdk
 csharp:
   version: 5.0.0-beta.7
   additionalDependencies: []
@@ -41,3 +37,7 @@ csharp:
   packageTags: USPS Fedex UPS API Shippo
   responseFormat: flat
   sourceDirectory: ""
+externalDocs:
+  url: https://github.com/goshippo/shippo-csharp-sdk
+info:
+  description: .NET library which integrates with Shippo Multi Carrier Shipping API. This library provides access to Shippo (goshippo.com) API capabilities. Including label generation, rating, tracking and more.
