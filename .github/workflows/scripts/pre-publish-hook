@@ -10,7 +10,6 @@ sed -i "/^[[:blank:]]*Debug|Any CPU.*/d" $f
 # modify/remove a few generated parts
 f=Shippo/Shippo.csproj
 echo updating $f...
-condition="'\$(GITHUB_ACTIONS)' == 'true'"
 yq -i -o xml -p xml '
   ( del( .Project.ItemGroup[0] | select(.+@Include == "..\docs\**\*") )
   )' $f
