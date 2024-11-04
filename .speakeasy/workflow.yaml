@@ -13,3 +13,7 @@ targets:
         publish:
             nuget:
                 apiKey: $nuget_api_key
+        codeSamples:
+            registry:
+                location: registry.speakeasyapi.dev/shippo/shippo/openapi-code-samples
+            blocking: false

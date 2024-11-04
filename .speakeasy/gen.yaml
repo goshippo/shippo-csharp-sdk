@@ -22,7 +22,7 @@ csharp:
   clientServerStatusCodesAsErrors: true
   disableNamespacePascalCasingApr2024: true
   dotnetVersion: net6.0
-  enableSourceLink: false
+  enableSourceLink: true # Enables publishing with Source Link for better debugging
   flattenGlobalSecurity: true
   imports:
     option: openapi
@@ -32,7 +32,6 @@ csharp:
       operations: Models/Requests
       shared: Models/Components
       webhooks: Models/Webhooks
-  enableSourceLink: true # Enables publishing with Source Link for better debugging
   includeDebugSymbols: true # Includes .pdb files for publishing a symbol package (.snupkg)
   inputModelSuffix: input
   license: MIT License
