@@ -4,7 +4,7 @@ set -Eeuo pipefail
 # remove "Debug|Any CPU" from the list so that "Release|Any CPU" is the default
 f=Shippo.sln
 echo updating $f...
-sed -i "/^[[:blank:]]*Debug|Any CPU.*/d" $f
+sed -i "/^[[:blank:]]*Debug|Any CPU.*/d" "$f"
 
 # add various metadata
 # modify/remove a few generated parts
@@ -12,6 +12,8 @@ f=Shippo/Shippo.csproj
 echo updating $f...
 yq -i -o xml -p xml '
   ( del( .Project.ItemGroup[0] | select(.+@Include == "..\docs\**\*") )
-  )' $f
+  )' $f &&
+sed -i "s/<EmbedAllSources>true<\/EmbedAllSources>/<EmbedUntrackedSources>true<\/EmbedUntrackedSources>/" $f
+
 # yq escapes single quotes; unescape them
 sed -i "s|&#39;|'|g" $f
