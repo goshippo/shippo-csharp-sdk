@@ -16,7 +16,7 @@ on:
 
 jobs:
   publish:
-    uses: goshippo/speakeasy-sdk-generation-action/.github/workflows/sdk-publish.yaml@csharp-sdk
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/sdk-publish.yaml@v15
     secrets:
       github-app-id: ${{ vars.GH_APP_ID }}
       github-app-private-key: ${{ secrets.GH_APP_PRIVATE_KEY }}

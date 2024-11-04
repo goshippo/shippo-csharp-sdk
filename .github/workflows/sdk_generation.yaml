@@ -18,7 +18,7 @@ on:
 
 jobs:
   generate:
-    uses: goshippo/speakeasy-sdk-generation-action/.github/workflows/workflow-executor.yaml@csharp-sdk
+    uses: speakeasy-api/sdk-generation-action/.github/workflows/workflow-executor.yaml@v15
     with:
       force: ${{ github.event.inputs.force }}
       mode: pr
