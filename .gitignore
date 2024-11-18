@@ -3,4 +3,5 @@ bin/
 debug/
 .speakeasy/temp/
 build/
+.idea
 ShippoTests/TestResults/
