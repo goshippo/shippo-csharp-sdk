@@ -2,5 +2,6 @@ obj/
 bin/
 debug/
 .speakeasy/temp/
+.idea
 build/
 ShippoTests/TestResults/
