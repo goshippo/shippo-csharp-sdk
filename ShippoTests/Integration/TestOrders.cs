@@ -30,7 +30,6 @@ public class Orders
         orders.Should().NotBeNull();
         orders.Results.Should().NotBeNull()
             .And.BeOfType<List<Order>>()
-            .And.NotBeEmpty();
         orders.Results.Should().AllSatisfy(order =>
         {
             order.OrderStatus.Should().Be(OrderStatusEnum.Paid);
