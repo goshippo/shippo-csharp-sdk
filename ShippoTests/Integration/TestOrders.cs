@@ -19,24 +19,25 @@ public class OrdersTest
     public async void TestListOrders()
     {
         ListOrdersRequest req = new ListOrdersRequest() {
-            OrderStatus = new List<OrderStatusEnum>() {
-            },
             ShopApp = OrderShopAppEnum.Shippo,
         };
 
         var orders = await sdkFixture.SDK.Orders.ListAsync(req);
 
-        orders.Should().NotBeNull();
+        orders.Should().NotBeNull()
+            .And.BeOfType<OrderPaginatedList>();
         orders.Results.Should().NotBeNull()
             .And.BeOfType<List<Order>>();
-        orders.Results.Should().AllSatisfy(order =>
-        {
-            order.OrderStatus.Should().NotBeNull();
-            order.Should().NotBeNull();
-            order.ObjectId.Should().BeOfType<string>();
-            order.ToAddress.Should().BeOfType<Address>();
-            order.FromAddress.Should().BeOfType<Address>();
-            order.Transactions.Should().BeOfType<List<Transactions>>();
-        });
+        if (orders.Results is not null && orders.Results.Count > 0) {
+            orders.Results.Should().AllSatisfy(order =>
+            {
+                order.OrderStatus.Should().NotBeNull();
+                order.Should().NotBeNull();
+                order.ObjectId.Should().BeOfType<string>();
+                order.ToAddress.Should().BeOfType<Address>();
+                order.FromAddress.Should().BeOfType<Address>();
+                order.Transactions.Should().BeOfType<List<Transactions>>();
+            });
+        }
     }
 }
