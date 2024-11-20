@@ -23,12 +23,12 @@ public class SetupFixture
 }
 
 [Collection("Integration")]
-public class RatesAtCheckout : IClassFixture<SetupFixture>
+public class RatesAtCheckoutTest : IClassFixture<SetupFixture>
 {
     SDKFixture sdkFixture;
     SetupFixture setupFixture;
 
-    public RatesAtCheckout(SDKFixture sdkFixture, SetupFixture setupFixture)
+    public RatesAtCheckoutTest(SDKFixture sdkFixture, SetupFixture setupFixture)
     {
         this.sdkFixture = sdkFixture;
         this.setupFixture = setupFixture;

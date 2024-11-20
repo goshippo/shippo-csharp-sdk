@@ -33,5 +33,8 @@ namespace Shippo.Models.Components
 
         [JsonProperty("shipment")]
         public ShipmentCreateRequest Shipment { get; set; } = default!;
+
+        [JsonProperty("order")]
+        public string? Order { get; set; }
     }
 }

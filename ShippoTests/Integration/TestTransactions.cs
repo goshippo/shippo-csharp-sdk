@@ -3,11 +3,11 @@ namespace ShippoTests.Integration;
 using Parcels = Shippo.Models.Components.Parcels;
 
 [Collection("Integration")]
-public class Transactions
+public class TransactionsTest
 {
     SDKFixture sdkFixture;
 
-    public Transactions(SDKFixture sdkFixture)
+    public TransactionsTest(SDKFixture sdkFixture)
     {
         this.sdkFixture = sdkFixture;
     }
