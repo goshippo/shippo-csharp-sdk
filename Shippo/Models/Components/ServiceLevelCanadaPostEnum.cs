@@ -29,6 +29,9 @@ namespace Shippo.Models.Components
     /// | canada_post_small_packet_usa_air | Small Packet USA Air|<br/>
     /// | canada_post_tracked_packet_international | Tracked Packet International|<br/>
     /// | canada_post_small_packet_international_air | Small Package International Air|<br/>
+    /// | canada_post_small_packet_international_surface  | Small Packet International Surface<br/>
+    /// | canada_post_international_parcel_surface  | International Parcel Surface<br/>
+    /// | canada_post_international_parcel_air  | International Parcel Air<br/>
     /// 
     /// </remarks>
     /// </summary>
@@ -56,6 +59,12 @@ namespace Shippo.Models.Components
         CanadaPostTrackedPacketInternational,
         [JsonProperty("canada_post_small_packet_international_air")]
         CanadaPostSmallPacketInternationalAir,
+        [JsonProperty("canada_post_small_packet_international_surface")]
+        CanadaPostSmallPacketInternationalSurface,
+        [JsonProperty("canada_post_international_parcel_surface")]
+        CanadaPostInternationalParcelSurface,
+        [JsonProperty("canada_post_international_parcel_air")]
+        CanadaPostInternationalParcelAir,
     }
 
     public static class ServiceLevelCanadaPostEnumExtension

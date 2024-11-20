@@ -160,6 +160,6 @@ namespace Shippo.Models.Components
         /// </remarks>
         /// </summary>
         [JsonProperty("transactions")]
-        public List<string>? Transactions { get; set; }
+        public List<Models.Components.Transactions>? Transactions { get; set; }
     }
 }

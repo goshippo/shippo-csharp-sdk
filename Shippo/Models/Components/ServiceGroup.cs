@@ -96,6 +96,6 @@ namespace Shippo.Models.Components
         public bool? IsActive { get; set; }
 
         [JsonProperty("service_levels")]
-        public List<ServiceLevelWithParent> ServiceLevels { get; set; } = default!;
+        public List<ServiceGroupAccountAndServiceLevel> ServiceLevels { get; set; } = default!;
     }
 }

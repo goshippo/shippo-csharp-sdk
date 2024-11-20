@@ -34,5 +34,8 @@ namespace Shippo.Models.Components
 
         [JsonProperty("rate")]
         public string Rate { get; set; } = default!;
+
+        [JsonProperty("order")]
+        public string? Order { get; set; }
     }
 }

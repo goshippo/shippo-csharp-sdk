@@ -3,12 +3,13 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>Shippo</PackageId>
-    <Version>5.0.0-beta.7</Version>
+    <Version>5.0.0-beta.8</Version>
     <TargetFramework>net6.0</TargetFramework>
     <Authors>Shippo</Authors>
     <Copyright>Copyright (c) Shippo 2024</Copyright>
     <RepositoryUrl>https://github.com/goshippo/shippo-csharp-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
+    <PackageTags>USPS Fedex UPS API Shippo</PackageTags>
     <Description>Shippo external API.: Use this API to integrate with the Shippo service</Description>
   </PropertyGroup>
 
@@ -21,17 +22,33 @@
     <GenerateDocumentationFile>true</GenerateDocumentationFile>
     <PackageReadmeFile>README.md</PackageReadmeFile>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <PackageIcon>icon.png</PackageIcon>
   </PropertyGroup>
 
   <ItemGroup>
     <None Include="..\NUGET.md" Pack="true" PackagePath="README.md"/>
     <None Include="..\LICENSE" Pack="true" PackagePath="\"/>
+    <None Include="..\icon.png" Pack="true" PackagePath="\"/>
     <None Include="..\docs\**\*" Pack="true" PackagePath="\docs"  CopyToOutputDirectory="PreserveNewest"/>
   </ItemGroup>
+
+  <PropertyGroup>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>portable</DebugType>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(GITHUB_ACTIONS)' == 'true'">
+    <ContinuousIntegrationBuild>true</ContinuousIntegrationBuild>
+    <PublishRepositoryUrl>true</PublishRepositoryUrl>
+    <EmbedAllSources>true</EmbedAllSources>
+  </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="newtonsoft.json" Version="13.0.3" />
     <PackageReference Include="nodatime" Version="3.1.9" />
+    <PackageReference Include="Microsoft.SourceLink.GitHub" Version="8.0.0" PrivateAssets="All"/>
   </ItemGroup>
 
 </Project>

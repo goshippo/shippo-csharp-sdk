@@ -78,6 +78,7 @@ var res = await sdk.Transactions.CreateAsync(
             LabelFileType = Shippo.Models.Components.LabelFileTypeEnum.Pdf4x6,
             Metadata = "Order ID #12345",
             Rate = "ec9f0d3adc9441449c85d315f0997fd5",
+            Order = "adcfdddf8ec64b84ad22772bce3ea37a",
         }
     ),
     shippoApiVersion: "2018-02-08"

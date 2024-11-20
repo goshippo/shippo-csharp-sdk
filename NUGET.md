@@ -42,12 +42,12 @@ By default, an API error will raise a `Shippo.Models.Errors.SDKException` except
 
 When custom error responses are specified for an operation, the SDK may also throw their associated exceptions. You can refer to respective *Errors* tables in SDK docs for more details on possible exception types for each operation. For example, the `InitiateOauth2SigninAsync` method throws the following exceptions:
 
-| Error Type                                                                   | Status Code                                                                  | Content Type                                                                 |
-| ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| Shippo.Models.Errors.InitiateOauth2SigninResponseBody                        | 400                                                                          | application/json                                                             |
-| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401                                                                          | application/json                                                             |
-| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404                                                                          | application/json                                                             |
-| Shippo.Models.Errors.SDKException                                            | 4XX, 5XX                                                                     | \*/\*                                                                        |
+| Error Type                                                                   | Status Code | Content Type     |
+| ---------------------------------------------------------------------------- | ----------- | ---------------- |
+| Shippo.Models.Errors.InitiateOauth2SigninResponseBody                        | 400         | application/json |
+| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401         | application/json |
+| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404         | application/json |
+| Shippo.Models.Errors.SDKException                                            | 4XX, 5XX    | \*/\*            |
 
 ### Example
 
@@ -103,20 +103,28 @@ catch (Exception ex)
 <!-- Start Server Selection [server] -->
 ## Server Selection
 
-### Select Server by Index
-
-You can override the default server globally by passing a server index to the `serverIndex: number` optional parameter when initializing the SDK client instance. The selected server will then be used as the default on the operations that use it. This table lists the indexes associated with the available servers:
-
-| # | Server | Variables |
-| - | ------ | --------- |
-| 0 | `https://api.goshippo.com` | None |
-
-
-
-
 ### Override Server URL Per-Client
 
-The default server can also be overridden globally by passing a URL to the `serverUrl: str` optional parameter when initializing the SDK client instance. For example:
+The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
+```csharp
+using Shippo;
+using Shippo.Models.Requests;
+using Shippo.Models.Components;
+
+var sdk = new ShippoSDK(
+    serverUrl: "https://api.goshippo.com",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
+);
+
+var res = await sdk.Addresses.ListAsync(
+    page: 1,
+    results: 5,
+    shippoApiVersion: "2018-02-08"
+);
+
+// handle response
+```
 <!-- End Server Selection [server] -->
 
 <!-- Start Authentication [security] -->
@@ -126,9 +134,9 @@ The default server can also be overridden globally by passing a URL to the `serv
 
 This SDK supports the following security scheme globally:
 
-| Name           | Type           | Scheme         |
-| -------------- | -------------- | -------------- |
-| `APIKeyHeader` | apiKey         | API key        |
+| Name           | Type   | Scheme  |
+| -------------- | ------ | ------- |
+| `APIKeyHeader` | apiKey | API key |
 
 To authenticate with the API the `APIKeyHeader` parameter must be set when initializing the SDK client instance. For example:
 ```csharp
