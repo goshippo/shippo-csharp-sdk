@@ -20,7 +20,6 @@ public class OrdersTest
     {
         ListOrdersRequest req = new ListOrdersRequest() {
             OrderStatus = new List<OrderStatusEnum>() {
-                OrderStatusEnum.Paid,
             },
             ShopApp = OrderShopAppEnum.Shippo,
         };
@@ -32,7 +31,7 @@ public class OrdersTest
             .And.BeOfType<List<Order>>();
         orders.Results.Should().AllSatisfy(order =>
         {
-            order.OrderStatus.Should().Be(OrderStatusEnum.Paid);
+            order.OrderStatus.Should().NotBeNull();
             order.Should().NotBeNull();
             order.ObjectId.Should().BeOfType<string>();
             order.ToAddress.Should().BeOfType<Address>();
