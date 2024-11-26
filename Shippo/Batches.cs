@@ -59,7 +59,7 @@ namespace Shippo
         /// For more details on filtering results, see our guide on &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/filtering/&quot; target=&quot;blank&quot;&gt; filtering&lt;/a&gt;.
         /// </remarks>
         /// </summary>
-        Task<Batch> GetAsync(string batchId, string? shippoApiVersion = null);
+        Task<Batch> GetAsync(GetBatchRequest request);
 
         /// <summary>
         /// Add shipments to a batch
@@ -111,10 +111,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.8";
-        private const string _sdkGenVersion = "2.460.1";
+        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.8 2.460.1 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;
@@ -209,13 +209,12 @@ namespace Shippo
             throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
         }
 
-        public async Task<Batch> GetAsync(string batchId, string? shippoApiVersion = null)
+        public async Task<Batch> GetAsync(GetBatchRequest request)
         {
-            var request = new GetBatchRequest()
+            if (request == null)
             {
-                BatchId = batchId,
-                ShippoApiVersion = shippoApiVersion,
-            };
+                request = new GetBatchRequest();
+            }
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
             
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();

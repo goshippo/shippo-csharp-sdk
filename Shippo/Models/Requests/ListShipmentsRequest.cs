@@ -15,6 +15,12 @@ namespace Shippo.Models.Requests
     {
 
         /// <summary>
+        /// The page token for paginated results
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=page_token")]
+        public string? PageToken { get; set; }
+
+        /// <summary>
         /// The page number you want to select
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=page")]

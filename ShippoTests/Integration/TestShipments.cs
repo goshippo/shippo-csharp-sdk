@@ -1,6 +1,9 @@
 namespace ShippoTests.Integration;
 
+using System.Text.RegularExpressions;
 using Parcels = Shippo.Models.Components.Parcels;
+using ListShipmentsRequest = Shippo.Models.Requests.ListShipmentsRequest;
+using ShipmentPaginatedList = Shippo.Models.Components.ShipmentPaginatedList;
 
 [Collection("Integration")]
 public class ShipmentsTest
@@ -13,7 +16,7 @@ public class ShipmentsTest
     }
 
     [Fact]
-    public async void TestInternationalLabel()
+    public async void TestInternationalShipment()
     {
         var addressFromTask = sdkFixture.SDK.Addresses.CreateAsync(
             new AddressCreateRequest()
@@ -104,5 +107,76 @@ public class ShipmentsTest
             }
         );
         shipment.Should().NotBeNull();
+    }
+
+    [Fact]
+    public async void TestListAllShipments()
+    {
+        ListShipmentsRequest request = new ListShipmentsRequest() {};
+        ShipmentPaginatedList response = await sdkFixture.SDK.Shipments.ListAsync(request);
+
+        response.Should().NotBeNull();
+        response.Results.Should().NotBeNull();
+        
+        if (response.Results != null)
+        {
+            AssertShipmentResults(response.Results);
+        }
+    }
+
+    [Fact]
+    public async void TestListAllShipmentsPagination()
+    {
+        ListShipmentsRequest request = new ListShipmentsRequest
+        {
+            Page = 1,
+            Results = 2
+        };
+        ShipmentPaginatedList response = await sdkFixture.SDK.Shipments.ListAsync(request);
+
+        response.Should().NotBeNull();
+        response.Results.Should().NotBeNull();
+
+        if (response.Results != null)
+        {
+            AssertShipmentResults(response.Results);
+        }
+
+        if (!string.IsNullOrEmpty(response.Next))
+        {
+            var match = Regex.Match(response.Next, @"page_token=([^&]+)");
+            if (match.Success)
+            {
+                string pageToken = match.Groups[1].Value;
+                ListShipmentsRequest secondRequest = new ListShipmentsRequest
+                {
+                    PageToken = pageToken,
+                    Page = 2,
+                    Results = 2
+                };
+                ShipmentPaginatedList secondResponse = await sdkFixture.SDK.Shipments.ListAsync(secondRequest);
+
+                secondResponse.Should().NotBeNull();
+                secondResponse.Results.Should().NotBeNull();
+
+                if (secondResponse.Results != null)
+                {
+                    AssertShipmentResults(secondResponse.Results);
+                }
+            }
+        }
+    }
+
+    private void AssertShipmentResults(List<Shipment> results)
+    {
+        if (results != null && results.Count > 0)
+        {
+            foreach (Shipment result in results)
+            {
+                result.ObjectId.Should().NotBeNull();
+                result.AddressFrom.Should().NotBeNull();
+                result.AddressTo.Should().NotBeNull();
+            }
+        }
     }
 }

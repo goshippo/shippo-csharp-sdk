@@ -13,7 +13,7 @@ generation:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
 csharp:
-  version: 5.0.0-beta.8
+  version: 5.0.0-beta.9
   additionalDependencies: []
   author: Shippo
   clientServerStatusCodesAsErrors: true

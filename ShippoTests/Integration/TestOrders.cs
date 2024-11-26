@@ -18,7 +18,8 @@ public class OrdersTest
     [Fact]
     public async void TestListOrders()
     {
-        ListOrdersRequest req = new ListOrdersRequest() {
+        ListOrdersRequest req = new ListOrdersRequest()
+        {
             ShopApp = OrderShopAppEnum.Shippo,
         };
 
@@ -28,7 +29,8 @@ public class OrdersTest
             .And.BeOfType<OrderPaginatedList>();
         orders.Results.Should().NotBeNull()
             .And.BeOfType<List<Order>>();
-        if (orders.Results is not null && orders.Results.Count > 0) {
+        if (orders.Results is not null && orders.Results.Count > 0)
+        {
             orders.Results.Should().AllSatisfy(order =>
             {
                 order.OrderStatus.Should().NotBeNull();
