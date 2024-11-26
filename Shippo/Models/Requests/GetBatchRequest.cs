@@ -21,6 +21,18 @@ namespace Shippo.Models.Requests
         public string BatchId { get; set; } = default!;
 
         /// <summary>
+        /// The page number you want to select
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=page")]
+        public long? Page { get; set; } = 1;
+
+        /// <summary>
+        /// The number of results to return per page (max 100, default 5)
+        /// </summary>
+        [SpeakeasyMetadata("queryParam:style=form,explode=true,name=results")]
+        public long? Results { get; set; } = 5;
+
+        /// <summary>
         /// Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
