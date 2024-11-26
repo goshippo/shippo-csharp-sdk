@@ -1,6 +1,9 @@
 namespace ShippoTests.Integration;
 
+using System.Text.RegularExpressions;
 using Parcels = Shippo.Models.Components.Parcels;
+using ListShipmentsRequest = Shippo.Models.Requests.ListShipmentsRequest;
+using ShipmentPaginatedList = Shippo.Models.Components.ShipmentPaginatedList;
 
 [Collection("Integration")]
 public class ShipmentsTest
@@ -107,63 +110,72 @@ public class ShipmentsTest
     }
 
     [Fact]
-    public void TestListAllShipments()
+    public async void TestListAllShipments()
     {
-        var request = new ListShipmentsRequest();
-        var response = _api.Shipments.List(request);
+        ListShipmentsRequest request = new ListShipmentsRequest() {};
+        ShipmentPaginatedList response = await sdkFixture.SDK.Shipments.ListAsync(request);
 
-        Assert.IsNotNull(response);
-        Assert.IsInstanceOf<ShipmentPaginatedList>(response);
-
-        AssertShipmentResults(response.Results);
+        response.Should().NotBeNull();
+        response.Results.Should().NotBeNull();
+        
+        if (response.Results != null)
+        {
+            AssertShipmentResults(response.Results);
+        }
     }
 
     [Fact]
-    public void TestListAllShipmentsPagination()
+    public async void TestListAllShipmentsPagination()
     {
-        var request = new ListShipmentsRequest
+        ListShipmentsRequest request = new ListShipmentsRequest
         {
             Page = 1,
             Results = 2
         };
-        var response = _api.Shipments.List(request);
+        ShipmentPaginatedList response = await sdkFixture.SDK.Shipments.ListAsync(request);
 
-        Assert.IsNotNull(response);
-        Assert.IsInstanceOf<ShipmentPaginatedList>(response);
+        response.Should().NotBeNull();
+        response.Results.Should().NotBeNull();
 
-        AssertShipmentResults(response.Results);
+        if (response.Results != null)
+        {
+            AssertShipmentResults(response.Results);
+        }
 
         if (!string.IsNullOrEmpty(response.Next))
         {
             var match = Regex.Match(response.Next, @"page_token=([^&]+)");
             if (match.Success)
             {
-                var pageToken = match.Groups[1].Value;
-                var secondRequest = new ListShipmentsRequest
+                string pageToken = match.Groups[1].Value;
+                ListShipmentsRequest secondRequest = new ListShipmentsRequest
                 {
                     PageToken = pageToken,
                     Page = 2,
                     Results = 2
                 };
-                var secondResponse = _api.Shipments.List(secondRequest);
+                ShipmentPaginatedList secondResponse = await sdkFixture.SDK.Shipments.ListAsync(secondRequest);
 
-                Assert.IsNotNull(secondResponse);
-                Assert.IsInstanceOf<ShipmentPaginatedList>(secondResponse);
-                AssertShipmentResults(secondResponse.Results);
+                secondResponse.Should().NotBeNull();
+                secondResponse.Results.Should().NotBeNull();
+
+                if (secondResponse.Results != null)
+                {
+                    AssertShipmentResults(secondResponse.Results);
+                }
             }
         }
     }
 
     private void AssertShipmentResults(List<Shipment> results)
     {
-        Assert.IsInstanceOf<List<Shipment>>(results);
         if (results != null && results.Count > 0)
         {
-            foreach (var result in results)
+            foreach (Shipment result in results)
             {
-                Assert.IsNotNull(result.ObjectId);
-                Assert.IsNotNull(result.AddressFrom);
-                Assert.IsNotNull(result.AddressTo);
+                result.ObjectId.Should().NotBeNull();
+                result.AddressFrom.Should().NotBeNull();
+                result.AddressTo.Should().NotBeNull();
             }
         }
     }
