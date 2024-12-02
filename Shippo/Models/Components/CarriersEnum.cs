@@ -61,7 +61,6 @@ namespace Shippo.Models.Components
     /// | new_zealand_post | New Zealand Post (also used for Pace and CourierPost)|<br/>
     /// | nippon_express | Nippon Express|<br/>
     /// | ontrac | OnTrac|<br/>
-    /// | orangeds | OrangeDS|<br/>
     /// | parcelforce | Parcelforce|<br/>
     /// | passport | Passport|<br/>
     /// | pcf | PCF|<br/>
@@ -170,8 +169,6 @@ namespace Shippo.Models.Components
         NipponExpress,
         [JsonProperty("ontrac")]
         Ontrac,
-        [JsonProperty("orangeds")]
-        Orangeds,
         [JsonProperty("parcelforce")]
         Parcelforce,
         [JsonProperty("passport")]
