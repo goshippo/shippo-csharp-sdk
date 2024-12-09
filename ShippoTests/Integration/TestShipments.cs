@@ -112,12 +112,12 @@ public class ShipmentsTest
     [Fact]
     public async void TestListAllShipments()
     {
-        ListShipmentsRequest request = new ListShipmentsRequest() {};
+        ListShipmentsRequest request = new ListShipmentsRequest() { };
         ShipmentPaginatedList response = await sdkFixture.SDK.Shipments.ListAsync(request);
 
         response.Should().NotBeNull();
         response.Results.Should().NotBeNull();
-        
+
         if (response.Results != null)
         {
             AssertShipmentResults(response.Results);
