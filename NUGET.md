@@ -8,6 +8,32 @@
 
 ```csharp
 using Shippo;
+using Shippo.Models.Components;
+
+var sdk = new ShippoSDK(shippoApiVersion: "2018-02-08");
+
+WebhookPayloadBatch req = new WebhookPayloadBatch() {};
+
+await sdk.BatchAsync(req);
+
+// handle response
+```
+<!-- End SDK Example Usage [usage] -->
+
+<!-- Start Authentication [security] -->
+## Authentication
+
+### Per-Client Security Schemes
+
+This SDK supports the following security scheme globally:
+
+| Name           | Type   | Scheme  |
+| -------------- | ------ | ------- |
+| `APIKeyHeader` | apiKey | API key |
+
+To authenticate with the API the `APIKeyHeader` parameter must be set when initializing the SDK client instance. For example:
+```csharp
+using Shippo;
 using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
@@ -24,7 +50,7 @@ var res = await sdk.Addresses.ListAsync(
 
 // handle response
 ```
-<!-- End SDK Example Usage [usage] -->
+<!-- End Authentication [security] -->
 
 <!-- Start Error Handling [errors] -->
 ## Error Handling
@@ -126,37 +152,5 @@ var res = await sdk.Addresses.ListAsync(
 // handle response
 ```
 <!-- End Server Selection [server] -->
-
-<!-- Start Authentication [security] -->
-## Authentication
-
-### Per-Client Security Schemes
-
-This SDK supports the following security scheme globally:
-
-| Name           | Type   | Scheme  |
-| -------------- | ------ | ------- |
-| `APIKeyHeader` | apiKey | API key |
-
-To authenticate with the API the `APIKeyHeader` parameter must be set when initializing the SDK client instance. For example:
-```csharp
-using Shippo;
-using Shippo.Models.Requests;
-using Shippo.Models.Components;
-
-var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
-);
-
-var res = await sdk.Addresses.ListAsync(
-    page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08"
-);
-
-// handle response
-```
-<!-- End Authentication [security] -->
 
 <!-- Placeholder for Future Speakeasy SDK Sections -->

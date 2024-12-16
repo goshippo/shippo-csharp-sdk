@@ -15,5 +15,5 @@ targets:
                 apiKey: $nuget_api_key
         codeSamples:
             registry:
-                location: registry.speakeasyapi.dev/shippo/shippo/openapi-code-samples
+                location: registry.speakeasyapi.dev/shippo/shippo/openapi-csharp-code-samples
             blocking: false

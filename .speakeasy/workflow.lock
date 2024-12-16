@@ -1,21 +1,21 @@
-speakeasyVersion: 1.447.0
+speakeasyVersion: 1.455.3
 sources:
     openapi:
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:33370e133d3ed110a28d8f54ab74952099de562bdc22dc5386cb760f0fe01b2d
-        sourceBlobDigest: sha256:8c66d55b10c00886e8fd1f2b6ea6b233bccf17f622fed046dcf302d5da3f91f5
+        sourceRevisionDigest: sha256:64d2acfb76574787617aad02736786e1b43dc5acc269aa32231d9f3a223fcda0
+        sourceBlobDigest: sha256:1b88a763bf9a88c705175433cac246f726297ba1d331abf5d03334a6e25e9b89
         tags:
             - latest
-            - speakeasy-sdk-regen-1732636811
+            - speakeasy-sdk-regen-1733098817
             - "2018-02-08"
 targets:
     csharp:
         source: openapi
         sourceNamespace: openapi
-        sourceRevisionDigest: sha256:33370e133d3ed110a28d8f54ab74952099de562bdc22dc5386cb760f0fe01b2d
-        sourceBlobDigest: sha256:8c66d55b10c00886e8fd1f2b6ea6b233bccf17f622fed046dcf302d5da3f91f5
-        codeSamplesNamespace: openapi-code-samples
-        codeSamplesRevisionDigest: sha256:647654e9271aa56042482d39883ea26ee4daadfc87152727f13dfbf47db42237
+        sourceRevisionDigest: sha256:64d2acfb76574787617aad02736786e1b43dc5acc269aa32231d9f3a223fcda0
+        sourceBlobDigest: sha256:1b88a763bf9a88c705175433cac246f726297ba1d331abf5d03334a6e25e9b89
+        codeSamplesNamespace: openapi-csharp-code-samples
+        codeSamplesRevisionDigest: sha256:83c69e4b30cda8d2173964a979589a90af77d304dde9b4b60bfaffef1a1b0cc1
 workflow:
     workflowVersion: 1.0.0
     speakeasyVersion: latest
@@ -34,5 +34,5 @@ workflow:
                     apiKey: $nuget_api_key
             codeSamples:
                 registry:
-                    location: registry.speakeasyapi.dev/shippo/shippo/openapi-code-samples
+                    location: registry.speakeasyapi.dev/shippo/shippo/openapi-csharp-code-samples
                 blocking: false
