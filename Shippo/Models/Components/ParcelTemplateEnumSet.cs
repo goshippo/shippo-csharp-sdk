@@ -9,14 +9,14 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
     
 
     public class ParcelTemplateEnumSetType
@@ -34,8 +34,6 @@ namespace Shippo.Models.Components
         
         public static ParcelTemplateEnumSetType ParcelTemplateDPDUKEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateDPDUKEnum"); } }
         
-        public static ParcelTemplateEnumSetType ParcelTemplateCouriersPleaseEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateCouriersPleaseEnum"); } }
-        
         public static ParcelTemplateEnumSetType ParcelTemplateAramexAustraliaEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateAramexAustraliaEnum"); } }
         
         public static ParcelTemplateEnumSetType Null { get { return new ParcelTemplateEnumSetType("null"); } }
@@ -49,7 +47,6 @@ namespace Shippo.Models.Components
                 case "ParcelTemplateUSPSEnum": return ParcelTemplateUSPSEnum;
                 case "ParcelTemplateDHLeCommerceEnum": return ParcelTemplateDHLeCommerceEnum;
                 case "ParcelTemplateDPDUKEnum": return ParcelTemplateDPDUKEnum;
-                case "ParcelTemplateCouriersPleaseEnum": return ParcelTemplateCouriersPleaseEnum;
                 case "ParcelTemplateAramexAustraliaEnum": return ParcelTemplateAramexAustraliaEnum;
                 case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ParcelTemplateEnumSetType");
@@ -96,9 +93,6 @@ namespace Shippo.Models.Components
         public ParcelTemplateDPDUKEnum? ParcelTemplateDPDUKEnum { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public ParcelTemplateCouriersPleaseEnum? ParcelTemplateCouriersPleaseEnum { get; set; }
-
-        [SpeakeasyMetadata("form:explode=true")]
         public ParcelTemplateAramexAustraliaEnum? ParcelTemplateAramexAustraliaEnum { get; set; }
 
         public ParcelTemplateEnumSetType Type { get; set; }
@@ -141,14 +135,6 @@ namespace Shippo.Models.Components
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
             res.ParcelTemplateDPDUKEnum = parcelTemplateDPDUKEnum;
-            return res;
-        }
-
-        public static ParcelTemplateEnumSet CreateParcelTemplateCouriersPleaseEnum(ParcelTemplateCouriersPleaseEnum parcelTemplateCouriersPleaseEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateCouriersPleaseEnum;
-
-            ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateCouriersPleaseEnum = parcelTemplateCouriersPleaseEnum;
             return res;
         }
 
@@ -284,26 +270,6 @@ namespace Shippo.Models.Components
 
                 try
                 {
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateCouriersPleaseEnum)
-                    {
-                        ParcelTemplateCouriersPleaseEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ParcelTemplateCouriersPleaseEnum>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(ParcelTemplateCouriersPleaseEnum), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateCouriersPleaseEnum), "ParcelTemplateCouriersPleaseEnum"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
                     return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateAramexAustraliaEnum)
                     {
                         ParcelTemplateAramexAustraliaEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ParcelTemplateAramexAustraliaEnum>(json)
@@ -380,11 +346,6 @@ namespace Shippo.Models.Components
                 if (res.ParcelTemplateDPDUKEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateDPDUKEnum));
-                    return;
-                }
-                if (res.ParcelTemplateCouriersPleaseEnum != null)
-                {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateCouriersPleaseEnum));
                     return;
                 }
                 if (res.ParcelTemplateAramexAustraliaEnum != null)
