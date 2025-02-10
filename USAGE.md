@@ -1,7 +1,6 @@
 <!-- Start SDK Example Usage [usage] -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

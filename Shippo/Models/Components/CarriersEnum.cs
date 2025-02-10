@@ -35,7 +35,6 @@ namespace Shippo.Models.Components
     /// | collect_plus | CollectPlus|<br/>
     /// | correios_br | CorreiosBR|<br/>
     /// | correos_espana | Correos España |<br/>
-    /// | couriersplease | Couriers Please|<br/>
     /// | colissimo | Colissimo|<br/>
     /// | deutsche_post | Deutsche Post|<br/>
     /// | dhl_benelux | DHL Benelux|<br/>
@@ -61,7 +60,6 @@ namespace Shippo.Models.Components
     /// | new_zealand_post | New Zealand Post (also used for Pace and CourierPost)|<br/>
     /// | nippon_express | Nippon Express|<br/>
     /// | ontrac | OnTrac|<br/>
-    /// | orangeds | OrangeDS|<br/>
     /// | parcelforce | Parcelforce|<br/>
     /// | passport | Passport|<br/>
     /// | pcf | PCF|<br/>
@@ -118,8 +116,6 @@ namespace Shippo.Models.Components
         CorreiosBr,
         [JsonProperty("correos_espana")]
         CorreosEspana,
-        [JsonProperty("couriersplease")]
-        Couriersplease,
         [JsonProperty("colissimo")]
         Colissimo,
         [JsonProperty("deutsche_post")]
@@ -170,8 +166,6 @@ namespace Shippo.Models.Components
         NipponExpress,
         [JsonProperty("ontrac")]
         Ontrac,
-        [JsonProperty("orangeds")]
-        Orangeds,
         [JsonProperty("parcelforce")]
         Parcelforce,
         [JsonProperty("passport")]

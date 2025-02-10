@@ -26,8 +26,8 @@ List all carrier parcel template objects. <br> Use the following query string pa
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -35,7 +35,7 @@ var sdk = new ShippoSDK(
 );
 
 var res = await sdk.CarrierParcelTemplates.ListAsync(
-    include: Shippo.Models.Requests.Include.Enabled,
+    include: Include.Enabled,
     carrier: "fedex",
     shippoApiVersion: "2018-02-08"
 );
@@ -69,7 +69,6 @@ Fetches the parcel template information for a specific carrier parcel template, 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

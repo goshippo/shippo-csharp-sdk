@@ -20,7 +20,6 @@ Returns an existing rate using a rate object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -61,8 +60,8 @@ Returns a paginated list of rates associated with a shipment
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -108,8 +107,8 @@ Note: re-requesting the rates with a different currency code will re-queue the s
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",

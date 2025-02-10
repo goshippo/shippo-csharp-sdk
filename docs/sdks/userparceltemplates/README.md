@@ -27,7 +27,6 @@ Returns a list all of all user parcel template objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -70,7 +69,6 @@ and depth, as well as their units."
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -82,7 +80,7 @@ var res = await sdk.UserParcelTemplates.CreateAsync(
     userParcelTemplateCreateRequest: UserParcelTemplateCreateRequest.CreateUserParcelTemplateWithCarrierTemplateCreateRequest(
         new UserParcelTemplateWithCarrierTemplateCreateRequest() {
             Weight = "12",
-            WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+            WeightUnit = WeightUnitEnum.Lb,
         }
     ),
     shippoApiVersion: "2018-02-08"
@@ -116,7 +114,6 @@ Deletes a user parcel template using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -154,7 +151,6 @@ template, identified by the object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -195,7 +191,6 @@ Updates an existing user parcel template.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -207,12 +202,12 @@ var res = await sdk.UserParcelTemplates.UpdateAsync(
     userParcelTemplateObjectId: "<id>",
     shippoApiVersion: "2018-02-08",
     userParcelTemplateUpdateRequest: new UserParcelTemplateUpdateRequest() {
-        DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
+        DistanceUnit = DistanceUnitEnum.In,
         Height = "6",
         Length = "10",
         Name = "My Custom Template",
         Weight = "12",
-        WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        WeightUnit = WeightUnitEnum.Lb,
         Width = "8",
     }
 );

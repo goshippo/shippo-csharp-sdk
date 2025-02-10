@@ -28,7 +28,6 @@ Registers a webhook that will send HTTP notifications to you when the status of 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -73,7 +72,6 @@ Returns the tracking status of a shipment using a carrier name and a tracking nu
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

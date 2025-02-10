@@ -21,13 +21,17 @@ Shippo external API.: Use this API to integrate with the Shippo service
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [<img src="https://docs.goshippo.com/images/Logo.png" width="30" alt="Shippo logo"> Shippo C# SDK](#img-srchttpsdocsgoshippocomimageslogopng-width30-altshippo-logo-shippo-c-sdk)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Documentation](#documentation)
+  * [Available Resources and Operations](#available-resources-and-operations)
+* [Development](#development)
+  * [Contributions](#contributions)
+  * [About Shippo](#about-shippo)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -55,19 +59,13 @@ dotnet add reference Shippo/Shippo.csproj
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
-var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
-);
+var sdk = new ShippoSDK(shippoApiVersion: "2018-02-08");
 
-var res = await sdk.Addresses.ListAsync(
-    page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08"
-);
+WebhookPayloadBatch req = new WebhookPayloadBatch() {};
+
+await sdk.BatchAsync(req);
 
 // handle response
 ```
