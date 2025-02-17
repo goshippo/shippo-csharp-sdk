@@ -23,7 +23,6 @@ Returns a list of Shippo Managed Accounts objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -66,7 +65,6 @@ Creates a new <a href="https://docs.goshippo.com/docs/platformaccounts/platform_
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -112,7 +110,6 @@ Returns a Shippo Managed Account using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -153,7 +150,6 @@ Updates a Shippo Managed Account using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

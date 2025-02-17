@@ -9,14 +9,14 @@
 #nullable enable
 namespace Shippo.Models.Requests
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
     
 
     public class CreateTransactionRequestBodyType

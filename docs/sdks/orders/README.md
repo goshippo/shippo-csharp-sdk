@@ -31,9 +31,9 @@ Returns a list of all order objects.
 
 ```csharp
 using Shippo;
+using Shippo.Models.Components;
 using Shippo.Models.Requests;
 using System.Collections.Generic;
-using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -42,9 +42,9 @@ var sdk = new ShippoSDK(
 
 ListOrdersRequest req = new ListOrdersRequest() {
     OrderStatus = new List<OrderStatusEnum>() {
-        Shippo.Models.Components.OrderStatusEnum.Paid,
+        OrderStatusEnum.Paid,
     },
-    ShopApp = Shippo.Models.Components.OrderShopAppEnum.Shippo,
+    ShopApp = OrderShopAppEnum.Shippo,
 };
 
 var res = await sdk.Orders.ListAsync(req);
@@ -76,8 +76,8 @@ Creates a new order object.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using System;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
@@ -90,7 +90,7 @@ var res = await sdk.Orders.CreateAsync(
         Currency = "USD",
         Notes = "This customer is a VIP",
         OrderNumber = "#1068",
-        OrderStatus = Shippo.Models.Components.OrderStatusEnum.Paid,
+        OrderStatus = OrderStatusEnum.Paid,
         PlacedAt = "2016-09-23T01:28:12Z",
         ShippingCost = "12.83",
         ShippingCostCurrency = "USD",
@@ -99,7 +99,7 @@ var res = await sdk.Orders.CreateAsync(
         TotalPrice = "24.93",
         TotalTax = "0.0",
         Weight = "0.4",
-        WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        WeightUnit = WeightUnitEnum.Lb,
         FromAddress = new AddressCreateRequest() {
             Name = "Shwan Ippotle",
             Company = "Shippo",
@@ -144,7 +144,7 @@ var res = await sdk.Orders.CreateAsync(
                 TotalPrice = "12.1",
                 VariantTitle = "June Edition",
                 Weight = "0.4",
-                WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+                WeightUnit = WeightUnitEnum.Lb,
             },
         },
     },
@@ -179,7 +179,6 @@ Retrieves an existing order using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

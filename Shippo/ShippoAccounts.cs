@@ -14,13 +14,13 @@ namespace Shippo
     using Shippo.Models.Components;
     using Shippo.Models.Errors;
     using Shippo.Models.Requests;
-    using Shippo.Utils.Retries;
     using Shippo.Utils;
-    using System.Collections.Generic;
-    using System.Net.Http.Headers;
-    using System.Net.Http;
-    using System.Threading.Tasks;
+    using Shippo.Utils.Retries;
     using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
 
     /// <summary>
     /// Shippo Accounts are used by Shippo Platform Accounts to create and manage Managed Shippo Accounts. <br/>
@@ -41,7 +41,7 @@ namespace Shippo
         /// Returns a list of Shippo Managed Accounts objects.
         /// </remarks>
         /// </summary>
-        Task<ShippoAccountPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null);
+        Task<ShippoAccountPaginatedList> ListAsync(long? page = 1, long? results = 25, string? shippoApiVersion = null);
 
         /// <summary>
         /// Create a Shippo Account
@@ -84,10 +84,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
-        private const string _sdkGenVersion = "2.463.0";
+        private const string _sdkVersion = "5.0.0-beta.10";
+        private const string _sdkGenVersion = "2.512.4";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.10 2.512.4 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;
@@ -100,7 +100,7 @@ namespace Shippo
             SDKConfiguration = config;
         }
 
-        public async Task<ShippoAccountPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null)
+        public async Task<ShippoAccountPaginatedList> ListAsync(long? page = 1, long? results = 25, string? shippoApiVersion = null)
         {
             var request = new ListShippoAccountsRequest()
             {
@@ -168,7 +168,11 @@ namespace Shippo
 
                 throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            {
+                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
             {
                 throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
@@ -250,7 +254,11 @@ namespace Shippo
 
                 throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            {
+                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
             {
                 throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
@@ -325,7 +333,11 @@ namespace Shippo
 
                 throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            {
+                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
             {
                 throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
@@ -407,7 +419,11 @@ namespace Shippo
 
                 throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            {
+                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
             {
                 throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
