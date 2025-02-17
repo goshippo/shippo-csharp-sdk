@@ -31,8 +31,8 @@ template or a fully formed user parcel template object as the parcel value.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using System;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
@@ -75,7 +75,7 @@ var res = await sdk.RatesAtCheckout.CreateAsync(
                 TotalPrice = "12.1",
                 VariantTitle = "June Edition",
                 Weight = "0.4",
-                WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+                WeightUnit = WeightUnitEnum.Lb,
                 ObjectId = "abf7d5675d744b6ea9fdb6f796b28f28",
             },
         },
@@ -114,7 +114,6 @@ Retrieve and display the currently configured default parcel template for live r
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -151,7 +150,6 @@ Update the currently configured default parcel template for live rates. The obje
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -194,7 +192,6 @@ Clears the currently configured default parcel template for live rates.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

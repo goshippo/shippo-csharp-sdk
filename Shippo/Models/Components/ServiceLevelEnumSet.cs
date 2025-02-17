@@ -9,14 +9,14 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
     
 
     public class ServiceLevelEnumSetType
@@ -47,8 +47,6 @@ namespace Shippo.Models.Components
         public static ServiceLevelEnumSetType ServiceLevelCDLEnum { get { return new ServiceLevelEnumSetType("ServiceLevelCDLEnum"); } }
         
         public static ServiceLevelEnumSetType ServiceLevelChronopostEnum { get { return new ServiceLevelEnumSetType("ServiceLevelChronopostEnum"); } }
-        
-        public static ServiceLevelEnumSetType ServiceLevelCouriersPleaseEnum { get { return new ServiceLevelEnumSetType("ServiceLevelCouriersPleaseEnum"); } }
         
         public static ServiceLevelEnumSetType ServiceLevelCorreosEspanaEnum { get { return new ServiceLevelEnumSetType("ServiceLevelCorreosEspanaEnum"); } }
         
@@ -120,7 +118,6 @@ namespace Shippo.Models.Components
                 case "ServiceLevelCanadaPostEnum": return ServiceLevelCanadaPostEnum;
                 case "ServiceLevelCDLEnum": return ServiceLevelCDLEnum;
                 case "ServiceLevelChronopostEnum": return ServiceLevelChronopostEnum;
-                case "ServiceLevelCouriersPleaseEnum": return ServiceLevelCouriersPleaseEnum;
                 case "ServiceLevelCorreosEspanaEnum": return ServiceLevelCorreosEspanaEnum;
                 case "ServiceLevelColissimoEnum": return ServiceLevelColissimoEnum;
                 case "ServiceLevelPurolatorEnum": return ServiceLevelPurolatorEnum;
@@ -208,9 +205,6 @@ namespace Shippo.Models.Components
 
         [SpeakeasyMetadata("form:explode=true")]
         public ServiceLevelChronopostEnum? ServiceLevelChronopostEnum { get; set; }
-
-        [SpeakeasyMetadata("form:explode=true")]
-        public ServiceLevelCouriersPleaseEnum? ServiceLevelCouriersPleaseEnum { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
         public ServiceLevelCorreosEspanaEnum? ServiceLevelCorreosEspanaEnum { get; set; }
@@ -386,14 +380,6 @@ namespace Shippo.Models.Components
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelChronopostEnum = serviceLevelChronopostEnum;
-            return res;
-        }
-
-        public static ServiceLevelEnumSet CreateServiceLevelCouriersPleaseEnum(ServiceLevelCouriersPleaseEnum serviceLevelCouriersPleaseEnum) {
-            ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum;
-
-            ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
-            res.ServiceLevelCouriersPleaseEnum = serviceLevelCouriersPleaseEnum;
             return res;
         }
 
@@ -857,26 +843,6 @@ namespace Shippo.Models.Components
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
                     fallbackCandidates.Add((typeof(ServiceLevelChronopostEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelChronopostEnum), "ServiceLevelChronopostEnum"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum)
-                    {
-                        ServiceLevelCouriersPleaseEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelCouriersPleaseEnum>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(ServiceLevelCouriersPleaseEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum), "ServiceLevelCouriersPleaseEnum"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -1500,11 +1466,6 @@ namespace Shippo.Models.Components
                 if (res.ServiceLevelChronopostEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelChronopostEnum));
-                    return;
-                }
-                if (res.ServiceLevelCouriersPleaseEnum != null)
-                {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelCouriersPleaseEnum));
                     return;
                 }
                 if (res.ServiceLevelCorreosEspanaEnum != null)

@@ -17,7 +17,7 @@ namespace Shippo.Models.Components
     {
 
         [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
+        public string Carrier { get; } = "poste_italiane";
 
         [JsonProperty("parameters")]
         public CarrierAccountPosteItalianeCreateRequestParameters Parameters { get; set; } = default!;

@@ -3,10 +3,10 @@
   <PropertyGroup>
     <IsPackable>true</IsPackable>
     <PackageId>Shippo</PackageId>
-    <Version>5.0.0-beta.9</Version>
+    <Version>5.0.0-beta.10</Version>
     <TargetFramework>net6.0</TargetFramework>
     <Authors>Shippo</Authors>
-    <Copyright>Copyright (c) Shippo 2024</Copyright>
+    <Copyright>Copyright (c) Shippo 2025</Copyright>
     <RepositoryUrl>https://github.com/goshippo/shippo-csharp-sdk.git</RepositoryUrl>
     <RepositoryType>git</RepositoryType>
     <PackageTags>USPS Fedex UPS API Shippo</PackageTags>

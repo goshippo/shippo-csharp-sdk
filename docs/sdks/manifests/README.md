@@ -26,7 +26,6 @@ Returns a list of all manifest objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -69,7 +68,6 @@ Creates a new manifest object.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
@@ -135,7 +133,6 @@ Returns an existing manifest using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

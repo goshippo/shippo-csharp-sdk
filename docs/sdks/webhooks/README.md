@@ -34,7 +34,7 @@ var sdk = new ShippoSDK(
 );
 
 WebhookUpdateRequest req = new WebhookUpdateRequest() {
-    Event = Shippo.Models.Components.WebhookEventTypeEnum.BatchCreated,
+    Event = WebhookEventTypeEnum.BatchCreated,
     Url = "https://example.com/shippo-webhook",
     Active = true,
     IsTest = false,
@@ -99,7 +99,6 @@ Returns the details of a specific webhook using the webhook object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -136,7 +135,6 @@ Updates an existing webhook using the webhook object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -147,7 +145,7 @@ var sdk = new ShippoSDK(
 var res = await sdk.Webhooks.UpdateWebhookAsync(
     webhookId: "<id>",
     webhookUpdateRequest: new WebhookUpdateRequest() {
-        Event = Shippo.Models.Components.WebhookEventTypeEnum.BatchCreated,
+        Event = WebhookEventTypeEnum.BatchCreated,
         Url = "https://example.com/shippo-webhook",
         Active = true,
         IsTest = false,
@@ -182,7 +180,6 @@ Deletes a specific webhook using the webhook object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

@@ -12,8 +12,8 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
     
     public class CustomsDeclaration
     {

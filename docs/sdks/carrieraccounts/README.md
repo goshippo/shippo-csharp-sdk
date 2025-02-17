@@ -29,8 +29,8 @@ By default, if the query parameter is omitted, the `service_levels` property wil
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -68,9 +68,7 @@ Creates a new carrier account or connects an existing carrier account to the Shi
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -127,7 +125,6 @@ Returns an existing carrier account using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -168,9 +165,7 @@ Updates an existing carrier account object. The account_id and carrier can't be 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -241,8 +236,8 @@ Used by client applications to setup or reconnect an existing carrier account wi
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -286,7 +281,6 @@ Adds a Shippo carrier account
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -295,9 +289,8 @@ var sdk = new ShippoSDK(
 );
 
 var res = await sdk.CarrierAccounts.RegisterAsync(
-    requestBody: RegisterCarrierAccountRequestBody.CreateCarrierAccountCorreosCreateRequest(
+    requestBody: RegisterCarrierAccountRequestBody.CreateCorreos(
         new CarrierAccountCorreosCreateRequest() {
-            Carrier = "correos",
             Parameters = new CarrierAccountCorreosCreateRequestParameters() {},
         }
     ),
@@ -311,7 +304,7 @@ var res = await sdk.CarrierAccounts.RegisterAsync(
 
 | Parameter                                                                                                                                                          | Type                                                                                                                                                               | Required                                                                                                                                                           | Description                                                                                                                                                        | Example                                                                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `RequestBody`                                                                                                                                                      | [RegisterCarrierAccountRequestBody](../../Models/Requests/RegisterCarrierAccountRequestBody.md)                                                                    | :heavy_check_mark:                                                                                                                                                 | Examples.                                                                                                                                                          |                                                                                                                                                                    |
+| `RequestBody`                                                                                                                                                      | [RegisterCarrierAccountRequestBody](../../Models/Requests/RegisterCarrierAccountRequestBody.md)                                                                    | :heavy_check_mark:                                                                                                                                                 | The body of the request.                                                                                                                                           |                                                                                                                                                                    |
 | `ShippoApiVersion`                                                                                                                                                 | *string*                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                 | Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide. | 2018-02-08                                                                                                                                                         |
 
 ### Response
@@ -332,8 +325,8 @@ Returns the registration status for the given account for the given carrier
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -341,7 +334,7 @@ var sdk = new ShippoSDK(
 );
 
 var res = await sdk.CarrierAccounts.GetRegistrationStatusAsync(
-    carrier: Shippo.Models.Requests.Carrier.Usps,
+    carrier: Carrier.Usps,
     shippoApiVersion: "2018-02-08"
 );
 

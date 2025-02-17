@@ -17,7 +17,7 @@ namespace Shippo.Models.Components
     {
 
         [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
+        public string Carrier { get; } = "mondial_relay";
 
         [JsonProperty("parameters")]
         public CarrierAccountMondialRelayCreateRequestParameters Parameters { get; set; } = default!;

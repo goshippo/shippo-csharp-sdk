@@ -8,19 +8,13 @@
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
-var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
-);
+var sdk = new ShippoSDK(shippoApiVersion: "2018-02-08");
 
-var res = await sdk.Addresses.ListAsync(
-    page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08"
-);
+WebhookPayloadBatch req = new WebhookPayloadBatch() {};
+
+await sdk.BatchAsync(req);
 
 // handle response
 ```
@@ -53,10 +47,9 @@ When custom error responses are specified for an operation, the SDK may also thr
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
-using System;
 using Shippo.Models.Errors;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -108,7 +101,6 @@ catch (Exception ex)
 The default server can also be overridden globally by passing a URL to the `serverUrl: string` optional parameter when initializing the SDK client instance. For example:
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -141,7 +133,6 @@ This SDK supports the following security scheme globally:
 To authenticate with the API the `APIKeyHeader` parameter must be set when initializing the SDK client instance. For example:
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

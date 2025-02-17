@@ -13,12 +13,12 @@ namespace Shippo
     using Shippo.Hooks;
     using Shippo.Models.Components;
     using Shippo.Models.Errors;
-    using Shippo.Utils.Retries;
     using Shippo.Utils;
+    using Shippo.Utils.Retries;
+    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using System;
 
     /// <summary>
     /// Shippo external API.: Use this API to integrate with the Shippo service
@@ -316,10 +316,10 @@ namespace Shippo
         public SDKConfig SDKConfiguration { get; private set; }
 
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
-        private const string _sdkGenVersion = "2.463.0";
+        private const string _sdkVersion = "5.0.0-beta.10";
+        private const string _sdkGenVersion = "2.512.4";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.10 2.512.4 2018-02-08 Shippo";
         private string _serverUrl = "";
         private int _serverIndex = 0;
         private ISpeakeasyHttpClient _client;

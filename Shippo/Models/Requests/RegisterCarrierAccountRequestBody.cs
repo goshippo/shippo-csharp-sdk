@@ -9,14 +9,14 @@
 #nullable enable
 namespace Shippo.Models.Requests
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
     
 
     public class RegisterCarrierAccountRequestBodyType
@@ -24,57 +24,43 @@ namespace Shippo.Models.Requests
         private RegisterCarrierAccountRequestBodyType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountCanadaPostCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountCanadaPostCreateRequest"); } }
         
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountChronopostCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountChronopostCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountColissimoCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountColissimoCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountCorreosCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountCorreosCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountDeutschePostCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountDeutschePostCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountDHLExpressCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountDHLExpressCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountDpdDeCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountDpdDeCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountDPDUKCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountDPDUKCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountFedExCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountFedExCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountHermesUKCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountHermesUKCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountMondialRelayCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountMondialRelayCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountPosteItalianeCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountPosteItalianeCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountUPSCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountUPSCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountUSPSCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountUSPSCreateRequest"); } }
-        
-        public static RegisterCarrierAccountRequestBodyType CarrierAccountSendleCreateRequest { get { return new RegisterCarrierAccountRequestBodyType("CarrierAccountSendleCreateRequest"); } }
-        
+        public static RegisterCarrierAccountRequestBodyType CanadaPost { get { return new RegisterCarrierAccountRequestBodyType("canada_post"); } }
+        public static RegisterCarrierAccountRequestBodyType Chronopost { get { return new RegisterCarrierAccountRequestBodyType("chronopost"); } }
+        public static RegisterCarrierAccountRequestBodyType Colissimo { get { return new RegisterCarrierAccountRequestBodyType("colissimo"); } }
+        public static RegisterCarrierAccountRequestBodyType Correos { get { return new RegisterCarrierAccountRequestBodyType("correos"); } }
+        public static RegisterCarrierAccountRequestBodyType DeutschePost { get { return new RegisterCarrierAccountRequestBodyType("deutsche_post"); } }
+        public static RegisterCarrierAccountRequestBodyType DhlExpress { get { return new RegisterCarrierAccountRequestBodyType("dhl_express"); } }
+        public static RegisterCarrierAccountRequestBodyType DpdDe { get { return new RegisterCarrierAccountRequestBodyType("dpd_de"); } }
+        public static RegisterCarrierAccountRequestBodyType DpdUk { get { return new RegisterCarrierAccountRequestBodyType("dpd_uk"); } }
+        public static RegisterCarrierAccountRequestBodyType Fedex { get { return new RegisterCarrierAccountRequestBodyType("fedex"); } }
+        public static RegisterCarrierAccountRequestBodyType HermesUk { get { return new RegisterCarrierAccountRequestBodyType("hermes_uk"); } }
+        public static RegisterCarrierAccountRequestBodyType MondialRelay { get { return new RegisterCarrierAccountRequestBodyType("mondial_relay"); } }
+        public static RegisterCarrierAccountRequestBodyType PosteItaliane { get { return new RegisterCarrierAccountRequestBodyType("poste_italiane"); } }
+        public static RegisterCarrierAccountRequestBodyType Ups { get { return new RegisterCarrierAccountRequestBodyType("ups"); } }
+        public static RegisterCarrierAccountRequestBodyType Usps { get { return new RegisterCarrierAccountRequestBodyType("usps"); } }
+        public static RegisterCarrierAccountRequestBodyType Sendle { get { return new RegisterCarrierAccountRequestBodyType("sendle"); } }
         public static RegisterCarrierAccountRequestBodyType Null { get { return new RegisterCarrierAccountRequestBodyType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(RegisterCarrierAccountRequestBodyType v) { return v.Value; }
         public static RegisterCarrierAccountRequestBodyType FromString(string v) {
             switch(v) {
-                case "CarrierAccountCanadaPostCreateRequest": return CarrierAccountCanadaPostCreateRequest;
-                case "CarrierAccountChronopostCreateRequest": return CarrierAccountChronopostCreateRequest;
-                case "CarrierAccountColissimoCreateRequest": return CarrierAccountColissimoCreateRequest;
-                case "CarrierAccountCorreosCreateRequest": return CarrierAccountCorreosCreateRequest;
-                case "CarrierAccountDeutschePostCreateRequest": return CarrierAccountDeutschePostCreateRequest;
-                case "CarrierAccountDHLExpressCreateRequest": return CarrierAccountDHLExpressCreateRequest;
-                case "CarrierAccountDpdDeCreateRequest": return CarrierAccountDpdDeCreateRequest;
-                case "CarrierAccountDPDUKCreateRequest": return CarrierAccountDPDUKCreateRequest;
-                case "CarrierAccountFedExCreateRequest": return CarrierAccountFedExCreateRequest;
-                case "CarrierAccountHermesUKCreateRequest": return CarrierAccountHermesUKCreateRequest;
-                case "CarrierAccountMondialRelayCreateRequest": return CarrierAccountMondialRelayCreateRequest;
-                case "CarrierAccountPosteItalianeCreateRequest": return CarrierAccountPosteItalianeCreateRequest;
-                case "CarrierAccountUPSCreateRequest": return CarrierAccountUPSCreateRequest;
-                case "CarrierAccountUSPSCreateRequest": return CarrierAccountUSPSCreateRequest;
-                case "CarrierAccountSendleCreateRequest": return CarrierAccountSendleCreateRequest;
+                case "canada_post": return CanadaPost;
+                case "chronopost": return Chronopost;
+                case "colissimo": return Colissimo;
+                case "correos": return Correos;
+                case "deutsche_post": return DeutschePost;
+                case "dhl_express": return DhlExpress;
+                case "dpd_de": return DpdDe;
+                case "dpd_uk": return DpdUk;
+                case "fedex": return Fedex;
+                case "hermes_uk": return HermesUk;
+                case "mondial_relay": return MondialRelay;
+                case "poste_italiane": return PosteItaliane;
+                case "ups": return Ups;
+                case "usps": return Usps;
+                case "sendle": return Sendle;
                 case "null": return Null;
                 default: throw new ArgumentException("Invalid value for RegisterCarrierAccountRequestBodyType");
             }
@@ -96,7 +82,7 @@ namespace Shippo.Models.Requests
 
 
     /// <summary>
-    /// Examples.
+    /// The body of the request.
     /// </summary>
     [JsonConverter(typeof(RegisterCarrierAccountRequestBody.RegisterCarrierAccountRequestBodyConverter))]
     public class RegisterCarrierAccountRequestBody {
@@ -152,126 +138,111 @@ namespace Shippo.Models.Requests
         public RegisterCarrierAccountRequestBodyType Type { get; set; }
 
 
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountCanadaPostCreateRequest(CarrierAccountCanadaPostCreateRequest carrierAccountCanadaPostCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountCanadaPostCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateCanadaPost(CarrierAccountCanadaPostCreateRequest canadaPost) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CanadaPost;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountCanadaPostCreateRequest = carrierAccountCanadaPostCreateRequest;
+            res.CarrierAccountCanadaPostCreateRequest = canadaPost;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountChronopostCreateRequest(CarrierAccountChronopostCreateRequest carrierAccountChronopostCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountChronopostCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateChronopost(CarrierAccountChronopostCreateRequest chronopost) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.Chronopost;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountChronopostCreateRequest = carrierAccountChronopostCreateRequest;
+            res.CarrierAccountChronopostCreateRequest = chronopost;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountColissimoCreateRequest(CarrierAccountColissimoCreateRequest carrierAccountColissimoCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountColissimoCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateColissimo(CarrierAccountColissimoCreateRequest colissimo) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.Colissimo;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountColissimoCreateRequest = carrierAccountColissimoCreateRequest;
+            res.CarrierAccountColissimoCreateRequest = colissimo;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountCorreosCreateRequest(CarrierAccountCorreosCreateRequest carrierAccountCorreosCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountCorreosCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateCorreos(CarrierAccountCorreosCreateRequest correos) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.Correos;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountCorreosCreateRequest = carrierAccountCorreosCreateRequest;
+            res.CarrierAccountCorreosCreateRequest = correos;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountDeutschePostCreateRequest(CarrierAccountDeutschePostCreateRequest carrierAccountDeutschePostCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountDeutschePostCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateDeutschePost(CarrierAccountDeutschePostCreateRequest deutschePost) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.DeutschePost;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountDeutschePostCreateRequest = carrierAccountDeutschePostCreateRequest;
+            res.CarrierAccountDeutschePostCreateRequest = deutschePost;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountDHLExpressCreateRequest(CarrierAccountDHLExpressCreateRequest carrierAccountDHLExpressCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountDHLExpressCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateDhlExpress(CarrierAccountDHLExpressCreateRequest dhlExpress) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.DhlExpress;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountDHLExpressCreateRequest = carrierAccountDHLExpressCreateRequest;
+            res.CarrierAccountDHLExpressCreateRequest = dhlExpress;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountDpdDeCreateRequest(CarrierAccountDpdDeCreateRequest carrierAccountDpdDeCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountDpdDeCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateDpdDe(CarrierAccountDpdDeCreateRequest dpdDe) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.DpdDe;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountDpdDeCreateRequest = carrierAccountDpdDeCreateRequest;
+            res.CarrierAccountDpdDeCreateRequest = dpdDe;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountDPDUKCreateRequest(CarrierAccountDPDUKCreateRequest carrierAccountDPDUKCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountDPDUKCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateDpdUk(CarrierAccountDPDUKCreateRequest dpdUk) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.DpdUk;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountDPDUKCreateRequest = carrierAccountDPDUKCreateRequest;
+            res.CarrierAccountDPDUKCreateRequest = dpdUk;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountFedExCreateRequest(CarrierAccountFedExCreateRequest carrierAccountFedExCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountFedExCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateFedex(CarrierAccountFedExCreateRequest fedex) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.Fedex;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountFedExCreateRequest = carrierAccountFedExCreateRequest;
+            res.CarrierAccountFedExCreateRequest = fedex;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountHermesUKCreateRequest(CarrierAccountHermesUKCreateRequest carrierAccountHermesUKCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountHermesUKCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateHermesUk(CarrierAccountHermesUKCreateRequest hermesUk) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.HermesUk;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountHermesUKCreateRequest = carrierAccountHermesUKCreateRequest;
+            res.CarrierAccountHermesUKCreateRequest = hermesUk;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountMondialRelayCreateRequest(CarrierAccountMondialRelayCreateRequest carrierAccountMondialRelayCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountMondialRelayCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateMondialRelay(CarrierAccountMondialRelayCreateRequest mondialRelay) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.MondialRelay;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountMondialRelayCreateRequest = carrierAccountMondialRelayCreateRequest;
+            res.CarrierAccountMondialRelayCreateRequest = mondialRelay;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountPosteItalianeCreateRequest(CarrierAccountPosteItalianeCreateRequest carrierAccountPosteItalianeCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountPosteItalianeCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreatePosteItaliane(CarrierAccountPosteItalianeCreateRequest posteItaliane) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.PosteItaliane;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountPosteItalianeCreateRequest = carrierAccountPosteItalianeCreateRequest;
+            res.CarrierAccountPosteItalianeCreateRequest = posteItaliane;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountUPSCreateRequest(CarrierAccountUPSCreateRequest carrierAccountUPSCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountUPSCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateUps(CarrierAccountUPSCreateRequest ups) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.Ups;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountUPSCreateRequest = carrierAccountUPSCreateRequest;
+            res.CarrierAccountUPSCreateRequest = ups;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountUSPSCreateRequest(CarrierAccountUSPSCreateRequest carrierAccountUSPSCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountUSPSCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateUsps(CarrierAccountUSPSCreateRequest usps) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.Usps;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountUSPSCreateRequest = carrierAccountUSPSCreateRequest;
+            res.CarrierAccountUSPSCreateRequest = usps;
             return res;
         }
-
-        public static RegisterCarrierAccountRequestBody CreateCarrierAccountSendleCreateRequest(CarrierAccountSendleCreateRequest carrierAccountSendleCreateRequest) {
-            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.CarrierAccountSendleCreateRequest;
-
+        public static RegisterCarrierAccountRequestBody CreateSendle(CarrierAccountSendleCreateRequest sendle) {
+            RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.Sendle;
+        
             RegisterCarrierAccountRequestBody res = new RegisterCarrierAccountRequestBody(typ);
-            res.CarrierAccountSendleCreateRequest = carrierAccountSendleCreateRequest;
+            res.CarrierAccountSendleCreateRequest = sendle;
             return res;
         }
-
         public static RegisterCarrierAccountRequestBody CreateNull() {
             RegisterCarrierAccountRequestBodyType typ = RegisterCarrierAccountRequestBodyType.Null;
             return new RegisterCarrierAccountRequestBody(typ);
@@ -286,332 +257,82 @@ namespace Shippo.Models.Requests
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                JObject jo = JObject.Load(reader);
+                string discriminator = jo.GetValue("carrier")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
+                if (discriminator == RegisterCarrierAccountRequestBodyType.CanadaPost.ToString())
                 {
-                    return null;
+                    CarrierAccountCanadaPostCreateRequest? carrierAccountCanadaPostCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountCanadaPostCreateRequest>(jo.ToString());
+                    return CreateCanadaPost(carrierAccountCanadaPostCreateRequest!);
                 }
-
-                var fallbackCandidates = new List<(System.Type, object, string)>();
-
-                try
+                if (discriminator == RegisterCarrierAccountRequestBodyType.Chronopost.ToString())
                 {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCanadaPostCreateRequest)
-                    {
-                        CarrierAccountCanadaPostCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountCanadaPostCreateRequest>(json)
-                    };
+                    CarrierAccountChronopostCreateRequest? carrierAccountChronopostCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountChronopostCreateRequest>(jo.ToString());
+                    return CreateChronopost(carrierAccountChronopostCreateRequest!);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.Colissimo.ToString())
                 {
-                    fallbackCandidates.Add((typeof(CarrierAccountCanadaPostCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCanadaPostCreateRequest), "CarrierAccountCanadaPostCreateRequest"));
+                    CarrierAccountColissimoCreateRequest? carrierAccountColissimoCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountColissimoCreateRequest>(jo.ToString());
+                    return CreateColissimo(carrierAccountColissimoCreateRequest!);
                 }
-                catch (ResponseBodyDeserializer.DeserializationException)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.Correos.ToString())
                 {
-                    // try next option
+                    CarrierAccountCorreosCreateRequest? carrierAccountCorreosCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountCorreosCreateRequest>(jo.ToString());
+                    return CreateCorreos(carrierAccountCorreosCreateRequest!);
                 }
-                catch (Exception)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.DeutschePost.ToString())
                 {
-                    throw;
+                    CarrierAccountDeutschePostCreateRequest? carrierAccountDeutschePostCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountDeutschePostCreateRequest>(jo.ToString());
+                    return CreateDeutschePost(carrierAccountDeutschePostCreateRequest!);
                 }
-
-                try
+                if (discriminator == RegisterCarrierAccountRequestBodyType.DhlExpress.ToString())
                 {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountChronopostCreateRequest)
-                    {
-                        CarrierAccountChronopostCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountChronopostCreateRequest>(json)
-                    };
+                    CarrierAccountDHLExpressCreateRequest? carrierAccountDHLExpressCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountDHLExpressCreateRequest>(jo.ToString());
+                    return CreateDhlExpress(carrierAccountDHLExpressCreateRequest!);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.DpdDe.ToString())
                 {
-                    fallbackCandidates.Add((typeof(CarrierAccountChronopostCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountChronopostCreateRequest), "CarrierAccountChronopostCreateRequest"));
+                    CarrierAccountDpdDeCreateRequest? carrierAccountDpdDeCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountDpdDeCreateRequest>(jo.ToString());
+                    return CreateDpdDe(carrierAccountDpdDeCreateRequest!);
                 }
-                catch (ResponseBodyDeserializer.DeserializationException)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.DpdUk.ToString())
                 {
-                    // try next option
+                    CarrierAccountDPDUKCreateRequest? carrierAccountDPDUKCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountDPDUKCreateRequest>(jo.ToString());
+                    return CreateDpdUk(carrierAccountDPDUKCreateRequest!);
                 }
-                catch (Exception)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.Fedex.ToString())
                 {
-                    throw;
+                    CarrierAccountFedExCreateRequest? carrierAccountFedExCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountFedExCreateRequest>(jo.ToString());
+                    return CreateFedex(carrierAccountFedExCreateRequest!);
                 }
-
-                try
+                if (discriminator == RegisterCarrierAccountRequestBodyType.HermesUk.ToString())
                 {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountColissimoCreateRequest)
-                    {
-                        CarrierAccountColissimoCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountColissimoCreateRequest>(json)
-                    };
+                    CarrierAccountHermesUKCreateRequest? carrierAccountHermesUKCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountHermesUKCreateRequest>(jo.ToString());
+                    return CreateHermesUk(carrierAccountHermesUKCreateRequest!);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.MondialRelay.ToString())
                 {
-                    fallbackCandidates.Add((typeof(CarrierAccountColissimoCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountColissimoCreateRequest), "CarrierAccountColissimoCreateRequest"));
+                    CarrierAccountMondialRelayCreateRequest? carrierAccountMondialRelayCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountMondialRelayCreateRequest>(jo.ToString());
+                    return CreateMondialRelay(carrierAccountMondialRelayCreateRequest!);
                 }
-                catch (ResponseBodyDeserializer.DeserializationException)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.PosteItaliane.ToString())
                 {
-                    // try next option
+                    CarrierAccountPosteItalianeCreateRequest? carrierAccountPosteItalianeCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountPosteItalianeCreateRequest>(jo.ToString());
+                    return CreatePosteItaliane(carrierAccountPosteItalianeCreateRequest!);
                 }
-                catch (Exception)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.Ups.ToString())
                 {
-                    throw;
+                    CarrierAccountUPSCreateRequest? carrierAccountUPSCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountUPSCreateRequest>(jo.ToString());
+                    return CreateUps(carrierAccountUPSCreateRequest!);
                 }
-
-                try
+                if (discriminator == RegisterCarrierAccountRequestBodyType.Usps.ToString())
                 {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCorreosCreateRequest)
-                    {
-                        CarrierAccountCorreosCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountCorreosCreateRequest>(json)
-                    };
+                    CarrierAccountUSPSCreateRequest? carrierAccountUSPSCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountUSPSCreateRequest>(jo.ToString());
+                    return CreateUsps(carrierAccountUSPSCreateRequest!);
                 }
-                catch (ResponseBodyDeserializer.MissingMemberException)
+                if (discriminator == RegisterCarrierAccountRequestBodyType.Sendle.ToString())
                 {
-                    fallbackCandidates.Add((typeof(CarrierAccountCorreosCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountCorreosCreateRequest), "CarrierAccountCorreosCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDeutschePostCreateRequest)
-                    {
-                        CarrierAccountDeutschePostCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountDeutschePostCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountDeutschePostCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDeutschePostCreateRequest), "CarrierAccountDeutschePostCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDHLExpressCreateRequest)
-                    {
-                        CarrierAccountDHLExpressCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountDHLExpressCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountDHLExpressCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDHLExpressCreateRequest), "CarrierAccountDHLExpressCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDpdDeCreateRequest)
-                    {
-                        CarrierAccountDpdDeCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountDpdDeCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountDpdDeCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDpdDeCreateRequest), "CarrierAccountDpdDeCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDPDUKCreateRequest)
-                    {
-                        CarrierAccountDPDUKCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountDPDUKCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountDPDUKCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountDPDUKCreateRequest), "CarrierAccountDPDUKCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountFedExCreateRequest)
-                    {
-                        CarrierAccountFedExCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountFedExCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountFedExCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountFedExCreateRequest), "CarrierAccountFedExCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountHermesUKCreateRequest)
-                    {
-                        CarrierAccountHermesUKCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountHermesUKCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountHermesUKCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountHermesUKCreateRequest), "CarrierAccountHermesUKCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountMondialRelayCreateRequest)
-                    {
-                        CarrierAccountMondialRelayCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountMondialRelayCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountMondialRelayCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountMondialRelayCreateRequest), "CarrierAccountMondialRelayCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountPosteItalianeCreateRequest)
-                    {
-                        CarrierAccountPosteItalianeCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountPosteItalianeCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountPosteItalianeCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountPosteItalianeCreateRequest), "CarrierAccountPosteItalianeCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUPSCreateRequest)
-                    {
-                        CarrierAccountUPSCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountUPSCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountUPSCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUPSCreateRequest), "CarrierAccountUPSCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUSPSCreateRequest)
-                    {
-                        CarrierAccountUSPSCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountUSPSCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountUSPSCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountUSPSCreateRequest), "CarrierAccountUSPSCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountSendleCreateRequest)
-                    {
-                        CarrierAccountSendleCreateRequest = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<CarrierAccountSendleCreateRequest>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(CarrierAccountSendleCreateRequest), new RegisterCarrierAccountRequestBody(RegisterCarrierAccountRequestBodyType.CarrierAccountSendleCreateRequest), "CarrierAccountSendleCreateRequest"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                if (fallbackCandidates.Count > 0)
-                {
-                    fallbackCandidates.Sort((a, b) => ResponseBodyDeserializer.CompareFallbackCandidates(a.Item1, b.Item1, json));
-                    foreach(var (deserializationType, returnObject, propertyName) in fallbackCandidates)
-                    {
-                        try
-                        {
-                            return ResponseBodyDeserializer.DeserializeUndiscriminatedUnionFallback(deserializationType, returnObject, propertyName, json);
-                        }
-                        catch (ResponseBodyDeserializer.DeserializationException)
-                        {
-                            // try next fallback option
-                        }
-                        catch (Exception)
-                        {
-                            throw;
-                        }
-                    }
+                    CarrierAccountSendleCreateRequest? carrierAccountSendleCreateRequest = ResponseBodyDeserializer.Deserialize<CarrierAccountSendleCreateRequest>(jo.ToString());
+                    return CreateSendle(carrierAccountSendleCreateRequest!);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
