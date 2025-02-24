@@ -20,8 +20,8 @@ Returns a list of all transaction objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -29,8 +29,8 @@ var sdk = new ShippoSDK(
 );
 
 ListTransactionsRequest req = new ListTransactionsRequest() {
-    ObjectStatus = Shippo.Models.Components.TransactionStatusEnum.Success,
-    TrackingStatus = Shippo.Models.Components.TrackingStatusEnum.Delivered,
+    ObjectStatus = TransactionStatusEnum.Success,
+    TrackingStatus = TrackingStatusEnum.Delivered,
 };
 
 var res = await sdk.Transactions.ListAsync(req);
@@ -62,9 +62,7 @@ Creates a new transaction object and purchases the shipping label using a rate o
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
-using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -74,8 +72,7 @@ var sdk = new ShippoSDK(
 var res = await sdk.Transactions.CreateAsync(
     requestBody: CreateTransactionRequestBody.CreateTransactionCreateRequest(
         new TransactionCreateRequest() {
-            Async = false,
-            LabelFileType = Shippo.Models.Components.LabelFileTypeEnum.Pdf4x6,
+            LabelFileType = LabelFileTypeEnum.Pdf4x6,
             Metadata = "Order ID #12345",
             Rate = "ec9f0d3adc9441449c85d315f0997fd5",
             Order = "adcfdddf8ec64b84ad22772bce3ea37a",
@@ -112,7 +109,6 @@ Returns an existing transaction using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

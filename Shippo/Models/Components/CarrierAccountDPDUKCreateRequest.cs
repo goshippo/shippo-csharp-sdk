@@ -17,7 +17,7 @@ namespace Shippo.Models.Components
     {
 
         [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
+        public string Carrier { get; } = "dpd_uk";
 
         [JsonProperty("parameters")]
         public CarrierAccountDPDUKCreateRequestParameters Parameters { get; set; } = default!;

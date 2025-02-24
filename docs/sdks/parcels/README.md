@@ -24,7 +24,6 @@ Returns a list of all parcel objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -67,7 +66,6 @@ Creates a new parcel object.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -82,19 +80,19 @@ var res = await sdk.Parcels.CreateAsync(
                 Cod = new Cod() {
                     Amount = "5.5",
                     Currency = "USD",
-                    PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
+                    PaymentMethod = PaymentMethod.Cash,
                 },
                 Insurance = new ParcelInsurance() {
                     Amount = "5.5",
                     Content = "Laptop",
                     Currency = "USD",
-                    Provider = Shippo.Models.Components.ParcelInsuranceProvider.Ups,
+                    Provider = ParcelInsuranceProvider.Ups,
                 },
             },
             Metadata = "Customer ID 123456",
-            MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+            MassUnit = WeightUnitEnum.Lb,
             Weight = "1",
-            DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
+            DistanceUnit = DistanceUnitEnum.In,
             Height = "1",
             Length = "1",
             Width = "1",
@@ -131,7 +129,6 @@ Returns parcel details using an existing parcel object ID (this will not return 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

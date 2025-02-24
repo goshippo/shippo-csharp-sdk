@@ -30,7 +30,6 @@ Creates a new batch object for purchasing shipping labels for many shipments at 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
@@ -43,7 +42,7 @@ var res = await sdk.Batches.CreateAsync(
     batchCreateRequest: new BatchCreateRequest() {
         DefaultCarrierAccount = "078870331023437cb917f5187429b093",
         DefaultServicelevelToken = "usps_priority",
-        LabelFiletype = Shippo.Models.Components.LabelFileTypeEnum.Pdf4x6,
+        LabelFiletype = LabelFileTypeEnum.Pdf4x6,
         Metadata = "BATCH #1",
         BatchShipments = new List<BatchShipmentCreateRequest>() {
             new BatchShipmentCreateRequest() {
@@ -70,7 +69,7 @@ var res = await sdk.Batches.CreateAsync(
                         Cod = new Cod() {
                             Amount = "5.5",
                             Currency = "USD",
-                            PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
+                            PaymentMethod = PaymentMethod.Cash,
                         },
                         CodNumber = new UPSReferenceFields() {
                             Prefix = "ABC",
@@ -195,13 +194,13 @@ var res = await sdk.Batches.CreateAsync(
                     ),
                     CustomsDeclaration = ShipmentCreateRequestCustomsDeclaration.CreateCustomsDeclarationCreateRequest(
                         new CustomsDeclarationCreateRequest() {
-                            B13aFilingOption = Shippo.Models.Components.CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
+                            B13aFilingOption = CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
                             Certify = true,
                             CertifySigner = "Shawn Ippotle",
                             ContentsExplanation = "T-Shirt purchase",
                             DutiesPayor = new DutiesPayor() {
                                 Account = "2323434543",
-                                Type = Shippo.Models.Components.CustomsDeclarationCreateRequestType.ThirdParty,
+                                Type = CustomsDeclarationCreateRequestType.ThirdParty,
                                 Address = new CustomsDeclarationCreateRequestAddress() {
                                     Name = "Patrick Kavanagh",
                                     Zip = "80331",
@@ -212,7 +211,7 @@ var res = await sdk.Batches.CreateAsync(
                                 EoriNumber = "PL123456790ABCDE",
                                 TaxId = new CustomsTaxIdentification() {
                                     Number = "123456789",
-                                    Type = Shippo.Models.Components.CustomsTaxIdentificationType.Ein,
+                                    Type = CustomsTaxIdentificationType.Ein,
                                 },
                             },
                             Invoice = "#123123",
@@ -231,13 +230,13 @@ var res = await sdk.Batches.CreateAsync(
                                 Email = "shippotle@shippo.com",
                                 IsResidential = true,
                             },
-                            ContentsType = Shippo.Models.Components.CustomsDeclarationContentsTypeEnum.Merchandise,
-                            EelPfc = Shippo.Models.Components.CustomsDeclarationEelPfcEnum.Noeei3037A,
-                            Incoterm = Shippo.Models.Components.CustomsDeclarationIncotermEnum.Ddp,
+                            ContentsType = CustomsDeclarationContentsTypeEnum.Merchandise,
+                            EelPfc = CustomsDeclarationEelPfcEnum.Noeei3037A,
+                            Incoterm = CustomsDeclarationIncotermEnum.Ddp,
                             Items = new List<CustomsItemCreateRequest>() {
                                 new CustomsItemCreateRequest() {
                                     Description = "T-Shirt",
-                                    MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+                                    MassUnit = WeightUnitEnum.Lb,
                                     Metadata = "Order ID \"123454\"",
                                     NetWeight = "5",
                                     OriginCountry = "<value>",
@@ -248,7 +247,7 @@ var res = await sdk.Batches.CreateAsync(
                                     ValueCurrency = "USD",
                                 },
                             },
-                            NonDeliveryOption = Shippo.Models.Components.CustomsDeclarationNonDeliveryOptionEnum.Return,
+                            NonDeliveryOption = CustomsDeclarationNonDeliveryOptionEnum.Return,
                             Test = true,
                         }
                     ),
@@ -263,19 +262,19 @@ var res = await sdk.Batches.CreateAsync(
                                     Cod = new Cod() {
                                         Amount = "5.5",
                                         Currency = "USD",
-                                        PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
+                                        PaymentMethod = PaymentMethod.Cash,
                                     },
                                     Insurance = new ParcelInsurance() {
                                         Amount = "5.5",
                                         Content = "Laptop",
                                         Currency = "USD",
-                                        Provider = Shippo.Models.Components.ParcelInsuranceProvider.Ups,
+                                        Provider = ParcelInsuranceProvider.Ups,
                                     },
                                 },
                                 Metadata = "Customer ID 123456",
-                                MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+                                MassUnit = WeightUnitEnum.Lb,
                                 Weight = "1",
-                                DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
+                                DistanceUnit = DistanceUnitEnum.In,
                                 Height = "1",
                                 Length = "1",
                                 Width = "1",
@@ -320,8 +319,8 @@ For more details on filtering results, see our guide on <a href="https://docs.go
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -361,9 +360,8 @@ Adds batch shipments to an existing batch.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
-using System.Collections.Generic;
 using Shippo.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -397,7 +395,7 @@ var res = await sdk.Batches.AddShipmentsAsync(
                     Cod = new Cod() {
                         Amount = "5.5",
                         Currency = "USD",
-                        PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
+                        PaymentMethod = PaymentMethod.Cash,
                     },
                     CodNumber = new UPSReferenceFields() {
                         Prefix = "ABC",
@@ -570,7 +568,6 @@ When all the shipments are purchased, the status will change to `PURCHASED` and 
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -611,9 +608,8 @@ Removes shipments from an existing batch shipment.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
-using System.Collections.Generic;
 using Shippo.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
