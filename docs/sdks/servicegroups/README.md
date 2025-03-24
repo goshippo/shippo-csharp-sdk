@@ -22,7 +22,6 @@ Returns a list of service group objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -59,7 +58,6 @@ Creates a new service group.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
@@ -77,7 +75,7 @@ var res = await sdk.ServiceGroups.CreateAsync(
         FreeShippingThresholdMin = "5",
         Name = "USPS Shipping",
         RateAdjustment = 15,
-        Type = Shippo.Models.Components.ServiceGroupTypeEnum.FlatRate,
+        Type = ServiceGroupTypeEnum.FlatRate,
         ServiceLevels = new List<ServiceGroupAccountAndServiceLevel>() {
             new ServiceGroupAccountAndServiceLevel() {
                 AccountObjectId = "80feb1633d4a43c898f0058506cfd82d",
@@ -116,7 +114,6 @@ Updates an existing service group object. <br>The object_id cannot be updated as
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
@@ -135,7 +132,7 @@ var res = await sdk.ServiceGroups.UpdateAsync(
         FreeShippingThresholdMin = "5",
         Name = "USPS Shipping",
         RateAdjustment = 15,
-        Type = Shippo.Models.Components.ServiceGroupTypeEnum.FlatRate,
+        Type = ServiceGroupTypeEnum.FlatRate,
         ObjectId = "80feb1633d4a43c898f005850",
         IsActive = true,
         ServiceLevels = new List<ServiceGroupAccountAndServiceLevel>() {
@@ -175,7 +172,6 @@ Deletes an existing service group using an object ID.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

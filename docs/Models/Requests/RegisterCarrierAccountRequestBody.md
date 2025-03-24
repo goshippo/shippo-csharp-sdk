@@ -1,96 +1,96 @@
 # RegisterCarrierAccountRequestBody
 
-Examples.
+The body of the request.
 
 
 ## Supported Types
 
-### CarrierAccountCanadaPostCreateRequest
+### CanadaPost
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountCanadaPostCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateCanadaPost(/* values here */);
 ```
 
-### CarrierAccountChronopostCreateRequest
+### Chronopost
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountChronopostCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateChronopost(/* values here */);
 ```
 
-### CarrierAccountColissimoCreateRequest
+### Colissimo
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountColissimoCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateColissimo(/* values here */);
 ```
 
-### CarrierAccountCorreosCreateRequest
+### Correos
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountCorreosCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateCorreos(/* values here */);
 ```
 
-### CarrierAccountDeutschePostCreateRequest
+### DeutschePost
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountDeutschePostCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateDeutschePost(/* values here */);
 ```
 
-### CarrierAccountDHLExpressCreateRequest
+### DhlExpress
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountDHLExpressCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateDhlExpress(/* values here */);
 ```
 
-### CarrierAccountDpdDeCreateRequest
+### DpdDe
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountDpdDeCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateDpdDe(/* values here */);
 ```
 
-### CarrierAccountDPDUKCreateRequest
+### DpdUk
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountDPDUKCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateDpdUk(/* values here */);
 ```
 
-### CarrierAccountFedExCreateRequest
+### Fedex
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountFedExCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateFedex(/* values here */);
 ```
 
-### CarrierAccountHermesUKCreateRequest
+### HermesUk
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountHermesUKCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateHermesUk(/* values here */);
 ```
 
-### CarrierAccountMondialRelayCreateRequest
+### MondialRelay
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountMondialRelayCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateMondialRelay(/* values here */);
 ```
 
-### CarrierAccountPosteItalianeCreateRequest
+### PosteItaliane
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountPosteItalianeCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreatePosteItaliane(/* values here */);
 ```
 
-### CarrierAccountUPSCreateRequest
+### Ups
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountUPSCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateUps(/* values here */);
 ```
 
-### CarrierAccountUSPSCreateRequest
+### Usps
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountUSPSCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateUsps(/* values here */);
 ```
 
-### CarrierAccountSendleCreateRequest
+### Sendle
 
 ```csharp
-RegisterCarrierAccountRequestBody.CreateCarrierAccountSendleCreateRequest(/* values here */);
+RegisterCarrierAccountRequestBody.CreateSendle(/* values here */);
 ```

@@ -18,14 +18,17 @@ namespace Shippo.Models.Components
     /// 
     /// <remarks>
     /// |:---|:---|<br/>
-    /// | veho_next_day | Veho Next Day |<br/>
+    /// | veho_ground_plus | Veho Ground Plus |<br/>
+    /// | veho_premium_economy | Veho Premium Economy<br/>
     /// 
     /// </remarks>
     /// </summary>
     public enum ServiceLevelVehoEnum
     {
-        [JsonProperty("veho_next_day")]
-        VehoNextDay,
+        [JsonProperty("veho_ground_plus")]
+        VehoGroundPlus,
+        [JsonProperty("veho_premium_economy")]
+        VehoPremiumEconomy,
     }
 
     public static class ServiceLevelVehoEnumExtension

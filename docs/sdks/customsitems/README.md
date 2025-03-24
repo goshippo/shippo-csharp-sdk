@@ -20,7 +20,6 @@ Returns a list all customs items objects.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -63,7 +62,6 @@ Creates a new customs item object.
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -74,7 +72,7 @@ var sdk = new ShippoSDK(
 var res = await sdk.CustomsItems.CreateAsync(
     customsItemCreateRequest: new CustomsItemCreateRequest() {
         Description = "T-Shirt",
-        MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        MassUnit = WeightUnitEnum.Lb,
         Metadata = "Order ID \"123454\"",
         NetWeight = "5",
         OriginCountry = "<value>",
@@ -115,7 +113,6 @@ Returns an existing customs item using an object ID
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

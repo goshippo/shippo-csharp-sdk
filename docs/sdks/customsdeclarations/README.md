@@ -21,7 +21,6 @@ Returns a a list of all customs declaration objects
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
@@ -64,7 +63,6 @@ Creates a new customs declaration object
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
@@ -75,13 +73,13 @@ var sdk = new ShippoSDK(
 
 var res = await sdk.CustomsDeclarations.CreateAsync(
     customsDeclarationCreateRequest: new CustomsDeclarationCreateRequest() {
-        B13aFilingOption = Shippo.Models.Components.CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
+        B13aFilingOption = CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
         Certify = true,
         CertifySigner = "Shawn Ippotle",
         ContentsExplanation = "T-Shirt purchase",
         DutiesPayor = new DutiesPayor() {
             Account = "2323434543",
-            Type = Shippo.Models.Components.CustomsDeclarationCreateRequestType.ThirdParty,
+            Type = CustomsDeclarationCreateRequestType.ThirdParty,
             Address = new CustomsDeclarationCreateRequestAddress() {
                 Name = "Patrick Kavanagh",
                 Zip = "80331",
@@ -92,7 +90,7 @@ var res = await sdk.CustomsDeclarations.CreateAsync(
             EoriNumber = "PL123456790ABCDE",
             TaxId = new CustomsTaxIdentification() {
                 Number = "123456789",
-                Type = Shippo.Models.Components.CustomsTaxIdentificationType.Ein,
+                Type = CustomsTaxIdentificationType.Ein,
             },
         },
         Invoice = "#123123",
@@ -111,13 +109,13 @@ var res = await sdk.CustomsDeclarations.CreateAsync(
             Email = "shippotle@shippo.com",
             IsResidential = true,
         },
-        ContentsType = Shippo.Models.Components.CustomsDeclarationContentsTypeEnum.Merchandise,
-        EelPfc = Shippo.Models.Components.CustomsDeclarationEelPfcEnum.Noeei3037A,
-        Incoterm = Shippo.Models.Components.CustomsDeclarationIncotermEnum.Ddp,
+        ContentsType = CustomsDeclarationContentsTypeEnum.Merchandise,
+        EelPfc = CustomsDeclarationEelPfcEnum.Noeei3037A,
+        Incoterm = CustomsDeclarationIncotermEnum.Ddp,
         Items = new List<CustomsItemCreateRequest>() {
             new CustomsItemCreateRequest() {
                 Description = "T-Shirt",
-                MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+                MassUnit = WeightUnitEnum.Lb,
                 Metadata = "Order ID \"123454\"",
                 NetWeight = "5",
                 OriginCountry = "<value>",
@@ -128,7 +126,7 @@ var res = await sdk.CustomsDeclarations.CreateAsync(
                 ValueCurrency = "USD",
             },
         },
-        NonDeliveryOption = Shippo.Models.Components.CustomsDeclarationNonDeliveryOptionEnum.Return,
+        NonDeliveryOption = CustomsDeclarationNonDeliveryOptionEnum.Return,
         Test = true,
     },
     shippoApiVersion: "2018-02-08"
@@ -162,7 +160,6 @@ Returns an existing customs declaration using an object ID
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(

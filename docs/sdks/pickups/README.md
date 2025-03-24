@@ -19,8 +19,8 @@ Creates a pickup object. This request is for a carrier to come to a specified lo
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using System;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
@@ -48,12 +48,12 @@ var res = await sdk.Pickups.CreateAsync(
                 Metadata = "Customer ID 123456",
                 Validate = true,
             },
-            BuildingLocationType = Shippo.Models.Components.BuildingLocationType.FrontDoor,
-            BuildingType = Shippo.Models.Components.BuildingType.Apartment,
+            BuildingLocationType = BuildingLocationType.FrontDoor,
+            BuildingType = BuildingType.Apartment,
             Instructions = "Behind screen door",
         },
-        RequestedEndTime = System.DateTime.Parse("2023-06-18T07:14:55.338Z"),
-        RequestedStartTime = System.DateTime.Parse("2023-12-01T17:06:07.804Z"),
+        RequestedEndTime = System.DateTime.Parse("2024-06-17T07:14:55.338Z"),
+        RequestedStartTime = System.DateTime.Parse("2024-11-30T17:06:07.804Z"),
         Transactions = new List<string>() {
             "adcfdddf8ec64b84ad22772bce3ea37a",
         },
