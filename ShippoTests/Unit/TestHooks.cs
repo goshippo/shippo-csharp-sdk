@@ -5,6 +5,7 @@ using AuthenticationHeaderValue = System.Net.Http.Headers.AuthenticationHeaderVa
 public class Hooks
 {
     /* TODO: Re-enable once HookContext is regenerated with the 4-parameter constructor
+    [Theory]
     [InlineData(false)]
     [InlineData(false, $"{ShippoAuthBeforeRequestHook.SCHEME}", "shippo_test_12345")]
     [InlineData(false, "JWT", "eyJ12345")]
