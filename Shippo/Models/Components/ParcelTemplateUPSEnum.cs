@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Name | Dimensions|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|:---|<br/>
     /// | UPS_Box_10kg | Box 10kg | 410.00 x 335.00 x 265.00 mm|<br/>
     /// | UPS_Box_25kg | Box 25kg | 484.00 x 433.00 x 350.00 mm|<br/>
@@ -42,9 +40,7 @@ namespace Shippo.Models.Components
     /// | UPS_MI_Priority | Priority (Mail Innovations - Domestic only) | 0.00 x 0.00 x 0.00 in|<br/>
     /// | UPS_MI_Standard_Flat | Standard Flat (Mail Innovations - Domestic only) | 0.00 x 0.00 x 0.00 in|<br/>
     /// | UPS_Pad_Pak | Pad Pak | 14.75 x 11.00 x 2.00 in|<br/>
-    /// | UPS_Pallet | Pallet | 120.00 x 80.00 x 200.00 cm|<br/>
-    /// 
-    /// </remarks>
+    /// | UPS_Pallet | Pallet | 120.00 x 80.00 x 200.00 cm|
     /// </summary>
     public enum ParcelTemplateUPSEnum
     {
@@ -132,5 +128,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ParcelTemplateUPSEnum");
         }
     }
-
 }

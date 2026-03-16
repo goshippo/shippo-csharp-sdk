@@ -11,10 +11,9 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class TracksRequest
     {
-
         /// <summary>
         /// Name of the carrier of the shipment to track.
         /// </summary>

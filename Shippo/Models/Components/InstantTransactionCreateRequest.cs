@@ -12,10 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class InstantTransactionCreateRequest
     {
-
         [JsonProperty("async")]
         public bool? Async { get; set; } = false;
 

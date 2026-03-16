@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     public enum ShipmentExtraReturnServiceTypeLasershipEnum
     {
         [JsonProperty("NO_RETURN")]
@@ -51,5 +51,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ShipmentExtraReturnServiceTypeLasershipEnum");
         }
     }
-
 }

@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Name | Dimensions|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|:---|<br/>
     /// | FedEx_Box_10kg | FedEx® 10kg Box | 15.81 x 12.94 x 10.19 in|<br/>
     /// | FedEx_Box_25kg | FedEx® 25kg Box | 54.80 x 42.10 x 33.50 in|<br/>
@@ -33,9 +31,7 @@ namespace Shippo.Models.Components
     /// | FedEx_Pak_1 | FedEx® Large Pak | 15.50 x 12.00 x 0.80 in|<br/>
     /// | FedEx_Pak_2 | FedEx® Small Pak | 12.75 x 10.25 x 0.80 in|<br/>
     /// | FedEx_Tube | FedEx® Tube | 38.00 x 6.00 x 6.00 in|<br/>
-    /// | FedEx_XL_Pak | FedEx® Extra Large Pak | 17.50 x 20.75 x 2.00 in|<br/>
-    /// 
-    /// </remarks>
+    /// | FedEx_XL_Pak | FedEx® Extra Large Pak | 17.50 x 20.75 x 2.00 in|
     /// </summary>
     public enum ParcelTemplateFedExEnum
     {
@@ -105,5 +101,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ParcelTemplateFedExEnum");
         }
     }
-
 }

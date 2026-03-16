@@ -12,15 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
-    /// | poste_italiane_delivery_business_express | Poste Delivery Business Express|<br/>
-    /// 
-    /// </remarks>
+    /// | poste_italiane_delivery_business_express | Poste Delivery Business Express|
     /// </summary>
     public enum ServiceLevelPostItalianeEnum
     {
@@ -60,5 +56,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelPostItalianeEnum");
         }
     }
-
 }

@@ -6,6 +6,14 @@
 | DHLeC_SM_Flats | Flats | 27.00 x 17.00 x 17.00 in|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ParcelTemplateDHLeCommerceEnum.DHLeCIrregular;
+```
+
 
 ## Values
 

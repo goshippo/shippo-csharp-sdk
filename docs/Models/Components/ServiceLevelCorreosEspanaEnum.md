@@ -6,6 +6,14 @@
 | correos_premium_home | Paquete Premium|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelCorreosEspanaEnum.CorreosStandardHome;
+```
+
 
 ## Values
 

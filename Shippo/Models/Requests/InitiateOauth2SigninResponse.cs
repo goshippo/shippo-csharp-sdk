@@ -11,10 +11,9 @@ namespace Shippo.Models.Requests
 {
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class InitiateOauth2SigninResponse
     {
-
-        public Dictionary<string, List<string>> Headers { get; set; } = default!;
+        public Dictionary<string, List<string>> Headers { get; set; } = new Dictionary<string, List<string>>();
     }
 }

@@ -12,18 +12,14 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | epacket | ePacket|<br/>
     /// | epacket_plus | ePacket Plus|<br/>
     /// | eparcel_premium | eParcel premium|<br/>
-    /// | apg_eparcel_expedited | eParcel Expedited|<br/>
-    /// 
-    /// </remarks>
+    /// | apg_eparcel_expedited | eParcel Expedited|
     /// </summary>
     public enum ServiceLevelAPGEnum
     {
@@ -69,5 +65,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelAPGEnum");
         }
     }
-
 }

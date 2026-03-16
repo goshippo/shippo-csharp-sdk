@@ -12,17 +12,13 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | parcelforce_express48 | Express 48|<br/>
     /// | parcelforce_express24 | Express 24|<br/>
-    /// | parcelforce_expressam | Express AM|<br/>
-    /// 
-    /// </remarks>
+    /// | parcelforce_expressam | Express AM|
     /// </summary>
     public enum ServiceLevelParcelforceEnum
     {
@@ -66,5 +62,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelParcelforceEnum");
         }
     }
-
 }

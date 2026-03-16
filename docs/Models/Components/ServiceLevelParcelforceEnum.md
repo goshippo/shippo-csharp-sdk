@@ -7,6 +7,14 @@
 | parcelforce_expressam | Express AM|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelParcelforceEnum.ParcelforceExpress48;
+```
+
 
 ## Values
 

@@ -12,17 +12,13 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | colissimo_home | Domicile|<br/>
     /// | colissimo_pick_up_point | Point Retrait|<br/>
-    /// | colissimo_return_mainland_france | Retour France|<br/>
-    /// 
-    /// </remarks>
+    /// | colissimo_return_mainland_france | Retour France|
     /// </summary>
     public enum ServiceLevelColissimoEnum
     {
@@ -66,5 +62,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelColissimoEnum");
         }
     }
-
 }

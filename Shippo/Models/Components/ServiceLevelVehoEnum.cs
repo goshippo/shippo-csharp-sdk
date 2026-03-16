@@ -12,20 +12,19 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
-    /// | veho_next_day | Veho Next Day |<br/>
-    /// 
-    /// </remarks>
+    /// | veho_ground_plus | Veho Ground Plus |<br/>
+    /// | veho_premium_economy | Veho Premium Economy.
     /// </summary>
     public enum ServiceLevelVehoEnum
     {
-        [JsonProperty("veho_next_day")]
-        VehoNextDay,
+        [JsonProperty("veho_ground_plus")]
+        VehoGroundPlus,
+        [JsonProperty("veho_premium_economy")]
+        VehoPremiumEconomy,
     }
 
     public static class ServiceLevelVehoEnumExtension
@@ -60,5 +59,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelVehoEnum");
         }
     }
-
 }

@@ -12,17 +12,13 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | ontrac_ground | Ground|<br/>
     /// | ontrac_sunrise_gold | Sunrise Gold|<br/>
-    /// | ontrac_sunrise | Sunrise|<br/>
-    /// 
-    /// </remarks>
+    /// | ontrac_sunrise | Sunrise|
     /// </summary>
     public enum ServiceLevelOnTracEnum
     {
@@ -66,5 +62,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelOnTracEnum");
         }
     }
-
 }

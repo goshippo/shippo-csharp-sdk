@@ -3,6 +3,14 @@
 Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only 
 supported for DHL Express.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = BuildingLocationType.BackDoor;
+```
+
 
 ## Values
 

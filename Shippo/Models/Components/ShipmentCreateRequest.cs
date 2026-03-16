@@ -13,10 +13,9 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class ShipmentCreateRequest
     {
-
         /// <summary>
         /// An object holding optional extra services to be requested.
         /// </summary>
@@ -31,40 +30,42 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Date the shipment will be tendered to the carrier. Must be in the format `2014-01-18T00:35:03.463Z`. <br/>
-        /// 
-        /// <remarks>
         /// Defaults to current date and time if no value is provided. Please note that some carriers require this value to<br/>
         /// be in the future, on a working day, or similar.
-        /// </remarks>
         /// </summary>
         [JsonProperty("shipment_date")]
         public string? ShipmentDate { get; set; }
 
-        [JsonProperty("address_from")]
+        [JsonProperty("address_from", NullValueHandling = NullValueHandling.Include)]
         public AddressFrom AddressFrom { get; set; } = default!;
 
-        [JsonProperty("address_return")]
+        [JsonProperty("address_return", NullValueHandling = NullValueHandling.Include)]
         public AddressReturn? AddressReturn { get; set; }
 
-        [JsonProperty("address_to")]
+        [JsonProperty("address_to", NullValueHandling = NullValueHandling.Include)]
         public AddressTo AddressTo { get; set; } = default!;
 
-        [JsonProperty("customs_declaration")]
+        [JsonProperty("customs_declaration", NullValueHandling = NullValueHandling.Include)]
         public ShipmentCreateRequestCustomsDeclaration? CustomsDeclaration { get; set; }
 
         [JsonProperty("async")]
         public bool? Async { get; set; }
 
         /// <summary>
-        /// List of &lt;a href=&quot;#tag/Carrier-Accounts/&quot;&gt;Carrier Accounts&lt;/a&gt; `object_id`s used to filter <br/>
-        /// 
-        /// <remarks>
+        /// List of <a href="/shippoapi/public-api/carrier-accounts">Carrier Accounts</a> `object_id`s used to filter <br/>
         /// the returned rates.  If set, only rates from these carriers will be returned.
-        /// </remarks>
         /// </summary>
         [JsonProperty("carrier_accounts")]
         public List<string>? CarrierAccounts { get; set; }
 
+        /// <summary>
+        /// List of parcels to be shipped.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 30 items |
+        /// </summary>
         [JsonProperty("parcels")]
         public List<Models.Components.Parcels> Parcels { get; set; } = default!;
     }

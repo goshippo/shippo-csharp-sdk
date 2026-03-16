@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | fedex_ground | FedEx Ground®|<br/>
     /// | fedex_home_delivery | FedEx Home Delivery®|<br/>
@@ -41,9 +39,7 @@ namespace Shippo.Models.Components
     /// | fedex_international_priority_express | International Priority® Express |<br/>
     /// | fedex_next_day_mid_morning | Next Day Mid Morning |<br/>
     /// | fedex_priority_overnight_extra_hours | Priority Overnight® EH |<br/>
-    /// | fedex_standard_overnight_extra_hours | Standard Overnight® EH |<br/>
-    /// 
-    /// </remarks>
+    /// | fedex_standard_overnight_extra_hours | Standard Overnight® EH |
     /// </summary>
     public enum ServiceLevelFedExEnum
     {
@@ -131,5 +127,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelFedExEnum");
         }
     }
-
 }

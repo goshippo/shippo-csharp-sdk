@@ -13,16 +13,12 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class CustomsDeclarationCreateRequest
     {
-
         /// <summary>
         /// **required if eel_pfc is `AES_ITN`**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
         /// AES / ITN reference of the shipment.
-        /// </remarks>
         /// </summary>
         [JsonProperty("aes_itn")]
         public string? AesItn { get; set; }
@@ -32,12 +28,9 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// **must be provided if and only if b13a_filing_option is provided**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
         /// Represents:&lt;br&gt; the Proof of Report (POR) Number when b13a_filing_option is `FILED_ELECTRONICALLY`;&lt;br&gt; <br/>
         /// the Summary ID Number when b13a_filing_option is `SUMMARY_REPORTING`;&lt;br&gt; <br/>
         /// or the Exemption Number when b13a_filing_option is `NOT_REQUIRED`.
-        /// </remarks>
         /// </summary>
         [JsonProperty("b13a_number")]
         public string? B13aNumber { get; set; }
@@ -56,10 +49,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Name of the person who created the customs declaration and is responsible for the validity of all <br/>
-        /// 
-        /// <remarks>
         /// information provided.
-        /// </remarks>
         /// </summary>
         [JsonProperty("certify_signer")]
         public string CertifySigner { get; set; } = default!;
@@ -69,16 +59,18 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// **required if contents_type is `OTHER`**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
         /// Explanation of the type of goods of the shipment.
-        /// </remarks>
         /// </summary>
         [JsonProperty("contents_explanation")]
         public string? ContentsExplanation { get; set; }
 
         /// <summary>
-        /// Disclaimer for the shipment and customs information that have been provided.
+        /// Disclaimer for the shipment and customs information that have been provided.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 554 characters |
         /// </summary>
         [JsonProperty("disclaimer")]
         public string? Disclaimer { get; set; }
@@ -90,7 +82,7 @@ namespace Shippo.Models.Components
         public DutiesPayor? DutiesPayor { get; set; }
 
         /// <summary>
-        /// Additional exporter identification that may be required to ship in certain countries
+        /// Additional exporter identification that may be required to ship in certain countries.
         /// </summary>
         [JsonProperty("exporter_identification")]
         public CustomsExporterIdentification? ExporterIdentification { get; set; }
@@ -108,7 +100,7 @@ namespace Shippo.Models.Components
         public string? ImporterReference { get; set; }
 
         /// <summary>
-        /// Indicates whether the shipment&apos;s destination VAT has been collected. May be required for some destinations.
+        /// Indicates whether the shipment's destination VAT has been collected. May be required for some destinations.
         /// </summary>
         [JsonProperty("is_vat_collected")]
         public bool? IsVatCollected { get; set; }
@@ -127,10 +119,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// A string of up to 100 characters that can be filled with any additional information you <br/>
-        /// 
-        /// <remarks>
         /// want to attach to the object.
-        /// </remarks>
         /// </summary>
         [JsonProperty("metadata")]
         public string? Metadata { get; set; }
@@ -142,7 +131,7 @@ namespace Shippo.Models.Components
         public string? Notes { get; set; }
 
         /// <summary>
-        /// Object that represents the address of the importer
+        /// Object that represents the address of the importer.
         /// </summary>
         [JsonProperty("address_importer")]
         public AddressImporter? AddressImporter { get; set; }

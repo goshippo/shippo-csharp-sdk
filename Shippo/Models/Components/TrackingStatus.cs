@@ -13,13 +13,12 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// The latest tracking information of this shipment.
     /// </summary>
     public class TrackingStatus
     {
-
         /// <summary>
         /// An object containing zip, city, state and country information of the tracking event.
         /// </summary>

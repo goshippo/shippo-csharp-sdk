@@ -12,16 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Name | Dimensions|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|:---|<br/>
     /// | DHLeC_Irregular | Irregular Shipment | 10.00 x 10.00 x 10.00 in|<br/>
-    /// | DHLeC_SM_Flats | Flats | 27.00 x 17.00 x 17.00 in|<br/>
-    /// 
-    /// </remarks>
+    /// | DHLeC_SM_Flats | Flats | 27.00 x 17.00 x 17.00 in|
     /// </summary>
     public enum ParcelTemplateDHLeCommerceEnum
     {
@@ -63,5 +59,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ParcelTemplateDHLeCommerceEnum");
         }
     }
-
 }

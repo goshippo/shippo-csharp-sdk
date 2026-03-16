@@ -12,20 +12,16 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | gls_us_cps | GSO Ground|<br/>
     /// | gls_us_eps | Early Priority Overnight|<br/>
     /// | gls_us_ess | Early Saturday Delivery|<br/>
     /// | gls_us_nps | Noon Priority Overnight|<br/>
     /// | gls_us_pds | Priority Overnight|<br/>
-    /// | gls_us_sds | Saturday Delivery|<br/>
-    /// 
-    /// </remarks>
+    /// | gls_us_sds | Saturday Delivery|
     /// </summary>
     public enum ServiceLevelGLSUSEnum
     {
@@ -75,5 +71,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelGLSUSEnum");
         }
     }
-
 }

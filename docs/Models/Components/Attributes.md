@@ -1,5 +1,13 @@
 # Attributes
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = Attributes.Bestvalue;
+```
+
 
 ## Values
 

@@ -2,6 +2,14 @@
 
 Indicates the status of the pickup.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = PickupStatus.Pending;
+```
+
 
 ## Values
 

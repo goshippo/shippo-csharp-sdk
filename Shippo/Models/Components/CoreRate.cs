@@ -11,38 +11,31 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class CoreRate
     {
-
         /// <summary>
-        /// Final Rate price, expressed in the currency used in the sender&apos;s country.
+        /// Final Rate price, expressed in the currency used in the sender's country.
         /// </summary>
         [JsonProperty("amount")]
         public string? Amount { get; set; }
 
         /// <summary>
-        /// Final Rate price, expressed in the currency used in the recipient&apos;s country.
+        /// Final Rate price, expressed in the currency used in the recipient's country.
         /// </summary>
         [JsonProperty("amount_local")]
         public string? AmountLocal { get; set; }
 
         /// <summary>
-        /// Currency used in the sender&apos;s country, refers to `amount`. <br/>
-        /// 
-        /// <remarks>
-        /// The &lt;a href=&quot;http://www.xe.com/iso4217.php&quot;&gt;official ISO 4217&lt;/a&gt; currency codes are used, e.g. `USD` or `EUR`.
-        /// </remarks>
+        /// Currency used in the sender's country, refers to `amount`. <br/>
+        /// The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or `EUR`.
         /// </summary>
         [JsonProperty("currency")]
         public string? Currency { get; set; }
 
         /// <summary>
-        /// Currency used in the recipient&apos;s country, refers to `amount_local`. <br/>
-        /// 
-        /// <remarks>
-        /// The &lt;a href=&quot;http://www.xe.com/iso4217.php&quot;&gt;official ISO 4217&lt;/a&gt; currency codes are used, e.g. `USD` or &quot;EUR&quot;.
-        /// </remarks>
+        /// Currency used in the recipient's country, refers to `amount_local`. <br/>
+        /// The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or "EUR".
         /// </summary>
         [JsonProperty("currency_local")]
         public string? CurrencyLocal { get; set; }
@@ -67,22 +60,16 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Service level name, e.g. `Priority Mail` or `FedEx Ground®`. <br/>
-        /// 
-        /// <remarks>
         /// A service level commonly defines the transit time of a Shipment (e.g., Express vs. Standard), <br/>
         /// along with other properties.  These names vary depending on the provider.&lt;br&gt;<br/>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;Service Levels&lt;/a&gt;.
-        /// </remarks>
+        /// See <a href="/shippoapi/public-api/service-levels">Service Levels</a>.
         /// </summary>
         [JsonProperty("servicelevel_name")]
         public string? ServicelevelName { get; set; }
 
         /// <summary>
-        /// Token of the Rate&apos;s servicelevel, e.g. `usps_priority` or `fedex_ground`.<br/>
-        /// 
-        /// <remarks>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;servicelevels&lt;/a&gt;.
-        /// </remarks>
+        /// Token of the Rate's servicelevel, e.g. `usps_priority` or `fedex_ground`.<br/>
+        /// See <a href="/shippoapi/public-api/service-levels">servicelevels</a>.
         /// </summary>
         [JsonProperty("servicelevel_token")]
         public string? ServicelevelToken { get; set; }

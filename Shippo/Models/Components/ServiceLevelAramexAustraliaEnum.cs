@@ -12,19 +12,15 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | fastway_australia_parcel | Parcel|<br/>
     /// | fastway_australia_satchel | Satchel|<br/>
     /// | fastway_australia_box_small | Box Small|<br/>
     /// | fastway_australia_box_medium | Box Medium|<br/>
-    /// | fastway_australia_box_large | Box Large|<br/>
-    /// 
-    /// </remarks>
+    /// | fastway_australia_box_large | Box Large|
     /// </summary>
     public enum ServiceLevelAramexAustraliaEnum
     {
@@ -72,5 +68,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelAramexAustraliaEnum");
         }
     }
-
 }

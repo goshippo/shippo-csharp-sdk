@@ -11,13 +11,12 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Additional invoiced charges to be shown on the Customs Declaration Commercial Invoice.
     /// </summary>
     public class CustomsInvoicedCharges
     {
-
         /// <summary>
         /// Currency for the invoiced charges amounts incurred on the end consumer.
         /// </summary>

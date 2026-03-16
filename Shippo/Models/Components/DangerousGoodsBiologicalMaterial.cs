@@ -11,13 +11,12 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Container for specifying the presence of biological material.
     /// </summary>
     public class DangerousGoodsBiologicalMaterial
     {
-
         /// <summary>
         /// Indicates if the shipment contains biological material.
         /// </summary>

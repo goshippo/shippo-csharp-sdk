@@ -12,13 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
-    /// Content of the webhook posted to the external URL
+    /// Content of the webhook posted to the external URL.
     /// </summary>
     public class WebhookPayloadBatch
     {
-
         /// <summary>
         /// Type of event that triggered the webhook.
         /// </summary>
@@ -32,7 +31,7 @@ namespace Shippo.Models.Components
         public bool? Test { get; set; }
 
         /// <summary>
-        /// A string containing the batch object ID, of the form &apos;batch {batchId} (created|processing complete)&apos;.
+        /// A string containing the batch object ID, of the form 'batch {batchId} (created|processing complete)'.
         /// </summary>
         [JsonProperty("data")]
         public string? Data { get; set; }

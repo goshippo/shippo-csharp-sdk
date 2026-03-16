@@ -12,12 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class CarrierAccountFedExCreateRequest
     {
-
         [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
+        public string Carrier { get; } = "fedex";
 
         [JsonProperty("parameters")]
         public CarrierAccountFedExCreateRequestParameters Parameters { get; set; } = default!;

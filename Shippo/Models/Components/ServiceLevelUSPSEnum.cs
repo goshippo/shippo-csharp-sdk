@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | usps_priority | Priority Mail|<br/>
     /// | usps_priority_express | Priority Mail Express|<br/>
@@ -24,9 +22,7 @@ namespace Shippo.Models.Components
     /// | usps_priority_mail_international | Priority Mail International|<br/>
     /// | usps_priority_mail_express_international | Priority Mail Express International|<br/>
     /// | usps_first_class_package_international_service | First Class Package International|<br/>
-    /// | usps_ground_advantage | Ground Advantage |<br/>
-    /// 
-    /// </remarks>
+    /// | usps_ground_advantage | Ground Advantage |
     /// </summary>
     public enum ServiceLevelUSPSEnum
     {
@@ -78,5 +74,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelUSPSEnum");
         }
     }
-
 }

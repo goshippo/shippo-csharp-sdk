@@ -11,13 +11,12 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Specify that the package contains Dry Ice (FedEx, Veho, and UPS only).
     /// </summary>
     public class DryIce
     {
-
         /// <summary>
         /// Mandatory. Specifies that the package contains Dry Ice.
         /// </summary>

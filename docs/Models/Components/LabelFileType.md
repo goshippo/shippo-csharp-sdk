@@ -1,5 +1,13 @@
 # LabelFileType
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = LabelFileType.Png;
+```
+
 
 ## Values
 

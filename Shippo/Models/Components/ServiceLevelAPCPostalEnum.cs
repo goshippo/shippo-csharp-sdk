@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | apc_postal_parcelconnect_expedited | parcelConnect Expedited|<br/>
     /// | apc_postal_parcelconnect_priority | parcelConnect Priority|<br/>
@@ -26,9 +24,7 @@ namespace Shippo.Models.Components
     /// | apc_postal_parcelconnect_standard | parcelConnect Standard|<br/>
     /// | apc_postal_parcelconnect_epmi | parcelConnect ePMI|<br/>
     /// | apc_postal_parcelconnect_epacket | parcelConnect ePacket|<br/>
-    /// | apc_postal_parcelconnect_epmei | parcelConnect ePMEI|<br/>
-    /// 
-    /// </remarks>
+    /// | apc_postal_parcelconnect_epmei | parcelConnect ePMEI|
     /// </summary>
     public enum ServiceLevelAPCPostalEnum
     {
@@ -84,5 +80,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelAPCPostalEnum");
         }
     }
-
 }

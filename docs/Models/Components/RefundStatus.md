@@ -2,6 +2,14 @@
 
 Indicates the status of the Refund.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = RefundStatus.Queued;
+```
+
 
 ## Values
 

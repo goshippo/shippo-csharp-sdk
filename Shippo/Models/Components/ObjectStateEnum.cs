@@ -12,9 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// Indicates the validity of the enclosing object
+    /// Indicates the validity of the enclosing object.
     /// </summary>
     public enum ObjectStateEnum
     {
@@ -56,5 +56,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ObjectStateEnum");
         }
     }
-
 }

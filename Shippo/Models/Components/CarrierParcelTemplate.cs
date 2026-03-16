@@ -12,12 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class CarrierParcelTemplate
     {
-
         /// <summary>
-        /// The name of the carrier that provides this parcel template
+        /// The name of the carrier that provides this parcel template.
         /// </summary>
         [JsonProperty("carrier")]
         public string? Carrier { get; set; }
@@ -29,7 +28,7 @@ namespace Shippo.Models.Components
         public DistanceUnitEnum? DistanceUnit { get; set; }
 
         /// <summary>
-        /// The height of the package, in units specified by the distance_unit attribute
+        /// The height of the package, in units specified by the distance_unit attribute.
         /// </summary>
         [JsonProperty("height")]
         public string? Height { get; set; }
@@ -41,25 +40,25 @@ namespace Shippo.Models.Components
         public bool? IsVariableDimensions { get; set; }
 
         /// <summary>
-        /// The length of the package, in units specified by the distance_unit attribute
+        /// The length of the package, in units specified by the distance_unit attribute.
         /// </summary>
         [JsonProperty("length")]
         public string? Length { get; set; }
 
         /// <summary>
-        /// The name of the carrier parcel template
+        /// The name of the carrier parcel template.
         /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// The unique string representation of the carrier parcel template
+        /// The unique string representation of the carrier parcel template.
         /// </summary>
         [JsonProperty("token")]
         public string? Token { get; set; }
 
         /// <summary>
-        /// The width of the package, in units specified by the distance_unit attribute
+        /// The width of the package, in units specified by the distance_unit attribute.
         /// </summary>
         [JsonProperty("width")]
         public string? Width { get; set; }

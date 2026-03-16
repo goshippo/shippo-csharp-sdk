@@ -12,19 +12,15 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class TransactionCreateRequest
     {
-
         [JsonProperty("async")]
         public bool? Async { get; set; } = true;
 
         /// <summary>
-        /// Print format of the &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/shippinglabelsizes/&quot;&gt;label&lt;/a&gt;. If empty, will use the default format set from <br/>
-        /// 
-        /// <remarks>
-        /// &lt;a href=&quot;https://apps.goshippo.com/settings/labels&quot;&gt;the Shippo dashboard.&lt;/a&gt;
-        /// </remarks>
+        /// Print format of the <a href="https://docs.goshippo.com/docs/shipments/shippinglabelsizes/">label</a>. If empty, will use the default format set from <br/>
+        /// <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
         /// </summary>
         [JsonProperty("label_file_type")]
         public LabelFileTypeEnum? LabelFileType { get; set; }

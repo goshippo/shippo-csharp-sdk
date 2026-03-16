@@ -12,17 +12,13 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Tax identification that may be required to ship in certain countries. Typically used to assess duties on <br/>
-    /// 
-    /// <remarks>
     /// goods that are crossing a border.
-    /// </remarks>
     /// </summary>
     public class CustomsTaxIdentification
     {
-
         /// <summary>
         /// Tax identification number.
         /// </summary>
@@ -31,13 +27,10 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Type of tax identification.<br/>
-        /// 
-        /// <remarks>
         /// * `EIN` - Employer Identification Number, also known as a Federal Tax Identification Number.<br/>
         /// * `VAT` - Value Added Tax identification number.<br/>
         /// * `IOSS` - Import One-Stop Shop<br/>
-        /// * `ARN` - Australian Taxation Office Reference Number
-        /// </remarks>
+        /// * `ARN` - Australian Taxation Office Reference Number.
         /// </summary>
         [JsonProperty("type")]
         public CustomsTaxIdentificationType? Type { get; set; }

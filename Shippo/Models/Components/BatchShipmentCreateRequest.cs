@@ -12,33 +12,26 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class BatchShipmentCreateRequest
     {
-
         /// <summary>
-        /// Object ID of the carrier account to be used for this shipment (will override batch default)
+        /// Object ID of the carrier account to be used for this shipment (will override batch default).
         /// </summary>
         [JsonProperty("carrier_account")]
         public string? CarrierAccount { get; set; }
 
         /// <summary>
         /// A string of up to 100 characters that can be filled with any additional information you want <br/>
-        /// 
-        /// <remarks>
         /// to attach to the object.
-        /// </remarks>
         /// </summary>
         [JsonProperty("metadata")]
         public string? Metadata { get; set; }
 
         /// <summary>
         /// A token that sets the shipping method for the batch, overriding the batch default. <br/>
-        /// 
-        /// <remarks>
-        /// Servicelevel tokens can be found &lt;a href=&quot;#tag/Service-Levels&quot;&gt;in this list&lt;/a&gt; <br/>
-        /// or &lt;a href=&quot;#operation/ListCarrierAccounts&quot;&gt;at this endpoint&lt;/a&gt;.
-        /// </remarks>
+        /// Servicelevel tokens can be found <a href="/shippoapi/public-api/service-levels">in this list</a> <br/>
+        /// or <a href="/shippoapi/public-api/carrier-accounts/listcarrieraccounts">at this endpoint</a>.
         /// </summary>
         [JsonProperty("servicelevel_token")]
         public string? ServicelevelToken { get; set; }

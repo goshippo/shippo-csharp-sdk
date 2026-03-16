@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Mandatory for Fedex only. License type of the recipient of the Alcohol Package.
     /// </summary>
@@ -56,5 +56,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum RecipientType");
         }
     }
-
 }

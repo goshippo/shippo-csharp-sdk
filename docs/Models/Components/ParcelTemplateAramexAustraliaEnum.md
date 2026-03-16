@@ -8,6 +8,14 @@
 | Fastway_Australia_Satchel_A5 | Satchel A5 | 210.00 x 148.00 x 64.00 mm|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ParcelTemplateAramexAustraliaEnum.FastwayAustraliaSatchelA2;
+```
+
 
 ## Values
 

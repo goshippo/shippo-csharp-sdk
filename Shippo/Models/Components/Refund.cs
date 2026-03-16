@@ -13,10 +13,9 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System;
-    
+
     public class Refund
     {
-
         /// <summary>
         /// Date and time of object creation.
         /// </summary>

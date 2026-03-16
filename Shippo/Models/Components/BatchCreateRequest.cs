@@ -13,38 +13,28 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class BatchCreateRequest
     {
-
         /// <summary>
         /// ID of the Carrier Account object to use as the default for all shipments in this Batch. <br/>
-        /// 
-        /// <remarks>
         /// The carrier account can be changed on a per-shipment basis by changing the carrier_account in the <br/>
         /// corresponding BatchShipment object.
-        /// </remarks>
         /// </summary>
         [JsonProperty("default_carrier_account")]
         public string DefaultCarrierAccount { get; set; } = default!;
 
         /// <summary>
         /// Token of the service level to use as the default for all shipments in this Batch. <br/>
-        /// 
-        /// <remarks>
         /// The servicelevel can be changed on a per-shipment basis by changing the servicelevel_token in the <br/>
-        /// corresponding BatchShipment object. &lt;a href=&quot;#tag/Service-Levels&quot;&gt;Servicelevel tokens can be found here.&lt;/a&gt;
-        /// </remarks>
+        /// corresponding BatchShipment object. <a href="/shippoapi/public-api/service-levels">Servicelevel tokens can be found here.</a>
         /// </summary>
         [JsonProperty("default_servicelevel_token")]
         public string DefaultServicelevelToken { get; set; } = default!;
 
         /// <summary>
-        /// Print format of the &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/shippinglabelsizes/&quot;&gt;label&lt;/a&gt;. If empty, will use the default format set from <br/>
-        /// 
-        /// <remarks>
-        /// &lt;a href=&quot;https://apps.goshippo.com/settings/labels&quot;&gt;the Shippo dashboard.&lt;/a&gt;
-        /// </remarks>
+        /// Print format of the <a href="https://docs.goshippo.com/docs/shipments/shippinglabelsizes/">label</a>. If empty, will use the default format set from <br/>
+        /// <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
         /// </summary>
         [JsonProperty("label_filetype")]
         public LabelFileTypeEnum? LabelFiletype { get; set; }

@@ -12,17 +12,45 @@ namespace Shippo.Models.Errors
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
-    /// <summary>
-    /// Invalid ShippoToken or unsupported carrier account provided by the user
-    /// </summary>
-    public class InitiateOauth2SigninCarrierAccountsResponseBody : Exception
-    {
+    using System.Net.Http;
 
+    public class InitiateOauth2SigninCarrierAccountsResponseBodyPayload
+    {
         [JsonProperty("title")]
         public string? Title { get; set; }
 
         [JsonProperty("detail")]
         public string? Detail { get; set; }
+    }
+
+    /// <summary>
+    /// Invalid carrier account provided by the user.
+    /// </summary>
+    public class InitiateOauth2SigninCarrierAccountsResponseBody : ShippoSDKException
+    {
+        /// <summary>
+        ///  The original data that was passed to this exception.
+        /// </summary>
+        public InitiateOauth2SigninCarrierAccountsResponseBodyPayload Payload { get; }
+
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use InitiateOauth2SigninCarrierAccountsResponseBody.Payload.Title instead.")]
+        public string? Title { get; set; }
+
+        [Obsolete("This field will be removed in a future release, please migrate away from it as soon as possible. Use InitiateOauth2SigninCarrierAccountsResponseBody.Payload.Detail instead.")]
+        public string? Detail { get; set; }
+
+        public InitiateOauth2SigninCarrierAccountsResponseBody(
+            InitiateOauth2SigninCarrierAccountsResponseBodyPayload payload,
+            HttpResponseMessage rawResponse,
+            string body
+        ): base("API error occurred", rawResponse, body)
+        {
+           Payload = payload;
+
+           #pragma warning disable CS0618
+           Title = payload.Title;
+           Detail = payload.Detail;
+           #pragma warning restore CS0618
+        }
     }
 }

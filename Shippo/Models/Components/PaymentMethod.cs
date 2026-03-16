@@ -12,14 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Secured funds include money orders, certified cheques and others (see <br/>
-    /// 
-    /// <remarks>
-    /// &lt;a href=&quot;https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html&quot;&gt;UPS&lt;/a&gt; for details). <br/>
-    /// If no payment_method inputted the value defaults to &quot;ANY&quot;.)
-    /// </remarks>
+    /// <a href="https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html">UPS</a> for details). <br/>
+    /// If no payment_method inputted the value defaults to "ANY".).
     /// </summary>
     public enum PaymentMethod
     {
@@ -63,5 +60,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum PaymentMethod");
         }
     }
-
 }

@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | dhl_express_domestic_express_doc | Domestic Express Doc|<br/>
     /// | dhl_express_economy_select_doc | Economy Select Doc|<br/>
@@ -39,9 +37,7 @@ namespace Shippo.Models.Components
     /// | dhl_express_worldwide_b2c_doc | Express Worldwide (B2C) Doc|<br/>
     /// | dhl_express_worldwide_b2c_nondoc | Express Worldwide (B2C) NonDoc|<br/>
     /// | dhl_express_medical_express | Medical Express|<br/>
-    /// | dhl_express_express_easy_nondoc | Express Easy NonDoc|<br/>
-    /// 
-    /// </remarks>
+    /// | dhl_express_express_easy_nondoc | Express Easy NonDoc|
     /// </summary>
     public enum ServiceLevelDHLExpressEnum
     {
@@ -123,5 +119,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelDHLExpressEnum");
         }
     }
-
 }

@@ -12,20 +12,16 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | dhl_germany_europaket | DHL Germany Europaket|<br/>
     /// | dhl_germany_paket | DHL Germany Paket|<br/>
     /// | dhl_germany_paket_connect | DHL Germany Paket Connect|<br/>
     /// | dhl_germany_paket_international | DHL Germany Paket International|<br/>
     /// | dhl_germany_paket_priority | DHL Germany Paket Priority|<br/>
-    /// | dhl_germany_paket_sameday | DHL Germany Paket Sameday|<br/>
-    /// 
-    /// </remarks>
+    /// | dhl_germany_paket_sameday | DHL Germany Paket Sameday|
     /// </summary>
     public enum ServiceLevelDHLGermanyEnum
     {
@@ -75,5 +71,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelDHLGermanyEnum");
         }
     }
-
 }

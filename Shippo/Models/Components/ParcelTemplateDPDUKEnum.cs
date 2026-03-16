@@ -12,15 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Name | Dimensions|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|:---|<br/>
-    /// | DPD_UK_Express_Pak| DPD UK Express Pak | 530.00 x 400.00 x 100.00 mm|<br/>
-    /// 
-    /// </remarks>
+    /// | DPD_UK_Express_Pak| DPD UK Express Pak | 530.00 x 400.00 x 100.00 mm|
     /// </summary>
     public enum ParcelTemplateDPDUKEnum
     {
@@ -60,5 +56,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ParcelTemplateDPDUKEnum");
         }
     }
-
 }

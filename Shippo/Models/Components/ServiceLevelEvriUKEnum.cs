@@ -12,19 +12,15 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | hermes_uk_courier_service | Courier Collection|<br/>
     /// | hermes_uk_parcelshop_dropoff | ParcelShop Drop-Off|<br/>
     /// | hermes_uk_parcelshop_dropoff_nextday | ParcelShop Drop-Off Next Day|<br/>
     /// | hermes_uk_postable | Postable|<br/>
-    /// | hermes_uk_postable_nextday | Postable Next Day|<br/>
-    /// 
-    /// </remarks>
+    /// | hermes_uk_postable_nextday | Postable Next Day|
     /// </summary>
     public enum ServiceLevelEvriUKEnum
     {
@@ -72,5 +68,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelEvriUKEnum");
         }
     }
-
 }

@@ -24,6 +24,14 @@
 | USPS_SoftPack | Soft Pack Padded Envelope |  Length and width defined in the Parcel|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ParcelTemplateUSPSEnum.USPSFlatRateCardboardEnvelope;
+```
+
 
 ## Values
 

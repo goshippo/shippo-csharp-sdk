@@ -2,6 +2,14 @@
 
 Required for DHL Germany Paket Sameday. Designates a desired timeframe for delivery. Format is `HHMMHHMM`
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = PreferredDeliveryTimeframe.TenMillionOneThousandTwoHundred;
+```
+
 
 ## Values
 

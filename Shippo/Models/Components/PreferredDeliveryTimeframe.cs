@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Required for DHL Germany Paket Sameday. Designates a desired timeframe for delivery. Format is `HHMMHHMM`
     /// </summary>
@@ -64,5 +64,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum PreferredDeliveryTimeframe");
         }
     }
-
 }

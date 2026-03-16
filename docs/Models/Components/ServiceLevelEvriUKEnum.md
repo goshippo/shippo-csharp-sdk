@@ -9,6 +9,14 @@
 | hermes_uk_postable_nextday | Postable Next Day|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelEvriUKEnum.HermesUkCourierService;
+```
+
 
 ## Values
 

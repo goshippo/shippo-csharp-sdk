@@ -12,15 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
-    /// | mondial_relay_pointrelais | Point Relais|<br/>
-    /// 
-    /// </remarks>
+    /// | mondial_relay_pointrelais | Point Relais|
     /// </summary>
     public enum ServiceLevelMondialRelayEnum
     {
@@ -60,5 +56,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelMondialRelayEnum");
         }
     }
-
 }

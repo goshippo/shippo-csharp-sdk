@@ -18,6 +18,14 @@
 | canada_post_international_parcel_air  | International Parcel Air
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelCanadaPostEnum.CanadaPostRegularParcel;
+```
+
 
 ## Values
 

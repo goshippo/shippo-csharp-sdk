@@ -11,10 +11,9 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class DefaultParcelTemplateUpdateRequest
     {
-
         [JsonProperty("object_id")]
         public string? ObjectId { get; set; }
     }

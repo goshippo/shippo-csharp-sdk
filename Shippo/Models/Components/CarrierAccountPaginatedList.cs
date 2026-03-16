@@ -13,10 +13,9 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class CarrierAccountPaginatedList
     {
-
         [JsonProperty("next")]
         public string? Next { get; set; }
 

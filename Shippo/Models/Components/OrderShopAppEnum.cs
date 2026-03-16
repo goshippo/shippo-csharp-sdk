@@ -12,13 +12,10 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Platform the order was created on and, if applicable, imported from. <br/>
-    /// 
-    /// <remarks>
-    /// Orders created via the Shippo API or dashboard will have the value &quot;Shippo&quot;.
-    /// </remarks>
+    /// Orders created via the Shippo API or dashboard will have the value "Shippo".
     /// </summary>
     public enum OrderShopAppEnum
     {
@@ -86,5 +83,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum OrderShopAppEnum");
         }
     }
-
 }

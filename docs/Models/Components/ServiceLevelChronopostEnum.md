@@ -10,6 +10,14 @@
 | chronopost_express | Chrono Express International|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelChronopostEnum.Chronopost13;
+```
+
 
 ## Values
 

@@ -1,12 +1,10 @@
 # ShippoAccounts
-(*ShippoAccounts*)
 
 ## Overview
 
 Shippo Accounts are used by Shippo Platform Accounts to create and manage Managed Shippo Accounts. 
 Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. 
 They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our <a href="https://docs.goshippo.com/docs/platformaccounts/platform_accounts/">guide</a> for more details.
-<SchemaDefinition schemaRef="#/components/schemas/ShippoAccount"/>
 
 ### Available Operations
 
@@ -21,20 +19,19 @@ Returns a list of Shippo Managed Accounts objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="ListShippoAccounts" method="get" path="/shippo-accounts" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.ShippoAccounts.ListAsync(
     page: 1,
-    results: 25,
-    shippoApiVersion: "2018-02-08"
+    results: 25
 );
 
 // handle response
@@ -64,25 +61,22 @@ Creates a new <a href="https://docs.goshippo.com/docs/platformaccounts/platform_
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="CreateShippoAccount" method="post" path="/shippo-accounts" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.ShippoAccounts.CreateAsync(
-    shippoAccountUpdateRequest: new ShippoAccountUpdateRequest() {
-        Email = "hippo@shippo.com",
-        FirstName = "Shippo",
-        LastName = "Meister",
-        CompanyName = "Acme",
-    },
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.ShippoAccounts.CreateAsync(shippoAccountUpdateRequest: new ShippoAccountUpdateRequest() {
+    Email = "hippo@shippo.com",
+    FirstName = "Shippo",
+    LastName = "Meister",
+    CompanyName = "Acme",
+});
 
 // handle response
 ```
@@ -110,20 +104,17 @@ Returns a Shippo Managed Account using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="GetShippoAccount" method="get" path="/shippo-accounts/{ShippoAccountId}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.ShippoAccounts.GetAsync(
-    shippoAccountId: "<id>",
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.ShippoAccounts.GetAsync(shippoAccountId: "<id>");
 
 // handle response
 ```
@@ -151,19 +142,18 @@ Updates a Shippo Managed Account using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="UpdateShippoAccount" method="put" path="/shippo-accounts/{ShippoAccountId}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.ShippoAccounts.UpdateAsync(
     shippoAccountId: "<id>",
-    shippoApiVersion: "2018-02-08",
     shippoAccountUpdateRequest: new ShippoAccountUpdateRequest() {
         Email = "hippo@shippo.com",
         FirstName = "Shippo",

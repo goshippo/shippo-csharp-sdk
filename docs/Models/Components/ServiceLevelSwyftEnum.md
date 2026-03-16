@@ -6,6 +6,14 @@
 | next_day | Next Day|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelSwyftEnum.SameDay;
+```
+
 
 ## Values
 

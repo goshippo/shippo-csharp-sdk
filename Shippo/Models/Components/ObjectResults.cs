@@ -11,13 +11,12 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// An object containing the following counts:&lt;br&gt;`creation_succeeded`&lt;br&gt;`creation_failed`&lt;br&gt;`purchase_succeeded`&lt;br&gt;`purchase_failed`
     /// </summary>
     public class ObjectResults
     {
-
         [JsonProperty("creation_failed")]
         public long CreationFailed { get; set; } = default!;
 

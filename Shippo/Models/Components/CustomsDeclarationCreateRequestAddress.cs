@@ -11,10 +11,9 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class CustomsDeclarationCreateRequestAddress
     {
-
         /// <summary>
         /// Name of the party to be billed for duties.
         /// </summary>

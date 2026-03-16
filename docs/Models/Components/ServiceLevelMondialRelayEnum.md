@@ -5,6 +5,14 @@
 | mondial_relay_pointrelais | Point Relais|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelMondialRelayEnum.MondialRelayPointrelais;
+```
+
 
 ## Values
 

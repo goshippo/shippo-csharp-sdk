@@ -12,16 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | axlehire_same_day | Same Day|<br/>
-    /// | axlehire_next_day | Next Day|<br/>
-    /// 
-    /// </remarks>
+    /// | axlehire_next_day | Next Day|
     /// </summary>
     public enum ServiceLevelJitsuEnum
     {
@@ -63,5 +59,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelJitsuEnum");
         }
     }
-
 }

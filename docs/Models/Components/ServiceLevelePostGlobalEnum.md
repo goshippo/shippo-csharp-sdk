@@ -17,6 +17,14 @@
 | rr_donnelley_emi | Express Mail International|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelePostGlobalEnum.RrDonnelleyDomesticEconomyParcel;
+```
+
 
 ## Values
 

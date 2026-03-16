@@ -265,49 +265,44 @@ namespace Shippo.Utils
 
                 if (metadata.File)
                 {
-                    if (!Utilities.IsClass(value))
+                    if (Utilities.IsList(value))
+                    {
+                        // Handle array/list of files - similar to how normal lists are handled
+                        foreach (var fileItem in (IList)value)
+                        {
+                            if (!Utilities.IsClass(fileItem))
+                            {
+                                throw new Exception(
+                                    "Cannot serialize multipart file from type " + fileItem.GetType().Name
+                                );
+                            }
+
+                            var fileProps = fileItem.GetType().GetProperties();
+                            var (fileName, content) = ExtractFileProperties(fileProps, fileItem);
+                            string fieldName = (metadata.Name ?? prop.Name) + "[]";
+
+                            var fileContent = new ByteArrayContent(content);
+                            fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(GetMimeType(fileName));
+                            formData.Add(fileContent, fieldName, fileName);
+                        }
+                    }
+                    else if (Utilities.IsClass(value))
+                    {
+                        // Handle single file
+                        var fileProps = value.GetType().GetProperties();
+                        var (fileName, content) = ExtractFileProperties(fileProps, value);
+                        string fieldName = metadata.Name;
+
+                        var fileContent = new ByteArrayContent(content);
+                        fileContent.Headers.ContentType = new System.Net.Http.Headers.MediaTypeHeaderValue(GetMimeType(fileName));
+                        formData.Add(fileContent, fieldName, fileName);
+                    }
+                    else
                     {
                         throw new Exception(
                             "Cannot serialize multipart file from type " + value.GetType().Name
                         );
                     }
-
-                    var fileProps = value.GetType().GetProperties();
-
-                    byte[]? content = null;
-                    string fileName = "";
-                    string fieldName = "";
-
-                    foreach (var fileProp in fileProps)
-                    {
-                        var fileMetadata = fileProp
-                            .GetCustomAttribute<SpeakeasyMetadata>()
-                            ?.GetMultipartFormMetadata();
-                        if (
-                            fileMetadata == null
-                            || (!fileMetadata.Content && fileMetadata.Name == "")
-                        )
-                        {
-                            continue;
-                        }
-
-                        if (fileMetadata.Content)
-                        {
-                            content = (byte[]?)fileProp.GetValue(value);
-                        }
-                        else
-                        {
-                            fieldName = fileMetadata.Name ?? fileProp.Name;
-                            fileName = fileProp.GetValue(value)?.ToString() ?? "";
-                        }
-                    }
-
-                    if (fieldName == "" || fileName == "" || content == null)
-                    {
-                        throw new Exception("Invalid multipart/form-data file");
-                    }
-
-                    formData.Add(new ByteArrayContent(content), fieldName, fileName);
                 }
                 else if (metadata.Json)
                 {
@@ -519,6 +514,63 @@ namespace Shippo.Utils
 
                 form[fieldName].Add(Utilities.ValueToString(value));
             }
+        }
+
+        private static (string fileName, byte[] content) ExtractFileProperties(PropertyInfo[] fileProps, object fileObject)
+        {
+            byte[]? content = null;
+            string fileName = "";
+
+            foreach (var fileProp in fileProps)
+            {
+                var fileMetadata = fileProp
+                    .GetCustomAttribute<SpeakeasyMetadata>()
+                    ?.GetMultipartFormMetadata();
+                if (
+                    fileMetadata == null
+                    || (!fileMetadata.Content && fileMetadata.Name == "")
+                )
+                {
+                    continue;
+                }
+
+                if (fileMetadata.Content)
+                {
+                    content = (byte[]?)fileProp.GetValue(fileObject);
+                }
+                else
+                {
+                    fileName = fileProp.GetValue(fileObject)?.ToString() ?? "";
+                }
+            }
+
+            if (fileName == "" || content == null)
+            {
+                throw new Exception("Invalid multipart/form-data file");
+            }
+
+            return (fileName, content);
+        }
+
+        private static string GetMimeType(string fileName)
+        {
+            var ext = System.IO.Path.GetExtension(fileName)?.ToLowerInvariant();
+            return ext switch
+            {
+                ".json" => "application/json",
+                ".xml" => "application/xml",
+                ".txt" => "text/plain",
+                ".csv" => "text/csv",
+                ".html" or ".htm" => "text/html",
+                ".pdf" => "application/pdf",
+                ".zip" => "application/zip",
+                ".png" => "image/png",
+                ".jpg" or ".jpeg" => "image/jpeg",
+                ".gif" => "image/gif",
+                ".svg" => "image/svg+xml",
+                ".webp" => "image/webp",
+                _ => "application/octet-stream",
+            };
         }
 
         private static PropertyInfo? GetPropertyInfo(object value, string propertyName)

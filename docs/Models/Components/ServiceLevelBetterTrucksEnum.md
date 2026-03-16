@@ -6,6 +6,14 @@
 | better_trucks_next_day | Next Day|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelBetterTrucksEnum.BetterTrucksSameDay;
+```
+
 
 ## Values
 

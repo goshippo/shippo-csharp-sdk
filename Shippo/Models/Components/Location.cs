@@ -12,30 +12,23 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Location where the parcel(s) will be picked up.
     /// </summary>
     public class Location
     {
-
         /// <summary>
         /// The pickup address, which includes your name, company name, street address, city, state, zip code, <br/>
-        /// 
-        /// <remarks>
         /// country, phone number, and email address (strings). Special characters should not be included in <br/>
         /// any address element, especially name, company, and email.
-        /// </remarks>
         /// </summary>
         [JsonProperty("address")]
         public AddressCompleteCreateRequest Address { get; set; } = default!;
 
         /// <summary>
-        /// Where your parcels will be available for pickup. &quot;Security Deck&quot; and &quot;Shipping Dock&quot; are only <br/>
-        /// 
-        /// <remarks>
+        /// Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only <br/>
         /// supported for DHL Express.
-        /// </remarks>
         /// </summary>
         [JsonProperty("building_location_type")]
         public BuildingLocationType BuildingLocationType { get; set; } = default!;
@@ -47,7 +40,7 @@ namespace Shippo.Models.Components
         public BuildingType? BuildingType { get; set; }
 
         /// <summary>
-        /// Pickup instructions for the courier. This is a mandatory field if the building_location_type is &quot;Other&quot;.
+        /// Pickup instructions for the courier. This is a mandatory field if the building_location_type is "Other".
         /// </summary>
         [JsonProperty("instructions")]
         public string? Instructions { get; set; }

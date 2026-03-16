@@ -12,10 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class ConnectExistingOwnAccountRequest
     {
-
         [JsonProperty("account_id")]
         public string AccountId { get; set; } = default!;
 
@@ -28,7 +27,7 @@ namespace Shippo.Models.Components
         [JsonProperty("metadata")]
         public string? Metadata { get; set; }
 
-        [JsonProperty("parameters")]
+        [JsonProperty("parameters", NullValueHandling = NullValueHandling.Include)]
         public ConnectExistingOwnAccountRequestParameters Parameters { get; set; } = default!;
 
         [JsonProperty("test")]

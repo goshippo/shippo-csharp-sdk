@@ -10,6 +10,14 @@
 | dhl_germany_paket_sameday | DHL Germany Paket Sameday|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelDHLGermanyEnum.DhlGermanyEuropaket;
+```
+
 
 ## Values
 

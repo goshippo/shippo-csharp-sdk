@@ -5,6 +5,14 @@
 | dpd_de_classic | DPD Classic|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelDPDDEEnum.DpdDeClassic;
+```
+
 
 ## Values
 

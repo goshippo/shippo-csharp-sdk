@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | royal_mail_tracked_letter_boxable_24_no_signature | Royal Mail Tracked Letter-Boxable 24 No Signature|<br/>
     /// | royal_mail_tracked_letter_boxable_48_no_signature | Royal Mail Tracked Letter-Boxable 48 No Signature|<br/>
@@ -31,15 +29,13 @@ namespace Shippo.Models.Components
     /// | royal_mail_standard_first_class | Standard First Class<br/>
     /// | royal_mail_standard_second_class | Standard Second Class<br/>
     /// | royal_mail_tracked_24_no_signature | Royal Mail Tracked 24 No Signature<br/>
-    /// | royal_mail_tracked_48_no_signature | Royal Mail Ttacked 48 No Signature<br/>
+    /// | royal_mail_tracked_48_no_signature | Royal Mail Tracked 48 No Signature<br/>
     /// | royal_mail_intl_bus_mail_lrg_ltr_zone_sort_pri | International Business Mail Large Letter Zone Sort Priority<br/>
     /// | royal_mail_intl_bus_parcels_tracked_zone_sort | International Business Parcels Tracked Zone Sort<br/>
     /// | royal_mail_intl_bus_parcels_tracked_country_priced | International Business Parcels Tracked Country Priced<br/>
     /// | royal_mail_intl_bus_parcels_tracked_signed_zone_srt | International Business Parcels &amp; Signed Zone Sort<br/>
     /// | royal_mail_24_flat_rate | Royal Mail 24 Parcel Flat Rate<br/>
-    /// | royal_mail_48_flat_rate | Royal Mail 48 Parcel Flat Rate<br/>
-    /// 
-    /// </remarks>
+    /// | royal_mail_48_flat_rate | Royal Mail 48 Parcel Flat Rate.
     /// </summary>
     public enum ServiceLevelRoyalMailEnum
     {
@@ -117,5 +113,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelRoyalMailEnum");
         }
     }
-
 }

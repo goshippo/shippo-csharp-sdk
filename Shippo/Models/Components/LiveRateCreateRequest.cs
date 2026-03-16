@@ -13,34 +13,27 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class LiveRateCreateRequest
     {
-
         /// <summary>
         /// The sender address, which includes your name, company name, street address, city, state, zip code, <br/>
-        /// 
-        /// <remarks>
         /// country, phone number, and email address (strings). Special characters should not be included in <br/>
         /// any address element, especially name, company, and email.
-        /// </remarks>
         /// </summary>
-        [JsonProperty("address_from")]
+        [JsonProperty("address_from", NullValueHandling = NullValueHandling.Include)]
         public LiveRateCreateRequestAddressFrom? AddressFrom { get; set; }
 
         /// <summary>
-        /// The recipient address, which includes the recipient&apos;s name, company name, street address, city, state, zip code, <br/>
-        /// 
-        /// <remarks>
+        /// The recipient address, which includes the recipient's name, company name, street address, city, state, zip code, <br/>
         /// country, phone number, and email address (strings). Special characters should not be included in <br/>
         /// any address element, especially name, company, and email.
-        /// </remarks>
         /// </summary>
-        [JsonProperty("address_to")]
+        [JsonProperty("address_to", NullValueHandling = NullValueHandling.Include)]
         public LiveRateCreateRequestAddressTo AddressTo { get; set; } = default!;
 
         /// <summary>
-        /// Array of Line Item objects
+        /// Array of Line Item objects.
         /// </summary>
         [JsonProperty("line_items")]
         public List<LineItem> LineItems { get; set; } = default!;
@@ -48,7 +41,7 @@ namespace Shippo.Models.Components
         /// <summary>
         /// Object ID for an existing User Parcel Template OR a fully formed Parcel object.
         /// </summary>
-        [JsonProperty("parcel")]
+        [JsonProperty("parcel", NullValueHandling = NullValueHandling.Include)]
         public LiveRateCreateRequestParcel? Parcel { get; set; }
     }
 }

@@ -12,15 +12,14 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Specify billing details (UPS, FedEx, and DHL Germany only).
     /// </summary>
     public class Billing
     {
-
         /// <summary>
-        /// Account number to be billed. (For DHL Germany, leave this field blank.)
+        /// Account number to be billed. (For DHL Germany, leave this field blank.).
         /// </summary>
         [JsonProperty("account")]
         public string? Account { get; set; }
@@ -38,7 +37,7 @@ namespace Shippo.Models.Components
         public string? ParticipationCode { get; set; }
 
         /// <summary>
-        /// Party to be billed. (Leave blank for DHL Germany.)
+        /// Party to be billed. (Leave blank for DHL Germany.).
         /// </summary>
         [JsonProperty("type")]
         public Models.Components.Type? Type { get; set; }

@@ -12,16 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class ParcelCreateFromTemplateRequest
     {
-
         /// <summary>
-        /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment. <br/>
-        /// 
-        /// <remarks>
-        /// See the &lt;a href=&quot;#section/Parcel-Extras&quot;&gt;Parcel Extra table below&lt;/a&gt; for all available services.
-        /// </remarks>
+        /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment.<br/>
+        /// The following values are supported for the `extra` field of the parcel object.
         /// </summary>
         [JsonProperty("extra")]
         public ParcelExtra? Extra { get; set; }
@@ -42,9 +38,9 @@ namespace Shippo.Models.Components
         public string Weight { get; set; } = default!;
 
         /// <summary>
-        /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
+        /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required.
         /// </summary>
-        [JsonProperty("template")]
+        [JsonProperty("template", NullValueHandling = NullValueHandling.Include)]
         public ParcelTemplateEnumSet Template { get; set; } = default!;
     }
 }

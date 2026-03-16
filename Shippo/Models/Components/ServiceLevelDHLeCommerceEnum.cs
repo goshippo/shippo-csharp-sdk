@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | dhl_ecommerce_marketing_parcel_expedited | Marketing Parcel Expedited|<br/>
     /// | dhl_ecommerce_globalmail_business_ipa | GlobalMail Business IPA|<br/>
@@ -45,9 +43,7 @@ namespace Shippo.Models.Components
     /// | dhl_ecommerce_parcel_plus_expedited | Parcel Plus Expedited|<br/>
     /// | dhl_ecommerce_globalmail_business_standard | GlobalMail Packet Standard|<br/>
     /// | dhl_ecommerce_ground | Ground|<br/>
-    /// | dhl_ecommerce_globalmail_packet_standard | GlobalMail Business Standard|<br/>
-    /// 
-    /// </remarks>
+    /// | dhl_ecommerce_globalmail_packet_standard | GlobalMail Business Standard|
     /// </summary>
     public enum ServiceLevelDHLeCommerceEnum
     {
@@ -141,5 +137,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelDHLeCommerceEnum");
         }
     }
-
 }

@@ -7,6 +7,14 @@
 | colissimo_return_mainland_france | Retour France|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelColissimoEnum.ColissimoHome;
+```
+
 
 ## Values
 

@@ -29,6 +29,14 @@
 | ups_access_point_economy | Access Point™ Economy|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelUPSEnum.UpsStandard;
+```
+
 
 ## Values
 

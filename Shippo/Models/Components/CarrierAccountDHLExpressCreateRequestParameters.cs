@@ -11,12 +11,11 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class CarrierAccountDHLExpressCreateRequestParameters
     {
-
         /// <summary>
-        /// Whether or not the user agrees to the DHL Express Terms and Conditions. If passed in as false, request will fail with error 400
+        /// Whether or not the user agrees to the DHL Express Terms and Conditions. If passed in as false, request will fail with error 400.
         /// </summary>
         [JsonProperty("user_accepted_terms_and_conditions")]
         public bool UserAcceptedTermsAndConditions { get; set; } = default!;

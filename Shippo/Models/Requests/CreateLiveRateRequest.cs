@@ -11,20 +11,19 @@ namespace Shippo.Models.Requests
 {
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class CreateLiveRateRequest
     {
-
         /// <summary>
-        /// Generate rates at checkout
-        /// </summary>
-        [SpeakeasyMetadata("request:mediaType=application/json")]
-        public LiveRateCreateRequest LiveRateCreateRequest { get; set; } = default!;
-
-        /// <summary>
-        /// Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.
+        /// Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
         public string? ShippoApiVersion { get; set; }
+
+        /// <summary>
+        /// Generate rates at checkout.
+        /// </summary>
+        [SpeakeasyMetadata("request:mediaType=application/json")]
+        public LiveRateCreateRequest LiveRateCreateRequest { get; set; } = default!;
     }
 }

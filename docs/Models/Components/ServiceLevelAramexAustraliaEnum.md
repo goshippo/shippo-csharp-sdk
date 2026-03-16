@@ -9,6 +9,14 @@
 | fastway_australia_box_large | Box Large|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelAramexAustraliaEnum.FastwayAustraliaParcel;
+```
+
 
 ## Values
 

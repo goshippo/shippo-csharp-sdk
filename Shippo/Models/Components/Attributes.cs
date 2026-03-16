@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     public enum Attributes
     {
         [JsonProperty("BESTVALUE")]
@@ -55,5 +55,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum Attributes");
         }
     }
-
 }

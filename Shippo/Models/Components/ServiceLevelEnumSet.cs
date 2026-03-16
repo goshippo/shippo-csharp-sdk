@@ -9,100 +9,96 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
-    
 
     public class ServiceLevelEnumSetType
     {
         private ServiceLevelEnumSetType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static ServiceLevelEnumSetType ServiceLevelUSPSEnum { get { return new ServiceLevelEnumSetType("ServiceLevelUSPSEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelFedExEnum { get { return new ServiceLevelEnumSetType("ServiceLevelFedExEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelUPSEnum { get { return new ServiceLevelEnumSetType("ServiceLevelUPSEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelAirterraEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAirterraEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelAPCPostalEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAPCPostalEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelAsendiaEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAsendiaEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelAustraliaPostEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAustraliaPostEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelAPGEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAPGEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelBetterTrucksEnum { get { return new ServiceLevelEnumSetType("ServiceLevelBetterTrucksEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelCanadaPostEnum { get { return new ServiceLevelEnumSetType("ServiceLevelCanadaPostEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelCDLEnum { get { return new ServiceLevelEnumSetType("ServiceLevelCDLEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelChronopostEnum { get { return new ServiceLevelEnumSetType("ServiceLevelChronopostEnum"); } }
-        
-        public static ServiceLevelEnumSetType ServiceLevelCouriersPleaseEnum { get { return new ServiceLevelEnumSetType("ServiceLevelCouriersPleaseEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelCorreosEspanaEnum { get { return new ServiceLevelEnumSetType("ServiceLevelCorreosEspanaEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelColissimoEnum { get { return new ServiceLevelEnumSetType("ServiceLevelColissimoEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelPurolatorEnum { get { return new ServiceLevelEnumSetType("ServiceLevelPurolatorEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelDHLExpressEnum { get { return new ServiceLevelEnumSetType("ServiceLevelDHLExpressEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelDHLeCommerceEnum { get { return new ServiceLevelEnumSetType("ServiceLevelDHLeCommerceEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelDHLGermanyEnum { get { return new ServiceLevelEnumSetType("ServiceLevelDHLGermanyEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelDPDDEEnum { get { return new ServiceLevelEnumSetType("ServiceLevelDPDDEEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelDPDUKEnum { get { return new ServiceLevelEnumSetType("ServiceLevelDPDUKEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelDeutschePostEnum { get { return new ServiceLevelEnumSetType("ServiceLevelDeutschePostEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelAramexAustraliaEnum { get { return new ServiceLevelEnumSetType("ServiceLevelAramexAustraliaEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelGlobegisticsEnum { get { return new ServiceLevelEnumSetType("ServiceLevelGlobegisticsEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelGLSUSEnum { get { return new ServiceLevelEnumSetType("ServiceLevelGLSUSEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelLSOEnum { get { return new ServiceLevelEnumSetType("ServiceLevelLSOEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelMondialRelayEnum { get { return new ServiceLevelEnumSetType("ServiceLevelMondialRelayEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelParcelforceEnum { get { return new ServiceLevelEnumSetType("ServiceLevelParcelforceEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelPostItalianeEnum { get { return new ServiceLevelEnumSetType("ServiceLevelPostItalianeEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelePostGlobalEnum { get { return new ServiceLevelEnumSetType("ServiceLevelePostGlobalEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelRoyalMailEnum { get { return new ServiceLevelEnumSetType("ServiceLevelRoyalMailEnum"); } }
-        
-        public static ServiceLevelEnumSetType ServiceLevelSendleEnum { get { return new ServiceLevelEnumSetType("ServiceLevelSendleEnum"); } }
-        
+
+        public static ServiceLevelEnumSetType ServiceLevelRoyalMailSFEnum { get { return new ServiceLevelEnumSetType("ServiceLevelRoyalMailSFEnum"); } }
+
         public static ServiceLevelEnumSetType ServiceLevelOnTracEnum { get { return new ServiceLevelEnumSetType("ServiceLevelOnTracEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelJitsuEnum { get { return new ServiceLevelEnumSetType("ServiceLevelJitsuEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelLasershipEnum { get { return new ServiceLevelEnumSetType("ServiceLevelLasershipEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelEvriUKEnum { get { return new ServiceLevelEnumSetType("ServiceLevelEvriUKEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelUDSEnum { get { return new ServiceLevelEnumSetType("ServiceLevelUDSEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelVehoEnum { get { return new ServiceLevelEnumSetType("ServiceLevelVehoEnum"); } }
-        
+
         public static ServiceLevelEnumSetType ServiceLevelSwyftEnum { get { return new ServiceLevelEnumSetType("ServiceLevelSwyftEnum"); } }
-        
-        public static ServiceLevelEnumSetType Null { get { return new ServiceLevelEnumSetType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(ServiceLevelEnumSetType v) { return v.Value; }
@@ -120,7 +116,6 @@ namespace Shippo.Models.Components
                 case "ServiceLevelCanadaPostEnum": return ServiceLevelCanadaPostEnum;
                 case "ServiceLevelCDLEnum": return ServiceLevelCDLEnum;
                 case "ServiceLevelChronopostEnum": return ServiceLevelChronopostEnum;
-                case "ServiceLevelCouriersPleaseEnum": return ServiceLevelCouriersPleaseEnum;
                 case "ServiceLevelCorreosEspanaEnum": return ServiceLevelCorreosEspanaEnum;
                 case "ServiceLevelColissimoEnum": return ServiceLevelColissimoEnum;
                 case "ServiceLevelPurolatorEnum": return ServiceLevelPurolatorEnum;
@@ -139,7 +134,7 @@ namespace Shippo.Models.Components
                 case "ServiceLevelPostItalianeEnum": return ServiceLevelPostItalianeEnum;
                 case "ServiceLevelePostGlobalEnum": return ServiceLevelePostGlobalEnum;
                 case "ServiceLevelRoyalMailEnum": return ServiceLevelRoyalMailEnum;
-                case "ServiceLevelSendleEnum": return ServiceLevelSendleEnum;
+                case "ServiceLevelRoyalMailSFEnum": return ServiceLevelRoyalMailSFEnum;
                 case "ServiceLevelOnTracEnum": return ServiceLevelOnTracEnum;
                 case "ServiceLevelJitsuEnum": return ServiceLevelJitsuEnum;
                 case "ServiceLevelLasershipEnum": return ServiceLevelLasershipEnum;
@@ -147,7 +142,6 @@ namespace Shippo.Models.Components
                 case "ServiceLevelUDSEnum": return ServiceLevelUDSEnum;
                 case "ServiceLevelVehoEnum": return ServiceLevelVehoEnum;
                 case "ServiceLevelSwyftEnum": return ServiceLevelSwyftEnum;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ServiceLevelEnumSetType");
             }
         }
@@ -166,10 +160,11 @@ namespace Shippo.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(ServiceLevelEnumSet.ServiceLevelEnumSetConverter))]
-    public class ServiceLevelEnumSet {
-        public ServiceLevelEnumSet(ServiceLevelEnumSetType type) {
+    public class ServiceLevelEnumSet
+    {
+        public ServiceLevelEnumSet(ServiceLevelEnumSetType type)
+        {
             Type = type;
         }
 
@@ -208,9 +203,6 @@ namespace Shippo.Models.Components
 
         [SpeakeasyMetadata("form:explode=true")]
         public ServiceLevelChronopostEnum? ServiceLevelChronopostEnum { get; set; }
-
-        [SpeakeasyMetadata("form:explode=true")]
-        public ServiceLevelCouriersPleaseEnum? ServiceLevelCouriersPleaseEnum { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
         public ServiceLevelCorreosEspanaEnum? ServiceLevelCorreosEspanaEnum { get; set; }
@@ -267,7 +259,7 @@ namespace Shippo.Models.Components
         public ServiceLevelRoyalMailEnum? ServiceLevelRoyalMailEnum { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public ServiceLevelSendleEnum? ServiceLevelSendleEnum { get; set; }
+        public ServiceLevelRoyalMailSFEnum? ServiceLevelRoyalMailSFEnum { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
         public ServiceLevelOnTracEnum? ServiceLevelOnTracEnum { get; set; }
@@ -291,313 +283,304 @@ namespace Shippo.Models.Components
         public ServiceLevelSwyftEnum? ServiceLevelSwyftEnum { get; set; }
 
         public ServiceLevelEnumSetType Type { get; set; }
-
-
-        public static ServiceLevelEnumSet CreateServiceLevelUSPSEnum(ServiceLevelUSPSEnum serviceLevelUSPSEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelUSPSEnum(ServiceLevelUSPSEnum serviceLevelUSPSEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelUSPSEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelUSPSEnum = serviceLevelUSPSEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelFedExEnum(ServiceLevelFedExEnum serviceLevelFedExEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelFedExEnum(ServiceLevelFedExEnum serviceLevelFedExEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelFedExEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelFedExEnum = serviceLevelFedExEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelUPSEnum(ServiceLevelUPSEnum serviceLevelUPSEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelUPSEnum(ServiceLevelUPSEnum serviceLevelUPSEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelUPSEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelUPSEnum = serviceLevelUPSEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelAirterraEnum(ServiceLevelAirterraEnum serviceLevelAirterraEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelAirterraEnum(ServiceLevelAirterraEnum serviceLevelAirterraEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelAirterraEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelAirterraEnum = serviceLevelAirterraEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelAPCPostalEnum(ServiceLevelAPCPostalEnum serviceLevelAPCPostalEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelAPCPostalEnum(ServiceLevelAPCPostalEnum serviceLevelAPCPostalEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelAPCPostalEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelAPCPostalEnum = serviceLevelAPCPostalEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelAsendiaEnum(ServiceLevelAsendiaEnum serviceLevelAsendiaEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelAsendiaEnum(ServiceLevelAsendiaEnum serviceLevelAsendiaEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelAsendiaEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelAsendiaEnum = serviceLevelAsendiaEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelAustraliaPostEnum(ServiceLevelAustraliaPostEnum serviceLevelAustraliaPostEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelAustraliaPostEnum(ServiceLevelAustraliaPostEnum serviceLevelAustraliaPostEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelAustraliaPostEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelAustraliaPostEnum = serviceLevelAustraliaPostEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelAPGEnum(ServiceLevelAPGEnum serviceLevelAPGEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelAPGEnum(ServiceLevelAPGEnum serviceLevelAPGEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelAPGEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelAPGEnum = serviceLevelAPGEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelBetterTrucksEnum(ServiceLevelBetterTrucksEnum serviceLevelBetterTrucksEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelBetterTrucksEnum(ServiceLevelBetterTrucksEnum serviceLevelBetterTrucksEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelBetterTrucksEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelBetterTrucksEnum = serviceLevelBetterTrucksEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelCanadaPostEnum(ServiceLevelCanadaPostEnum serviceLevelCanadaPostEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelCanadaPostEnum(ServiceLevelCanadaPostEnum serviceLevelCanadaPostEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelCanadaPostEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelCanadaPostEnum = serviceLevelCanadaPostEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelCDLEnum(ServiceLevelCDLEnum serviceLevelCDLEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelCDLEnum(ServiceLevelCDLEnum serviceLevelCDLEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelCDLEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelCDLEnum = serviceLevelCDLEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelChronopostEnum(ServiceLevelChronopostEnum serviceLevelChronopostEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelChronopostEnum(ServiceLevelChronopostEnum serviceLevelChronopostEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelChronopostEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelChronopostEnum = serviceLevelChronopostEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelCouriersPleaseEnum(ServiceLevelCouriersPleaseEnum serviceLevelCouriersPleaseEnum) {
-            ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum;
-
-            ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
-            res.ServiceLevelCouriersPleaseEnum = serviceLevelCouriersPleaseEnum;
-            return res;
-        }
-
-        public static ServiceLevelEnumSet CreateServiceLevelCorreosEspanaEnum(ServiceLevelCorreosEspanaEnum serviceLevelCorreosEspanaEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelCorreosEspanaEnum(ServiceLevelCorreosEspanaEnum serviceLevelCorreosEspanaEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelCorreosEspanaEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelCorreosEspanaEnum = serviceLevelCorreosEspanaEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelColissimoEnum(ServiceLevelColissimoEnum serviceLevelColissimoEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelColissimoEnum(ServiceLevelColissimoEnum serviceLevelColissimoEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelColissimoEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelColissimoEnum = serviceLevelColissimoEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelPurolatorEnum(ServiceLevelPurolatorEnum serviceLevelPurolatorEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelPurolatorEnum(ServiceLevelPurolatorEnum serviceLevelPurolatorEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelPurolatorEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelPurolatorEnum = serviceLevelPurolatorEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelDHLExpressEnum(ServiceLevelDHLExpressEnum serviceLevelDHLExpressEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelDHLExpressEnum(ServiceLevelDHLExpressEnum serviceLevelDHLExpressEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelDHLExpressEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelDHLExpressEnum = serviceLevelDHLExpressEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelDHLeCommerceEnum(ServiceLevelDHLeCommerceEnum serviceLevelDHLeCommerceEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelDHLeCommerceEnum(ServiceLevelDHLeCommerceEnum serviceLevelDHLeCommerceEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelDHLeCommerceEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelDHLeCommerceEnum = serviceLevelDHLeCommerceEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelDHLGermanyEnum(ServiceLevelDHLGermanyEnum serviceLevelDHLGermanyEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelDHLGermanyEnum(ServiceLevelDHLGermanyEnum serviceLevelDHLGermanyEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelDHLGermanyEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelDHLGermanyEnum = serviceLevelDHLGermanyEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelDPDDEEnum(ServiceLevelDPDDEEnum serviceLevelDPDDEEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelDPDDEEnum(ServiceLevelDPDDEEnum serviceLevelDPDDEEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelDPDDEEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelDPDDEEnum = serviceLevelDPDDEEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelDPDUKEnum(ServiceLevelDPDUKEnum serviceLevelDPDUKEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelDPDUKEnum(ServiceLevelDPDUKEnum serviceLevelDPDUKEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelDPDUKEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelDPDUKEnum = serviceLevelDPDUKEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelDeutschePostEnum(ServiceLevelDeutschePostEnum serviceLevelDeutschePostEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelDeutschePostEnum(ServiceLevelDeutschePostEnum serviceLevelDeutschePostEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelDeutschePostEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelDeutschePostEnum = serviceLevelDeutschePostEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelAramexAustraliaEnum(ServiceLevelAramexAustraliaEnum serviceLevelAramexAustraliaEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelAramexAustraliaEnum(ServiceLevelAramexAustraliaEnum serviceLevelAramexAustraliaEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelAramexAustraliaEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelAramexAustraliaEnum = serviceLevelAramexAustraliaEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelGlobegisticsEnum(ServiceLevelGlobegisticsEnum serviceLevelGlobegisticsEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelGlobegisticsEnum(ServiceLevelGlobegisticsEnum serviceLevelGlobegisticsEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelGlobegisticsEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelGlobegisticsEnum = serviceLevelGlobegisticsEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelGLSUSEnum(ServiceLevelGLSUSEnum serviceLevelGLSUSEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelGLSUSEnum(ServiceLevelGLSUSEnum serviceLevelGLSUSEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelGLSUSEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelGLSUSEnum = serviceLevelGLSUSEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelLSOEnum(ServiceLevelLSOEnum serviceLevelLSOEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelLSOEnum(ServiceLevelLSOEnum serviceLevelLSOEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelLSOEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelLSOEnum = serviceLevelLSOEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelMondialRelayEnum(ServiceLevelMondialRelayEnum serviceLevelMondialRelayEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelMondialRelayEnum(ServiceLevelMondialRelayEnum serviceLevelMondialRelayEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelMondialRelayEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelMondialRelayEnum = serviceLevelMondialRelayEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelParcelforceEnum(ServiceLevelParcelforceEnum serviceLevelParcelforceEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelParcelforceEnum(ServiceLevelParcelforceEnum serviceLevelParcelforceEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelParcelforceEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelParcelforceEnum = serviceLevelParcelforceEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelPostItalianeEnum(ServiceLevelPostItalianeEnum serviceLevelPostItalianeEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelPostItalianeEnum(ServiceLevelPostItalianeEnum serviceLevelPostItalianeEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelPostItalianeEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelPostItalianeEnum = serviceLevelPostItalianeEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelePostGlobalEnum(ServiceLevelePostGlobalEnum serviceLevelePostGlobalEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelePostGlobalEnum(ServiceLevelePostGlobalEnum serviceLevelePostGlobalEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelePostGlobalEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelePostGlobalEnum = serviceLevelePostGlobalEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelRoyalMailEnum(ServiceLevelRoyalMailEnum serviceLevelRoyalMailEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelRoyalMailEnum(ServiceLevelRoyalMailEnum serviceLevelRoyalMailEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelRoyalMailEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelRoyalMailEnum = serviceLevelRoyalMailEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelSendleEnum(ServiceLevelSendleEnum serviceLevelSendleEnum) {
-            ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelSendleEnum;
+        public static ServiceLevelEnumSet CreateServiceLevelRoyalMailSFEnum(ServiceLevelRoyalMailSFEnum serviceLevelRoyalMailSFEnum)
+        {
+            ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelRoyalMailSFEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
-            res.ServiceLevelSendleEnum = serviceLevelSendleEnum;
+            res.ServiceLevelRoyalMailSFEnum = serviceLevelRoyalMailSFEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelOnTracEnum(ServiceLevelOnTracEnum serviceLevelOnTracEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelOnTracEnum(ServiceLevelOnTracEnum serviceLevelOnTracEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelOnTracEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelOnTracEnum = serviceLevelOnTracEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelJitsuEnum(ServiceLevelJitsuEnum serviceLevelJitsuEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelJitsuEnum(ServiceLevelJitsuEnum serviceLevelJitsuEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelJitsuEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelJitsuEnum = serviceLevelJitsuEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelLasershipEnum(ServiceLevelLasershipEnum serviceLevelLasershipEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelLasershipEnum(ServiceLevelLasershipEnum serviceLevelLasershipEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelLasershipEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelLasershipEnum = serviceLevelLasershipEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelEvriUKEnum(ServiceLevelEvriUKEnum serviceLevelEvriUKEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelEvriUKEnum(ServiceLevelEvriUKEnum serviceLevelEvriUKEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelEvriUKEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelEvriUKEnum = serviceLevelEvriUKEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelUDSEnum(ServiceLevelUDSEnum serviceLevelUDSEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelUDSEnum(ServiceLevelUDSEnum serviceLevelUDSEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelUDSEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelUDSEnum = serviceLevelUDSEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelVehoEnum(ServiceLevelVehoEnum serviceLevelVehoEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelVehoEnum(ServiceLevelVehoEnum serviceLevelVehoEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelVehoEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
             res.ServiceLevelVehoEnum = serviceLevelVehoEnum;
             return res;
         }
-
-        public static ServiceLevelEnumSet CreateServiceLevelSwyftEnum(ServiceLevelSwyftEnum serviceLevelSwyftEnum) {
+        public static ServiceLevelEnumSet CreateServiceLevelSwyftEnum(ServiceLevelSwyftEnum serviceLevelSwyftEnum)
+        {
             ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.ServiceLevelSwyftEnum;
 
             ServiceLevelEnumSet res = new ServiceLevelEnumSet(typ);
@@ -605,26 +588,20 @@ namespace Shippo.Models.Components
             return res;
         }
 
-        public static ServiceLevelEnumSet CreateNull() {
-            ServiceLevelEnumSetType typ = ServiceLevelEnumSetType.Null;
-            return new ServiceLevelEnumSet(typ);
-        }
-
         public class ServiceLevelEnumSetConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(ServiceLevelEnumSet);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -857,26 +834,6 @@ namespace Shippo.Models.Components
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
                     fallbackCandidates.Add((typeof(ServiceLevelChronopostEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelChronopostEnum), "ServiceLevelChronopostEnum"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum)
-                    {
-                        ServiceLevelCouriersPleaseEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelCouriersPleaseEnum>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(ServiceLevelCouriersPleaseEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelCouriersPleaseEnum), "ServiceLevelCouriersPleaseEnum"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -1249,14 +1206,14 @@ namespace Shippo.Models.Components
 
                 try
                 {
-                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelSendleEnum)
+                    return new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelRoyalMailSFEnum)
                     {
-                        ServiceLevelSendleEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelSendleEnum>(json)
+                        ServiceLevelRoyalMailSFEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ServiceLevelRoyalMailSFEnum>(json)
                     };
                 }
                 catch (ResponseBodyDeserializer.MissingMemberException)
                 {
-                    fallbackCandidates.Add((typeof(ServiceLevelSendleEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelSendleEnum), "ServiceLevelSendleEnum"));
+                    fallbackCandidates.Add((typeof(ServiceLevelRoyalMailSFEnum), new ServiceLevelEnumSet(ServiceLevelEnumSetType.ServiceLevelRoyalMailSFEnum), "ServiceLevelRoyalMailSFEnum"));
                 }
                 catch (ResponseBodyDeserializer.DeserializationException)
                 {
@@ -1432,212 +1389,240 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
-                }
-                ServiceLevelEnumSet res = (ServiceLevelEnumSet)value;
-                if (ServiceLevelEnumSetType.FromString(res.Type).Equals(ServiceLevelEnumSetType.Null))
+                if (value == null)
                 {
-                    writer.WriteRawValue("null");
-                    return;
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
+
+                ServiceLevelEnumSet res = (ServiceLevelEnumSet)value;
+
                 if (res.ServiceLevelUSPSEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelUSPSEnum));
                     return;
                 }
+
                 if (res.ServiceLevelFedExEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelFedExEnum));
                     return;
                 }
+
                 if (res.ServiceLevelUPSEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelUPSEnum));
                     return;
                 }
+
                 if (res.ServiceLevelAirterraEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelAirterraEnum));
                     return;
                 }
+
                 if (res.ServiceLevelAPCPostalEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelAPCPostalEnum));
                     return;
                 }
+
                 if (res.ServiceLevelAsendiaEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelAsendiaEnum));
                     return;
                 }
+
                 if (res.ServiceLevelAustraliaPostEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelAustraliaPostEnum));
                     return;
                 }
+
                 if (res.ServiceLevelAPGEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelAPGEnum));
                     return;
                 }
+
                 if (res.ServiceLevelBetterTrucksEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelBetterTrucksEnum));
                     return;
                 }
+
                 if (res.ServiceLevelCanadaPostEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelCanadaPostEnum));
                     return;
                 }
+
                 if (res.ServiceLevelCDLEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelCDLEnum));
                     return;
                 }
+
                 if (res.ServiceLevelChronopostEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelChronopostEnum));
                     return;
                 }
-                if (res.ServiceLevelCouriersPleaseEnum != null)
-                {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelCouriersPleaseEnum));
-                    return;
-                }
+
                 if (res.ServiceLevelCorreosEspanaEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelCorreosEspanaEnum));
                     return;
                 }
+
                 if (res.ServiceLevelColissimoEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelColissimoEnum));
                     return;
                 }
+
                 if (res.ServiceLevelPurolatorEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelPurolatorEnum));
                     return;
                 }
+
                 if (res.ServiceLevelDHLExpressEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelDHLExpressEnum));
                     return;
                 }
+
                 if (res.ServiceLevelDHLeCommerceEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelDHLeCommerceEnum));
                     return;
                 }
+
                 if (res.ServiceLevelDHLGermanyEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelDHLGermanyEnum));
                     return;
                 }
+
                 if (res.ServiceLevelDPDDEEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelDPDDEEnum));
                     return;
                 }
+
                 if (res.ServiceLevelDPDUKEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelDPDUKEnum));
                     return;
                 }
+
                 if (res.ServiceLevelDeutschePostEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelDeutschePostEnum));
                     return;
                 }
+
                 if (res.ServiceLevelAramexAustraliaEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelAramexAustraliaEnum));
                     return;
                 }
+
                 if (res.ServiceLevelGlobegisticsEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelGlobegisticsEnum));
                     return;
                 }
+
                 if (res.ServiceLevelGLSUSEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelGLSUSEnum));
                     return;
                 }
+
                 if (res.ServiceLevelLSOEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelLSOEnum));
                     return;
                 }
+
                 if (res.ServiceLevelMondialRelayEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelMondialRelayEnum));
                     return;
                 }
+
                 if (res.ServiceLevelParcelforceEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelParcelforceEnum));
                     return;
                 }
+
                 if (res.ServiceLevelPostItalianeEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelPostItalianeEnum));
                     return;
                 }
+
                 if (res.ServiceLevelePostGlobalEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelePostGlobalEnum));
                     return;
                 }
+
                 if (res.ServiceLevelRoyalMailEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelRoyalMailEnum));
                     return;
                 }
-                if (res.ServiceLevelSendleEnum != null)
+
+                if (res.ServiceLevelRoyalMailSFEnum != null)
                 {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelSendleEnum));
+                    writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelRoyalMailSFEnum));
                     return;
                 }
+
                 if (res.ServiceLevelOnTracEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelOnTracEnum));
                     return;
                 }
+
                 if (res.ServiceLevelJitsuEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelJitsuEnum));
                     return;
                 }
+
                 if (res.ServiceLevelLasershipEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelLasershipEnum));
                     return;
                 }
+
                 if (res.ServiceLevelEvriUKEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelEvriUKEnum));
                     return;
                 }
+
                 if (res.ServiceLevelUDSEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelUDSEnum));
                     return;
                 }
+
                 if (res.ServiceLevelVehoEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelVehoEnum));
                     return;
                 }
+
                 if (res.ServiceLevelSwyftEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ServiceLevelSwyftEnum));
                     return;
                 }
-
             }
 
         }

@@ -2,6 +2,14 @@
 
 Indicates the status of the manifest.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ManifestStatus.Queued;
+```
+
 
 ## Values
 

@@ -2,6 +2,14 @@
 
 The measure unit used for length, width and height.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = DistanceUnitEnum.Cm;
+```
+
 
 ## Values
 

@@ -6,6 +6,14 @@ Type of tax identification.
 * `IOSS` - Import One-Stop Shop
 * `ARN` - Australian Taxation Office Reference Number
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = CustomsTaxIdentificationType.Ein;
+```
+
 
 ## Values
 

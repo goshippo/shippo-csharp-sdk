@@ -12,17 +12,13 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
-    /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment. <br/>
-    /// 
-    /// <remarks>
-    /// See the &lt;a href=&quot;#section/Parcel-Extras&quot;&gt;Parcel Extra table below&lt;/a&gt; for all available services.
-    /// </remarks>
+    /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment.<br/>
+    /// The following values are supported for the `extra` field of the parcel object.
     /// </summary>
     public class ParcelExtra
     {
-
         /// <summary>
         /// Specify collection on delivery details (UPS only).
         /// </summary>
@@ -30,19 +26,29 @@ namespace Shippo.Models.Components
         public Cod? Cod { get; set; }
 
         /// <summary>
-        /// To add insurace to your parcel, specify `amount`, `content` and `currency`. &lt;br&gt;&lt;br&gt;If you do not want to add insurance to you parcel, do not set these parameters.
+        /// To add insurance to your parcel, specify `amount`, `content` and `currency`. &lt;br&gt;&lt;br&gt;If you do not want to add insurance to you parcel, do not set these parameters.
         /// </summary>
         [JsonProperty("insurance")]
         public ParcelInsurance? Insurance { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.
+        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 40 characters (Express services); Max 30 characters (Ground services) |
         /// </summary>
         [JsonProperty("reference_1")]
         public string? Reference1 { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.
+        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 30 characters |
         /// </summary>
         [JsonProperty("reference_2")]
         public string? Reference2 { get; set; }

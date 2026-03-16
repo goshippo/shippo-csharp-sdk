@@ -1,5 +1,13 @@
 # ShipmentExtraReturnServiceTypeLasershipEnum
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ShipmentExtraReturnServiceTypeLasershipEnum.NoReturn;
+```
+
 
 ## Values
 

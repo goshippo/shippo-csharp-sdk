@@ -14,31 +14,22 @@ namespace Shippo
     using Shippo.Models.Components;
     using Shippo.Models.Errors;
     using Shippo.Models.Requests;
-    using Shippo.Utils.Retries;
     using Shippo.Utils;
-    using System.Collections.Generic;
-    using System.Net.Http.Headers;
-    using System.Net.Http;
-    using System.Threading.Tasks;
+    using Shippo.Utils.Retries;
     using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
 
     /// <summary>
-    /// A shipment is the act of transporting goods. A shipment object contains **to** and **from** addresses, and the parcel details that you are shipping. You can use the shipment object to retrieve shipping rates and purchase a shipping label.<br/>
-    /// 
-    /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Shipment&quot;/&gt;<br/>
-    ///  <br/>
-    /// # Shipment Extras<br/>
-    /// The following values are supported for the `extra` field of the shipment object.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShipmentExtra&quot;/&gt;
-    /// </remarks>
+    /// A shipment is the act of transporting goods. A shipment object contains **to** and **from** addresses, and the parcel details that you are shipping. You can use the shipment object to retrieve shipping rates and purchase a shipping label.
     /// </summary>
     public interface IShipments
     {
-
         /// <summary>
-        /// List all shipments
-        /// 
+        /// List all shipments.
+        /// </summary>
         /// <remarks>
         /// Returns a list of all shipment objects.&lt;br&gt;&lt;br&gt;<br/>
         /// In order to filter results, you must use the below path parameters. <br/>
@@ -59,86 +50,124 @@ namespace Shippo
         ///   Example URL:&lt;br&gt;<br/>
         ///     `https://api.goshippo.com/shipments/?object_created_gte=2017-01-01T00:00:30&amp;object_created_lt=2017-04-01T00:00:30`
         /// </remarks>
-        /// </summary>
-        Task<ShipmentPaginatedList> ListAsync(ListShipmentsRequest? request = null);
+        /// <param name="request">A <see cref="ListShipmentsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ShipmentPaginatedList"/> object when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<ShipmentPaginatedList> ListAsync(ListShipmentsRequest? request = null);
 
         /// <summary>
-        /// Create a new shipment
-        /// 
+        /// Create a new shipment.
+        /// </summary>
         /// <remarks>
         /// Creates a new shipment object.
         /// </remarks>
-        /// </summary>
-        Task<Shipment> CreateAsync(ShipmentCreateRequest shipmentCreateRequest, string? shippoApiVersion = null);
+        /// <param name="shipmentCreateRequest">Shipment details and contact info.</param>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>Shipment represents the parcel as retrieved from the database.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="shipmentCreateRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<Shipment> CreateAsync(ShipmentCreateRequest shipmentCreateRequest, string? shippoApiVersion = null);
 
         /// <summary>
-        /// Retrieve a shipment
-        /// 
-        /// <remarks>
-        /// Returns an existing shipment using an object ID
-        /// </remarks>
+        /// Retrieve a shipment.
         /// </summary>
-        Task<Shipment> GetAsync(string shipmentId, string? shippoApiVersion = null);
+        /// <remarks>
+        /// Returns an existing shipment using an object ID.
+        /// </remarks>
+        /// <param name="shipmentId">Object ID of the shipment to update.</param>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>Shipment represents the parcel as retrieved from the database.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="shipmentId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<Shipment> GetAsync(string shipmentId, string? shippoApiVersion = null);
     }
 
     /// <summary>
-    /// A shipment is the act of transporting goods. A shipment object contains **to** and **from** addresses, and the parcel details that you are shipping. You can use the shipment object to retrieve shipping rates and purchase a shipping label.<br/>
-    /// 
-    /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Shipment&quot;/&gt;<br/>
-    ///  <br/>
-    /// # Shipment Extras<br/>
-    /// The following values are supported for the `extra` field of the shipment object.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShipmentExtra&quot;/&gt;
-    /// </remarks>
+    /// A shipment is the act of transporting goods. A shipment object contains **to** and **from** addresses, and the parcel details that you are shipping. You can use the shipment object to retrieve shipping rates and purchase a shipping label.
     /// </summary>
     public class Shipments: IShipments
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
-        private const string _sdkGenVersion = "2.463.0";
-        private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
-        private string _serverUrl = "";
-        private ISpeakeasyHttpClient _client;
-        private Func<Shippo.Models.Components.Security>? _securitySource;
 
-        public Shipments(ISpeakeasyHttpClient client, Func<Shippo.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
+        public Shipments(SDKConfig config)
         {
-            _client = client;
-            _securitySource = securitySource;
-            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
-        public async Task<ShipmentPaginatedList> ListAsync(ListShipmentsRequest? request = null)
+        /// <summary>
+        /// List all shipments.
+        /// </summary>
+        /// <remarks>
+        /// Returns a list of all shipment objects.&lt;br&gt;&lt;br&gt;<br/>
+        /// In order to filter results, you must use the below path parameters. <br/>
+        /// A maximum date range of 90 days is permitted. <br/>
+        /// Provided dates should be ISO 8601 UTC dates (timezone offsets are currently not supported).&lt;br&gt;&lt;br&gt;<br/>
+        /// <br/>
+        /// Optional path parameters:&lt;br&gt;<br/>
+        ///   `object_created_gt`- object(s) created greater than a provided date time&lt;br&gt;<br/>
+        ///   `object_created_gte` - object(s) created greater than or equal to a provided date time&lt;br&gt;<br/>
+        ///   `object_created_lt` - object(s) created less than a provided date time&lt;br&gt;<br/>
+        ///   `object_created_lte` - object(s) created less than or equal to a provided date time&lt;br&gt;<br/>
+        /// <br/>
+        ///   Date format examples:&lt;br&gt;<br/>
+        ///     `2017-01-01`&lt;br&gt;<br/>
+        ///     `2017-01-01T03:30:30` or `2017-01-01T03:30:30.5`&lt;br&gt;<br/>
+        ///     `2017-01-01T03:30:30Z`&lt;br&gt;&lt;br&gt;<br/>
+        /// <br/>
+        ///   Example URL:&lt;br&gt;<br/>
+        ///     `https://api.goshippo.com/shipments/?object_created_gte=2017-01-01T00:00:30&amp;object_created_lt=2017-04-01T00:00:30`
+        /// </remarks>
+        /// <param name="request">A <see cref="ListShipmentsRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="ShipmentPaginatedList"/> object when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<ShipmentPaginatedList> ListAsync(ListShipmentsRequest? request = null)
         {
+            if (request == null)
+            {
+                request = new ListShipmentsRequest();
+            }
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/shipments", request);
+            var urlString = URLBuilder.Build(baseUrl, "/shipments", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            if (_securitySource != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
-            var hookCtx = new HookContext("ListShipments", null, _securitySource);
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "ListShipments", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -147,9 +176,9 @@ namespace Shippo
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -168,36 +197,73 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<ShipmentPaginatedList>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    ShipmentPaginatedList obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<ShipmentPaginatedList>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into ShipmentPaginatedList.", httpResponse, httpResponseBody, ex);
+                    }
+
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
-                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<Shipment> CreateAsync(ShipmentCreateRequest shipmentCreateRequest, string? shippoApiVersion = null)
+
+        /// <summary>
+        /// Create a new shipment.
+        /// </summary>
+        /// <remarks>
+        /// Creates a new shipment object.
+        /// </remarks>
+        /// <param name="shipmentCreateRequest">Shipment details and contact info.</param>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>Shipment represents the parcel as retrieved from the database.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="shipmentCreateRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<Shipment> CreateAsync(
+            ShipmentCreateRequest shipmentCreateRequest,
+            string? shippoApiVersion = null
+        )
         {
+            if (shipmentCreateRequest == null) throw new ArgumentNullException(nameof(shipmentCreateRequest));
+
             var request = new CreateShipmentRequest()
             {
                 ShipmentCreateRequest = shipmentCreateRequest,
                 ShippoApiVersion = shippoApiVersion,
             };
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
-            
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/shipments";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "ShipmentCreateRequest", "json", false, false);
             if (serializedBody != null)
@@ -205,22 +271,22 @@ namespace Shippo
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("CreateShipment", null, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "CreateShipment", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -229,9 +295,9 @@ namespace Shippo
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -250,52 +316,87 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Shipment>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Shipment obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Shipment>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Shipment.", httpResponse, httpResponseBody, ex);
+                    }
+
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
-                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<Shipment> GetAsync(string shipmentId, string? shippoApiVersion = null)
+
+        /// <summary>
+        /// Retrieve a shipment.
+        /// </summary>
+        /// <remarks>
+        /// Returns an existing shipment using an object ID.
+        /// </remarks>
+        /// <param name="shipmentId">Object ID of the shipment to update.</param>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>Shipment represents the parcel as retrieved from the database.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="shipmentId"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<Shipment> GetAsync(string shipmentId, string? shippoApiVersion = null)
         {
+            if (shipmentId == null) throw new ArgumentNullException(nameof(shipmentId));
+
             var request = new GetShipmentRequest()
             {
                 ShipmentId = shipmentId,
                 ShippoApiVersion = shippoApiVersion,
             };
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
-            
+
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/shipments/{ShipmentId}", request);
+            var urlString = URLBuilder.Build(baseUrl, "/shipments/{ShipmentId}", request, null);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            if (_securitySource != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
-            var hookCtx = new HookContext("GetShipment", null, _securitySource);
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "GetShipment", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -304,9 +405,9 @@ namespace Shippo
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -325,18 +426,33 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<Shipment>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    Shipment obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<Shipment>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into Shipment.", httpResponse, httpResponseBody, ex);
+                    }
+
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
-                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

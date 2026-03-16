@@ -7,6 +7,14 @@
 | ontrac_sunrise | Sunrise|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelOnTracEnum.OntracGround;
+```
+
 
 ## Values
 

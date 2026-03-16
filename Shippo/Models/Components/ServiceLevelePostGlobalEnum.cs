@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | rr_donnelley_domestic_economy_parcel | Domestic Economy Parcel|<br/>
     /// | rr_donnelley_domestic_priority_parcel | Domestic Priority Parcel |<br/>
@@ -30,9 +28,7 @@ namespace Shippo.Models.Components
     /// | rr_donnelley_isal | International Surface Air Lift (ISAL)|<br/>
     /// | rr_donnelley_epacket | e-Packet|<br/>
     /// | rr_donnelley_pmi | Priority Mail International|<br/>
-    /// | rr_donnelley_emi | Express Mail International|<br/>
-    /// 
-    /// </remarks>
+    /// | rr_donnelley_emi | Express Mail International|
     /// </summary>
     public enum ServiceLevelePostGlobalEnum
     {
@@ -96,5 +92,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelePostGlobalEnum");
         }
     }
-
 }

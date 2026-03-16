@@ -22,6 +22,14 @@
 | purolator_express_international1200 | Express International 12pm|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelPurolatorEnum.PurolatorGround;
+```
+
 
 ## Values
 

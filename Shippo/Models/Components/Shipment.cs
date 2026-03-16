@@ -12,15 +12,14 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System.Collections.Generic;
     using System;
-    
+    using System.Collections.Generic;
+
     /// <summary>
-    /// Shipment represents the parcel as retrieved from the database
+    /// Shipment represents the parcel as retrieved from the database.
     /// </summary>
     public class Shipment
     {
-
         /// <summary>
         /// An object holding optional extra services to be requested.
         /// </summary>
@@ -35,45 +34,36 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Date the shipment will be tendered to the carrier. Must be in the format `2014-01-18T00:35:03.463Z`. <br/>
-        /// 
-        /// <remarks>
         /// Defaults to current date and time if no value is provided. Please note that some carriers require this value to<br/>
         /// be in the future, on a working day, or similar.
-        /// </remarks>
         /// </summary>
         [JsonProperty("shipment_date")]
         public string? ShipmentDate { get; set; }
 
         /// <summary>
-        /// &lt;a href=&quot;#tag/Addresses&quot;&gt;Address&lt;/a&gt; object of the sender / seller. Will be returned expanded by default.
+        /// <a href="/shippoapi/public-api/addresses">Address</a> object of the sender / seller. Will be returned expanded by default.
         /// </summary>
         [JsonProperty("address_from")]
         public Address AddressFrom { get; set; } = default!;
 
         /// <summary>
         /// ID of the Address object where the shipment will be sent back to if it is not delivered <br/>
-        /// 
-        /// <remarks>
         /// (Only available for UPS, USPS, and Fedex shipments). &lt;br/&gt; <br/>
         /// If this field is not set, your shipments will be returned to the address_from.
-        /// </remarks>
         /// </summary>
         [JsonProperty("address_return")]
         public Address? AddressReturn { get; set; }
 
         /// <summary>
-        /// &lt;a href=&quot;#tag/Addresses&quot;&gt;Address&lt;/a&gt; object of the recipient / buyer. Will be returned expanded by default.
+        /// <a href="/shippoapi/public-api/addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
         /// </summary>
         [JsonProperty("address_to")]
         public Address AddressTo { get; set; } = default!;
 
         /// <summary>
         /// An array of object_ids of the carrier account objects to be used for getting shipping rates for this shipment. <br/>
-        /// 
-        /// <remarks>
         /// If no carrier account object_ids are set in this field, Shippo will attempt to generate rates using all the <br/>
         /// carrier accounts that have the `active` field set.
-        /// </remarks>
         /// </summary>
         [JsonProperty("carrier_accounts")]
         public List<string> CarrierAccounts { get; set; } = default!;
@@ -115,24 +105,18 @@ namespace Shippo.Models.Components
         public List<Parcel> Parcels { get; set; } = default!;
 
         /// <summary>
-        /// An array with all available rates. If &lt;code&gt;async&lt;/code&gt; has been set to &lt;code&gt;false&lt;/code&gt; in the request,<br/>
-        /// 
-        /// <remarks>
+        /// An array with all available rates. If <code>async</code> has been set to <code>false</code> in the request,<br/>
         /// this will be populated with all available rates in the response. Otherwise rates will be created<br/>
         /// asynchronously and this array will initially be empty.
-        /// </remarks>
         /// </summary>
         [JsonProperty("rates")]
         public List<Rate> Rates { get; set; } = default!;
 
         /// <summary>
         /// `Waiting` shipments have been successfully submitted but not yet been processed. <br/>
-        /// 
-        /// <remarks>
         /// `Queued` shipments are currently being processed. <br/>
         /// `Success` shipments have been processed successfully, meaning that rate generation has concluded. <br/>
         /// `Error` does not occur currently and is reserved for future use.
-        /// </remarks>
         /// </summary>
         [JsonProperty("status")]
         public ShipmentStatus Status { get; set; } = default!;

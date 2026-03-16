@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | ups_standard | Standard℠|<br/>
     /// | ups_ground | Ground|<br/>
@@ -42,9 +40,7 @@ namespace Shippo.Models.Components
     /// | ups_express_plus | Express Plus®|<br/>
     /// | ups_expedited | Expedited®|<br/>
     /// | ups_express_early | Express® Early|<br/>
-    /// | ups_access_point_economy | Access Point™ Economy|<br/>
-    /// 
-    /// </remarks>
+    /// | ups_access_point_economy | Access Point™ Economy|
     /// </summary>
     public enum ServiceLevelUPSEnum
     {
@@ -132,5 +128,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelUPSEnum");
         }
     }
-
 }

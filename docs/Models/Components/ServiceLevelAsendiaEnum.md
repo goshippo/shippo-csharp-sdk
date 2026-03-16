@@ -12,6 +12,14 @@
 | asendia_us_other | Asendia USA Other Services (custom)|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelAsendiaEnum.AsendiaUsPriorityTracked;
+```
+
 
 ## Values
 

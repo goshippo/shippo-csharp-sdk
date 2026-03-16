@@ -12,13 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Indicates that a shipment contains Alcohol (Fedex and UPS only).
     /// </summary>
     public class Alcohol
     {
-
         /// <summary>
         /// Mandatory for Fedex and UPS. Specifies that the package contains Alcohol.
         /// </summary>

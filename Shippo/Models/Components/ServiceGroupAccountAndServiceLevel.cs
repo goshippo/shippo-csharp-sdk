@@ -11,22 +11,18 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class ServiceGroupAccountAndServiceLevel
     {
-
         /// <summary>
-        /// ID of a Carrier Account object
+        /// ID of a Carrier Account object.
         /// </summary>
         [JsonProperty("account_object_id")]
         public string? AccountObjectId { get; set; }
 
         /// <summary>
         /// Service level token, e.g. `usps_priority` or `fedex_ground`.&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;Service Levels&lt;/a&gt;.
-        /// </remarks>
+        /// See <a href="/shippoapi/public-api/service-levels">Service Levels</a>.
         /// </summary>
         [JsonProperty("service_level_token")]
         public string? ServiceLevelToken { get; set; }

@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Name | Dimensions|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|:---|<br/>
     /// | USPS_FlatRateCardboardEnvelope | Flat Rate Cardboard Envelope |  12.50 x 9.50 x 0.75 in |<br/>
     /// | USPS_FlatRateEnvelope | Flat Rate Envelope |  12.50 x 9.50 x 0.75 in |<br/>
@@ -37,9 +35,7 @@ namespace Shippo.Models.Components
     /// | USPS_RegionalRateBoxB2 | Regional Rate Box B2 |  16.25 x 14.50 x 3.00 in |<br/>
     /// | USPS_SmallFlatRateBox | Small Flat Rate Box |  8.69 x 5.44 x 1.75 in |<br/>
     /// | USPS_SmallFlatRateEnvelope | Small Flat Rate Envelope |  10.00 x 6.00 x 4.00 in |<br/>
-    /// | USPS_SoftPack | Soft Pack Padded Envelope |  Length and width defined in the Parcel|<br/>
-    /// 
-    /// </remarks>
+    /// | USPS_SoftPack | Soft Pack Padded Envelope |  Length and width defined in the Parcel|
     /// </summary>
     public enum ParcelTemplateUSPSEnum
     {
@@ -117,5 +113,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ParcelTemplateUSPSEnum");
         }
     }
-
 }

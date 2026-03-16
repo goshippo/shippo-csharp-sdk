@@ -8,6 +8,14 @@
 | apg_eparcel_expedited | eParcel Expedited|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelAPGEnum.Epacket;
+```
+
 
 ## Values
 

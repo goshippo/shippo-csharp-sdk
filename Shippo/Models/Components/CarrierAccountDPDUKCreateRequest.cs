@@ -12,12 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class CarrierAccountDPDUKCreateRequest
     {
-
         [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
+        public string Carrier { get; } = "dpd_uk";
 
         [JsonProperty("parameters")]
         public CarrierAccountDPDUKCreateRequestParameters Parameters { get; set; } = default!;

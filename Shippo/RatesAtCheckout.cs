@@ -14,121 +14,154 @@ namespace Shippo
     using Shippo.Models.Components;
     using Shippo.Models.Errors;
     using Shippo.Models.Requests;
-    using Shippo.Utils.Retries;
     using Shippo.Utils;
-    using System.Collections.Generic;
-    using System.Net.Http.Headers;
-    using System.Net.Http;
-    using System.Threading.Tasks;
+    using Shippo.Utils.Retries;
     using System;
+    using System.Collections.Generic;
+    using System.Net.Http;
+    using System.Net.Http.Headers;
+    using System.Threading.Tasks;
 
     /// <summary>
-    /// Rates at checkout is a tool for merchants to display up-to-date shipping estimates based on what&apos;s in their customers cart and where they’re shipping to.<br/>
-    /// 
-    /// <remarks>
+    /// Rates at checkout is a tool for merchants to display up-to-date shipping estimates based on what's in their customers cart and where they’re shipping to.<br/>
     /// Merchants set up curated shipping options for customers in the checkout flow based on data in the shopping cart. The request must include the **to** address and item information. Optional fields are the **from** address and package information. If the optional fields are not included, the service will use the default address and/or package configured for rates at checkout. The response is a list of shipping options based on the Service Group configuration.<br/>
-    /// (see &lt;a href=&quot;#tag/Service-Groups&quot;&gt;Service Group configuration&lt;/a&gt; for details).<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/LiveRate&quot;/&gt;<br/>
+    /// (see <a href="/shippoapi/public-api/service-groups">Service Group configuration</a> for details).<br/>
+    /// <br/>
     /// <br/>
     /// <br/>
     /// # Default Parcel Template<br/>
-    /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/UserParcelTemplate&quot;/&gt;
-    /// </remarks>
+    /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.
     /// </summary>
     public interface IRatesAtCheckout
     {
-
         /// <summary>
-        /// Generate a live rates request
-        /// 
+        /// Generate a live rates request.
+        /// </summary>
         /// <remarks>
         /// Initiates a live rates request. Include either the object ID for<br/>
         /// an existing address record or a fully formed address object when entering<br/>
         /// an address value. You can also enter the object ID of an existing user parcel<br/>
         /// template or a fully formed user parcel template object as the parcel value.
         /// </remarks>
-        /// </summary>
-        Task<LiveRatePaginatedList> CreateAsync(LiveRateCreateRequest liveRateCreateRequest, string? shippoApiVersion = null);
+        /// <param name="liveRateCreateRequest">Generate rates at checkout.</param>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>An awaitable task that returns a <see cref="LiveRatePaginatedList"/> object when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="liveRateCreateRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<LiveRatePaginatedList> CreateAsync(
+            LiveRateCreateRequest liveRateCreateRequest,
+            string? shippoApiVersion = null
+        );
 
         /// <summary>
-        /// Show current default parcel template
-        /// 
+        /// Show current default parcel template.
+        /// </summary>
         /// <remarks>
         /// Retrieve and display the currently configured default parcel template for live rates.
         /// </remarks>
-        /// </summary>
-        Task<DefaultParcelTemplate> GetDefaultParcelTemplateAsync(string? shippoApiVersion = null);
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>An awaitable task that returns a <see cref="DefaultParcelTemplate"/> object when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<DefaultParcelTemplate> GetDefaultParcelTemplateAsync(string? shippoApiVersion = null);
 
         /// <summary>
-        /// Update default parcel template
-        /// 
+        /// Update default parcel template.
+        /// </summary>
         /// <remarks>
         /// Update the currently configured default parcel template for live rates. The object_id in the request payload should identify the user parcel template to be the new default.
         /// </remarks>
-        /// </summary>
-        Task<DefaultParcelTemplate> UpdateDefaultParcelTemplateAsync(string? shippoApiVersion = null, DefaultParcelTemplateUpdateRequest? defaultParcelTemplateUpdateRequest = null);
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <param name="defaultParcelTemplateUpdateRequest">A <see cref="DefaultParcelTemplateUpdateRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DefaultParcelTemplate"/> object when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task<DefaultParcelTemplate> UpdateDefaultParcelTemplateAsync(
+            string? shippoApiVersion = null,
+            DefaultParcelTemplateUpdateRequest? defaultParcelTemplateUpdateRequest = null
+        );
 
         /// <summary>
-        /// Clear current default parcel template
-        /// 
+        /// Clear current default parcel template.
+        /// </summary>
         /// <remarks>
         /// Clears the currently configured default parcel template for live rates.
         /// </remarks>
-        /// </summary>
-        Task DeleteDefaultParcelTemplateAsync(string? shippoApiVersion = null);
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public  Task DeleteDefaultParcelTemplateAsync(string? shippoApiVersion = null);
     }
 
     /// <summary>
-    /// Rates at checkout is a tool for merchants to display up-to-date shipping estimates based on what&apos;s in their customers cart and where they’re shipping to.<br/>
-    /// 
-    /// <remarks>
+    /// Rates at checkout is a tool for merchants to display up-to-date shipping estimates based on what's in their customers cart and where they’re shipping to.<br/>
     /// Merchants set up curated shipping options for customers in the checkout flow based on data in the shopping cart. The request must include the **to** address and item information. Optional fields are the **from** address and package information. If the optional fields are not included, the service will use the default address and/or package configured for rates at checkout. The response is a list of shipping options based on the Service Group configuration.<br/>
-    /// (see &lt;a href=&quot;#tag/Service-Groups&quot;&gt;Service Group configuration&lt;/a&gt; for details).<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/LiveRate&quot;/&gt;<br/>
+    /// (see <a href="/shippoapi/public-api/service-groups">Service Group configuration</a> for details).<br/>
+    /// <br/>
     /// <br/>
     /// <br/>
     /// # Default Parcel Template<br/>
-    /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/UserParcelTemplate&quot;/&gt;
-    /// </remarks>
+    /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.
     /// </summary>
     public class RatesAtCheckout: IRatesAtCheckout
     {
+        /// <summary>
+        /// SDK Configuration.
+        /// <see cref="SDKConfig"/>
+        /// </summary>
         public SDKConfig SDKConfiguration { get; private set; }
-        private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
-        private const string _sdkGenVersion = "2.463.0";
-        private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
-        private string _serverUrl = "";
-        private ISpeakeasyHttpClient _client;
-        private Func<Shippo.Models.Components.Security>? _securitySource;
 
-        public RatesAtCheckout(ISpeakeasyHttpClient client, Func<Shippo.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
+        public RatesAtCheckout(SDKConfig config)
         {
-            _client = client;
-            _securitySource = securitySource;
-            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
-        public async Task<LiveRatePaginatedList> CreateAsync(LiveRateCreateRequest liveRateCreateRequest, string? shippoApiVersion = null)
+        /// <summary>
+        /// Generate a live rates request.
+        /// </summary>
+        /// <remarks>
+        /// Initiates a live rates request. Include either the object ID for<br/>
+        /// an existing address record or a fully formed address object when entering<br/>
+        /// an address value. You can also enter the object ID of an existing user parcel<br/>
+        /// template or a fully formed user parcel template object as the parcel value.
+        /// </remarks>
+        /// <param name="liveRateCreateRequest">Generate rates at checkout.</param>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>An awaitable task that returns a <see cref="LiveRatePaginatedList"/> object when completed.</returns>
+        /// <exception cref="ArgumentNullException">The required parameter <paramref name="liveRateCreateRequest"/> is null.</exception>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<LiveRatePaginatedList> CreateAsync(
+            LiveRateCreateRequest liveRateCreateRequest,
+            string? shippoApiVersion = null
+        )
         {
+            if (liveRateCreateRequest == null) throw new ArgumentNullException(nameof(liveRateCreateRequest));
+
             var request = new CreateLiveRateRequest()
             {
                 LiveRateCreateRequest = liveRateCreateRequest,
                 ShippoApiVersion = shippoApiVersion,
             };
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
-            
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/live-rates";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "LiveRateCreateRequest", "json", false, false);
             if (serializedBody != null)
@@ -136,22 +169,22 @@ namespace Shippo
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("CreateLiveRate", null, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "CreateLiveRate", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -160,9 +193,9 @@ namespace Shippo
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -181,52 +214,82 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<LiveRatePaginatedList>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    LiveRatePaginatedList obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<LiveRatePaginatedList>(httpResponseBody, NullValueHandling.Ignore);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into LiveRatePaginatedList.", httpResponse, httpResponseBody, ex);
+                    }
+
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
-                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<DefaultParcelTemplate> GetDefaultParcelTemplateAsync(string? shippoApiVersion = null)
+
+        /// <summary>
+        /// Show current default parcel template.
+        /// </summary>
+        /// <remarks>
+        /// Retrieve and display the currently configured default parcel template for live rates.
+        /// </remarks>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>An awaitable task that returns a <see cref="DefaultParcelTemplate"/> object when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<DefaultParcelTemplate> GetDefaultParcelTemplateAsync(string? shippoApiVersion = null)
         {
             var request = new GetDefaultParcelTemplateRequest()
             {
                 ShippoApiVersion = shippoApiVersion,
             };
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
-            
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/live-rates/settings/parcel-template";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            if (_securitySource != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest.Headers.Add("Accept", "application/json");
             }
 
-            var hookCtx = new HookContext("GetDefaultParcelTemplate", null, _securitySource);
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "GetDefaultParcelTemplate", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -235,9 +298,9 @@ namespace Shippo
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -256,21 +319,51 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<DefaultParcelTemplate>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    DefaultParcelTemplate obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<DefaultParcelTemplate>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into DefaultParcelTemplate.", httpResponse, httpResponseBody, ex);
+                    }
+
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
-                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task<DefaultParcelTemplate> UpdateDefaultParcelTemplateAsync(string? shippoApiVersion = null, DefaultParcelTemplateUpdateRequest? defaultParcelTemplateUpdateRequest = null)
+
+        /// <summary>
+        /// Update default parcel template.
+        /// </summary>
+        /// <remarks>
+        /// Update the currently configured default parcel template for live rates. The object_id in the request payload should identify the user parcel template to be the new default.
+        /// </remarks>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <param name="defaultParcelTemplateUpdateRequest">A <see cref="DefaultParcelTemplateUpdateRequest"/> parameter.</param>
+        /// <returns>An awaitable task that returns a <see cref="DefaultParcelTemplate"/> object when completed.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="ResponseValidationException">The response body could not be deserialized.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task<DefaultParcelTemplate> UpdateDefaultParcelTemplateAsync(
+            string? shippoApiVersion = null,
+            DefaultParcelTemplateUpdateRequest? defaultParcelTemplateUpdateRequest = null
+        )
         {
             var request = new UpdateDefaultParcelTemplateRequest()
             {
@@ -278,14 +371,18 @@ namespace Shippo
                 DefaultParcelTemplateUpdateRequest = defaultParcelTemplateUpdateRequest,
             };
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
-            
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/live-rates/settings/parcel-template";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Put, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
+
+            if (!httpRequest.Headers.Contains("Accept"))
+            {
+                httpRequest.Headers.Add("Accept", "application/json");
+            }
 
             var serializedBody = RequestBodySerializer.Serialize(request, "DefaultParcelTemplateUpdateRequest", "json", false, true);
             if (serializedBody != null)
@@ -293,22 +390,22 @@ namespace Shippo
                 httpRequest.Content = serializedBody;
             }
 
-            if (_securitySource != null)
+            if (SDKConfiguration.SecuritySource != null)
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext("UpdateDefaultParcelTemplate", null, _securitySource);
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "UpdateDefaultParcelTemplate", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -317,9 +414,9 @@ namespace Shippo
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -338,52 +435,81 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<DefaultParcelTemplate>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
+                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
+                    DefaultParcelTemplate obj;
+                    try
+                    {
+                        obj = ResponseBodyDeserializer.DeserializeNotNull<DefaultParcelTemplate>(httpResponseBody, NullValueHandling.Include);
+                    }
+                    catch (Exception ex)
+                    {
+                        throw new ResponseValidationException("Failed to deserialize response body into DefaultParcelTemplate.", httpResponse, httpResponseBody, ex);
+                    }
+
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
-                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
 
-        public async Task DeleteDefaultParcelTemplateAsync(string? shippoApiVersion = null)
+
+        /// <summary>
+        /// Clear current default parcel template.
+        /// </summary>
+        /// <remarks>
+        /// Clears the currently configured default parcel template for live rates.
+        /// </remarks>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.</param>
+        /// <returns>A task that represents the asynchronous operation.</returns>
+        /// <exception cref="HttpRequestException">The HTTP request failed due to network issues.</exception>
+        /// <exception cref="SDKException">Default API Exception. Thrown when the API returns a 4XX or 5XX response.</exception>
+        public async  Task DeleteDefaultParcelTemplateAsync(string? shippoApiVersion = null)
         {
             var request = new DeleteDefaultParcelTemplateRequest()
             {
                 ShippoApiVersion = shippoApiVersion,
             };
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
-            
-            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
 
+            string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
             var urlString = baseUrl + "/live-rates/settings/parcel-template";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Delete, urlString);
-            httpRequest.Headers.Add("user-agent", _userAgent);
+            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            if (_securitySource != null)
+            if (!httpRequest.Headers.Contains("Accept"))
             {
-                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
+                httpRequest.Headers.Add("Accept", "*/*");
             }
 
-            var hookCtx = new HookContext("DeleteDefaultParcelTemplate", null, _securitySource);
+            if (SDKConfiguration.SecuritySource != null)
+            {
+                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+            }
+
+            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "DeleteDefaultParcelTemplate", null, SDKConfiguration.SecuritySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await _client.SendAsync(httpRequest);
+                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
-                if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
+                if (_statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
                 {
                     var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), httpResponse, null);
                     if (_httpResponse != null)
@@ -392,9 +518,9 @@ namespace Shippo
                     }
                 }
             }
-            catch (Exception error)
+            catch (Exception _hookError)
             {
-                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, error);
+                var _httpResponse = await this.SDKConfiguration.Hooks.AfterErrorAsync(new AfterErrorContext(hookCtx), null, _hookError);
                 if (_httpResponse != null)
                 {
                     httpResponse = _httpResponse;
@@ -410,15 +536,20 @@ namespace Shippo
             var contentType = httpResponse.Content.Headers.ContentType?.MediaType;
             int responseStatusCode = (int)httpResponse.StatusCode;
             if(responseStatusCode == 204)
-            {                
+            {
                 return;
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
+            else if(responseStatusCode >= 400 && responseStatusCode < 500)
             {
-                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            }
+            else if(responseStatusCode >= 500 && responseStatusCode < 600)
+            {
+                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
+            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
         }
+
     }
 }

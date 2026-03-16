@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Indicates the status of the pickup.
     /// </summary>
@@ -60,5 +60,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum PickupStatus");
         }
     }
-
 }

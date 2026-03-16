@@ -16,6 +16,14 @@
 | globegistics_ecom_international_surface_airlift | Globegistics eCom International Surface Air Lift|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelGlobegisticsEnum.GlobegisticsPriorityMailExpressInternational;
+```
+
 
 ## Values
 

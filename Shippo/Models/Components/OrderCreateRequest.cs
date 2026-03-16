@@ -13,16 +13,12 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class OrderCreateRequest
     {
-
         /// <summary>
         /// **Required if total_price is provided**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// Currency of the &lt;code&gt;total_price&lt;/code&gt; and &lt;code&gt;total_tax&lt;/code&gt; amounts.
-        /// </remarks>
+        /// Currency of the <code>total_price</code> and <code>total_tax</code> amounts.
         /// </summary>
         [JsonProperty("currency")]
         public string? Currency { get; set; }
@@ -34,17 +30,14 @@ namespace Shippo.Models.Components
         public string? Notes { get; set; }
 
         /// <summary>
-        /// An alphanumeric identifier for the order used by the seller/buyer. This identifier doesn&apos;t need to be unique.
+        /// An alphanumeric identifier for the order used by the seller/buyer. This identifier doesn't need to be unique.
         /// </summary>
         [JsonProperty("order_number")]
         public string? OrderNumber { get; set; }
 
         /// <summary>
-        /// Current state of the order. See the &lt;a href=&quot;https://docs.goshippo.com/docs/orders/orders/&quot;&gt;orders tutorial&lt;/a&gt; <br/>
-        /// 
-        /// <remarks>
+        /// Current state of the order. See the <a href="https://docs.goshippo.com/docs/orders/orders/">orders tutorial</a> <br/>
         /// for the logic of how the status is handled.
-        /// </remarks>
         /// </summary>
         [JsonProperty("order_status")]
         public OrderStatusEnum? OrderStatus { get; set; }
@@ -63,20 +56,14 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// **Required if shipping_cost is provided**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// Currency of the &lt;code&gt;shipping_cost&lt;/code&gt; amount.
-        /// </remarks>
+        /// Currency of the <code>shipping_cost</code> amount.
         /// </summary>
         [JsonProperty("shipping_cost_currency")]
         public string? ShippingCostCurrency { get; set; }
 
         /// <summary>
         /// Shipping method (carrier + service or other free text description) chosen by the buyer. <br/>
-        /// 
-        /// <remarks>
         /// This value can be different from the shipping method the seller will actually choose.
-        /// </remarks>
         /// </summary>
         [JsonProperty("shipping_method")]
         public string? ShippingMethod { get; set; }
@@ -109,23 +96,20 @@ namespace Shippo.Models.Components
         public WeightUnitEnum? WeightUnit { get; set; }
 
         /// <summary>
-        /// &lt;a href=&quot;#tag/Addresses&quot;&gt;Address&lt;/a&gt; object of the sender / seller. Will be returned expanded by default..
+        /// <a href="/shippoapi/public-api/addresses">Address</a> object of the sender / seller. Will be returned expanded by default..
         /// </summary>
         [JsonProperty("from_address")]
         public AddressCreateRequest? FromAddress { get; set; }
 
         /// <summary>
-        /// &lt;a href=&quot;#tag/Addresses&quot;&gt;Address&lt;/a&gt; object of the recipient / buyer. Will be returned expanded by default.
+        /// <a href="/shippoapi/public-api/addresses">Address</a> object of the recipient / buyer. Will be returned expanded by default.
         /// </summary>
         [JsonProperty("to_address")]
         public AddressCreateRequest ToAddress { get; set; } = default!;
 
         /// <summary>
-        /// Array of &lt;a href=&quot;#section/Line-Item&quot;&gt;line item&lt;/a&gt; objects representing the items in this order. <br/>
-        /// 
-        /// <remarks>
+        /// Array of <a href="/shippoapi/public-api/orders/lineitem">line item</a> objects representing the items in this order. <br/>
         /// All objects will be returned expanded by default.
-        /// </remarks>
         /// </summary>
         [JsonProperty("line_items")]
         public List<LineItemBase>? LineItems { get; set; }

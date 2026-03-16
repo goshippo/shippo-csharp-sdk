@@ -11,12 +11,11 @@ namespace Shippo.Models.Requests
 {
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class UpdateWebhookRequest
     {
-
         /// <summary>
-        /// Object ID of the webhook to retrieve
+        /// Object ID of the webhook to retrieve.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=webhookId")]
         public string WebhookId { get; set; } = default!;

@@ -12,13 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
-    /// Content of the webhook posted to the external URL
+    /// Content of the webhook posted to the external URL.
     /// </summary>
     public class WebhookPayloadTrack
     {
-
         /// <summary>
         /// Type of event that triggered the webhook.
         /// </summary>

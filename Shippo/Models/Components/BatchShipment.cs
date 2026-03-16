@@ -13,33 +13,33 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
+    /// <summary>
+    /// The batch shipment object is a wrapper around a shipment object, which include shipment-specific information<br/>
+    /// for batch processing.<br/>
+    /// <br/>
+    /// Note: batch shipments can only be created on the batch endpoint, either when creating a batch object or by through<br/>
+    /// the `/batches/{BATCH_OBJECT_ID}/add_shipments` endpoint.
+    /// </summary>
     public class BatchShipment
     {
-
         /// <summary>
-        /// Object ID of the carrier account to be used for this shipment (will override batch default)
+        /// Object ID of the carrier account to be used for this shipment (will override batch default).
         /// </summary>
         [JsonProperty("carrier_account")]
         public string? CarrierAccount { get; set; }
 
         /// <summary>
         /// A string of up to 100 characters that can be filled with any additional information you want <br/>
-        /// 
-        /// <remarks>
         /// to attach to the object.
-        /// </remarks>
         /// </summary>
         [JsonProperty("metadata")]
         public string? Metadata { get; set; }
 
         /// <summary>
         /// A token that sets the shipping method for the batch, overriding the batch default. <br/>
-        /// 
-        /// <remarks>
-        /// Servicelevel tokens can be found &lt;a href=&quot;#tag/Service-Levels&quot;&gt;in this list&lt;/a&gt; <br/>
-        /// or &lt;a href=&quot;#operation/ListCarrierAccounts&quot;&gt;at this endpoint&lt;/a&gt;.
-        /// </remarks>
+        /// Servicelevel tokens can be found <a href="/shippoapi/public-api/service-levels">in this list</a> <br/>
+        /// or <a href="/shippoapi/public-api/carrier-accounts/listcarrieraccounts">at this endpoint</a>.
         /// </summary>
         [JsonProperty("servicelevel_token")]
         public string? ServicelevelToken { get; set; }
@@ -64,12 +64,9 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// `INVALID` batch shipments cannot be purchased and will have to be removed, fixed, and added to the batch again.&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
         /// `VALID` batch shipments can be purchased. &lt;br&gt;<br/>
         /// Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field&lt;br&gt; <br/>
         /// `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
-        /// </remarks>
         /// </summary>
         [JsonProperty("status")]
         public Status Status { get; set; } = default!;

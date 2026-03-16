@@ -12,9 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// Party to be billed. (Leave blank for DHL Germany.)
+    /// Party to be billed. (Leave blank for DHL Germany.).
     /// </summary>
     public enum Type
     {
@@ -62,5 +62,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum Type");
         }
     }
-
 }

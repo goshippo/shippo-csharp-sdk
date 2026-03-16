@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// A Parcel will only be valid when all required values have been sent and validated successfully.
     /// </summary>
@@ -54,5 +54,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ObjectState");
         }
     }
-
 }

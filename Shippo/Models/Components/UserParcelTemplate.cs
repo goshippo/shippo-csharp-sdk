@@ -13,10 +13,9 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System;
-    
+
     public class UserParcelTemplate
     {
-
         /// <summary>
         /// The measure unit used for length, width and height.
         /// </summary>
@@ -36,7 +35,7 @@ namespace Shippo.Models.Components
         public string? Length { get; set; }
 
         /// <summary>
-        /// The name of the User Parcel Template
+        /// The name of the User Parcel Template.
         /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
@@ -60,25 +59,25 @@ namespace Shippo.Models.Components
         public string? Width { get; set; }
 
         /// <summary>
-        /// Date and time of User Parcel Template creation
+        /// Date and time of User Parcel Template creation.
         /// </summary>
         [JsonProperty("object_created")]
         public DateTime? ObjectCreated { get; set; }
 
         /// <summary>
-        /// Unique identifier of the given User Parcel Template object
+        /// Unique identifier of the given User Parcel Template object.
         /// </summary>
         [JsonProperty("object_id")]
         public string? ObjectId { get; set; }
 
         /// <summary>
-        /// Username of the user who created the User Parcel Template object
+        /// Username of the user who created the User Parcel Template object.
         /// </summary>
         [JsonProperty("object_owner")]
         public string? ObjectOwner { get; set; }
 
         /// <summary>
-        /// Date and time of last update on User Parcel Template
+        /// Date and time of last update on User Parcel Template.
         /// </summary>
         [JsonProperty("object_updated")]
         public DateTime? ObjectUpdated { get; set; }

@@ -12,56 +12,46 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System.Collections.Generic;
     using System;
-    
+    using System.Collections.Generic;
+
     public class Rate
     {
-
         /// <summary>
-        /// Final Rate price, expressed in the currency used in the sender&apos;s country.
+        /// Final Rate price, expressed in the currency used in the sender's country.
         /// </summary>
         [JsonProperty("amount")]
         public string Amount { get; set; } = default!;
 
         /// <summary>
-        /// Final Rate price, expressed in the currency used in the recipient&apos;s country.
+        /// Final Rate price, expressed in the currency used in the recipient's country.
         /// </summary>
         [JsonProperty("amount_local")]
         public string AmountLocal { get; set; } = default!;
 
         /// <summary>
-        /// Currency used in the sender&apos;s country, refers to `amount`. <br/>
-        /// 
-        /// <remarks>
-        /// The &lt;a href=&quot;http://www.xe.com/iso4217.php&quot;&gt;official ISO 4217&lt;/a&gt; currency codes are used, e.g. `USD` or `EUR`.
-        /// </remarks>
+        /// Currency used in the sender's country, refers to `amount`. <br/>
+        /// The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or `EUR`.
         /// </summary>
         [JsonProperty("currency")]
         public string Currency { get; set; } = default!;
 
         /// <summary>
-        /// Currency used in the recipient&apos;s country, refers to `amount_local`. <br/>
-        /// 
-        /// <remarks>
-        /// The &lt;a href=&quot;http://www.xe.com/iso4217.php&quot;&gt;official ISO 4217&lt;/a&gt; currency codes are used, e.g. `USD` or &quot;EUR&quot;.
-        /// </remarks>
+        /// Currency used in the recipient's country, refers to `amount_local`. <br/>
+        /// The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> currency codes are used, e.g. `USD` or "EUR".
         /// </summary>
         [JsonProperty("currency_local")]
         public string CurrencyLocal { get; set; } = default!;
 
         /// <summary>
-        /// Predicted time the carrier will deliver the package in the destination&apos;s local time zone. In the format `HH:MM:SS`.
+        /// Predicted time the carrier will deliver the package in the destination's local time zone. In the format `HH:MM:SS`.
         /// </summary>
         [JsonProperty("arrives_by")]
         public string? ArrivesBy { get; set; }
 
         /// <summary>
         /// An array containing specific attributes of this Rate in context of the entire shipment. <br/>
-        /// 
-        /// <remarks>
         /// Attributes can be assigned `CHEAPEST`, `FASTEST`, or `BESTVALUE`.
-        /// </remarks>
         /// </summary>
         [JsonProperty("attributes")]
         public List<Attributes> Attributes { get; set; } = default!;
@@ -74,32 +64,23 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Further clarification of the transit times. <br/>
-        /// 
-        /// <remarks>
-        /// Often, this includes notes that the transit time as given in &quot;days&quot; is only an average, not a guaranteed time.
-        /// </remarks>
+        /// Often, this includes notes that the transit time as given in "days" is only an average, not a guaranteed time.
         /// </summary>
         [JsonProperty("duration_terms")]
         public string? DurationTerms { get; set; }
 
         /// <summary>
         /// Estimated transit time (duration) in days of the Parcel at the given servicelevel. <br/>
-        /// 
-        /// <remarks>
         /// Please note that this is not binding, but only an average value as given by the provider. <br/>
         /// Shippo is not able to guarantee any transit times.
-        /// </remarks>
         /// </summary>
         [JsonProperty("estimated_days")]
         public long? EstimatedDays { get; set; }
 
         /// <summary>
         /// Cost to the user to insure the Rate for the requested amount of coverage, if insurance coverage was requested. <br/>
-        /// 
-        /// <remarks>
-        /// Expressed in the currency used in the sender&apos;s country. Will be null if no insurance coverage was requested, or if insurance is requested from a non-standard insurance provider. <br/>
+        /// Expressed in the currency used in the sender's country. Will be null if no insurance coverage was requested, or if insurance is requested from a non-standard insurance provider. <br/>
         /// Please note this price is already included in the `amount` and `amount_local` fields on the Rate. Do not add this field to them.
-        /// </remarks>
         /// </summary>
         [JsonProperty("included_insurance_price")]
         public string? IncludedInsurancePrice { get; set; }
@@ -133,20 +114,14 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// URL to the provider logo with max. dimensions of 75*75px. <br/>
-        /// 
-        /// <remarks>
-        /// Please refer to the provider&apos;s Logo Usage Guidelines before using the logo.
-        /// </remarks>
+        /// Please refer to the provider's Logo Usage Guidelines before using the logo.
         /// </summary>
         [JsonProperty("provider_image_75")]
         public string? ProviderImage75 { get; set; }
 
         /// <summary>
         /// URL to the provider logo with max. dimensions of 200*200px. <br/>
-        /// 
-        /// <remarks>
-        /// Please refer to the provider&apos;s Logo Usage Guidelines before using the logo.
-        /// </remarks>
+        /// Please refer to the provider's Logo Usage Guidelines before using the logo.
         /// </summary>
         [JsonProperty("provider_image_200")]
         public string? ProviderImage200 { get; set; }
@@ -164,7 +139,7 @@ namespace Shippo.Models.Components
         public bool? Test { get; set; }
 
         /// <summary>
-        /// The parcel&apos;s transit zone token. These tokens can vary depending on the provider.
+        /// The parcel's transit zone token. These tokens can vary depending on the provider.
         /// </summary>
         [JsonProperty("zone")]
         public string? Zone { get; set; }

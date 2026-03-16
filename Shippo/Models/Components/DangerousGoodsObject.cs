@@ -12,18 +12,14 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Container for specifying the presence of dangerous materials. This is specific to USPS, and if any contents<br/>
-    /// 
-    /// <remarks>
     /// are provided, only certain USPS service levels will be eligible. For more information, see our<br/>
-    /// &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/hazmat/&quot;&gt;guide on hazardous or dangerous materials shipping&lt;/a&gt;.
-    /// </remarks>
+    /// <a href="https://docs.goshippo.com/docs/shipments/hazmat/">guide on hazardous or dangerous materials shipping</a>.
     /// </summary>
     public class DangerousGoodsObject
     {
-
         /// <summary>
         /// Indicates if the shipment contains dangerous goods.
         /// </summary>

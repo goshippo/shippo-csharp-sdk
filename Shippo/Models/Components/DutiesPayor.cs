@@ -12,13 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Specifies who will pay the duties for the shipment. Only accepted for FedEx shipments.
     /// </summary>
     public class DutiesPayor
     {
-
         /// <summary>
         /// Account number to be billed for duties.
         /// </summary>

@@ -12,9 +12,9 @@ namespace Shippo.Models.Requests
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// filter by user or enabled
+    /// filter by user or enabled.
     /// </summary>
     public enum Include
     {
@@ -58,5 +58,4 @@ namespace Shippo.Models.Requests
             throw new Exception($"Unknown value {value} for enum Include");
         }
     }
-
 }

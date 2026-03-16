@@ -9,36 +9,32 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
-    
 
     public class ParcelTemplateEnumSetType
     {
         private ParcelTemplateEnumSetType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static ParcelTemplateEnumSetType ParcelTemplateFedExEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateFedExEnum"); } }
-        
+
         public static ParcelTemplateEnumSetType ParcelTemplateUPSEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateUPSEnum"); } }
-        
+
         public static ParcelTemplateEnumSetType ParcelTemplateUSPSEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateUSPSEnum"); } }
-        
+
         public static ParcelTemplateEnumSetType ParcelTemplateDHLeCommerceEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateDHLeCommerceEnum"); } }
-        
+
         public static ParcelTemplateEnumSetType ParcelTemplateDPDUKEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateDPDUKEnum"); } }
-        
-        public static ParcelTemplateEnumSetType ParcelTemplateCouriersPleaseEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateCouriersPleaseEnum"); } }
-        
+
         public static ParcelTemplateEnumSetType ParcelTemplateAramexAustraliaEnum { get { return new ParcelTemplateEnumSetType("ParcelTemplateAramexAustraliaEnum"); } }
-        
-        public static ParcelTemplateEnumSetType Null { get { return new ParcelTemplateEnumSetType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(ParcelTemplateEnumSetType v) { return v.Value; }
@@ -49,9 +45,7 @@ namespace Shippo.Models.Components
                 case "ParcelTemplateUSPSEnum": return ParcelTemplateUSPSEnum;
                 case "ParcelTemplateDHLeCommerceEnum": return ParcelTemplateDHLeCommerceEnum;
                 case "ParcelTemplateDPDUKEnum": return ParcelTemplateDPDUKEnum;
-                case "ParcelTemplateCouriersPleaseEnum": return ParcelTemplateCouriersPleaseEnum;
                 case "ParcelTemplateAramexAustraliaEnum": return ParcelTemplateAramexAustraliaEnum;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ParcelTemplateEnumSetType");
             }
         }
@@ -70,13 +64,14 @@ namespace Shippo.Models.Components
         }
     }
 
-
     /// <summary>
-    /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
+    /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required.
     /// </summary>
     [JsonConverter(typeof(ParcelTemplateEnumSet.ParcelTemplateEnumSetConverter))]
-    public class ParcelTemplateEnumSet {
-        public ParcelTemplateEnumSet(ParcelTemplateEnumSetType type) {
+    public class ParcelTemplateEnumSet
+    {
+        public ParcelTemplateEnumSet(ParcelTemplateEnumSetType type)
+        {
             Type = type;
         }
 
@@ -96,63 +91,51 @@ namespace Shippo.Models.Components
         public ParcelTemplateDPDUKEnum? ParcelTemplateDPDUKEnum { get; set; }
 
         [SpeakeasyMetadata("form:explode=true")]
-        public ParcelTemplateCouriersPleaseEnum? ParcelTemplateCouriersPleaseEnum { get; set; }
-
-        [SpeakeasyMetadata("form:explode=true")]
         public ParcelTemplateAramexAustraliaEnum? ParcelTemplateAramexAustraliaEnum { get; set; }
 
         public ParcelTemplateEnumSetType Type { get; set; }
-
-
-        public static ParcelTemplateEnumSet CreateParcelTemplateFedExEnum(ParcelTemplateFedExEnum parcelTemplateFedExEnum) {
+        public static ParcelTemplateEnumSet CreateParcelTemplateFedExEnum(ParcelTemplateFedExEnum parcelTemplateFedExEnum)
+        {
             ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateFedExEnum;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
             res.ParcelTemplateFedExEnum = parcelTemplateFedExEnum;
             return res;
         }
-
-        public static ParcelTemplateEnumSet CreateParcelTemplateUPSEnum(ParcelTemplateUPSEnum parcelTemplateUPSEnum) {
+        public static ParcelTemplateEnumSet CreateParcelTemplateUPSEnum(ParcelTemplateUPSEnum parcelTemplateUPSEnum)
+        {
             ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateUPSEnum;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
             res.ParcelTemplateUPSEnum = parcelTemplateUPSEnum;
             return res;
         }
-
-        public static ParcelTemplateEnumSet CreateParcelTemplateUSPSEnum(ParcelTemplateUSPSEnum parcelTemplateUSPSEnum) {
+        public static ParcelTemplateEnumSet CreateParcelTemplateUSPSEnum(ParcelTemplateUSPSEnum parcelTemplateUSPSEnum)
+        {
             ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateUSPSEnum;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
             res.ParcelTemplateUSPSEnum = parcelTemplateUSPSEnum;
             return res;
         }
-
-        public static ParcelTemplateEnumSet CreateParcelTemplateDHLeCommerceEnum(ParcelTemplateDHLeCommerceEnum parcelTemplateDHLeCommerceEnum) {
+        public static ParcelTemplateEnumSet CreateParcelTemplateDHLeCommerceEnum(ParcelTemplateDHLeCommerceEnum parcelTemplateDHLeCommerceEnum)
+        {
             ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateDHLeCommerceEnum;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
             res.ParcelTemplateDHLeCommerceEnum = parcelTemplateDHLeCommerceEnum;
             return res;
         }
-
-        public static ParcelTemplateEnumSet CreateParcelTemplateDPDUKEnum(ParcelTemplateDPDUKEnum parcelTemplateDPDUKEnum) {
+        public static ParcelTemplateEnumSet CreateParcelTemplateDPDUKEnum(ParcelTemplateDPDUKEnum parcelTemplateDPDUKEnum)
+        {
             ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateDPDUKEnum;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
             res.ParcelTemplateDPDUKEnum = parcelTemplateDPDUKEnum;
             return res;
         }
-
-        public static ParcelTemplateEnumSet CreateParcelTemplateCouriersPleaseEnum(ParcelTemplateCouriersPleaseEnum parcelTemplateCouriersPleaseEnum) {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateCouriersPleaseEnum;
-
-            ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
-            res.ParcelTemplateCouriersPleaseEnum = parcelTemplateCouriersPleaseEnum;
-            return res;
-        }
-
-        public static ParcelTemplateEnumSet CreateParcelTemplateAramexAustraliaEnum(ParcelTemplateAramexAustraliaEnum parcelTemplateAramexAustraliaEnum) {
+        public static ParcelTemplateEnumSet CreateParcelTemplateAramexAustraliaEnum(ParcelTemplateAramexAustraliaEnum parcelTemplateAramexAustraliaEnum)
+        {
             ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.ParcelTemplateAramexAustraliaEnum;
 
             ParcelTemplateEnumSet res = new ParcelTemplateEnumSet(typ);
@@ -160,26 +143,20 @@ namespace Shippo.Models.Components
             return res;
         }
 
-        public static ParcelTemplateEnumSet CreateNull() {
-            ParcelTemplateEnumSetType typ = ParcelTemplateEnumSetType.Null;
-            return new ParcelTemplateEnumSet(typ);
-        }
-
         public class ParcelTemplateEnumSetConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(ParcelTemplateEnumSet);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -284,26 +261,6 @@ namespace Shippo.Models.Components
 
                 try
                 {
-                    return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateCouriersPleaseEnum)
-                    {
-                        ParcelTemplateCouriersPleaseEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ParcelTemplateCouriersPleaseEnum>(json)
-                    };
-                }
-                catch (ResponseBodyDeserializer.MissingMemberException)
-                {
-                    fallbackCandidates.Add((typeof(ParcelTemplateCouriersPleaseEnum), new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateCouriersPleaseEnum), "ParcelTemplateCouriersPleaseEnum"));
-                }
-                catch (ResponseBodyDeserializer.DeserializationException)
-                {
-                    // try next option
-                }
-                catch (Exception)
-                {
-                    throw;
-                }
-
-                try
-                {
                     return new ParcelTemplateEnumSet(ParcelTemplateEnumSetType.ParcelTemplateAramexAustraliaEnum)
                     {
                         ParcelTemplateAramexAustraliaEnum = ResponseBodyDeserializer.DeserializeUndiscriminatedUnionMember<ParcelTemplateAramexAustraliaEnum>(json)
@@ -347,52 +304,48 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
-                }
-                ParcelTemplateEnumSet res = (ParcelTemplateEnumSet)value;
-                if (ParcelTemplateEnumSetType.FromString(res.Type).Equals(ParcelTemplateEnumSetType.Null))
+                if (value == null)
                 {
-                    writer.WriteRawValue("null");
-                    return;
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
+
+                ParcelTemplateEnumSet res = (ParcelTemplateEnumSet)value;
+
                 if (res.ParcelTemplateFedExEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateFedExEnum));
                     return;
                 }
+
                 if (res.ParcelTemplateUPSEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateUPSEnum));
                     return;
                 }
+
                 if (res.ParcelTemplateUSPSEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateUSPSEnum));
                     return;
                 }
+
                 if (res.ParcelTemplateDHLeCommerceEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateDHLeCommerceEnum));
                     return;
                 }
+
                 if (res.ParcelTemplateDPDUKEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateDPDUKEnum));
                     return;
                 }
-                if (res.ParcelTemplateCouriersPleaseEnum != null)
-                {
-                    writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateCouriersPleaseEnum));
-                    return;
-                }
+
                 if (res.ParcelTemplateAramexAustraliaEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelTemplateAramexAustraliaEnum));
                     return;
                 }
-
             }
 
         }

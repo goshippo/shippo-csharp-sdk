@@ -12,15 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// `Waiting` shipments have been successfully submitted but not yet been processed. <br/>
-    /// 
-    /// <remarks>
     /// `Queued` shipments are currently being processed. <br/>
     /// `Success` shipments have been processed successfully, meaning that rate generation has concluded. <br/>
     /// `Error` does not occur currently and is reserved for future use.
-    /// </remarks>
     /// </summary>
     public enum ShipmentStatus
     {
@@ -66,5 +63,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ShipmentStatus");
         }
     }
-
 }

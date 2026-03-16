@@ -11,10 +11,9 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class TrackingStatusLocationBase
     {
-
         [JsonProperty("city")]
         public string? City { get; set; }
 

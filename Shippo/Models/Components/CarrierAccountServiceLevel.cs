@@ -11,31 +11,24 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Contains details regarding the service level for the carrier account.
     /// </summary>
     public class CarrierAccountServiceLevel
     {
-
         /// <summary>
         /// Service level name, e.g. `Priority Mail` or `FedEx Ground®`. <br/>
-        /// 
-        /// <remarks>
         /// A service level commonly defines the transit time of a Shipment (e.g., Express vs. Standard), along with other properties. <br/>
         /// These names vary depending on the provider.&lt;br&gt;<br/>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;Service Levels&lt;/a&gt;.
-        /// </remarks>
+        /// See <a href="/shippoapi/public-api/service-levels">Service Levels</a>.
         /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
         /// <summary>
         /// Service level token, e.g. `usps_priority` or `fedex_ground`.&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;Service Levels&lt;/a&gt;.
-        /// </remarks>
+        /// See <a href="/shippoapi/public-api/service-levels">Service Levels</a>.
         /// </summary>
         [JsonProperty("token")]
         public string? Token { get; set; }

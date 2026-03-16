@@ -12,13 +12,10 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// Current state of the order. See the &lt;a href=&quot;https://docs.goshippo.com/docs/orders/orders/&quot;&gt;orders tutorial&lt;/a&gt; <br/>
-    /// 
-    /// <remarks>
+    /// Current state of the order. See the <a href="https://docs.goshippo.com/docs/orders/orders/">orders tutorial</a> <br/>
     /// for the logic of how the status is handled.
-    /// </remarks>
     /// </summary>
     public enum OrderStatusEnum
     {
@@ -70,5 +67,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum OrderStatusEnum");
         }
     }
-
 }

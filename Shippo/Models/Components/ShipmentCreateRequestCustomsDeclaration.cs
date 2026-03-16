@@ -9,26 +9,24 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
-    
 
     public class ShipmentCreateRequestCustomsDeclarationType
     {
         private ShipmentCreateRequestCustomsDeclarationType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static ShipmentCreateRequestCustomsDeclarationType CustomsDeclarationCreateRequest { get { return new ShipmentCreateRequestCustomsDeclarationType("CustomsDeclarationCreateRequest"); } }
-        
+
         public static ShipmentCreateRequestCustomsDeclarationType Str { get { return new ShipmentCreateRequestCustomsDeclarationType("str"); } }
-        
-        public static ShipmentCreateRequestCustomsDeclarationType Null { get { return new ShipmentCreateRequestCustomsDeclarationType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(ShipmentCreateRequestCustomsDeclarationType v) { return v.Value; }
@@ -36,7 +34,6 @@ namespace Shippo.Models.Components
             switch(v) {
                 case "CustomsDeclarationCreateRequest": return CustomsDeclarationCreateRequest;
                 case "str": return Str;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ShipmentCreateRequestCustomsDeclarationType");
             }
         }
@@ -55,10 +52,11 @@ namespace Shippo.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(ShipmentCreateRequestCustomsDeclaration.ShipmentCreateRequestCustomsDeclarationConverter))]
-    public class ShipmentCreateRequestCustomsDeclaration {
-        public ShipmentCreateRequestCustomsDeclaration(ShipmentCreateRequestCustomsDeclarationType type) {
+    public class ShipmentCreateRequestCustomsDeclaration
+    {
+        public ShipmentCreateRequestCustomsDeclaration(ShipmentCreateRequestCustomsDeclarationType type)
+        {
             Type = type;
         }
 
@@ -69,17 +67,16 @@ namespace Shippo.Models.Components
         public string? Str { get; set; }
 
         public ShipmentCreateRequestCustomsDeclarationType Type { get; set; }
-
-
-        public static ShipmentCreateRequestCustomsDeclaration CreateCustomsDeclarationCreateRequest(CustomsDeclarationCreateRequest customsDeclarationCreateRequest) {
+        public static ShipmentCreateRequestCustomsDeclaration CreateCustomsDeclarationCreateRequest(CustomsDeclarationCreateRequest customsDeclarationCreateRequest)
+        {
             ShipmentCreateRequestCustomsDeclarationType typ = ShipmentCreateRequestCustomsDeclarationType.CustomsDeclarationCreateRequest;
 
             ShipmentCreateRequestCustomsDeclaration res = new ShipmentCreateRequestCustomsDeclaration(typ);
             res.CustomsDeclarationCreateRequest = customsDeclarationCreateRequest;
             return res;
         }
-
-        public static ShipmentCreateRequestCustomsDeclaration CreateStr(string str) {
+        public static ShipmentCreateRequestCustomsDeclaration CreateStr(string str)
+        {
             ShipmentCreateRequestCustomsDeclarationType typ = ShipmentCreateRequestCustomsDeclarationType.Str;
 
             ShipmentCreateRequestCustomsDeclaration res = new ShipmentCreateRequestCustomsDeclaration(typ);
@@ -87,26 +84,20 @@ namespace Shippo.Models.Components
             return res;
         }
 
-        public static ShipmentCreateRequestCustomsDeclaration CreateNull() {
-            ShipmentCreateRequestCustomsDeclarationType typ = ShipmentCreateRequestCustomsDeclarationType.Null;
-            return new ShipmentCreateRequestCustomsDeclaration(typ);
-        }
-
         public class ShipmentCreateRequestCustomsDeclarationConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(ShipmentCreateRequestCustomsDeclaration);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -161,27 +152,24 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
-                }
-                ShipmentCreateRequestCustomsDeclaration res = (ShipmentCreateRequestCustomsDeclaration)value;
-                if (ShipmentCreateRequestCustomsDeclarationType.FromString(res.Type).Equals(ShipmentCreateRequestCustomsDeclarationType.Null))
+                if (value == null)
                 {
-                    writer.WriteRawValue("null");
-                    return;
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
+
+                ShipmentCreateRequestCustomsDeclaration res = (ShipmentCreateRequestCustomsDeclaration)value;
+
                 if (res.CustomsDeclarationCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.CustomsDeclarationCreateRequest));
                     return;
                 }
+
                 if (res.Str != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Str));
                     return;
                 }
-
             }
 
         }

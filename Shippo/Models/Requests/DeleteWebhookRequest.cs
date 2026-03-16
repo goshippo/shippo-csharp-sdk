@@ -10,12 +10,11 @@
 namespace Shippo.Models.Requests
 {
     using Shippo.Utils;
-    
+
     public class DeleteWebhookRequest
     {
-
         /// <summary>
-        /// Object ID of the webhook to delete
+        /// Object ID of the webhook to delete.
         /// </summary>
         [SpeakeasyMetadata("pathParam:style=simple,explode=false,name=webhookId")]
         public string WebhookId { get; set; } = default!;

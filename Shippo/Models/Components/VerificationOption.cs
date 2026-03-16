@@ -12,35 +12,32 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
-    /// |:---|:---|<br/>
-    /// | sendle_parcel | Sendle Parcel|<br/>
-    /// | sendle_standard_dropoff | Sendle Standard Dropoff|<br/>
-    /// 
-    /// </remarks>
+    /// Determines the verification option to use for the account registration (Enum: SMS, EMAIL, CALL, INVOICE).
     /// </summary>
-    public enum ServiceLevelSendleEnum
+    public enum VerificationOption
     {
-        [JsonProperty("sendle_parcel")]
-        SendleParcel,
-        [JsonProperty("sendle_standard_dropoff")]
-        SendleStandardDropoff,
+        [JsonProperty("SMS")]
+        Sms,
+        [JsonProperty("EMAIL")]
+        Email,
+        [JsonProperty("CALL")]
+        Call,
+        [JsonProperty("INVOICE")]
+        Invoice,
     }
 
-    public static class ServiceLevelSendleEnumExtension
+    public static class VerificationOptionExtension
     {
-        public static string Value(this ServiceLevelSendleEnum value)
+        public static string Value(this VerificationOption value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ServiceLevelSendleEnum ToEnum(this string value)
+        public static VerificationOption ToEnum(this string value)
         {
-            foreach(var field in typeof(ServiceLevelSendleEnum).GetFields())
+            foreach(var field in typeof(VerificationOption).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -53,15 +50,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ServiceLevelSendleEnum)
+                    if (enumVal is VerificationOption)
                     {
-                        return (ServiceLevelSendleEnum)enumVal;
+                        return (VerificationOption)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ServiceLevelSendleEnum");
+            throw new Exception($"Unknown value {value} for enum VerificationOption");
         }
     }
-
 }

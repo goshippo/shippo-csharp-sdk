@@ -12,19 +12,15 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
-    /// To add 3rd party insurance powered by &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/shippinginsurance/&quot;&gt;XCover&lt;/a&gt;, <br/>
-    /// 
-    /// <remarks>
+    /// To add 3rd party insurance powered by <a href="https://docs.goshippo.com/docs/shipments/shippinginsurance/">XCover</a>, <br/>
     /// specify &lt;br&gt; `amount`, `content`, and `currency`. &lt;br&gt; Alternatively, you can choose carrier provided insurance <br/>
     /// by additionally specifying `provider` (UPS, FedEx and OnTrac only). &lt;br&gt;&lt;br&gt; If you do not want to add insurance <br/>
     /// to your shipment, do not set these parameters.
-    /// </remarks>
     /// </summary>
     public class Insurance
     {
-
         /// <summary>
         /// Declared value of the goods you want to insure.
         /// </summary>
@@ -39,16 +35,13 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Currency for the amount value.<br/>
-        /// 
-        /// <remarks>
         /// Currently only USD is supported for FedEx and UPS.
-        /// </remarks>
         /// </summary>
         [JsonProperty("currency")]
         public string? Currency { get; set; }
 
         /// <summary>
-        /// To have insurance cover provided by a carrier directly instead of Shippo&apos;s provider (XCover), set `provider` to `FEDEX`, `UPS`, or `ONTRAC`.
+        /// To have insurance cover provided by a carrier directly instead of Shippo's provider (XCover), set `provider` to `FEDEX`, `UPS`, or `ONTRAC`.
         /// </summary>
         [JsonProperty("provider")]
         public Provider? Provider { get; set; }

@@ -15,36 +15,61 @@ namespace Shippo.Hooks
     using System.Threading.Tasks;
     using Shippo.Utils;
 
+    /// <summary>
+    /// Base context class containing information passed to hooks during request execution.
+    /// </summary>
     public class HookContext
     {
+        public SDKConfig SDKConfiguration { get; set; }
+        public string BaseURL { get; set; } = "";
         public string OperationID { get; set; }
         public List<string>? Oauth2Scopes { get; set; }
         public Func<object>? SecuritySource { get; set; }
 
-        public HookContext(string operationID, List<string>? oauth2Scopes, Func<object>? securitySource)
+        public HookContext(SDKConfig config, string baseURL, string operationID, List<string>? oauth2Scopes, Func<object>? securitySource)
         {
+            SDKConfiguration = config;
+            BaseURL = baseURL;
             OperationID = operationID;
             Oauth2Scopes = oauth2Scopes;
             SecuritySource = securitySource;
         }
+
+        public HookContext(HookContext hookCtx)
+        {
+            SDKConfiguration = hookCtx.SDKConfiguration;
+            BaseURL = hookCtx.BaseURL;
+            OperationID = hookCtx.OperationID;
+            Oauth2Scopes = hookCtx.Oauth2Scopes;
+            SecuritySource = hookCtx.SecuritySource;
+        }
     }
 
+    /// <summary>
+    /// Context passed to before request hooks.
+    /// </summary>
     public class BeforeRequestContext : HookContext
     {
         public BeforeRequestContext(HookContext hookCtx)
-            : base(hookCtx.OperationID, hookCtx.Oauth2Scopes, hookCtx.SecuritySource) { }
+            : base(hookCtx) { }
     }
 
+    /// <summary>
+    /// Context passed to after success hooks.
+    /// </summary>
     public class AfterSuccessContext : HookContext
     {
         public AfterSuccessContext(HookContext hookCtx)
-            : base(hookCtx.OperationID, hookCtx.Oauth2Scopes, hookCtx.SecuritySource) { }
+            : base(hookCtx) { }
     }
 
+    /// <summary>
+    /// Context passed to after error hooks.
+    /// </summary>
     public class AfterErrorContext : HookContext
     {
         public AfterErrorContext(HookContext hookCtx)
-            : base(hookCtx.OperationID, hookCtx.Oauth2Scopes, hookCtx.SecuritySource) { }
+            : base(hookCtx) { }
     }
 
     /// <summary>
@@ -66,7 +91,7 @@ namespace Shippo.Hooks
     }
 
     /// <summary>
-    /// AfterSuccessAsync is called after the SDK receives a response.
+    /// AfterSuccessAsync hook is called after the SDK receives a successful response.
     /// The hook can modify the response before it is handled or throw an exception to stop the response from being handled.
     /// </summary>
     public interface IAfterSuccessHook
@@ -75,16 +100,19 @@ namespace Shippo.Hooks
     }
 
     /// <summary>
-    /// AfterErrorAsync is called after the SDK encounters an error, or a non-successful response.
+    /// AfterErrorAsync hook is called after the SDK encounters an error or a non-successful response.
     /// The hook can modify the response, if available, otherwise modify the error.
-    /// All hooks are called sequentially. If an error is returned, it will be passed to the subsequent hook implementing IAfterErrorHook.
-    /// If you want to prevent other AfterError hooks from being run, you can throw an FailEarlyException instead.
+    /// All hooks are called sequentially. If an error is returned, it will be passed to the subsequent after error hook.
+    /// If you want to prevent other after error hooks from being run, you can throw a <see cref="FailEarlyException"/> instead.
     /// </summary>
     public interface IAfterErrorHook
     {
         Task<(HttpResponseMessage?, Exception?)> AfterErrorAsync(AfterErrorContext hookCtx, HttpResponseMessage? response, Exception? error);
     }
 
+    /// <summary>
+    /// Interface for managing SDK hook registrations.
+    /// </summary>
     public interface IHooks
     {
        void RegisterSDKInitHook(ISDKInitHook hook);

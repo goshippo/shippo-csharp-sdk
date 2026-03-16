@@ -11,24 +11,23 @@ namespace Shippo.Models.Requests
 {
     using Shippo.Models.Requests;
     using Shippo.Utils;
-    
+
     public class ListCarrierParcelTemplatesRequest
     {
-
         /// <summary>
-        /// filter by user or enabled
+        /// filter by user or enabled.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=include")]
         public Include? Include { get; set; }
 
         /// <summary>
-        /// filter by specific carrier
+        /// filter by specific carrier.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=carrier")]
         public string? Carrier { get; set; }
 
         /// <summary>
-        /// Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.
+        /// Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
         public string? ShippoApiVersion { get; set; }

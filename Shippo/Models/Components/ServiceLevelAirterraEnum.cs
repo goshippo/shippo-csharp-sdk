@@ -12,16 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | airterra_ground | GroundXC|<br/>
-    /// | airterra_postal | FastPost|<br/>
-    /// 
-    /// </remarks>
+    /// | airterra_postal | FastPost|
     /// </summary>
     public enum ServiceLevelAirterraEnum
     {
@@ -63,5 +59,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelAirterraEnum");
         }
     }
-
 }

@@ -5,6 +5,14 @@ The type of the service group.<br>
 `FLAT_RATE` - Returns a shipping option with the specified flat rate amount.<br> 
 `FREE_SHIPPING` - Returns a shipping option with a price of $0 only if the total cost of items exceeds the amount defined by `free_shipping_threshold_min`
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceGroupTypeEnum.LiveRate;
+```
+
 
 ## Values
 

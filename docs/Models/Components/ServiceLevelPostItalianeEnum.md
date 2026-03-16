@@ -5,6 +5,14 @@
 | poste_italiane_delivery_business_express | Poste Delivery Business Express|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelPostItalianeEnum.PosteItalianeDeliveryBusinessExpress;
+```
+
 
 ## Values
 

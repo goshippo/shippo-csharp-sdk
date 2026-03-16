@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | asendia_us_priority_tracked | Asendia USA Priority Tracked|<br/>
     /// | asendia_us_international_express | Asendia USA International Express|<br/>
@@ -25,9 +23,7 @@ namespace Shippo.Models.Components
     /// | asendia_us_priority_mail_international | Asendia USA Priority Mail International|<br/>
     /// | asendia_us_priority_mail_express_international | Asendia USA Priority Mail Express International|<br/>
     /// | asendia_us_epacket | Asendia USA International ePacket|<br/>
-    /// | asendia_us_other | Asendia USA Other Services (custom)|<br/>
-    /// 
-    /// </remarks>
+    /// | asendia_us_other | Asendia USA Other Services (custom)|
     /// </summary>
     public enum ServiceLevelAsendiaEnum
     {
@@ -81,5 +77,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelAsendiaEnum");
         }
     }
-
 }

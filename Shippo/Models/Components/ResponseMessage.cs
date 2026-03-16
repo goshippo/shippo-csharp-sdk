@@ -11,31 +11,27 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Message returned with supporting information from a request. In some cases this can be an error message, <br/>
-    /// 
-    /// <remarks>
     /// for example a timeout from a carrier. If available, the origin of the message is displayed in `source`.
-    /// </remarks>
     /// </summary>
     public class ResponseMessage
     {
-
         /// <summary>
-        /// Origin of message
+        /// Origin of message.
         /// </summary>
         [JsonProperty("source")]
         public string? Source { get; set; }
 
         /// <summary>
-        /// Classification of message
+        /// Classification of message.
         /// </summary>
         [JsonProperty("code")]
         public string? Code { get; set; }
 
         /// <summary>
-        /// Message content
+        /// Message content.
         /// </summary>
         [JsonProperty("text")]
         public string? Text { get; set; }

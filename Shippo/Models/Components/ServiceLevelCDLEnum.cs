@@ -12,15 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
-    /// | cdl_next_day | Next Day|<br/>
-    /// 
-    /// </remarks>
+    /// | cdl_next_day | Next Day|
     /// </summary>
     public enum ServiceLevelCDLEnum
     {
@@ -60,5 +56,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelCDLEnum");
         }
     }
-
 }

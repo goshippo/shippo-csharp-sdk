@@ -13,10 +13,9 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System;
-    
+
     public class CustomsItem
     {
-
         /// <summary>
         /// Text description of your item.
         /// </summary>
@@ -37,10 +36,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// A string of up to 100 characters that can be filled with any additional information you <br/>
-        /// 
-        /// <remarks>
         /// want to attach to the object.
-        /// </remarks>
         /// </summary>
         [JsonProperty("metadata")]
         public string? Metadata { get; set; }
@@ -53,10 +49,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Country of origin of the item. Example: `US` or `DE`. <br/>
-        /// 
-        /// <remarks>
-        /// All accepted values can be found on the &lt;a href=&quot;http://www.iso.org/&quot; target=&quot;_blank&quot;&gt;Official ISO Website&lt;/a&gt;.
-        /// </remarks>
+        /// All accepted values can be found on the <a href="http://www.iso.org/" target="_blank">Official ISO Website</a>.
         /// </summary>
         [JsonProperty("origin_country")]
         public string OriginCountry { get; set; } = default!;
@@ -92,11 +85,8 @@ namespace Shippo.Models.Components
         public string ValueAmount { get; set; } = default!;
 
         /// <summary>
-        /// Currency used for value_amount. The &lt;a href=&quot;http://www.xe.com/iso4217.php&quot;&gt;official ISO 4217&lt;/a&gt; <br/>
-        /// 
-        /// <remarks>
+        /// Currency used for value_amount. The <a href="http://www.xe.com/iso4217.php">official ISO 4217</a> <br/>
         /// currency codes are used, e.g.  `USD` or `EUR`.
-        /// </remarks>
         /// </summary>
         [JsonProperty("value_currency")]
         public string ValueCurrency { get; set; } = default!;
@@ -120,7 +110,7 @@ namespace Shippo.Models.Components
         public string? ObjectOwner { get; set; }
 
         /// <summary>
-        /// Indicates the validity of the enclosing object
+        /// Indicates the validity of the enclosing object.
         /// </summary>
         [JsonProperty("object_state")]
         public ObjectStateEnum? ObjectState { get; set; }

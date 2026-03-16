@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | canada_post_regular_parcel | Regular Parcel|<br/>
     /// | canada_post_expedited_parcel | Expedited Parcel|<br/>
@@ -31,9 +29,7 @@ namespace Shippo.Models.Components
     /// | canada_post_small_packet_international_air | Small Package International Air|<br/>
     /// | canada_post_small_packet_international_surface  | Small Packet International Surface<br/>
     /// | canada_post_international_parcel_surface  | International Parcel Surface<br/>
-    /// | canada_post_international_parcel_air  | International Parcel Air<br/>
-    /// 
-    /// </remarks>
+    /// | canada_post_international_parcel_air  | International Parcel Air.
     /// </summary>
     public enum ServiceLevelCanadaPostEnum
     {
@@ -99,5 +95,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelCanadaPostEnum");
         }
     }
-
 }

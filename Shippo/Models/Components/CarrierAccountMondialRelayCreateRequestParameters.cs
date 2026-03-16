@@ -10,7 +10,7 @@
 namespace Shippo.Models.Components
 {
     using Shippo.Utils;
-    
+
     public class CarrierAccountMondialRelayCreateRequestParameters
     {
     }

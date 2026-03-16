@@ -12,9 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// Dangerous Goods Code (DHL eCommerce only). See &lt;a href=&quot;https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods&quot;&gt;Category Codes&lt;/a&gt;
+    /// Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
     /// </summary>
     public enum DangerousGoodsCode
     {
@@ -70,5 +70,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum DangerousGoodsCode");
         }
     }
-
 }

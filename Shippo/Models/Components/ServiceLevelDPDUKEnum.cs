@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | dpd_uk_ship_to_shop | Ship to shop|<br/>
     /// | dpd_uk_1030 | Door to door 10.30 next day|<br/>
@@ -34,9 +32,7 @@ namespace Shippo.Models.Components
     /// | dpd_uk_air_express | DPD Air Express|<br/>
     /// | dpd_uk_direct | DPD Direct|<br/>
     /// | dpd_uk_direct_tracked_mail| DPD Tracked Mail|<br/>
-    /// | dpd_uk_pickup_returns | Pickup Returns|<br/>
-    /// 
-    /// </remarks>
+    /// | dpd_uk_pickup_returns | Pickup Returns|
     /// </summary>
     public enum ServiceLevelDPDUKEnum
     {
@@ -108,5 +104,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelDPDUKEnum");
         }
     }
-
 }

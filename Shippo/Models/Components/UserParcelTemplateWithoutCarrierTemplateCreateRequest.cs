@@ -12,10 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class UserParcelTemplateWithoutCarrierTemplateCreateRequest
     {
-
         /// <summary>
         /// The measure unit used for length, width and height.
         /// </summary>
@@ -35,7 +34,7 @@ namespace Shippo.Models.Components
         public string Length { get; set; } = default!;
 
         /// <summary>
-        /// The name of the User Parcel Template
+        /// The name of the User Parcel Template.
         /// </summary>
         [JsonProperty("name")]
         public string Name { get; set; } = default!;

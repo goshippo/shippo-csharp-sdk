@@ -1,5 +1,13 @@
 # ShipmentExtraLasershipAttributesEnum
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ShipmentExtraLasershipAttributesEnum.TwoPersonDelivery;
+```
+
 
 ## Values
 

@@ -12,10 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     public class Webhook
     {
-
         /// <summary>
         /// Type of event that triggers the webhook.
         /// </summary>

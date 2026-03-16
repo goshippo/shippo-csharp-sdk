@@ -11,26 +11,27 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Specify the department number field on the label (FedEx and UPS only).
     /// </summary>
     public class DepartmentNumber
     {
-
         /// <summary>
         /// Custom prefix for department number field (ZPL labels only). Up to 11 characters, including trailing <br/>
-        /// 
-        /// <remarks>
         /// spaces. Empty string indicates removal of default prefix. To use the default prefix, do not include<br/>
         /// this property.
-        /// </remarks>
         /// </summary>
         [JsonProperty("prefix")]
         public string? Prefix { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label for department number. Up to 40 characters.
+        /// Optional text to be printed on the shipping label for department number. Up to 40 characters.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 30 characters |
         /// </summary>
         [JsonProperty("value")]
         public string? Value { get; set; }

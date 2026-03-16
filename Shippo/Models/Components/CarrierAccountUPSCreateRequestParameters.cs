@@ -11,10 +11,9 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class CarrierAccountUPSCreateRequestParameters
     {
-
         [JsonProperty("billing_address_city")]
         public string BillingAddressCity { get; set; } = default!;
 
@@ -28,7 +27,7 @@ namespace Shippo.Models.Components
         public string BillingAddressStreet1 { get; set; } = default!;
 
         /// <summary>
-        /// Empty string acceptable for billing_address_street2
+        /// Empty string acceptable for billing_address_street2.
         /// </summary>
         [JsonProperty("billing_address_street2")]
         public string? BillingAddressStreet2 { get; set; }
@@ -37,7 +36,7 @@ namespace Shippo.Models.Components
         public string BillingAddressZip { get; set; } = default!;
 
         /// <summary>
-        /// Company name. Full name is acceptable in this field if the user has no company name
+        /// Company name. Full name is acceptable in this field if the user has no company name.
         /// </summary>
         [JsonProperty("company")]
         public string? Company { get; set; }
@@ -49,19 +48,19 @@ namespace Shippo.Models.Components
         public string? FullName { get; set; }
 
         /// <summary>
-        /// Needs to be a valid phone number and cannot be null
+        /// Needs to be a valid phone number and cannot be null.
         /// </summary>
         [JsonProperty("phone")]
         public string? Phone { get; set; }
 
         /// <summary>
-        /// User&apos;s pickup address city.
+        /// User's pickup address city.
         /// </summary>
         [JsonProperty("pickup_address_city")]
         public string PickupAddressCity { get; set; } = default!;
 
         /// <summary>
-        /// User&apos;s pickup street 1.
+        /// User's pickup street 1.
         /// </summary>
         [JsonProperty("pickup_address_country_iso2")]
         public string PickupAddressCountryIso2 { get; set; } = default!;
@@ -70,31 +69,31 @@ namespace Shippo.Models.Components
         public bool? PickupAddressSameAsBillingAddress { get; set; }
 
         /// <summary>
-        /// User&apos;s pickup address state.
+        /// User's pickup address state.
         /// </summary>
         [JsonProperty("pickup_address_state")]
         public string PickupAddressState { get; set; } = default!;
 
         /// <summary>
-        /// User&apos;s pickup address street 1.
+        /// User's pickup address street 1.
         /// </summary>
         [JsonProperty("pickup_address_street1")]
         public string PickupAddressStreet1 { get; set; } = default!;
 
         /// <summary>
-        /// User&apos;s pickup street 2.
+        /// User's pickup street 2.
         /// </summary>
         [JsonProperty("pickup_address_street2")]
         public string? PickupAddressStreet2 { get; set; }
 
         /// <summary>
-        /// User&apos;s pickup address zip code.
+        /// User's pickup address zip code.
         /// </summary>
         [JsonProperty("pickup_address_zip")]
         public string PickupAddressZip { get; set; } = default!;
 
         /// <summary>
-        /// Whether the user agrees to the UPS terms and conditions or not. Error 400 will be returned if passed in as false
+        /// Whether the user agrees to the UPS terms and conditions or not. Error 400 will be returned if passed in as false.
         /// </summary>
         [JsonProperty("ups_agreements")]
         public bool UpsAgreements { get; set; } = default!;

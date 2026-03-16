@@ -11,18 +11,17 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class AddressValidationResultsMessage
     {
-
         /// <summary>
-        /// See &lt;a href=&quot;#tag/Address-Validation-Codes&quot;&gt;Address Validation Codes&lt;/a&gt;
+        /// See <a href="/shippoapi/public-api/address-validation-codes">Address Validation Codes</a>
         /// </summary>
         [JsonProperty("code")]
         public string? Code { get; set; }
 
         /// <summary>
-        /// See &lt;a href=&quot;#tag/Address-Validation-Source&quot;&gt;Address Validation Source&lt;/a&gt;
+        /// See <a href="/shippoapi/public-api/address-validation-source">Address Validation Source</a>
         /// </summary>
         [JsonProperty("source")]
         public string? Source { get; set; }

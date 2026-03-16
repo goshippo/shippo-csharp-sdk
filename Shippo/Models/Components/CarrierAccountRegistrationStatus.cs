@@ -12,10 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     public class CarrierAccountRegistrationStatus
     {
-
         [JsonProperty("carrier_account")]
         public string? CarrierAccount { get; set; }
 

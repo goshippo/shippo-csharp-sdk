@@ -13,10 +13,9 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class TransactionPaginatedList
     {
-
         [JsonProperty("next")]
         public string? Next { get; set; }
 

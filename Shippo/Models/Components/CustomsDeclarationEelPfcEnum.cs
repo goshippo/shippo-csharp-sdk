@@ -12,14 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// EEL / PFC type of the shipment. For most shipments from the US to CA, `NOEEI_30_36` is applicable; for most <br/>
-    /// 
-    /// <remarks>
     /// other shipments from the US, `NOEEI_30_37_a` is applicable.<br/>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-EELPFC&quot;&gt;here&lt;/a&gt;
-    /// </remarks>
+    /// Allowed values available <a href="/shippoapi/public-api/customs-declaration-eelpfc">here</a>
     /// </summary>
     public enum CustomsDeclarationEelPfcEnum
     {
@@ -67,5 +64,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum CustomsDeclarationEelPfcEnum");
         }
     }
-
 }

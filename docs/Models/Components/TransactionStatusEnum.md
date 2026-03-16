@@ -2,6 +2,14 @@
 
 Indicates the status of the Transaction.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = TransactionStatusEnum.Waiting;
+```
+
 
 ## Values
 

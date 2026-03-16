@@ -2,6 +2,14 @@
 
 filter by specific carrier
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Requests;
+
+var value = Carrier.Ups;
+```
+
 
 ## Values
 

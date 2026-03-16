@@ -12,15 +12,18 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only. <br/>
-    /// 
-    /// <remarks>
-    /// eDAP is available for DPD UK only. DAP is available for DHL Express and DPD UK.<br/>
+    /// The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only.<br/>
+    /// eDAP is available for DPD UK only. DAP is available for DHL Express, FedEx, and DPD UK.<br/>
     /// If expecting DAP for other carriers, please use DDU.<br/>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-Incoterm&quot;&gt;here&lt;/a&gt;
-    /// </remarks>
+    /// Allowed values available <a href="/shippoapi/public-api/customs-declaration-incoterm">here</a>
+    /// Carrier-specific restrictions are in the table below.<br/>
+    /// <br/>
+    /// **Carrier-Specific Constraints:**<br/>
+    /// | Carrier | Constraints |<br/>
+    /// |:---|:---|<br/>
+    /// | FedEx | Must be one of DDP, DDU, FCA, DAP |
     /// </summary>
     public enum CustomsDeclarationIncotermEnum
     {
@@ -68,5 +71,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum CustomsDeclarationIncotermEnum");
         }
     }
-
 }

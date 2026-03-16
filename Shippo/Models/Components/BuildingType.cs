@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// The type of building where the pickup is located.
     /// </summary>
@@ -64,5 +64,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum BuildingType");
         }
     }
-
 }

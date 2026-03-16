@@ -12,15 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// `INVALID` batch shipments cannot be purchased and will have to be removed, fixed, and added to the batch again.&lt;br&gt;<br/>
-    /// 
-    /// <remarks>
     /// `VALID` batch shipments can be purchased. &lt;br&gt;<br/>
     /// Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field&lt;br&gt; <br/>
     /// `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
-    /// </remarks>
     /// </summary>
     public enum Status
     {
@@ -66,5 +63,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum Status");
         }
     }
-
 }

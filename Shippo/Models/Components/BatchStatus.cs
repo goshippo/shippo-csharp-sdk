@@ -12,16 +12,13 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Batches that are `VALIDATING` are being created and validated&lt;br&gt;<br/>
-    /// 
-    /// <remarks>
     /// `VALID` batches can be purchased&lt;br&gt;<br/>
     /// `INVALID` batches cannot be purchased, `INVALID` BatchShipments must be removed&lt;br&gt;<br/>
     /// Batches that are in the `PURCHASING` state are being purchased&lt;br&gt;<br/>
     /// `PURCHASED` batches are finished purchasing.
-    /// </remarks>
     /// </summary>
     public enum BatchStatus
     {
@@ -69,5 +66,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum BatchStatus");
         }
     }
-
 }

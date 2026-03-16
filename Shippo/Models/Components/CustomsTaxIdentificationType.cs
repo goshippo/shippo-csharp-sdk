@@ -12,16 +12,13 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Type of tax identification.<br/>
-    /// 
-    /// <remarks>
     /// * `EIN` - Employer Identification Number, also known as a Federal Tax Identification Number.<br/>
     /// * `VAT` - Value Added Tax identification number.<br/>
     /// * `IOSS` - Import One-Stop Shop<br/>
-    /// * `ARN` - Australian Taxation Office Reference Number
-    /// </remarks>
+    /// * `ARN` - Australian Taxation Office Reference Number.
     /// </summary>
     public enum CustomsTaxIdentificationType
     {
@@ -67,5 +64,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum CustomsTaxIdentificationType");
         }
     }
-
 }

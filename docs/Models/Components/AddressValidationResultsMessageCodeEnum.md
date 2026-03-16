@@ -1,5 +1,13 @@
 # AddressValidationResultsMessageCodeEnum
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = AddressValidationResultsMessageCodeEnum.VerificationError;
+```
+
 
 ## Values
 

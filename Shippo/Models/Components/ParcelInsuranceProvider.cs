@@ -12,9 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// To have insurance cover provided by a carrier directly instead of Shippo&apos;s provider (XCover), set provider to `FEDEX`, `UPS`, or `ONTRAC`.
+    /// To have insurance cover provided by a carrier directly instead of Shippo's provider (XCover), set provider to `FEDEX`, `UPS`, or `ONTRAC`.
     /// </summary>
     public enum ParcelInsuranceProvider
     {
@@ -58,5 +58,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ParcelInsuranceProvider");
         }
     }
-
 }

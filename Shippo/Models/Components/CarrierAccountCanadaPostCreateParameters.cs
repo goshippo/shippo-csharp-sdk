@@ -11,12 +11,11 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class CarrierAccountCanadaPostCreateParameters
     {
-
         /// <summary>
-        /// Whether or not the user agrees to Canada Post&apos;s terms. If passed in as false, request will fail with error 400
+        /// Whether or not the user agrees to Canada Post's terms. If passed in as false, request will fail with error 400.
         /// </summary>
         [JsonProperty("canada_post_terms")]
         public bool CanadaPostTerms { get; set; } = default!;
@@ -31,7 +30,7 @@ namespace Shippo.Models.Components
         public string FullName { get; set; } = default!;
 
         /// <summary>
-        /// Needs to be a valid phone number and cannot be null
+        /// Needs to be a valid phone number and cannot be null.
         /// </summary>
         [JsonProperty("phone")]
         public string Phone { get; set; } = default!;

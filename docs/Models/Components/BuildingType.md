@@ -2,6 +2,14 @@
 
 The type of building where the pickup is located.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = BuildingType.Apartment;
+```
+
 
 ## Values
 

@@ -13,17 +13,13 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     /// <summary>
-    /// Array of &lt;a href=&quot;#section/Batch-Shipment&quot;&gt;BatchShipment&lt;/a&gt; objects. <br/>
-    /// 
-    /// <remarks>
+    /// Array of <a href="/shippoapi/public-api/batches/batchshipment">BatchShipment</a> objects. <br/>
     /// The response keeps the same order as in the request array.
-    /// </remarks>
     /// </summary>
     public class BatchShipmentPaginatedList
     {
-
         [JsonProperty("next")]
         public string? Next { get; set; }
 

@@ -11,21 +11,20 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// A finer-grained classification of the tracking event.
     /// </summary>
     public class TrackingStatusSubstatus
     {
-
         /// <summary>
-        /// A code that represents the substatus of the shipment. See the &lt;a href=&quot;https://docs.goshippo.com/docs/tracking/tracking/#event-definitions&quot;&gt;Event Definitions&lt;/a&gt; for more information.
+        /// A code that represents the substatus of the shipment. See the <a href="https://docs.goshippo.com/docs/tracking/tracking/#event-definitions">Event Definitions</a> for more information.
         /// </summary>
         [JsonProperty("code")]
         public string Code { get; set; } = default!;
 
         /// <summary>
-        /// A human-readable description of the substatus. See the &lt;a href=&quot;https://docs.goshippo.com/docs/tracking/tracking/#event-definitions&quot;&gt;Event Definitions&lt;/a&gt; for more information.
+        /// A human-readable description of the substatus. See the <a href="https://docs.goshippo.com/docs/tracking/tracking/#event-definitions">Event Definitions</a> for more information.
         /// </summary>
         [JsonProperty("text")]
         public string Text { get; set; } = default!;

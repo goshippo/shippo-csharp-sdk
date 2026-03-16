@@ -12,13 +12,10 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only) <br/>
-    /// 
-    /// <remarks>
     /// or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
-    /// </remarks>
     /// </summary>
     public enum SignatureConfirmation
     {
@@ -66,5 +63,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum SignatureConfirmation");
         }
     }
-
 }

@@ -13,12 +13,11 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System;
-    
+
     public class LineItemBase
     {
-
         /// <summary>
-        /// Currency of the &lt;code&gt;total_price&lt;/code&gt; amount.
+        /// Currency of the <code>total_price</code> amount.
         /// </summary>
         [JsonProperty("currency")]
         public string? Currency { get; set; }
@@ -31,22 +30,16 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// The date and time this item needs to be delivered by, i.e. by when the carrier delivers it to the buyer. <br/>
-        /// 
-        /// <remarks>
-        /// This value is used by some platforms such as eBay to measure a seller&apos;s shipping time and performance. <br/>
+        /// This value is used by some platforms such as eBay to measure a seller's shipping time and performance. <br/>
         /// It will be displayed in the Shippo dashboard.
-        /// </remarks>
         /// </summary>
         [JsonProperty("max_delivery_time")]
         public DateTime? MaxDeliveryTime { get; set; }
 
         /// <summary>
         /// The date and time this item needs to be fulfilled by, i.e. by when the shipping label needs to be <br/>
-        /// 
-        /// <remarks>
         /// created and handed over to the carrier. This value is used by some platforms such as eBay to measure <br/>
-        /// a seller&apos;s handling time and performance. It will be displayed in the Shippo dashboard.
-        /// </remarks>
+        /// a seller's handling time and performance. It will be displayed in the Shippo dashboard.
         /// </summary>
         [JsonProperty("max_ship_time")]
         public DateTime? MaxShipTime { get; set; }
@@ -77,21 +70,15 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// A variant is a specific variation of an item (e.g. `size M` or `color blue`). <br/>
-        /// 
-        /// <remarks>
         /// Variants might be exposed as a separate resource in the future too. <br/>
         /// Currently the variant title is a free text field describing the variant.
-        /// </remarks>
         /// </summary>
         [JsonProperty("variant_title")]
         public string? VariantTitle { get; set; }
 
         /// <summary>
         /// Total weight of this/these item(s). Instead of specifying the weight of all items, <br/>
-        /// 
-        /// <remarks>
-        /// you can also set the &lt;code&gt;total_weight&lt;/code&gt; value of the order object.
-        /// </remarks>
+        /// you can also set the <code>total_weight</code> value of the order object.
         /// </summary>
         [JsonProperty("weight")]
         public string? Weight { get; set; }

@@ -10,16 +10,11 @@
 namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
-    using Shippo.Models.Components;
     using Shippo.Utils;
-    
-    public class CarrierAccountSendleCreateRequest
+
+    public class CarrierAccountRoyalMailSfCreateRequestParameters
     {
-
-        [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
-
-        [JsonProperty("parameters")]
-        public CarrierAccountSendleCreateRequestParameters Parameters { get; set; } = default!;
+        [JsonProperty("royal_mail_sf_agreements")]
+        public bool RoyalMailSfAgreements { get; set; } = default!;
     }
 }

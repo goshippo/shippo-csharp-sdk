@@ -6,6 +6,14 @@
 | axlehire_next_day | Next Day|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelJitsuEnum.AxlehireSameDay;
+```
+
 
 ## Values
 

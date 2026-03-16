@@ -2,6 +2,14 @@
 
 Party to be billed. (Leave blank for DHL Germany.)
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = Type.Sender;
+```
+
 
 ## Values
 

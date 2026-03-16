@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | australia_post_express_post | Express Post|<br/>
     /// | australia_post_parcel_post | Parcel Post|<br/>
@@ -27,9 +25,7 @@ namespace Shippo.Models.Components
     /// | australia_post_international_express | International Express|<br/>
     /// | australia_post_international_standard | International Standard|<br/>
     /// | australia_post_international_economy | International Economy|<br/>
-    /// | australia_post_parcel_post_return | Parcel Post Return|<br/>
-    /// 
-    /// </remarks>
+    /// | australia_post_parcel_post_return | Parcel Post Return|
     /// </summary>
     public enum ServiceLevelAustraliaPostEnum
     {
@@ -87,5 +83,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelAustraliaPostEnum");
         }
     }
-
 }

@@ -13,16 +13,12 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System;
-    
+
     public class Parcel
     {
-
         /// <summary>
-        /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment. <br/>
-        /// 
-        /// <remarks>
-        /// See the &lt;a href=&quot;#section/Parcel-Extras&quot;&gt;Parcel Extra table below&lt;/a&gt; for all available services.
-        /// </remarks>
+        /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment.<br/>
+        /// The following values are supported for the `extra` field of the parcel object.
         /// </summary>
         [JsonProperty("extra")]
         public ParcelExtra? Extra { get; set; }
@@ -91,15 +87,15 @@ namespace Shippo.Models.Components
         public ObjectState? ObjectState { get; set; }
 
         /// <summary>
-        /// Date and time of last Parcel update. Since you cannot update Parcels after they were created, this time stamp reflects the time when the Parcel was changed by Shippo&apos;s systems for the last time, e.g., during sorting the dimensions given.
+        /// Date and time of last Parcel update. Since you cannot update Parcels after they were created, this time stamp reflects the time when the Parcel was changed by Shippo's systems for the last time, e.g., during sorting the dimensions given.
         /// </summary>
         [JsonProperty("object_updated")]
         public DateTime? ObjectUpdated { get; set; }
 
         /// <summary>
-        /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
+        /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required.
         /// </summary>
-        [JsonProperty("template")]
+        [JsonProperty("template", NullValueHandling = NullValueHandling.Include)]
         public ParcelTemplateEnumSet? Template { get; set; }
 
         /// <summary>

@@ -13,124 +13,146 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// Address represents the address as retrieved from the database
+    /// Address represents the address as retrieved from the database.
     /// </summary>
     public class Address
     {
-
         /// <summary>
         /// **required for purchase**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// First and Last Name of the addressee
-        /// </remarks>
+        /// First and Last Name of the addressee<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Either company or name required; No length validation (first 35 chars printed on label) |
         /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// Company Name
+        /// Company Name<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 35 characters; Either company or name required |
         /// </summary>
         [JsonProperty("company")]
         public string? Company { get; set; }
 
         /// <summary>
         /// **required for purchase**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// First street line, 35 character limit. Usually street number and street name (except for DHL Germany, see street_no).
-        /// </remarks>
+        /// First street line. Usually street number and street name (except for DHL Germany, see street_no).<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | At least one street line required; Max 35 characters per line |
         /// </summary>
         [JsonProperty("street1")]
         public string? Street1 { get; set; }
 
         /// <summary>
-        /// Second street line, 35 character limit.
+        /// Second street line.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | At least one street line required; Max 35 characters per line |
         /// </summary>
         [JsonProperty("street2")]
         public string? Street2 { get; set; }
 
         /// <summary>
-        /// Third street line, 35 character limit. <br/>
-        /// 
-        /// <remarks>
-        /// Only accepted for USPS international shipments, UPS domestic and UPS international shipments.
-        /// </remarks>
+        /// Third street line.<br/>
+        /// Only accepted for USPS international shipments, UPS domestic and UPS international shipments.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | At least one street line required; Max 35 characters per line |
         /// </summary>
         [JsonProperty("street3")]
         public string? Street3 { get; set; }
 
         /// <summary>
         /// Street number of the addressed building. <br/>
-        /// 
-        /// <remarks>
         /// This field can be included in street1 for all carriers except for DHL Germany.
-        /// </remarks>
         /// </summary>
         [JsonProperty("street_no")]
         public string? StreetNo { get; set; }
 
         /// <summary>
         /// **required for purchase**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// Name of a city. When creating a Quote Address, sending a city is optional but will yield more accurate Rates. <br/>
-        /// Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state <br/>
-        /// or a ZIP code (see below), if known, it will yield more accurate results.
-        /// </remarks>
+        /// Name of a city. When creating a Quote Address, sending a city is optional but will yield more accurate Rates.<br/>
+        /// Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state<br/>
+        /// or a ZIP code (see below), if known, it will yield more accurate results.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Required; Max 35 characters |
         /// </summary>
         [JsonProperty("city")]
         public string? City { get; set; }
 
         /// <summary>
         /// **required for purchase for some countries**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some <br/>
-        /// countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers <br/>
-        /// only accept two or three character state abbreviations.
-        /// </remarks>
+        /// State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some<br/>
+        /// countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers<br/>
+        /// only accept two or three character state abbreviations.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Required if country requires state; Max 2 characters for US, CA, PR |
         /// </summary>
         [JsonProperty("state")]
         public string? State { get; set; }
 
         /// <summary>
         /// **required for purchase**&lt;br&gt;<br/>
-        /// 
-        /// <remarks>
-        /// Postal code of an Address. When creating a Quote Addresses, sending a ZIP is optional but will yield more <br/>
-        /// accurate Rates.
-        /// </remarks>
+        /// Postal code of an Address. When creating a Quote Addresses, sending a ZIP is optional but will yield more<br/>
+        /// accurate Rates.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 10 characters |
         /// </summary>
         [JsonProperty("zip")]
         public string? Zip { get; set; }
 
         /// <summary>
-        /// ISO 3166-1 alpha-2 country codes and country names can be used. For most consistent results, we reccomend using country codes like `US` or `DE`.<br/>
-        /// 
-        /// <remarks>
+        /// ISO 3166-1 alpha-2 country codes and country names can be used. For most consistent results, we recommend using country codes like `US` or `DE`.<br/>
         /// If using country names, please ensure they are spelled correctly and in English. Country names are converted to country codes.<br/>
-        /// Refer to this &lt;a href=&quot;https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements&quot; target=&quot;_blank&quot;&gt;guide&lt;/a&gt; for a list of country codes.<br/>
+        /// Refer to this <a href="https://en.wikipedia.org/wiki/ISO_3166-1_alpha-2#Officially_assigned_code_elements" target="_blank">guide</a> for a list of country codes.<br/>
         /// Sending a country is always required.
-        /// </remarks>
         /// </summary>
         [JsonProperty("country")]
         public string Country { get; set; } = default!;
 
         /// <summary>
-        /// Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This <br/>
-        /// 
-        /// <remarks>
-        /// increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.    
-        /// </remarks>
+        /// Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This<br/>
+        /// increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Required; Min 1, max 15 characters |
         /// </summary>
         [JsonProperty("phone")]
         public string? Phone { get; set; }
 
         /// <summary>
-        /// E-mail address of the contact person, RFC3696/5321-compliant.
+        /// E-mail address of the contact person, RFC3696/5321-compliant.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 80 characters |
         /// </summary>
         [JsonProperty("email")]
         public string? Email { get; set; }
@@ -140,35 +162,29 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// A string of up to 100 characters that can be filled with any additional information you want <br/>
-        /// 
-        /// <remarks>
         /// to attach to the object.
-        /// </remarks>
         /// </summary>
         [JsonProperty("metadata")]
         public string? Metadata { get; set; }
 
         /// <summary>
         /// Complete addresses contain all required values.&lt;br&gt;&lt;br&gt;Incomplete addresses have failed one or multiple <br/>
-        /// 
-        /// <remarks>
         /// validations.&lt;br&gt;Incomplete Addresses are eligible for requesting rates but lack at least one required <br/>
         /// value for purchasing labels.
-        /// </remarks>
         /// </summary>
         [JsonProperty("is_complete")]
         public bool? IsComplete { get; set; }
 
         /// <summary>
-        /// Latitude of address
+        /// Latitude of address.
         /// </summary>
-        [JsonProperty("latitude")]
+        [JsonProperty("latitude", NullValueHandling = NullValueHandling.Include)]
         public Latitude? Latitude { get; set; }
 
         /// <summary>
-        /// Longitude of address
+        /// Longitude of address.
         /// </summary>
-        [JsonProperty("longitude")]
+        [JsonProperty("longitude", NullValueHandling = NullValueHandling.Include)]
         public Longitude? Longitude { get; set; }
 
         /// <summary>
@@ -179,10 +195,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Unique identifier of the given Address object. <br/>
-        /// 
-        /// <remarks>
         /// This ID is required to create a Shipment object.
-        /// </remarks>
         /// </summary>
         [JsonProperty("object_id")]
         public string? ObjectId { get; set; }
@@ -195,21 +208,15 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Date and time of last Address update. Since you cannot update Addresses after they were created, this time <br/>
-        /// 
-        /// <remarks>
-        /// stamp reflects the time when the Address was changed by Shippo&apos;s systems for the last time, e.g., during the <br/>
+        /// stamp reflects the time when the Address was changed by Shippo's systems for the last time, e.g., during the <br/>
         /// approximation of one or more values.
-        /// </remarks>
         /// </summary>
         [JsonProperty("object_updated")]
         public DateTime? ObjectUpdated { get; set; }
 
         /// <summary>
         /// Object that contains information regarding if an address had been validated or not. Also contains any messages <br/>
-        /// 
-        /// <remarks>
-        /// generated during validation. Children keys are &lt;code&gt;is_valid&lt;/code&gt;(boolean) and &lt;code&gt;messages&lt;/code&gt;(array).
-        /// </remarks>
+        /// generated during validation. Children keys are <code>is_valid</code>(boolean) and <code>messages</code>(array).
         /// </summary>
         [JsonProperty("validation_results")]
         public AddressValidationResults? ValidationResults { get; set; }

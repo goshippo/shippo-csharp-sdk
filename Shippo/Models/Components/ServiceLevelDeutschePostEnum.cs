@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | deutsche_post_postkarte | Postkarte|<br/>
     /// | deutsche_post_standardbrief | Standardbrief|<br/>
@@ -27,9 +25,7 @@ namespace Shippo.Models.Components
     /// | deutsche_post_warenpost_international_xs | Warenpost International XS|<br/>
     /// | deutsche_post_warenpost_international_s | Warenpost International S|<br/>
     /// | deutsche_post_warenpost_international_m | Warenpost International M|<br/>
-    /// | deutsche_post_warenpost_international_l | Warenpost International L|<br/>
-    /// 
-    /// </remarks>
+    /// | deutsche_post_warenpost_international_l | Warenpost International L|
     /// </summary>
     public enum ServiceLevelDeutschePostEnum
     {
@@ -87,5 +83,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelDeutschePostEnum");
         }
     }
-
 }

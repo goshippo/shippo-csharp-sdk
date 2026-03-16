@@ -3,6 +3,14 @@
 Print format of the <a href="https://docs.goshippo.com/docs/shipments/shippinglabelsizes/">label</a>. If empty, will use the default format set from 
 <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = LabelFileTypeEnum.Png;
+```
+
 
 ## Values
 

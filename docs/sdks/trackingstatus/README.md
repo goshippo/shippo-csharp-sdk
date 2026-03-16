@@ -1,11 +1,10 @@
 # TrackingStatus
-(*TrackingStatus*)
 
 ## Overview
 
 <p style="text-align: center; background-color: #F2F3F4;"></br>
 If you purchased your shipping label through Shippo, you can also get all the tracking details of your Shipment 
-from the <a href="#tag/Transactions">Transaction</a> object.
+from the <a href="/shippoapi/public-api/transactions">Transaction</a> object.
 </br></br></p>
 A tracking status of a package is an indication of current location of a package in the supply chain. For example,  sorting, warehousing, or out for delivery. Use the tracking status object to track the location of your shipments.
 
@@ -13,7 +12,6 @@ When using your <a href="https://docs.goshippo.com/docs/guides_general/authentic
 predefined tokens for testing different tracking statuses. You can find more information in our 
 <a href="https://docs.goshippo.com/docs/tracking/tracking/">Tracking tutorial</a> on how to do this, and what the 
 payloads look like.      
-<SchemaDefinition schemaRef="#/components/schemas/Track"/>
 
 ### Available Operations
 
@@ -26,24 +24,21 @@ Registers a webhook that will send HTTP notifications to you when the status of 
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="CreateTrack" method="post" path="/tracks" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.TrackingStatus.CreateAsync(
-    tracksRequest: new TracksRequest() {
-        Carrier = "usps",
-        Metadata = "Order 000123",
-        TrackingNumber = "9205590164917312751089",
-    },
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.TrackingStatus.CreateAsync(tracksRequest: new TracksRequest() {
+    Carrier = "usps",
+    Metadata = "Order 000123",
+    TrackingNumber = "9205590164917312751089",
+});
 
 // handle response
 ```
@@ -71,20 +66,19 @@ Returns the tracking status of a shipment using a carrier name and a tracking nu
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="GetTrack" method="get" path="/tracks/{Carrier}/{TrackingNumber}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.TrackingStatus.GetAsync(
     trackingNumber: "<value>",
-    carrier: "<value>",
-    shippoApiVersion: "2018-02-08"
+    carrier: "<value>"
 );
 
 // handle response

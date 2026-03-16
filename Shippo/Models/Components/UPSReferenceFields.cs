@@ -11,10 +11,9 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class UPSReferenceFields
     {
-
         /// <summary>
         /// Custom prefix text.
         /// </summary>

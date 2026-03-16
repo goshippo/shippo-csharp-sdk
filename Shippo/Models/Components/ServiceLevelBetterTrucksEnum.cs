@@ -12,16 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | better_trucks_same_day | Same Day|<br/>
-    /// | better_trucks_next_day | Next Day|<br/>
-    /// 
-    /// </remarks>
+    /// | better_trucks_next_day | Next Day|
     /// </summary>
     public enum ServiceLevelBetterTrucksEnum
     {
@@ -63,5 +59,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelBetterTrucksEnum");
         }
     }
-
 }

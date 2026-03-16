@@ -12,10 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class Authentication
     {
-
         /// <summary>
         /// Authentication method used by this account.
         /// </summary>
@@ -23,7 +22,7 @@ namespace Shippo.Models.Components
         public CarrierAccountWithExtraInfoType? Type { get; set; }
 
         /// <summary>
-        /// Current authentication status. Possible values: &apos;disconnected&apos; (authorization lost, reconnect needed), &apos;connected&apos; (authorized and active), &apos;authorization_pending&apos; (awaiting initial authorization flow).
+        /// Current authentication status. Possible values: 'disconnected' (authorization lost, reconnect needed), 'connected' (authorized and active), 'authorization_pending' (awaiting initial authorization flow).
         /// </summary>
         [JsonProperty("status")]
         public CarrierAccountWithExtraInfoStatus? Status { get; set; }

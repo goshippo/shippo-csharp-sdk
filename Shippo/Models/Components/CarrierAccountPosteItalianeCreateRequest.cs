@@ -12,12 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class CarrierAccountPosteItalianeCreateRequest
     {
-
         [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
+        public string Carrier { get; } = "poste_italiane";
 
         [JsonProperty("parameters")]
         public CarrierAccountPosteItalianeCreateRequestParameters Parameters { get; set; } = default!;

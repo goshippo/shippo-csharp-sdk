@@ -2,6 +2,14 @@
 
 Type of event that triggered the webhook.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = WebhookEventTypeEnum.TransactionCreated;
+```
+
 
 ## Values
 

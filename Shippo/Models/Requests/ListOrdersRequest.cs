@@ -12,56 +12,49 @@ namespace Shippo.Models.Requests
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class ListOrdersRequest
     {
-
         /// <summary>
-        /// The page number you want to select
+        /// The page number you want to select.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=page")]
         public long? Page { get; set; } = 1;
 
         /// <summary>
-        /// The number of results to return per page (max 100)
+        /// The number of results to return per page (max 100).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=results")]
         public long? Results { get; set; } = 25;
 
         /// <summary>
-        /// Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.
+        /// Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
         public string? ShippoApiVersion { get; set; }
 
         /// <summary>
-        /// Filter orders by order status
+        /// Filter orders by order status.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=order_status[]")]
         public List<OrderStatusEnum>? OrderStatus { get; set; }
 
         /// <summary>
-        /// Filter orders by shop app
+        /// Filter orders by shop app.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=shop_app")]
         public OrderShopAppEnum? ShopApp { get; set; }
 
         /// <summary>
         /// Filter orders created after the input date and time (ISO 8601 UTC format).  This is based on the <br/>
-        /// 
-        /// <remarks>
         /// `placed_at` field, meaning when the order has been placed, not when the order object was created.
-        /// </remarks>
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=start_date")]
         public string? StartDate { get; set; }
 
         /// <summary>
         /// Filter orders created before the input date and time (ISO 8601 UTC format).  This is based on the <br/>
-        /// 
-        /// <remarks>
         /// `placed_at` field, meaning when the order has been placed, not when the order object was created.
-        /// </remarks>
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=end_date")]
         public string? EndDate { get; set; }

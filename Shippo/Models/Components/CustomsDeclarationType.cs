@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Party to be billed for duties.
     /// </summary>
@@ -58,5 +58,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum CustomsDeclarationType");
         }
     }
-
 }

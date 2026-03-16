@@ -9,28 +9,26 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
-    
 
     public class CarrierAccountParametersType
     {
         private CarrierAccountParametersType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static CarrierAccountParametersType MapOfAny { get { return new CarrierAccountParametersType("mapOfAny"); } }
-        
+
         public static CarrierAccountParametersType FedExConnectExistingOwnAccountParameters { get { return new CarrierAccountParametersType("FedExConnectExistingOwnAccountParameters"); } }
-        
+
         public static CarrierAccountParametersType UPSConnectExistingOwnAccountParameters { get { return new CarrierAccountParametersType("UPSConnectExistingOwnAccountParameters"); } }
-        
-        public static CarrierAccountParametersType Null { get { return new CarrierAccountParametersType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(CarrierAccountParametersType v) { return v.Value; }
@@ -39,7 +37,6 @@ namespace Shippo.Models.Components
                 case "mapOfAny": return MapOfAny;
                 case "FedExConnectExistingOwnAccountParameters": return FedExConnectExistingOwnAccountParameters;
                 case "UPSConnectExistingOwnAccountParameters": return UPSConnectExistingOwnAccountParameters;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for CarrierAccountParametersType");
             }
         }
@@ -58,10 +55,11 @@ namespace Shippo.Models.Components
         }
     }
 
-
     [JsonConverter(typeof(CarrierAccountParameters.CarrierAccountParametersConverter))]
-    public class CarrierAccountParameters {
-        public CarrierAccountParameters(CarrierAccountParametersType type) {
+    public class CarrierAccountParameters
+    {
+        public CarrierAccountParameters(CarrierAccountParametersType type)
+        {
             Type = type;
         }
 
@@ -75,25 +73,24 @@ namespace Shippo.Models.Components
         public UPSConnectExistingOwnAccountParameters? UPSConnectExistingOwnAccountParameters { get; set; }
 
         public CarrierAccountParametersType Type { get; set; }
-
-
-        public static CarrierAccountParameters CreateMapOfAny(Dictionary<string, object> mapOfAny) {
+        public static CarrierAccountParameters CreateMapOfAny(Dictionary<string, object> mapOfAny)
+        {
             CarrierAccountParametersType typ = CarrierAccountParametersType.MapOfAny;
 
             CarrierAccountParameters res = new CarrierAccountParameters(typ);
             res.MapOfAny = mapOfAny;
             return res;
         }
-
-        public static CarrierAccountParameters CreateFedExConnectExistingOwnAccountParameters(FedExConnectExistingOwnAccountParameters fedExConnectExistingOwnAccountParameters) {
+        public static CarrierAccountParameters CreateFedExConnectExistingOwnAccountParameters(FedExConnectExistingOwnAccountParameters fedExConnectExistingOwnAccountParameters)
+        {
             CarrierAccountParametersType typ = CarrierAccountParametersType.FedExConnectExistingOwnAccountParameters;
 
             CarrierAccountParameters res = new CarrierAccountParameters(typ);
             res.FedExConnectExistingOwnAccountParameters = fedExConnectExistingOwnAccountParameters;
             return res;
         }
-
-        public static CarrierAccountParameters CreateUPSConnectExistingOwnAccountParameters(UPSConnectExistingOwnAccountParameters upsConnectExistingOwnAccountParameters) {
+        public static CarrierAccountParameters CreateUPSConnectExistingOwnAccountParameters(UPSConnectExistingOwnAccountParameters upsConnectExistingOwnAccountParameters)
+        {
             CarrierAccountParametersType typ = CarrierAccountParametersType.UPSConnectExistingOwnAccountParameters;
 
             CarrierAccountParameters res = new CarrierAccountParameters(typ);
@@ -101,26 +98,20 @@ namespace Shippo.Models.Components
             return res;
         }
 
-        public static CarrierAccountParameters CreateNull() {
-            CarrierAccountParametersType typ = CarrierAccountParametersType.Null;
-            return new CarrierAccountParameters(typ);
-        }
-
         public class CarrierAccountParametersConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(CarrierAccountParameters);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -208,32 +199,30 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
-                }
-                CarrierAccountParameters res = (CarrierAccountParameters)value;
-                if (CarrierAccountParametersType.FromString(res.Type).Equals(CarrierAccountParametersType.Null))
+                if (value == null)
                 {
-                    writer.WriteRawValue("null");
-                    return;
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
+
+                CarrierAccountParameters res = (CarrierAccountParameters)value;
+
                 if (res.MapOfAny != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.MapOfAny));
                     return;
                 }
+
                 if (res.FedExConnectExistingOwnAccountParameters != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.FedExConnectExistingOwnAccountParameters));
                     return;
                 }
+
                 if (res.UPSConnectExistingOwnAccountParameters != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.UPSConnectExistingOwnAccountParameters));
                     return;
                 }
-
             }
 
         }

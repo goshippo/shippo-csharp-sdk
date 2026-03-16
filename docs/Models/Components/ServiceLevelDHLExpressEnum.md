@@ -26,6 +26,14 @@
 | dhl_express_express_easy_nondoc | Express Easy NonDoc|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelDHLExpressEnum.DhlExpressDomesticExpressDoc;
+```
+
 
 ## Values
 

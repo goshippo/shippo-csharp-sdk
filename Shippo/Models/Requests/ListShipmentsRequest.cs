@@ -10,24 +10,23 @@
 namespace Shippo.Models.Requests
 {
     using Shippo.Utils;
-    
+
     public class ListShipmentsRequest
     {
-
         /// <summary>
-        /// The page token for paginated results
+        /// The page token for paginated results.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=page_token")]
         public string? PageToken { get; set; }
 
         /// <summary>
-        /// The page number you want to select
+        /// The page number you want to select.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=page")]
         public long? Page { get; set; } = 1;
 
         /// <summary>
-        /// The number of results to return per page (max 100)
+        /// The number of results to return per page (max 100).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=results")]
         public long? Results { get; set; } = 25;
@@ -57,7 +56,7 @@ namespace Shippo.Models.Requests
         public string? ObjectCreatedLte { get; set; }
 
         /// <summary>
-        /// Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.
+        /// Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
         public string? ShippoApiVersion { get; set; }

@@ -12,13 +12,10 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// Type of goods of the shipment.  <br/>
-    /// 
-    /// <remarks>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-Contents-Type&quot;&gt;here&lt;/a&gt;
-    /// </remarks>
+    /// Allowed values available <a href="/shippoapi/public-api/customs-declaration-contents-type">here</a>
     /// </summary>
     public enum CustomsDeclarationContentsTypeEnum
     {
@@ -70,5 +67,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum CustomsDeclarationContentsTypeEnum");
         }
     }
-
 }

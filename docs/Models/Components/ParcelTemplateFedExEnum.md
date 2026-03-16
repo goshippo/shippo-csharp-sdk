@@ -20,6 +20,14 @@
 | FedEx_XL_Pak | FedEx® Extra Large Pak | 17.50 x 20.75 x 2.00 in|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ParcelTemplateFedExEnum.FedExBox10kg;
+```
+
 
 ## Values
 

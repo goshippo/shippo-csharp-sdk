@@ -12,13 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Specify collection on delivery details (UPS only).
     /// </summary>
     public class Cod
     {
-
         /// <summary>
         /// Amount to be collected.
         /// </summary>
@@ -33,11 +32,8 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Secured funds include money orders, certified cheques and others (see <br/>
-        /// 
-        /// <remarks>
-        /// &lt;a href=&quot;https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html&quot;&gt;UPS&lt;/a&gt; for details). <br/>
-        /// If no payment_method inputted the value defaults to &quot;ANY&quot;.)
-        /// </remarks>
+        /// <a href="https://www.ups.com/content/us/en/shipping/time/service/value_added/cod.html">UPS</a> for details). <br/>
+        /// If no payment_method inputted the value defaults to "ANY".).
         /// </summary>
         [JsonProperty("payment_method")]
         public PaymentMethod? PaymentMethod { get; set; }

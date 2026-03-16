@@ -5,6 +5,14 @@
 Batch shipments with the status `TRANSACTION_FAILED` were not able to be purchased and the error will be displayed on the message field<br> 
 `INCOMPLETE` batch shipments have an issue with the Address and will need to be removed, fixed, and added to the batch again.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = Status.Invalid;
+```
+
 
 ## Values
 

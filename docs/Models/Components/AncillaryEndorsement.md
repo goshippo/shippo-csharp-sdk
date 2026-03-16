@@ -2,6 +2,14 @@
 
 Specify an ancillary service endorsement to provide the USPS with instructions on how to handle undeliverable-as-addressed pieces (DHL eCommerce only).
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = AncillaryEndorsement.ForwardingServiceRequested;
+```
+
 
 ## Values
 

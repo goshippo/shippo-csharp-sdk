@@ -9,9 +9,16 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
+    using Newtonsoft.Json;
+    using Shippo.Models.Components;
     using Shippo.Utils;
-    
-    public class CarrierAccountSendleCreateRequestParameters
+
+    public class Verification
     {
+        /// <summary>
+        /// Policy to indicate if the Account needs multi-factor verification.
+        /// </summary>
+        [JsonProperty("policy")]
+        public Policy? Policy { get; set; }
     }
 }

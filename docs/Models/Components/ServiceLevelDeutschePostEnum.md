@@ -14,6 +14,14 @@
 | deutsche_post_warenpost_international_l | Warenpost International L|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelDeutschePostEnum.DeutschePostPostkarte;
+```
+
 
 ## Values
 

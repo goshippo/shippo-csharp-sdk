@@ -12,7 +12,7 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     public enum ShipmentExtraLasershipAttributesEnum
     {
         [JsonProperty("TwoPersonDelivery")]
@@ -67,5 +67,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ShipmentExtraLasershipAttributesEnum");
         }
     }
-
 }

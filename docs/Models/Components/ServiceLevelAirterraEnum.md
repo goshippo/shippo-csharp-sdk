@@ -6,6 +6,14 @@
 | airterra_postal | FastPost|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelAirterraEnum.AirterraGround;
+```
+
 
 ## Values
 

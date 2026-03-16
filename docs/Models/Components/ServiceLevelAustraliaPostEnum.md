@@ -14,6 +14,14 @@
 | australia_post_parcel_post_return | Parcel Post Return|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelAustraliaPostEnum.AustraliaPostExpressPost;
+```
+
 
 ## Values
 

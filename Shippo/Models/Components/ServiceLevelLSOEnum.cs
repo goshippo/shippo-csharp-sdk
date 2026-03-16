@@ -12,20 +12,16 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | lso_ground | Ground|<br/>
     /// | lso_economy_next_day | Economy Next Day|<br/>
     /// | lso_saturday_delivery | Saturday Delivery|<br/>
     /// | lso_2nd_day | 2nd Day|<br/>
     /// | lso_priority_next_day | Priority Next Day|<br/>
-    /// | lso_early_overnight | Early Overnight|<br/>
-    /// 
-    /// </remarks>
+    /// | lso_early_overnight | Early Overnight|
     /// </summary>
     public enum ServiceLevelLSOEnum
     {
@@ -75,5 +71,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelLSOEnum");
         }
     }
-
 }

@@ -12,13 +12,10 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// Where your parcels will be available for pickup. &quot;Security Deck&quot; and &quot;Shipping Dock&quot; are only <br/>
-    /// 
-    /// <remarks>
+    /// Where your parcels will be available for pickup. "Security Deck" and "Shipping Dock" are only <br/>
     /// supported for DHL Express.
-    /// </remarks>
     /// </summary>
     public enum BuildingLocationType
     {
@@ -80,5 +77,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum BuildingLocationType");
         }
     }
-
 }

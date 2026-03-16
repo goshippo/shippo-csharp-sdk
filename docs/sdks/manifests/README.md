@@ -1,16 +1,9 @@
 # Manifests
-(*Manifests*)
 
 ## Overview
 
-A manifest is a single-page document with a barcode that carriers can scan to accept all packages into transit without the need to scan each item individually. 
+A manifest is a single-page document with a barcode that carriers can scan to accept all packages into transit without the need to scan each item individually.
 They are close-outs of shipping labels of a certain day. Some carriers require manifests to  process the shipments.
-
-<SchemaDefinition schemaRef="#/components/schemas/Manifest"/>
-
-# Manifest Errors
-The following codes and messages are the possible errors that may occur when creating Manifests.
-<SchemaDefinition schemaRef="#/components/schemas/ManifestErrors"/>
 
 ### Available Operations
 
@@ -24,20 +17,19 @@ Returns a list of all manifest objects.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="ListManifests" method="get" path="/manifests" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.Manifests.ListAsync(
     page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08"
+    results: 5
 );
 
 // handle response
@@ -67,45 +59,27 @@ Creates a new manifest object.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="CreateManifest" method="post" path="/manifests" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.Manifests.CreateAsync(
-    manifestCreateRequest: new ManifestCreateRequest() {
-        CarrierAccount = "adcfdddf8ec64b84ad22772bce3ea37a",
-        ShipmentDate = "2014-05-16T23:59:59Z",
-        Transactions = new List<string>() {
-            "adcfdddf8ec64b84ad22772bce3ea37a",
-        },
-        AddressFrom = ManifestCreateRequestAddressFrom.CreateAddressCreateRequest(
-            new AddressCreateRequest() {
-                Name = "Shwan Ippotle",
-                Company = "Shippo",
-                Street1 = "215 Clayton St.",
-                Street3 = "",
-                StreetNo = "",
-                City = "San Francisco",
-                State = "CA",
-                Zip = "94117",
-                Country = "US",
-                Phone = "+1 555 341 9393",
-                Email = "shippotle@shippo.com",
-                IsResidential = true,
-                Metadata = "Customer ID 123456",
-                Validate = true,
-            }
-        ),
+var res = await sdk.Manifests.CreateAsync(manifestCreateRequest: new ManifestCreateRequest() {
+    CarrierAccount = "adcfdddf8ec64b84ad22772bce3ea37a",
+    ShipmentDate = "2014-05-16T23:59:59Z",
+    Transactions = new List<string>() {
+        "adcfdddf8ec64b84ad22772bce3ea37a",
     },
-    shippoApiVersion: "2018-02-08"
-);
+    AddressFrom = ManifestCreateRequestAddressFrom.CreateStr(
+        "<value>"
+    ),
+});
 
 // handle response
 ```
@@ -133,20 +107,17 @@ Returns an existing manifest using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="GetManifest" method="get" path="/manifests/{ManifestId}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.Manifests.GetAsync(
-    manifestId: "<id>",
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.Manifests.GetAsync(manifestId: "<id>");
 
 // handle response
 ```

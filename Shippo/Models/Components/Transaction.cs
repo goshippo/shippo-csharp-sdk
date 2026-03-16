@@ -12,18 +12,14 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System.Collections.Generic;
     using System;
-    
+    using System.Collections.Generic;
+
     public class Transaction
     {
-
         /// <summary>
         /// A URL pointing to the commercial invoice as a 8.5x11 inch PDF file. <br/>
-        /// 
-        /// <remarks>
         /// A value will only be returned if the Transactions has been processed successfully and if the shipment is international.
-        /// </remarks>
         /// </summary>
         [JsonProperty("commercial_invoice_url")]
         public string? CommercialInvoiceUrl { get; set; }
@@ -38,21 +34,15 @@ namespace Shippo.Models.Components
         public string? Eta { get; set; }
 
         /// <summary>
-        /// Print format of the &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/shippinglabelsizes/&quot;&gt;label&lt;/a&gt;. If empty, will use the default format set from <br/>
-        /// 
-        /// <remarks>
-        /// &lt;a href=&quot;https://apps.goshippo.com/settings/labels&quot;&gt;the Shippo dashboard.&lt;/a&gt;
-        /// </remarks>
+        /// Print format of the <a href="https://docs.goshippo.com/docs/shipments/shippinglabelsizes/">label</a>. If empty, will use the default format set from <br/>
+        /// <a href="https://apps.goshippo.com/settings/labels">the Shippo dashboard.</a>
         /// </summary>
         [JsonProperty("label_file_type")]
         public LabelFileTypeEnum? LabelFileType { get; set; }
 
         /// <summary>
-        /// A URL pointing directly to the label in the format you&apos;ve set in your settings. <br/>
-        /// 
-        /// <remarks>
+        /// A URL pointing directly to the label in the format you've set in your settings. <br/>
         /// A value will only be returned if the Transactions has been processed successfully.
-        /// </remarks>
         /// </summary>
         [JsonProperty("label_url")]
         public string? LabelUrl { get; set; }
@@ -62,10 +52,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// A string of up to 100 characters that can be filled with any additional information you want to <br/>
-        /// 
-        /// <remarks>
         /// attach to the object.
-        /// </remarks>
         /// </summary>
         [JsonProperty("metadata")]
         public string? Metadata { get; set; }
@@ -89,7 +76,7 @@ namespace Shippo.Models.Components
         public string? ObjectOwner { get; set; }
 
         /// <summary>
-        /// Indicates the validity of the enclosing object
+        /// Indicates the validity of the enclosing object.
         /// </summary>
         [JsonProperty("object_state")]
         public ObjectStateEnum? ObjectState { get; set; }
@@ -108,24 +95,18 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// A URL pointing directly to the QR code in PNG format. <br/>
-        /// 
-        /// <remarks>
         /// A value will only be returned if requested using qr_code_requested flag and the carrier provides such an option.
-        /// </remarks>
         /// </summary>
         [JsonProperty("qr_code_url")]
         public string? QrCodeUrl { get; set; }
 
         /// <summary>
         /// ID of the Rate object for which a Label has to be obtained.  <br/>
-        /// 
-        /// <remarks>
         /// If you purchase a label by calling the transaction endpoint without a rate (instalabel), <br/>
         /// this field will be a simplified Rate object in the Transaction model returned from the POST request.<br/>
         /// &lt;/br&gt;Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
-        /// </remarks>
         /// </summary>
-        [JsonProperty("rate")]
+        [JsonProperty("rate", NullValueHandling = NullValueHandling.Include)]
         public TransactionRate? Rate { get; set; }
 
         /// <summary>
@@ -142,10 +123,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// The carrier-specific tracking number that can be used to track the Shipment. <br/>
-        /// 
-        /// <remarks>
         /// A value will only be returned if the Rate is for a trackable Shipment and if the Transactions has been processed successfully.
-        /// </remarks>
         /// </summary>
         [JsonProperty("tracking_number")]
         public string? TrackingNumber { get; set; }
@@ -158,10 +136,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// A link to track this item on the carrier-provided tracking website. <br/>
-        /// 
-        /// <remarks>
         /// A value will only be returned if tracking is available and the carrier provides such a service.
-        /// </remarks>
         /// </summary>
         [JsonProperty("tracking_url_provider")]
         public string? TrackingUrlProvider { get; set; }

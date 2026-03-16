@@ -10,10 +10,9 @@
 namespace Shippo.Models.Components
 {
     using Shippo.Utils;
-    
+
     public class Security
     {
-
         [SpeakeasyMetadata("security:scheme=true,type=apiKey,subType=header,name=Authorization")]
         public string APIKeyHeader { get; set; } = default!;
     }

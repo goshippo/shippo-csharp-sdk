@@ -11,6 +11,14 @@
 | usps_ground_advantage | Ground Advantage |
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelUSPSEnum.UspsPriority;
+```
+
 
 ## Values
 

@@ -6,6 +6,14 @@ Batches that are `VALIDATING` are being created and validated<br>
 Batches that are in the `PURCHASING` state are being purchased<br>
 `PURCHASED` batches are finished purchasing.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = BatchStatus.Validating;
+```
+
 
 ## Values
 

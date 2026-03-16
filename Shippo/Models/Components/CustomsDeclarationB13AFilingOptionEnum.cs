@@ -12,14 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// B13A Option details are obtained by filing a B13A Canada Export Declaration via the Canadian Export Reporting System (CERS). <br/>
-    /// 
-    /// <remarks>
-    /// &lt;a href=&quot;https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt; More information on reporting commercial exports from Canada. &lt;/a&gt;<br/>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-B13A-Filing-Option&quot;&gt;here&lt;/a&gt;
-    /// </remarks>
+    /// <a href="https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html" target="_blank" rel="noopener noreferrer"> More information on reporting commercial exports from Canada. </a>
+    /// Allowed values available <a href="/shippoapi/public-api/customs-declaration-b13a-filing-option">here</a>
     /// </summary>
     public enum CustomsDeclarationB13AFilingOptionEnum
     {
@@ -63,5 +60,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum CustomsDeclarationB13AFilingOptionEnum");
         }
     }
-
 }

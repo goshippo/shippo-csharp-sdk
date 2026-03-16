@@ -21,6 +21,14 @@
 | dpd_uk_pickup_returns | Pickup Returns|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelDPDUKEnum.DpdUkShipToShop;
+```
+
 
 ## Values
 

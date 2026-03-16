@@ -12,30 +12,23 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
-    /// Additional exporter identification that may be required to ship in certain countries
+    /// Additional exporter identification that may be required to ship in certain countries.
     /// </summary>
     public class CustomsExporterIdentification
     {
-
         /// <summary>
-        /// Economic Operators&apos; Registration and Identification (EORI) number. Must start with a 2 character <br/>
-        /// 
-        /// <remarks>
+        /// Economic Operators' Registration and Identification (EORI) number. Must start with a 2 character <br/>
         /// country code followed by a 6-17 character alphanumeric identifier (e.g. PL1234567890ABCDE).<br/>
-        /// &lt;a href=&quot;https://ec.europa.eu/taxation_customs/business/customs-procedures/general-overview/economic-operators-registration-identification-number-eori_en&quot;&gt;More information on EORI.&lt;/a&gt;
-        /// </remarks>
+        /// <a href="https://ec.europa.eu/taxation_customs/business/customs-procedures/general-overview/economic-operators-registration-identification-number-eori_en">More information on EORI.</a>
         /// </summary>
         [JsonProperty("eori_number")]
         public string? EoriNumber { get; set; }
 
         /// <summary>
         /// Tax identification that may be required to ship in certain countries. Typically used to assess duties on <br/>
-        /// 
-        /// <remarks>
         /// goods that are crossing a border.
-        /// </remarks>
         /// </summary>
         [JsonProperty("tax_id")]
         public CustomsTaxIdentification? TaxId { get; set; }

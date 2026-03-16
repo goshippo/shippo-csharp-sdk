@@ -28,6 +28,14 @@
 | fedex_standard_overnight_extra_hours | Standard Overnight® EH |
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelFedExEnum.FedexGround;
+```
+
 
 ## Values
 

@@ -13,6 +13,14 @@
 | apc_postal_parcelconnect_epmei | parcelConnect ePMEI|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelAPCPostalEnum.ApcPostalParcelconnectExpedited;
+```
+
 
 ## Values
 

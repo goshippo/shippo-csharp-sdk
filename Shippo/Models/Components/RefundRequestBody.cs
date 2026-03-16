@@ -11,10 +11,9 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     public class RefundRequestBody
     {
-
         [JsonProperty("async")]
         public bool? Async { get; set; }
 

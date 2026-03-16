@@ -11,13 +11,12 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Container for specifying the presence of lithium batteries.
     /// </summary>
     public class DangerousGoodsLithiumBatteries
     {
-
         /// <summary>
         /// Indicates if the shipment contains lithium batteries.
         /// </summary>

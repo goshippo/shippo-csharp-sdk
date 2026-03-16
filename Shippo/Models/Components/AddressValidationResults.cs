@@ -13,17 +13,13 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     /// <summary>
     /// Object that contains information regarding if an address had been validated or not. Also contains any messages <br/>
-    /// 
-    /// <remarks>
-    /// generated during validation. Children keys are &lt;code&gt;is_valid&lt;/code&gt;(boolean) and &lt;code&gt;messages&lt;/code&gt;(array).
-    /// </remarks>
+    /// generated during validation. Children keys are <code>is_valid</code>(boolean) and <code>messages</code>(array).
     /// </summary>
     public class AddressValidationResults
     {
-
         [JsonProperty("is_valid")]
         public bool? IsValid { get; set; }
 

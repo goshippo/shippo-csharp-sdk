@@ -12,9 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// Current authentication status. Possible values: &apos;disconnected&apos; (authorization lost, reconnect needed), &apos;connected&apos; (authorized and active), &apos;authorization_pending&apos; (awaiting initial authorization flow).
+    /// Current authentication status. Possible values: 'disconnected' (authorization lost, reconnect needed), 'connected' (authorized and active), 'authorization_pending' (awaiting initial authorization flow).
     /// </summary>
     public enum CarrierAccountWithExtraInfoStatus
     {
@@ -58,5 +58,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum CarrierAccountWithExtraInfoStatus");
         }
     }
-
 }

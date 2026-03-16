@@ -21,13 +21,17 @@ Shippo external API.: Use this API to integrate with the Shippo service
 
 <!-- Start Table of Contents [toc] -->
 ## Table of Contents
+<!-- $toc-max-depth=2 -->
+* [<img src="https://docs.goshippo.com/images/Logo.png" width="30" alt="Shippo logo"> Shippo C# SDK](#img-srchttpsdocsgoshippocomimageslogopng-width30-altshippo-logo-shippo-c-sdk)
+  * [SDK Installation](#sdk-installation)
+  * [SDK Example Usage](#sdk-example-usage)
+  * [Custom HTTP Client](#custom-http-client)
+  * [Documentation](#documentation)
+  * [Available Resources and Operations](#available-resources-and-operations)
+* [Development](#development)
+  * [Contributions](#contributions)
+  * [About Shippo](#about-shippo)
 
-* [SDK Installation](#sdk-installation)
-* [SDK Example Usage](#sdk-example-usage)
-* [Available Resources and Operations](#available-resources-and-operations)
-* [Error Handling](#error-handling)
-* [Server Selection](#server-selection)
-* [Authentication](#authentication)
 <!-- End Table of Contents [toc] -->
 
 <!-- Start SDK Installation [installation] -->
@@ -55,18 +59,16 @@ dotnet add reference Shippo/Shippo.csproj
 
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.Addresses.ListAsync(
     page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08"
+    results: 5
 );
 
 // handle response
@@ -76,42 +78,147 @@ var res = await sdk.Addresses.ListAsync(
 <!-- Start Custom HTTP Client [http-client] -->
 ## Custom HTTP Client
 
-The following is taken from [Speakeasy's C# design](https://www.speakeasyapi.dev/docs/sdk-design/csharp/methodology-csharp#http-client):
+The C# SDK makes API calls using an `ISpeakeasyHttpClient` that wraps the native
+[HttpClient](https://docs.microsoft.com/en-us/dotnet/api/system.net.http.httpclient). This
+client provides the ability to attach hooks around the request lifecycle that can be used to modify the request or handle
+errors and response.
 
-> By default the C# SDK will instantiate its own `SpeakeasyHttpClient`, which uses the
-`System.Net.HttpClient` under the hood. The default client can be overridden by passing
-a custom HTTP client when initializing the SDK:
+The `ISpeakeasyHttpClient` interface allows you to either use the default `SpeakeasyHttpClient` that comes with the SDK,
+or provide your own custom implementation with customized configuration such as custom message handlers, timeouts,
+connection pooling, and other HTTP client settings.
+
+The following example shows how to create a custom HTTP client with request modification and error handling:
 
 ```csharp
-var sdk = new ShippoSDK(client: new CustomHttpClient());
+using Shippo;
+using Shippo.Utils;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
+
+// Create a custom HTTP client
+public class CustomHttpClient : ISpeakeasyHttpClient
+{
+    private readonly ISpeakeasyHttpClient _defaultClient;
+
+    public CustomHttpClient()
+    {
+        _defaultClient = new SpeakeasyHttpClient();
+    }
+
+    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken? cancellationToken = null)
+    {
+        // Add custom header and timeout
+        request.Headers.Add("x-custom-header", "custom value");
+        request.Headers.Add("x-request-timeout", "30");
+        
+        try
+        {
+            var response = await _defaultClient.SendAsync(request, cancellationToken);
+            // Log successful response
+            Console.WriteLine($"Request successful: {response.StatusCode}");
+            return response;
+        }
+        catch (Exception error)
+        {
+            // Log error
+            Console.WriteLine($"Request failed: {error.Message}");
+            throw;
+        }
+    }
+
+    public void Dispose()
+    {
+        _httpClient?.Dispose();
+        _defaultClient?.Dispose();
+    }
+}
+
+// Use the custom HTTP client with the SDK
+var customHttpClient = new CustomHttpClient();
+var sdk = new ShippoSDK(client: customHttpClient);
 ```
 
-> The provided HTTP Client must implement the `ISpeakeasyHttpClient` interface as defined
-in `Utils.SpeakeasyHttpClient.cs`: ...
-
-> This can be useful if you want to use a custom HTTP Client that supports a proxy or
-other custom configuration.
-
-> Below is an example of custom client that inherits from the internal
-`SpeakeasyHttpClient` class, which itself implements the `ISpekeasyHttpClient` interface.
-This client simply adds a header to all requests before sending them:
+<details>
+<summary>You can also provide a completely custom HTTP client with your own configuration:</summary>
 
 ```csharp
 using Shippo.Utils;
+using System.Net.Http;
+using System.Threading;
+using System.Threading.Tasks;
 
-public class CustomHttpClient : SpeakeasyHttpClient
+// Custom HTTP client with custom configuration
+public class AdvancedHttpClient : ISpeakeasyHttpClient
 {
-    public CustomHttpClient() {}
+    private readonly HttpClient _httpClient;
 
-    public override async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
+    public AdvancedHttpClient()
     {
-        request.Headers.Add("X-Custom-Header", "custom value");
-        return await base.SendAsync(request);
+        var handler = new HttpClientHandler()
+        {
+            MaxConnectionsPerServer = 10,
+            // ServerCertificateCustomValidationCallback = customCertValidation, // Custom SSL validation if needed
+        };
+
+        _httpClient = new HttpClient(handler)
+        {
+            Timeout = TimeSpan.FromSeconds(30)
+        };
+    }
+
+    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken? cancellationToken = null)
+    {
+        return await _httpClient.SendAsync(request, cancellationToken ?? CancellationToken.None);
+    }
+
+    public void Dispose()
+    {
+        _httpClient?.Dispose();
     }
 }
-```
 
-A further example is included in the `ShippoTests` project in this repo.
+var sdk = ShippoSDK.Builder()
+    .WithClient(new AdvancedHttpClient())
+    .Build();
+```
+</details>
+
+<details>
+<summary>For simple debugging, you can enable request/response logging by implementing a custom client:</summary>
+
+```csharp
+public class LoggingHttpClient : ISpeakeasyHttpClient
+{
+    private readonly ISpeakeasyHttpClient _innerClient;
+
+    public LoggingHttpClient(ISpeakeasyHttpClient innerClient = null)
+    {
+        _innerClient = innerClient ?? new SpeakeasyHttpClient();
+    }
+
+    public async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, CancellationToken? cancellationToken = null)
+    {
+        // Log request
+        Console.WriteLine($"Sending {request.Method} request to {request.RequestUri}");
+        
+        var response = await _innerClient.SendAsync(request, cancellationToken);
+        
+        // Log response
+        Console.WriteLine($"Received {response.StatusCode} response");
+        
+        return response;
+    }
+
+    public void Dispose() => _innerClient?.Dispose();
+}
+
+var sdk = new ShippoSDK(client: new LoggingHttpClient());
+```
+</details>
+
+The SDK also provides built-in hook support through the `SDKConfiguration.Hooks` system, which automatically handles
+`BeforeRequestAsync`, `AfterSuccessAsync`, and `AfterErrorAsync` hooks for advanced request lifecycle management.
 <!-- End Custom HTTP Client [http-client] -->
 
 ## Documentation
@@ -227,7 +334,6 @@ Review our full guides and references at [https://docs.goshippo.com/](https://do
 * [Create](docs/sdks/shippoaccounts/README.md#create) - Create a Shippo Account
 * [Get](docs/sdks/shippoaccounts/README.md#get) - Retrieve a Shippo Account
 * [Update](docs/sdks/shippoaccounts/README.md#update) - Update a Shippo Account
-
 
 ### [TrackingStatus](docs/sdks/trackingstatus/README.md)
 

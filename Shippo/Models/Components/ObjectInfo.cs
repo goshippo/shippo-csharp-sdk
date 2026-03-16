@@ -12,14 +12,16 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// Holds internal state relevant to users.
     /// </summary>
     public class ObjectInfo
     {
-
         [JsonProperty("authentication")]
         public Authentication? Authentication { get; set; }
+
+        [JsonProperty("verification")]
+        public Verification? Verification { get; set; }
     }
 }

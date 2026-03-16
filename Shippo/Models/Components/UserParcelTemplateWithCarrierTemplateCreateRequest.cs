@@ -12,12 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class UserParcelTemplateWithCarrierTemplateCreateRequest
     {
-
         /// <summary>
-        /// The object representing the carrier parcel template
+        /// The object representing the carrier parcel template.
         /// </summary>
         [JsonProperty("template")]
         public string? Template { get; set; }

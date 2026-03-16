@@ -12,16 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | correos_standard_home| Paquete Estándar|<br/>
-    /// | correos_premium_home | Paquete Premium|<br/>
-    /// 
-    /// </remarks>
+    /// | correos_premium_home | Paquete Premium|
     /// </summary>
     public enum ServiceLevelCorreosEspanaEnum
     {
@@ -63,5 +59,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelCorreosEspanaEnum");
         }
     }
-
 }

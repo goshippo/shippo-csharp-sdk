@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | globegistics_priority_mail_express_international | Globegistics Priority Mail Express International|<br/>
     /// | globegistics_priority_mail_international | Globegistics Priority Mail International|<br/>
@@ -29,9 +27,7 @@ namespace Shippo.Models.Components
     /// | globegistics_ecom_priority_mail_express_international_ddp | Globegistics eCom Priority Mail Express International DDP|<br/>
     /// | globegistics_ecom_extra | Globegistics eCom Extra|<br/>
     /// | globegistics_ecom_international_priority_airmail | Globegistics eCom International Priority Airmail|<br/>
-    /// | globegistics_ecom_international_surface_airlift | Globegistics eCom International Surface Air Lift|<br/>
-    /// 
-    /// </remarks>
+    /// | globegistics_ecom_international_surface_airlift | Globegistics eCom International Surface Air Lift|
     /// </summary>
     public enum ServiceLevelGlobegisticsEnum
     {
@@ -93,5 +89,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelGlobegisticsEnum");
         }
     }
-
 }

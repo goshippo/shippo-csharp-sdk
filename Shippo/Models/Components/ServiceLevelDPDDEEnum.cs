@@ -12,15 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
-    /// | dpd_de_classic | DPD Classic|<br/>
-    /// 
-    /// </remarks>
+    /// | dpd_de_classic | DPD Classic|
     /// </summary>
     public enum ServiceLevelDPDDEEnum
     {
@@ -60,5 +56,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelDPDDEEnum");
         }
     }
-
 }

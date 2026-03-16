@@ -12,11 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | purolator_ground | Ground|<br/>
     /// | purolator_ground9_am | Ground 9am|<br/>
@@ -35,9 +33,7 @@ namespace Shippo.Models.Components
     /// | purolator_express_international | Express International|<br/>
     /// | purolator_express_international9_am | Express International 9am|<br/>
     /// | purolator_express_international1030_am | Express International 10:30am|<br/>
-    /// | purolator_express_international1200 | Express International 12pm|<br/>
-    /// 
-    /// </remarks>
+    /// | purolator_express_international1200 | Express International 12pm|
     /// </summary>
     public enum ServiceLevelPurolatorEnum
     {
@@ -111,5 +107,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelPurolatorEnum");
         }
     }
-
 }

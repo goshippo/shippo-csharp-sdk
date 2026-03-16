@@ -12,9 +12,9 @@ namespace Shippo.Models.Requests
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// filter by specific carrier
+    /// filter by specific carrier.
     /// </summary>
     public enum Carrier
     {
@@ -58,5 +58,4 @@ namespace Shippo.Models.Requests
             throw new Exception($"Unknown value {value} for enum Carrier");
         }
     }
-
 }

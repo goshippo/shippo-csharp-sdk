@@ -12,13 +12,10 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
-    /// Indicates how the carrier should proceed in case the shipment can&apos;t be delivered.<br/>
-    /// 
-    /// <remarks>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-Non-Delivery-Option&quot;&gt;here&lt;/a&gt;
-    /// </remarks>
+    /// Indicates how the carrier should proceed in case the shipment can't be delivered.<br/>
+    /// Allowed values available <a href="/shippoapi/public-api/customs-declaration-non-delivery-option">here</a>
     /// </summary>
     public enum CustomsDeclarationNonDeliveryOptionEnum
     {
@@ -60,5 +57,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum CustomsDeclarationNonDeliveryOptionEnum");
         }
     }
-
 }

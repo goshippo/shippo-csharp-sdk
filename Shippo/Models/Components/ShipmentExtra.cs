@@ -13,13 +13,12 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     /// <summary>
     /// An object holding optional extra services to be requested.
     /// </summary>
     public class ShipmentExtra
     {
-
         [JsonProperty("accounts_receivable_customer_account")]
         public UPSReferenceFields? AccountsReceivableCustomerAccount { get; set; }
 
@@ -40,11 +39,8 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Request `true` to give carrier permission to leave the parcel in a safe place if no one answers the <br/>
-        /// 
-        /// <remarks>
         /// door (where supported). When set to `false`, if no one is available to receive the item, the parcel <br/>
         /// will not be left (*surcharges may be applicable).
-        /// </remarks>
         /// </summary>
         [JsonProperty("authority_to_leave")]
         public bool? AuthorityToLeave { get; set; }
@@ -99,10 +95,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Carrier arrival time to pickup packages from the fulfillment center. <br/>
-        /// 
-        /// <remarks>
         /// UTC format: `%Y-%m-%dT%H:%M:%SZ`
-        /// </remarks>
         /// </summary>
         [JsonProperty("critical_pull_time")]
         public string? CriticalPullTime { get; set; }
@@ -121,17 +114,14 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Container for specifying the presence of dangerous materials. This is specific to USPS, and if any contents<br/>
-        /// 
-        /// <remarks>
         /// are provided, only certain USPS service levels will be eligible. For more information, see our<br/>
-        /// &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/hazmat/&quot;&gt;guide on hazardous or dangerous materials shipping&lt;/a&gt;.
-        /// </remarks>
+        /// <a href="https://docs.goshippo.com/docs/shipments/hazmat/">guide on hazardous or dangerous materials shipping</a>.
         /// </summary>
         [JsonProperty("dangerous_goods")]
         public DangerousGoodsObject? DangerousGoods { get; set; }
 
         /// <summary>
-        /// Dangerous Goods Code (DHL eCommerce only). See &lt;a href=&quot;https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods&quot;&gt;Category Codes&lt;/a&gt;
+        /// Dangerous Goods Code (DHL eCommerce only). See <a href="https://api-legacy.dhlecs.com/docs/v2/appendix.html#dangerous-goods">Category Codes</a>
         /// </summary>
         [JsonProperty("dangerous_goods_code")]
         public DangerousGoodsCode? DangerousGoodsCode { get; set; }
@@ -167,13 +157,10 @@ namespace Shippo.Models.Components
         public string? FulfillmentCenter { get; set; }
 
         /// <summary>
-        /// To add 3rd party insurance powered by &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/shippinginsurance/&quot;&gt;XCover&lt;/a&gt;, <br/>
-        /// 
-        /// <remarks>
+        /// To add 3rd party insurance powered by <a href="https://docs.goshippo.com/docs/shipments/shippinginsurance/">XCover</a>, <br/>
         /// specify &lt;br&gt; `amount`, `content`, and `currency`. &lt;br&gt; Alternatively, you can choose carrier provided insurance <br/>
         /// by additionally specifying `provider` (UPS, FedEx and OnTrac only). &lt;br&gt;&lt;br&gt; If you do not want to add insurance <br/>
         /// to your shipment, do not set these parameters.
-        /// </remarks>
         /// </summary>
         [JsonProperty("insurance")]
         public Insurance? Insurance { get; set; }
@@ -185,7 +172,7 @@ namespace Shippo.Models.Components
         public InvoiceNumber? InvoiceNumber { get; set; }
 
         /// <summary>
-        /// This field specifies if it is a scan-based return shipment. See the &lt;a href=&quot;https://docs.goshippo.com/docs/shipments/returns/&quot;&gt;Create a return shipment&lt;/a&gt; section for more details.
+        /// This field specifies if it is a scan-based return shipment. See the <a href="https://docs.goshippo.com/docs/shipments/returns/">Create a return shipment</a> section for more details.
         /// </summary>
         [JsonProperty("is_return")]
         public bool? IsReturn { get; set; }
@@ -242,13 +229,23 @@ namespace Shippo.Models.Components
         public bool? QrCodeRequested { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.
+        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 40 characters (Express services); Max 30 characters (Ground services) |
         /// </summary>
         [JsonProperty("reference_1")]
         public string? Reference1 { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters. For DHL eCommerce, this field can be used for billing reference.
+        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters. For DHL eCommerce, this field can be used for billing reference.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 30 characters |
         /// </summary>
         [JsonProperty("reference_2")]
         public string? Reference2 { get; set; }
@@ -262,7 +259,7 @@ namespace Shippo.Models.Components
         /// <summary>
         /// Request additional return option for return shipments (UPS and Lasership only).
         /// </summary>
-        [JsonProperty("return_service_type")]
+        [JsonProperty("return_service_type", NullValueHandling = NullValueHandling.Include)]
         public ReturnServiceType? ReturnServiceType { get; set; }
 
         /// <summary>
@@ -285,10 +282,7 @@ namespace Shippo.Models.Components
 
         /// <summary>
         /// Request standard or adult signature confirmation. You can alternatively request Certified Mail (USPS only) <br/>
-        /// 
-        /// <remarks>
         /// or Indirect signature (FedEx only) or Carrier Confirmation (Deutsche Post only).
-        /// </remarks>
         /// </summary>
         [JsonProperty("signature_confirmation")]
         public SignatureConfirmation? SignatureConfirmation { get; set; }
@@ -298,5 +292,19 @@ namespace Shippo.Models.Components
 
         [JsonProperty("transaction_reference_number")]
         public UPSReferenceFields? TransactionReferenceNumber { get; set; }
+
+        /// <summary>
+        /// UPS only. Request USMCA (United States-Mexico-Canada Agreement) preferential tariff treatment. <br/>
+        /// When enabled, it includes the USMCA eligibility declaration in customs documentation.<br/>
+        /// <br/>
+        /// Supported routes and value limits:<br/>
+        /// - USA/Canada → Mexico: ≤ $1,000 USD<br/>
+        /// - Canada/Mexico → USA: ≤ $2,500 USD  <br/>
+        /// - USA/Mexico → Canada: ≤ $3,300 CAD<br/>
+        /// <br/>
+        /// Only for declaration-only shipments, full USMCA - FormType 04 (Certificate of Origin) is not supported.
+        /// </summary>
+        [JsonProperty("usmca_eligible")]
+        public bool? UsmcaEligible { get; set; }
     }
 }

@@ -13,10 +13,9 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     using System.Collections.Generic;
-    
+
     public class CarrierParcelTemplateList
     {
-
         [JsonProperty("results")]
         public List<CarrierParcelTemplate>? Results { get; set; }
     }

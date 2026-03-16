@@ -12,20 +12,16 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | chronopost_13 | Chrono 13|<br/>
     /// | chronopost_10 | Chrono 10|<br/>
     /// | chronopost_18| Chrono 18|<br/>
     /// | chronopost_relais_fr | Chrono Point Relais|<br/>
     /// | chronopost_classic | Chrono Classic International|<br/>
-    /// | chronopost_express | Chrono Express International|<br/>
-    /// 
-    /// </remarks>
+    /// | chronopost_express | Chrono Express International|
     /// </summary>
     public enum ServiceLevelChronopostEnum
     {
@@ -75,5 +71,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelChronopostEnum");
         }
     }
-
 }

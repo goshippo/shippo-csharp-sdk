@@ -12,16 +12,12 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     /// <summary>
     /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
     /// |:---|:---|<br/>
     /// | same_day | Next Day|<br/>
-    /// | next_day | Next Day|<br/>
-    /// 
-    /// </remarks>
+    /// | next_day | Next Day|
     /// </summary>
     public enum ServiceLevelSwyftEnum
     {
@@ -63,5 +59,4 @@ namespace Shippo.Models.Components
             throw new Exception($"Unknown value {value} for enum ServiceLevelSwyftEnum");
         }
     }
-
 }

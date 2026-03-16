@@ -2,6 +2,14 @@
 
 Indicates the high level status of the shipment.
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = TrackingStatusEnum.Unknown;
+```
+
 
 ## Values
 

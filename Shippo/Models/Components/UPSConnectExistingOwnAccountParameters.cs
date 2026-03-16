@@ -11,26 +11,29 @@ namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
     using Shippo.Utils;
-    
+
     /// <summary>
     /// An array of additional parameters for the account, such as e.g. password or token.<br/>
-    /// 
-    /// <remarks>
-    /// Please check the &lt;a href=&quot;https://docs.goshippo.com/docs/carriers/carrieraccounts/&quot;&gt;carrier accounts tutorial&lt;/a&gt; page for the parameters per carrier.&lt;br&gt; <br/>
-    /// To protect account information, this field will be masked in any API response.
-    /// </remarks>
+    /// Please check the <a href="https://docs.goshippo.com/docs/carriers/carrieraccounts/">carrier accounts tutorial</a> page for the parameters per carrier.&lt;br&gt; <br/>
+    /// To protect account information, this field will be masked in any API response.<br/>
+    /// In the case of masked fields, they should be handled carefully.<br/>
+    /// <br/>
+    /// Fields also must consider: <br/>
+    /// - Not providing a *fields* in parameters will not result in a change to any configured value <br/>
+    /// - Providing a value in a *masked field* with ****** (exactly 6 asterisks) will not change the configured value <br/>
+    /// - Providing *field* with null will clear the configured value <br/>
+    /// - Providing *field* with any other value will change the configured value and may affect the behavior of the account.
     /// </summary>
     public class UPSConnectExistingOwnAccountParameters
     {
-
         /// <summary>
-        /// The UPS account number
+        /// The UPS account number.
         /// </summary>
         [JsonProperty("account_number")]
         public string AccountNumber { get; set; } = default!;
 
         /// <summary>
-        /// Only required if has_invoice is true. Country associated with the account that issued the invoice
+        /// Only required if has_invoice is true. Country associated with the account that issued the invoice.
         /// </summary>
         [JsonProperty("aia_country_iso2")]
         public string? AiaCountryIso2 { get; set; }
@@ -48,7 +51,7 @@ namespace Shippo.Models.Components
         public string BillingAddressStreet1 { get; set; } = default!;
 
         /// <summary>
-        /// Empty string acceptable for billing_address_street2
+        /// Empty string acceptable for billing_address_street2.
         /// </summary>
         [JsonProperty("billing_address_street2")]
         public string? BillingAddressStreet2 { get; set; }
@@ -60,19 +63,19 @@ namespace Shippo.Models.Components
         public string CollecCountryIso2 { get; set; } = default!;
 
         /// <summary>
-        /// Zip code of the collection/pickup address
+        /// Zip code of the collection/pickup address.
         /// </summary>
         [JsonProperty("collec_zip")]
         public string CollecZip { get; set; } = default!;
 
         /// <summary>
-        /// Company name. Full name is acceptable in this field if the user has no company name
+        /// Company name. Full name is acceptable in this field if the user has no company name.
         /// </summary>
         [JsonProperty("company")]
         public string Company { get; set; } = default!;
 
         /// <summary>
-        /// Only required if has_invoice is true. 3-letter currency code associated with invoice_value
+        /// Only required if has_invoice is true. 3-letter currency code associated with invoice_value.
         /// </summary>
         [JsonProperty("currency_code")]
         public string? CurrencyCode { get; set; }
@@ -84,7 +87,7 @@ namespace Shippo.Models.Components
         public string FullName { get; set; } = default!;
 
         /// <summary>
-        /// true if user has been issued a UPS invoice within the past 90 days for the US or Canada; and 45 days for any other countries. User can use data from any of the last 3 invoices
+        /// true if user has been issued a UPS invoice within the past 90 days for the US or Canada; and 45 days for any other countries. User can use data from any of the last 3 invoices.
         /// </summary>
         [JsonProperty("has_invoice")]
         public bool HasInvoice { get; set; } = default!;
@@ -96,7 +99,7 @@ namespace Shippo.Models.Components
         public string? InvoiceControlid { get; set; }
 
         /// <summary>
-        /// Only required if has_invoice is true. Date the invoice was issued. yyyymmdd format
+        /// Only required if has_invoice is true. Date the invoice was issued. yyyymmdd format.
         /// </summary>
         [JsonProperty("invoice_date")]
         public string? InvoiceDate { get; set; }
@@ -105,7 +108,7 @@ namespace Shippo.Models.Components
         public string? InvoiceNumber { get; set; }
 
         /// <summary>
-        /// Only required if has_invoice is true. Max 16 digits before decimal and 2 digits after decimal
+        /// Only required if has_invoice is true. Max 16 digits before decimal and 2 digits after decimal.
         /// </summary>
         [JsonProperty("invoice_value")]
         public string? InvoiceValue { get; set; }
@@ -114,13 +117,13 @@ namespace Shippo.Models.Components
         public string Phone { get; set; } = default!;
 
         /// <summary>
-        /// User&apos;s title, e.g. including but not limited to Manager, Doctor, Artist, Engineer, Mr, Ms, Mrs, Mx
+        /// User's title, e.g. including but not limited to Manager, Doctor, Artist, Engineer, Mr, Ms, Mrs, Mx.
         /// </summary>
         [JsonProperty("title")]
         public string Title { get; set; } = default!;
 
         /// <summary>
-        /// Whether the user agrees to the UPS terms and conditions or not. Error 400 will be returned if passed in as false
+        /// Whether the user agrees to the UPS terms and conditions or not. Error 400 will be returned if passed in as false.
         /// </summary>
         [JsonProperty("ups_agreements")]
         public bool UpsAgreements { get; set; } = default!;

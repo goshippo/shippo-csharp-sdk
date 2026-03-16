@@ -12,10 +12,9 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Utils;
     using System;
-    
+
     public class ShippoAccount
     {
-
         [JsonProperty("email")]
         public string Email { get; set; } = default!;
 

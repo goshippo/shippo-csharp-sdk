@@ -29,6 +29,14 @@
 | UPS_Pallet | Pallet | 120.00 x 80.00 x 200.00 cm|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ParcelTemplateUPSEnum.UPSBox10kg;
+```
+
 
 ## Values
 

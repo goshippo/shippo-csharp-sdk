@@ -12,12 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System.Collections.Generic;
     using System;
-    
+    using System.Collections.Generic;
+
     public class Track
     {
-
         /// <summary>
         /// The sender address with city, state, zip and country information.
         /// </summary>
@@ -31,7 +30,7 @@ namespace Shippo.Models.Components
         public TrackingStatusLocationBase? AddressTo { get; set; }
 
         /// <summary>
-        /// Name of the carrier of the shipment to track. See &lt;a href=&quot;#tag/Carriers&quot;&gt;Carriers&lt;/a&gt;.
+        /// Name of the carrier of the shipment to track. See <a href="/shippoapi/public-api/carriers">Carriers</a>.
         /// </summary>
         [JsonProperty("carrier")]
         public string Carrier { get; set; } = default!;
@@ -61,11 +60,8 @@ namespace Shippo.Models.Components
         public ServiceLevelWithParent? Servicelevel { get; set; }
 
         /// <summary>
-        /// A list of tracking events, following the same structure as &lt;code&gt;tracking_status&lt;/code&gt;. <br/>
-        /// 
-        /// <remarks>
+        /// A list of tracking events, following the same structure as <code>tracking_status</code>. <br/>
         /// It contains a full history of all tracking statuses, starting with the earlier tracking event first.
-        /// </remarks>
         /// </summary>
         [JsonProperty("tracking_history")]
         public List<Models.Components.TrackingStatus> TrackingHistory { get; set; } = default!;
@@ -83,11 +79,8 @@ namespace Shippo.Models.Components
         public Models.Components.TrackingStatus? TrackingStatus { get; set; }
 
         /// <summary>
-        /// The &lt;code&gt;object_id&lt;/code&gt; of the transaction associated with this tracking object. <br/>
-        /// 
-        /// <remarks>
+        /// The <code>object_id</code> of the transaction associated with this tracking object. <br/>
         /// This field is visible only to the object owner of the transaction.
-        /// </remarks>
         /// </summary>
         [JsonProperty("transaction")]
         public string? Transaction { get; set; }

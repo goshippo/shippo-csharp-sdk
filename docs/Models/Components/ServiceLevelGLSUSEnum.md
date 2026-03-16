@@ -10,6 +10,14 @@
 | gls_us_sds | Saturday Delivery|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelGLSUSEnum.GlsUsCps;
+```
+
 
 ## Values
 

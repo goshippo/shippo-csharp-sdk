@@ -12,12 +12,11 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class CarrierAccountChronopostCreateRequest
     {
-
         [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
+        public string Carrier { get; } = "chronopost";
 
         [JsonProperty("parameters")]
         public CarrierAccountChronopostCreateRequestParameters Parameters { get; set; } = default!;

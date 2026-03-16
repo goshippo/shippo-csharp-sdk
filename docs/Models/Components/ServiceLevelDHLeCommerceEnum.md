@@ -32,6 +32,14 @@
 | dhl_ecommerce_globalmail_packet_standard | GlobalMail Business Standard|
 
 
+## Example Usage
+
+```csharp
+using Shippo.Models.Components;
+
+var value = ServiceLevelDHLeCommerceEnum.DhlEcommerceMarketingParcelExpedited;
+```
+
 
 ## Values
 

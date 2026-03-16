@@ -11,42 +11,41 @@ namespace Shippo.Models.Requests
 {
     using Shippo.Models.Components;
     using Shippo.Utils;
-    
+
     public class ListTransactionsRequest
     {
-
         /// <summary>
-        /// Filter by rate ID
+        /// Filter by rate ID.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=rate")]
         public string? Rate { get; set; }
 
         /// <summary>
-        /// Filter by object status
+        /// Filter by object status.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=object_status")]
         public TransactionStatusEnum? ObjectStatus { get; set; }
 
         /// <summary>
-        /// Filter by tracking status
+        /// Filter by tracking status.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=tracking_status")]
         public TrackingStatusEnum? TrackingStatus { get; set; }
 
         /// <summary>
-        /// The page number you want to select
+        /// The page number you want to select.
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=page")]
         public long? Page { get; set; } = 1;
 
         /// <summary>
-        /// The number of results to return per page (max 100)
+        /// The number of results to return per page (max 100).
         /// </summary>
         [SpeakeasyMetadata("queryParam:style=form,explode=true,name=results")]
         public long? Results { get; set; } = 25;
 
         /// <summary>
-        /// Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.
+        /// Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide.
         /// </summary>
         [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
         public string? ShippoApiVersion { get; set; }
