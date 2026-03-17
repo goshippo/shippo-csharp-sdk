@@ -40,16 +40,16 @@ namespace Shippo.Models.Components
         [JsonProperty("shipment_date")]
         public string? ShipmentDate { get; set; }
 
-        [JsonProperty("address_from", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("address_from")]
         public AddressFrom AddressFrom { get; set; } = default!;
 
-        [JsonProperty("address_return", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("address_return")]
         public AddressReturn? AddressReturn { get; set; }
 
-        [JsonProperty("address_to", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("address_to")]
         public AddressTo AddressTo { get; set; } = default!;
 
-        [JsonProperty("customs_declaration", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("customs_declaration")]
         public ShipmentCreateRequestCustomsDeclaration? CustomsDeclaration { get; set; }
 
         [JsonProperty("async")]

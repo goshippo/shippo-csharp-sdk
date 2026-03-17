@@ -16,15 +16,15 @@ namespace Shippo.Models.Requests
     {
 
         /// <summary>
-        /// Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.
-        /// </summary>
-        [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
-        public string? ShippoApiVersion { get; set; }
-
-        /// <summary>
         /// Manifest details and contact info.
         /// </summary>
         [SpeakeasyMetadata("request:mediaType=application/json")]
         public ManifestCreateRequest ManifestCreateRequest { get; set; } = default!;
+
+        /// <summary>
+        /// Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.
+        /// </summary>
+        [SpeakeasyMetadata("header:style=simple,explode=false,name=SHIPPO-API-VERSION")]
+        public string? ShippoApiVersion { get; set; }
     }
 }

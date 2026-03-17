@@ -1,4 +1,5 @@
 # CustomsItems
+(*CustomsItems*)
 
 ## Overview
 
@@ -16,19 +17,20 @@ Returns a list all customs items objects.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListCustomsItems" method="get" path="/customs/items" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 var res = await sdk.CustomsItems.ListAsync(
     page: 1,
-    results: 25
+    results: 25,
+    shippoApiVersion: "2018-02-08"
 );
 
 // handle response
@@ -58,28 +60,31 @@ Creates a new customs item object.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateCustomsItem" method="post" path="/customs/items" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.CustomsItems.CreateAsync(customsItemCreateRequest: new CustomsItemCreateRequest() {
-    Description = "T-Shirt",
-    MassUnit = WeightUnitEnum.Lb,
-    Metadata = "Order ID \"123454\"",
-    NetWeight = "5",
-    OriginCountry = "<value>",
-    Quantity = 20,
-    SkuCode = "HM-123",
-    HsCode = "0901.21",
-    ValueAmount = "200",
-    ValueCurrency = "USD",
-});
+var res = await sdk.CustomsItems.CreateAsync(
+    customsItemCreateRequest: new CustomsItemCreateRequest() {
+        Description = "T-Shirt",
+        MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        Metadata = "Order ID \"123454\"",
+        NetWeight = "5",
+        OriginCountry = "<value>",
+        Quantity = 20,
+        SkuCode = "HM-123",
+        HsCode = "0901.21",
+        ValueAmount = "200",
+        ValueCurrency = "USD",
+    },
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -107,19 +112,20 @@ Returns an existing customs item using an object ID
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetCustomsItem" method="get" path="/customs/items/{CustomsItemId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 var res = await sdk.CustomsItems.GetAsync(
     customsItemId: "<id>",
-    page: 1
+    page: 1,
+    shippoApiVersion: "2018-02-08"
 );
 
 // handle response

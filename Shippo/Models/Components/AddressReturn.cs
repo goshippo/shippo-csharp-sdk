@@ -9,24 +9,26 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
+    using System;
+    
 
     public class AddressReturnType
     {
         private AddressReturnType(string value) { Value = value; }
 
         public string Value { get; private set; }
-
         public static AddressReturnType AddressCreateRequest { get { return new AddressReturnType("AddressCreateRequest"); } }
-
+        
         public static AddressReturnType Str { get { return new AddressReturnType("str"); } }
+        
+        public static AddressReturnType Null { get { return new AddressReturnType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(AddressReturnType v) { return v.Value; }
@@ -34,6 +36,7 @@ namespace Shippo.Models.Components
             switch(v) {
                 case "AddressCreateRequest": return AddressCreateRequest;
                 case "str": return Str;
+                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for AddressReturnType");
             }
         }
@@ -54,10 +57,8 @@ namespace Shippo.Models.Components
 
 
     [JsonConverter(typeof(AddressReturn.AddressReturnConverter))]
-    public class AddressReturn
-    {
-        public AddressReturn(AddressReturnType type)
-        {
+    public class AddressReturn {
+        public AddressReturn(AddressReturnType type) {
             Type = type;
         }
 
@@ -68,16 +69,17 @@ namespace Shippo.Models.Components
         public string? Str { get; set; }
 
         public AddressReturnType Type { get; set; }
-        public static AddressReturn CreateAddressCreateRequest(AddressCreateRequest addressCreateRequest)
-        {
+
+
+        public static AddressReturn CreateAddressCreateRequest(AddressCreateRequest addressCreateRequest) {
             AddressReturnType typ = AddressReturnType.AddressCreateRequest;
 
             AddressReturn res = new AddressReturn(typ);
             res.AddressCreateRequest = addressCreateRequest;
             return res;
         }
-        public static AddressReturn CreateStr(string str)
-        {
+
+        public static AddressReturn CreateStr(string str) {
             AddressReturnType typ = AddressReturnType.Str;
 
             AddressReturn res = new AddressReturn(typ);
@@ -85,20 +87,26 @@ namespace Shippo.Models.Components
             return res;
         }
 
+        public static AddressReturn CreateNull() {
+            AddressReturnType typ = AddressReturnType.Null;
+            return new AddressReturn(typ);
+        }
+
         public class AddressReturnConverter : JsonConverter
         {
+
             public override bool CanConvert(System.Type objectType) => objectType == typeof(AddressReturn);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                if (reader.TokenType == JsonToken.Null)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    throw new InvalidOperationException("Received unexpected null JSON value");
+                    return null;
                 }
 
-                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -153,24 +161,27 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Unexpected null JSON value.");
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
                 }
-
                 AddressReturn res = (AddressReturn)value;
-
+                if (AddressReturnType.FromString(res.Type).Equals(AddressReturnType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
                 if (res.AddressCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.AddressCreateRequest));
                     return;
                 }
-
                 if (res.Str != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Str));
                     return;
                 }
+
             }
 
         }

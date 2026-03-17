@@ -9,24 +9,26 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
+    using System;
+    
 
     public class UserParcelTemplateCreateRequestType
     {
         private UserParcelTemplateCreateRequestType(string value) { Value = value; }
 
         public string Value { get; private set; }
-
         public static UserParcelTemplateCreateRequestType UserParcelTemplateWithCarrierTemplateCreateRequest { get { return new UserParcelTemplateCreateRequestType("UserParcelTemplateWithCarrierTemplateCreateRequest"); } }
-
+        
         public static UserParcelTemplateCreateRequestType UserParcelTemplateWithoutCarrierTemplateCreateRequest { get { return new UserParcelTemplateCreateRequestType("UserParcelTemplateWithoutCarrierTemplateCreateRequest"); } }
+        
+        public static UserParcelTemplateCreateRequestType Null { get { return new UserParcelTemplateCreateRequestType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(UserParcelTemplateCreateRequestType v) { return v.Value; }
@@ -34,6 +36,7 @@ namespace Shippo.Models.Components
             switch(v) {
                 case "UserParcelTemplateWithCarrierTemplateCreateRequest": return UserParcelTemplateWithCarrierTemplateCreateRequest;
                 case "UserParcelTemplateWithoutCarrierTemplateCreateRequest": return UserParcelTemplateWithoutCarrierTemplateCreateRequest;
+                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for UserParcelTemplateCreateRequestType");
             }
         }
@@ -54,10 +57,8 @@ namespace Shippo.Models.Components
 
 
     [JsonConverter(typeof(UserParcelTemplateCreateRequest.UserParcelTemplateCreateRequestConverter))]
-    public class UserParcelTemplateCreateRequest
-    {
-        public UserParcelTemplateCreateRequest(UserParcelTemplateCreateRequestType type)
-        {
+    public class UserParcelTemplateCreateRequest {
+        public UserParcelTemplateCreateRequest(UserParcelTemplateCreateRequestType type) {
             Type = type;
         }
 
@@ -68,16 +69,17 @@ namespace Shippo.Models.Components
         public UserParcelTemplateWithoutCarrierTemplateCreateRequest? UserParcelTemplateWithoutCarrierTemplateCreateRequest { get; set; }
 
         public UserParcelTemplateCreateRequestType Type { get; set; }
-        public static UserParcelTemplateCreateRequest CreateUserParcelTemplateWithCarrierTemplateCreateRequest(UserParcelTemplateWithCarrierTemplateCreateRequest userParcelTemplateWithCarrierTemplateCreateRequest)
-        {
+
+
+        public static UserParcelTemplateCreateRequest CreateUserParcelTemplateWithCarrierTemplateCreateRequest(UserParcelTemplateWithCarrierTemplateCreateRequest userParcelTemplateWithCarrierTemplateCreateRequest) {
             UserParcelTemplateCreateRequestType typ = UserParcelTemplateCreateRequestType.UserParcelTemplateWithCarrierTemplateCreateRequest;
 
             UserParcelTemplateCreateRequest res = new UserParcelTemplateCreateRequest(typ);
             res.UserParcelTemplateWithCarrierTemplateCreateRequest = userParcelTemplateWithCarrierTemplateCreateRequest;
             return res;
         }
-        public static UserParcelTemplateCreateRequest CreateUserParcelTemplateWithoutCarrierTemplateCreateRequest(UserParcelTemplateWithoutCarrierTemplateCreateRequest userParcelTemplateWithoutCarrierTemplateCreateRequest)
-        {
+
+        public static UserParcelTemplateCreateRequest CreateUserParcelTemplateWithoutCarrierTemplateCreateRequest(UserParcelTemplateWithoutCarrierTemplateCreateRequest userParcelTemplateWithoutCarrierTemplateCreateRequest) {
             UserParcelTemplateCreateRequestType typ = UserParcelTemplateCreateRequestType.UserParcelTemplateWithoutCarrierTemplateCreateRequest;
 
             UserParcelTemplateCreateRequest res = new UserParcelTemplateCreateRequest(typ);
@@ -85,20 +87,26 @@ namespace Shippo.Models.Components
             return res;
         }
 
+        public static UserParcelTemplateCreateRequest CreateNull() {
+            UserParcelTemplateCreateRequestType typ = UserParcelTemplateCreateRequestType.Null;
+            return new UserParcelTemplateCreateRequest(typ);
+        }
+
         public class UserParcelTemplateCreateRequestConverter : JsonConverter
         {
+
             public override bool CanConvert(System.Type objectType) => objectType == typeof(UserParcelTemplateCreateRequest);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                if (reader.TokenType == JsonToken.Null)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    throw new InvalidOperationException("Received unexpected null JSON value");
+                    return null;
                 }
 
-                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -166,24 +174,27 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Unexpected null JSON value.");
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
                 }
-
                 UserParcelTemplateCreateRequest res = (UserParcelTemplateCreateRequest)value;
-
+                if (UserParcelTemplateCreateRequestType.FromString(res.Type).Equals(UserParcelTemplateCreateRequestType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
                 if (res.UserParcelTemplateWithCarrierTemplateCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.UserParcelTemplateWithCarrierTemplateCreateRequest));
                     return;
                 }
-
                 if (res.UserParcelTemplateWithoutCarrierTemplateCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.UserParcelTemplateWithoutCarrierTemplateCreateRequest));
                     return;
                 }
+
             }
 
         }

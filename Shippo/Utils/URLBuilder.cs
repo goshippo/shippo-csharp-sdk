@@ -17,7 +17,7 @@ namespace Shippo.Utils
 
     internal static class URLBuilder
     {
-        public static string Build(string baseUrl, string relativeUrl, object? request, List<string>? allowEmptyValue = null)
+        public static string Build(string baseUrl, string relativeUrl, object? request)
         {
             var url = baseUrl;
 
@@ -37,7 +37,7 @@ namespace Shippo.Utils
             var parameters = GetPathParameters(request);
             url = ReplaceParameters(url, parameters);
 
-            var queryParams = SerializeQueryParams(TrySerializeQueryParams(request, allowEmptyValue));
+            var queryParams = SerializeQueryParams(TrySerializeQueryParams(request));
             if (queryParams != "")
             {
                 url += $"?{queryParams}";
@@ -55,7 +55,7 @@ namespace Shippo.Utils
         {
             foreach (var key in parameters.Keys)
             {
-                url = url.Replace($"{{{key}}}", Uri.EscapeDataString(parameters[key]));
+                url = url.Replace($"{{{key}}}", parameters[key]);
             }
 
             return url;
@@ -68,7 +68,7 @@ namespace Shippo.Utils
             {
                 foreach (var value in queryParams[key])
                 {
-                    queries.Add($"{key}={WebUtility.UrlEncode(Utilities.ToString(value))}");
+                    queries.Add($"{key}={value}");
                 }
             }
 
@@ -90,6 +90,10 @@ namespace Shippo.Utils
             {
                 var val = prop.GetValue(request);
 
+                if (val == null)
+                {
+                    continue;
+                }
 
                 if (prop.GetCustomAttribute<SpeakeasyMetadata>()?.GetRequestMetadata() != null)
                 {
@@ -103,13 +107,6 @@ namespace Shippo.Utils
                     continue;
                 }
 
-                // Handle null values and empty arrays as empty query parameters
-                if (val == null || (Utilities.IsList(val) && ((IList)val).Count == 0))
-                {
-                    parameters.Add(metadata.Name ?? prop.Name, "");
-                    continue;
-                }
-
                 if (metadata.Serialization != null)
                 {
                     switch (metadata.Serialization)
@@ -117,7 +114,7 @@ namespace Shippo.Utils
                         case "json":
                             parameters.Add(
                                 metadata.Name ?? prop.Name,
-                                Utilities.SerializeJSON(val)
+                                WebUtility.UrlEncode(Utilities.SerializeJSON(val))
                             );
                             break;
                         default:
@@ -150,7 +147,7 @@ namespace Shippo.Utils
             return parameters;
         }
 
-        private static Dictionary<string, List<string>> TrySerializeQueryParams(object? request, List<string>? allowEmptyValue = null)
+        private static Dictionary<string, List<string>> TrySerializeQueryParams(object? request)
         {
             var parameters = new Dictionary<string, List<string>>();
 
@@ -164,20 +161,9 @@ namespace Shippo.Utils
             foreach (var prop in props)
             {
                 var val = prop.GetValue(request);
-                var metadata = prop.GetCustomAttribute<SpeakeasyMetadata>()?.GetQueryParamMetadata();
-                
+
                 if (val == null)
                 {
-                    // If this parameter is in allowEmptyValue and val is null, include it as empty
-                    if (metadata != null && allowEmptyValue?.Contains(metadata.Name ?? prop.Name) == true)
-                    {
-                        var paramName = metadata.Name ?? prop.Name;
-                        if (!parameters.ContainsKey(paramName))
-                        {
-                            parameters.Add(paramName, new List<string>());
-                        }
-                        parameters[paramName].Add("");
-                    }
                     continue;
                 }
 
@@ -186,6 +172,7 @@ namespace Shippo.Utils
                     continue;
                 }
 
+                var metadata = prop.GetCustomAttribute<SpeakeasyMetadata>()?.GetQueryParamMetadata();
                 if (metadata == null)
                 {
                     continue;
@@ -220,8 +207,7 @@ namespace Shippo.Utils
                                 metadata.Name ?? prop.Name,
                                 val,
                                 metadata.Explode,
-                                ",",
-                                allowEmptyValue
+                                ","
                             );
                             foreach (var key in formParams.Keys)
                             {
@@ -259,8 +245,7 @@ namespace Shippo.Utils
                                 metadata.Name ?? prop.Name,
                                 val,
                                 metadata.Explode,
-                                "|",
-                                allowEmptyValue
+                                "|"
                             );
                             foreach (var key in pipeParams.Keys)
                             {
@@ -373,8 +358,7 @@ namespace Shippo.Utils
             string parentName,
             object value,
             bool explode,
-            string delimiter,
-            List<string>? allowEmptyValue = null
+            string delimiter
         )
         {
             var parameters = new Dictionary<string, List<string>>();
@@ -474,45 +458,32 @@ namespace Shippo.Utils
             {
                 var values = new List<string>();
                 var items = new List<string>();
-                var list = (IList)value;
 
-                // Handle empty arrays - add empty parameter if allowEmptyValue includes this parameter
-                if (list.Count == 0 && allowEmptyValue?.Contains(parentName) == true)
+                foreach (var item in (IList)value)
+                {
+                    if (explode)
+                    {
+                        values.Add(Utilities.ValueToString(item));
+                    }
+                    else
+                    {
+                        items.Add(Utilities.ValueToString(item));
+                    }
+                }
+
+                if (items.Count > 0)
+                {
+                    values.Add(string.Join(delimiter, items));
+                }
+
+                foreach (var val in values)
                 {
                     if (!parameters.ContainsKey(parentName))
                     {
                         parameters.Add(parentName, new List<string>());
                     }
-                    parameters[parentName].Add("");
-                }
-                else
-                {
-                    foreach (var item in list)
-                    {
-                        if (explode)
-                        {
-                            values.Add(Utilities.ValueToString(item));
-                        }
-                        else
-                        {
-                            items.Add(Utilities.ValueToString(item));
-                        }
-                    }
 
-                    if (items.Count > 0)
-                    {
-                        values.Add(string.Join(delimiter, items));
-                    }
-
-                    foreach (var val in values)
-                    {
-                        if (!parameters.ContainsKey(parentName))
-                        {
-                            parameters.Add(parentName, new List<string>());
-                        }
-
-                        parameters[parentName].Add(val);
-                    }
+                    parameters[parentName].Add(val);
                 }
             }
             else
@@ -522,16 +493,7 @@ namespace Shippo.Utils
                     parameters.Add(parentName, new List<string>());
                 }
 
-                // Handle null values and empty strings for allowEmptyValue parameters
-                var stringValue = Utilities.ValueToString(value);
-                if ((value == null || stringValue == "") && allowEmptyValue?.Contains(parentName) == true)
-                {
-                    parameters[parentName].Add("");
-                }
-                else
-                {
-                    parameters[parentName].Add(stringValue);
-                }
+                parameters[parentName].Add(Utilities.ValueToString(value));
             }
 
             return parameters;

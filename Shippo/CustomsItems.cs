@@ -14,13 +14,13 @@ namespace Shippo
     using Shippo.Models.Components;
     using Shippo.Models.Errors;
     using Shippo.Models.Requests;
-    using Shippo.Utils;
     using Shippo.Utils.Retries;
-    using System;
+    using Shippo.Utils;
     using System.Collections.Generic;
-    using System.Net.Http;
     using System.Net.Http.Headers;
+    using System.Net.Http;
     using System.Threading.Tasks;
+    using System;
 
     /// <summary>
     /// Customs declarations are relevant information, including one or multiple customs items, you need to provide for customs clearance for your international shipments.
@@ -35,7 +35,7 @@ namespace Shippo
         /// Returns a list all customs items objects.
         /// </remarks>
         /// </summary>
-        Task<CustomsItemPaginatedList> ListAsync(long? page = 1, long? results = 25, string? shippoApiVersion = null);
+        Task<CustomsItemPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null);
 
         /// <summary>
         /// Create a new customs item
@@ -53,7 +53,7 @@ namespace Shippo
         /// Returns an existing customs item using an object ID
         /// </remarks>
         /// </summary>
-        Task<CustomsItem> GetAsync(string customsItemId, long? page = 1, string? shippoApiVersion = null);
+        Task<CustomsItem> GetAsync(string customsItemId, long? page = null, string? shippoApiVersion = null);
     }
 
     /// <summary>
@@ -62,18 +62,24 @@ namespace Shippo
     public class CustomsItems: ICustomsItems
     {
         public SDKConfig SDKConfiguration { get; private set; }
+        private const string _language = "csharp";
+        private const string _sdkVersion = "5.0.0-beta.12";
+        private const string _sdkGenVersion = "2.463.0";
+        private const string _openapiDocVersion = "2018-02-08";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.12 2.463.0 2018-02-08 Shippo";
+        private string _serverUrl = "";
+        private ISpeakeasyHttpClient _client;
+        private Func<Shippo.Models.Components.Security>? _securitySource;
 
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
-
-        public CustomsItems(SDKConfig config)
+        public CustomsItems(ISpeakeasyHttpClient client, Func<Shippo.Models.Components.Security>? securitySource, string serverUrl, SDKConfig config)
         {
+            _client = client;
+            _securitySource = securitySource;
+            _serverUrl = serverUrl;
             SDKConfiguration = config;
         }
 
-        public async Task<CustomsItemPaginatedList> ListAsync(long? page = 1, long? results = 25, string? shippoApiVersion = null)
+        public async Task<CustomsItemPaginatedList> ListAsync(long? page = null, long? results = null, string? shippoApiVersion = null)
         {
             var request = new ListCustomsItemsRequest()
             {
@@ -84,25 +90,25 @@ namespace Shippo
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
             
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/customs/items", request, null);
+            var urlString = URLBuilder.Build(baseUrl, "/customs/items", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            httpRequest.Headers.Add("user-agent", _userAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            if (SDKConfiguration.SecuritySource != null)
+            if (_securitySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "ListCustomsItems", null, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext("ListCustomsItems", null, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -135,32 +141,18 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    CustomsItemPaginatedList obj;
-                    try
-                    {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<CustomsItemPaginatedList>(httpResponseBody, NullValueHandling.Include);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new ResponseValidationException("Failed to deserialize response body into CustomsItemPaginatedList.", httpResponse, httpResponseBody, ex);
-                    }
-
+                    var obj = ResponseBodyDeserializer.Deserialize<CustomsItemPaginatedList>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Include);
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
-            }
-            else if(responseStatusCode >= 500 && responseStatusCode < 600)
-            {
-                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
         }
 
         public async Task<CustomsItem> CreateAsync(CustomsItemCreateRequest customsItemCreateRequest, string? shippoApiVersion = null)
@@ -177,7 +169,7 @@ namespace Shippo
             var urlString = baseUrl + "/customs/items";
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Post, urlString);
-            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            httpRequest.Headers.Add("user-agent", _userAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
             var serializedBody = RequestBodySerializer.Serialize(request, "CustomsItemCreateRequest", "json", false, false);
@@ -186,19 +178,19 @@ namespace Shippo
                 httpRequest.Content = serializedBody;
             }
 
-            if (SDKConfiguration.SecuritySource != null)
+            if (_securitySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "CreateCustomsItem", null, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext("CreateCustomsItem", null, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -231,35 +223,21 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    CustomsItem obj;
-                    try
-                    {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<CustomsItem>(httpResponseBody, NullValueHandling.Ignore);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new ResponseValidationException("Failed to deserialize response body into CustomsItem.", httpResponse, httpResponseBody, ex);
-                    }
-
+                    var obj = ResponseBodyDeserializer.Deserialize<CustomsItem>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
-            }
-            else if(responseStatusCode >= 500 && responseStatusCode < 600)
-            {
-                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
         }
 
-        public async Task<CustomsItem> GetAsync(string customsItemId, long? page = 1, string? shippoApiVersion = null)
+        public async Task<CustomsItem> GetAsync(string customsItemId, long? page = null, string? shippoApiVersion = null)
         {
             var request = new GetCustomsItemRequest()
             {
@@ -270,25 +248,25 @@ namespace Shippo
             request.ShippoApiVersion ??= SDKConfiguration.ShippoApiVersion;
             
             string baseUrl = this.SDKConfiguration.GetTemplatedServerUrl();
-            var urlString = URLBuilder.Build(baseUrl, "/customs/items/{CustomsItemId}", request, null);
+            var urlString = URLBuilder.Build(baseUrl, "/customs/items/{CustomsItemId}", request);
 
             var httpRequest = new HttpRequestMessage(HttpMethod.Get, urlString);
-            httpRequest.Headers.Add("user-agent", SDKConfiguration.UserAgent);
+            httpRequest.Headers.Add("user-agent", _userAgent);
             HeaderSerializer.PopulateHeaders(ref httpRequest, request);
 
-            if (SDKConfiguration.SecuritySource != null)
+            if (_securitySource != null)
             {
-                httpRequest = new SecurityMetadata(SDKConfiguration.SecuritySource).Apply(httpRequest);
+                httpRequest = new SecurityMetadata(_securitySource).Apply(httpRequest);
             }
 
-            var hookCtx = new HookContext(SDKConfiguration, baseUrl, "GetCustomsItem", null, SDKConfiguration.SecuritySource);
+            var hookCtx = new HookContext("GetCustomsItem", null, _securitySource);
 
             httpRequest = await this.SDKConfiguration.Hooks.BeforeRequestAsync(new BeforeRequestContext(hookCtx), httpRequest);
 
             HttpResponseMessage httpResponse;
             try
             {
-                httpResponse = await SDKConfiguration.Client.SendAsync(httpRequest);
+                httpResponse = await _client.SendAsync(httpRequest);
                 int _statusCode = (int)httpResponse.StatusCode;
 
                 if (_statusCode == 400 || _statusCode >= 400 && _statusCode < 500 || _statusCode >= 500 && _statusCode < 600)
@@ -321,32 +299,18 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var httpResponseBody = await httpResponse.Content.ReadAsStringAsync();
-                    CustomsItem obj;
-                    try
-                    {
-                        obj = ResponseBodyDeserializer.DeserializeNotNull<CustomsItem>(httpResponseBody, NullValueHandling.Ignore);
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new ResponseValidationException("Failed to deserialize response body into CustomsItem.", httpResponse, httpResponseBody, ex);
-                    }
-
+                    var obj = ResponseBodyDeserializer.Deserialize<CustomsItem>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
                     return obj!;
                 }
 
-                throw new Models.Errors.SDKException("Unknown content type received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+                throw new Models.Errors.SDKException("Unknown content type received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
-            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500)
+            else if(responseStatusCode == 400 || responseStatusCode >= 400 && responseStatusCode < 500 || responseStatusCode >= 500 && responseStatusCode < 600)
             {
-                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
-            }
-            else if(responseStatusCode >= 500 && responseStatusCode < 600)
-            {
-                throw new Models.Errors.SDKException("API error occurred", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+                throw new Models.Errors.SDKException("API error occurred", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
             }
 
-            throw new Models.Errors.SDKException("Unknown status code received", httpResponse, await httpResponse.Content.ReadAsStringAsync());
+            throw new Models.Errors.SDKException("Unknown status code received", responseStatusCode, await httpResponse.Content.ReadAsStringAsync(), httpResponse);
         }
     }
 }

@@ -9,24 +9,26 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
+    using System;
+    
 
     public class AddressToType
     {
         private AddressToType(string value) { Value = value; }
 
         public string Value { get; private set; }
-
         public static AddressToType AddressCreateRequest { get { return new AddressToType("AddressCreateRequest"); } }
-
+        
         public static AddressToType Str { get { return new AddressToType("str"); } }
+        
+        public static AddressToType Null { get { return new AddressToType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(AddressToType v) { return v.Value; }
@@ -34,6 +36,7 @@ namespace Shippo.Models.Components
             switch(v) {
                 case "AddressCreateRequest": return AddressCreateRequest;
                 case "str": return Str;
+                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for AddressToType");
             }
         }
@@ -54,10 +57,8 @@ namespace Shippo.Models.Components
 
 
     [JsonConverter(typeof(AddressTo.AddressToConverter))]
-    public class AddressTo
-    {
-        public AddressTo(AddressToType type)
-        {
+    public class AddressTo {
+        public AddressTo(AddressToType type) {
             Type = type;
         }
 
@@ -68,16 +69,17 @@ namespace Shippo.Models.Components
         public string? Str { get; set; }
 
         public AddressToType Type { get; set; }
-        public static AddressTo CreateAddressCreateRequest(AddressCreateRequest addressCreateRequest)
-        {
+
+
+        public static AddressTo CreateAddressCreateRequest(AddressCreateRequest addressCreateRequest) {
             AddressToType typ = AddressToType.AddressCreateRequest;
 
             AddressTo res = new AddressTo(typ);
             res.AddressCreateRequest = addressCreateRequest;
             return res;
         }
-        public static AddressTo CreateStr(string str)
-        {
+
+        public static AddressTo CreateStr(string str) {
             AddressToType typ = AddressToType.Str;
 
             AddressTo res = new AddressTo(typ);
@@ -85,20 +87,26 @@ namespace Shippo.Models.Components
             return res;
         }
 
+        public static AddressTo CreateNull() {
+            AddressToType typ = AddressToType.Null;
+            return new AddressTo(typ);
+        }
+
         public class AddressToConverter : JsonConverter
         {
+
             public override bool CanConvert(System.Type objectType) => objectType == typeof(AddressTo);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                if (reader.TokenType == JsonToken.Null)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    throw new InvalidOperationException("Received unexpected null JSON value");
+                    return null;
                 }
 
-                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -153,24 +161,27 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Unexpected null JSON value.");
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
                 }
-
                 AddressTo res = (AddressTo)value;
-
+                if (AddressToType.FromString(res.Type).Equals(AddressToType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
                 if (res.AddressCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.AddressCreateRequest));
                     return;
                 }
-
                 if (res.Str != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Str));
                     return;
                 }
+
             }
 
         }

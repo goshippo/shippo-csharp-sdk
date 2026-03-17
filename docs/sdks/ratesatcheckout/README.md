@@ -1,4 +1,5 @@
 # RatesAtCheckout
+(*RatesAtCheckout*)
 
 ## Overview
 
@@ -27,29 +28,62 @@ template or a fully formed user parcel template object as the parcel value.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateLiveRate" method="post" path="/live-rates" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.RatesAtCheckout.CreateAsync(liveRateCreateRequest: new LiveRateCreateRequest() {
-    AddressFrom = LiveRateCreateRequestAddressFrom.CreateStr(
-        "<value>"
-    ),
-    AddressTo = LiveRateCreateRequestAddressTo.CreateStr(
-        "<value>"
-    ),
-    LineItems = new List<LineItem>() {},
-    Parcel = LiveRateCreateRequestParcel.CreateStr(
-        "5df144dca289442cv7a06"
-    ),
-});
+var res = await sdk.RatesAtCheckout.CreateAsync(
+    liveRateCreateRequest: new LiveRateCreateRequest() {
+        AddressFrom = LiveRateCreateRequestAddressFrom.CreateStr(
+            "<value>"
+        ),
+        AddressTo = LiveRateCreateRequestAddressTo.CreateAddressCompleteCreateRequest(
+            new AddressCompleteCreateRequest() {
+                Name = "Shwan Ippotle",
+                Company = "Shippo",
+                Street1 = "215 Clayton St.",
+                Street3 = "",
+                StreetNo = "",
+                City = "San Francisco",
+                State = "CA",
+                Zip = "94117",
+                Country = "US",
+                Phone = "+1 555 341 9393",
+                Email = "shippotle@shippo.com",
+                IsResidential = true,
+                Metadata = "Customer ID 123456",
+                Validate = true,
+            }
+        ),
+        LineItems = new List<LineItem>() {
+            new LineItem() {
+                Currency = "USD",
+                ManufactureCountry = "US",
+                MaxDeliveryTime = System.DateTime.Parse("2016-07-23T00:00:00Z"),
+                MaxShipTime = System.DateTime.Parse("2016-07-23T00:00:00Z"),
+                Quantity = 20,
+                Sku = "HM-123",
+                Title = "Hippo Magazines",
+                TotalPrice = "12.1",
+                VariantTitle = "June Edition",
+                Weight = "0.4",
+                WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+                ObjectId = "abf7d5675d744b6ea9fdb6f796b28f28",
+            },
+        },
+        Parcel = LiveRateCreateRequestParcel.CreateStr(
+            "5df144dca289442cv7a06"
+        ),
+    },
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -77,17 +111,17 @@ Retrieve and display the currently configured default parcel template for live r
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetDefaultParcelTemplate" method="get" path="/live-rates/settings/parcel-template" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.RatesAtCheckout.GetDefaultParcelTemplateAsync();
+var res = await sdk.RatesAtCheckout.GetDefaultParcelTemplateAsync(shippoApiVersion: "2018-02-08");
 
 // handle response
 ```
@@ -114,19 +148,22 @@ Update the currently configured default parcel template for live rates. The obje
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="UpdateDefaultParcelTemplate" method="put" path="/live-rates/settings/parcel-template" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.RatesAtCheckout.UpdateDefaultParcelTemplateAsync(defaultParcelTemplateUpdateRequest: new DefaultParcelTemplateUpdateRequest() {
-    ObjectId = "b958d3690bb04bb8b2986724872750f5",
-});
+var res = await sdk.RatesAtCheckout.UpdateDefaultParcelTemplateAsync(
+    shippoApiVersion: "2018-02-08",
+    defaultParcelTemplateUpdateRequest: new DefaultParcelTemplateUpdateRequest() {
+        ObjectId = "b958d3690bb04bb8b2986724872750f5",
+    }
+);
 
 // handle response
 ```
@@ -154,17 +191,17 @@ Clears the currently configured default parcel template for live rates.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="DeleteDefaultParcelTemplate" method="delete" path="/live-rates/settings/parcel-template" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-await sdk.RatesAtCheckout.DeleteDefaultParcelTemplateAsync();
+await sdk.RatesAtCheckout.DeleteDefaultParcelTemplateAsync(shippoApiVersion: "2018-02-08");
 
 // handle response
 ```

@@ -1,4 +1,5 @@
 # Rates
+(*Rates*)
 
 ## Overview
 
@@ -16,17 +17,20 @@ Returns an existing rate using a rate object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetRate" method="get" path="/rates/{RateId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Rates.GetAsync(rateId: "<id>");
+var res = await sdk.Rates.GetAsync(
+    rateId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -54,15 +58,14 @@ Returns a paginated list of rates associated with a shipment
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListShipmentRates" method="get" path="/shipments/{ShipmentId}/rates" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 ListShipmentRatesRequest req = new ListShipmentRatesRequest() {
@@ -102,19 +105,19 @@ Note: re-requesting the rates with a different currency code will re-queue the s
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListShipmentRatesByCurrencyCode" method="get" path="/shipments/{ShipmentId}/rates/{CurrencyCode}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 ListShipmentRatesByCurrencyCodeRequest req = new ListShipmentRatesByCurrencyCodeRequest() {
     ShipmentId = "<id>",
+    CurrencyCode = "USD",
 };
 
 var res = await sdk.Rates.ListShipmentRatesByCurrencyCodeAsync(req);

@@ -1,4 +1,5 @@
 # Orders
+(*Orders*)
 
 ## Overview
 
@@ -19,23 +20,22 @@ Returns a list of all order objects.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListOrders" method="get" path="/orders" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
 using System.Collections.Generic;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 ListOrdersRequest req = new ListOrdersRequest() {
     OrderStatus = new List<OrderStatusEnum>() {
-        OrderStatusEnum.Paid,
+        Shippo.Models.Components.OrderStatusEnum.Paid,
     },
-    ShopApp = OrderShopAppEnum.Shippo,
+    ShopApp = Shippo.Models.Components.OrderShopAppEnum.Shippo,
 };
 
 var res = await sdk.Orders.ListAsync(req);
@@ -65,80 +65,82 @@ Creates a new order object.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateOrder" method="post" path="/orders" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
-using System;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Orders.CreateAsync(orderCreateRequest: new OrderCreateRequest() {
-    Currency = "USD",
-    Notes = "This customer is a VIP",
-    OrderNumber = "#1068",
-    OrderStatus = OrderStatusEnum.Paid,
-    PlacedAt = "2016-09-23T01:28:12Z",
-    ShippingCost = "12.83",
-    ShippingCostCurrency = "USD",
-    ShippingMethod = "USPS First Class Package",
-    SubtotalPrice = "12.1",
-    TotalPrice = "24.93",
-    TotalTax = "0.0",
-    Weight = "0.4",
-    WeightUnit = WeightUnitEnum.Lb,
-    FromAddress = new AddressCreateRequest() {
-        Name = "Shwan Ippotle",
-        Company = "Shippo",
-        Street1 = "215 Clayton St.",
-        Street3 = "",
-        StreetNo = "",
-        City = "San Francisco",
-        State = "CA",
-        Zip = "94117",
-        Country = "US",
-        Phone = "+1 555 341 9393",
-        Email = "shippotle@shippo.com",
-        IsResidential = true,
-        Metadata = "Customer ID 123456",
-        Validate = true,
-    },
-    ToAddress = new AddressCreateRequest() {
-        Name = "Shwan Ippotle",
-        Company = "Shippo",
-        Street1 = "215 Clayton St.",
-        Street3 = "",
-        StreetNo = "",
-        City = "San Francisco",
-        State = "CA",
-        Zip = "94117",
-        Country = "US",
-        Phone = "+1 555 341 9393",
-        Email = "shippotle@shippo.com",
-        IsResidential = true,
-        Metadata = "Customer ID 123456",
-        Validate = true,
-    },
-    LineItems = new List<LineItemBase>() {
-        new LineItemBase() {
-            Currency = "USD",
-            ManufactureCountry = "US",
-            MaxDeliveryTime = System.DateTime.Parse("2016-07-23T00:00:00Z"),
-            MaxShipTime = System.DateTime.Parse("2016-07-23T00:00:00Z"),
-            Quantity = 20,
-            Sku = "HM-123",
-            Title = "Hippo Magazines",
-            TotalPrice = "12.1",
-            VariantTitle = "June Edition",
-            Weight = "0.4",
-            WeightUnit = WeightUnitEnum.Lb,
+var res = await sdk.Orders.CreateAsync(
+    orderCreateRequest: new OrderCreateRequest() {
+        Currency = "USD",
+        Notes = "This customer is a VIP",
+        OrderNumber = "#1068",
+        OrderStatus = Shippo.Models.Components.OrderStatusEnum.Paid,
+        PlacedAt = "2016-09-23T01:28:12Z",
+        ShippingCost = "12.83",
+        ShippingCostCurrency = "USD",
+        ShippingMethod = "USPS First Class Package",
+        SubtotalPrice = "12.1",
+        TotalPrice = "24.93",
+        TotalTax = "0.0",
+        Weight = "0.4",
+        WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        FromAddress = new AddressCreateRequest() {
+            Name = "Shwan Ippotle",
+            Company = "Shippo",
+            Street1 = "215 Clayton St.",
+            Street3 = "",
+            StreetNo = "",
+            City = "San Francisco",
+            State = "CA",
+            Zip = "94117",
+            Country = "US",
+            Phone = "+1 555 341 9393",
+            Email = "shippotle@shippo.com",
+            IsResidential = true,
+            Metadata = "Customer ID 123456",
+            Validate = true,
+        },
+        ToAddress = new AddressCreateRequest() {
+            Name = "Shwan Ippotle",
+            Company = "Shippo",
+            Street1 = "215 Clayton St.",
+            Street3 = "",
+            StreetNo = "",
+            City = "San Francisco",
+            State = "CA",
+            Zip = "94117",
+            Country = "US",
+            Phone = "+1 555 341 9393",
+            Email = "shippotle@shippo.com",
+            IsResidential = true,
+            Metadata = "Customer ID 123456",
+            Validate = true,
+        },
+        LineItems = new List<LineItemBase>() {
+            new LineItemBase() {
+                Currency = "USD",
+                ManufactureCountry = "US",
+                MaxDeliveryTime = System.DateTime.Parse("2016-07-23T00:00:00Z"),
+                MaxShipTime = System.DateTime.Parse("2016-07-23T00:00:00Z"),
+                Quantity = 20,
+                Sku = "HM-123",
+                Title = "Hippo Magazines",
+                TotalPrice = "12.1",
+                VariantTitle = "June Edition",
+                Weight = "0.4",
+                WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+            },
         },
     },
-});
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -166,17 +168,20 @@ Retrieves an existing order using an object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetOrder" method="get" path="/orders/{OrderId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Orders.GetAsync(orderId: "<id>");
+var res = await sdk.Orders.GetAsync(
+    orderId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```

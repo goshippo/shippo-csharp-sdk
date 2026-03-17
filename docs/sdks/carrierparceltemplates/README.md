@@ -1,4 +1,5 @@
 # CarrierParcelTemplates
+(*CarrierParcelTemplates*)
 
 ## Overview
 
@@ -21,17 +22,21 @@ List all carrier parcel template objects. <br> Use the following query string pa
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListCarrierParcelTemplates" method="get" path="/parcel-templates" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.CarrierParcelTemplates.ListAsync(carrier: "fedex");
+var res = await sdk.CarrierParcelTemplates.ListAsync(
+    include: Shippo.Models.Requests.Include.Enabled,
+    carrier: "fedex",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -60,17 +65,20 @@ Fetches the parcel template information for a specific carrier parcel template, 
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetCarrierParcelTemplate" method="get" path="/parcel-templates/{CarrierParcelTemplateToken}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.CarrierParcelTemplates.GetAsync(carrierParcelTemplateToken: "<value>");
+var res = await sdk.CarrierParcelTemplates.GetAsync(
+    carrierParcelTemplateToken: "<value>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```

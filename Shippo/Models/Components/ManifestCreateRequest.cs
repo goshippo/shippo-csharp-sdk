@@ -43,7 +43,7 @@ namespace Shippo.Models.Components
         [JsonProperty("transactions")]
         public List<string>? Transactions { get; set; }
 
-        [JsonProperty("address_from", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("address_from")]
         public ManifestCreateRequestAddressFrom AddressFrom { get; set; } = default!;
 
         [JsonProperty("async")]

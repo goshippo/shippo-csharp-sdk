@@ -9,24 +9,26 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
+    using System;
+    
 
     public class ReturnServiceTypeType
     {
         private ReturnServiceTypeType(string value) { Value = value; }
 
         public string Value { get; private set; }
-
         public static ReturnServiceTypeType ShipmentExtraReturnServiceTypeUPSEnum { get { return new ReturnServiceTypeType("ShipmentExtraReturnServiceTypeUPSEnum"); } }
-
+        
         public static ReturnServiceTypeType ShipmentExtraReturnServiceTypeLasershipEnum { get { return new ReturnServiceTypeType("ShipmentExtraReturnServiceTypeLasershipEnum"); } }
+        
+        public static ReturnServiceTypeType Null { get { return new ReturnServiceTypeType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(ReturnServiceTypeType v) { return v.Value; }
@@ -34,6 +36,7 @@ namespace Shippo.Models.Components
             switch(v) {
                 case "ShipmentExtraReturnServiceTypeUPSEnum": return ShipmentExtraReturnServiceTypeUPSEnum;
                 case "ShipmentExtraReturnServiceTypeLasershipEnum": return ShipmentExtraReturnServiceTypeLasershipEnum;
+                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ReturnServiceTypeType");
             }
         }
@@ -57,10 +60,8 @@ namespace Shippo.Models.Components
     /// Request additional return option for return shipments (UPS and Lasership only).
     /// </summary>
     [JsonConverter(typeof(ReturnServiceType.ReturnServiceTypeConverter))]
-    public class ReturnServiceType
-    {
-        public ReturnServiceType(ReturnServiceTypeType type)
-        {
+    public class ReturnServiceType {
+        public ReturnServiceType(ReturnServiceTypeType type) {
             Type = type;
         }
 
@@ -71,16 +72,17 @@ namespace Shippo.Models.Components
         public ShipmentExtraReturnServiceTypeLasershipEnum? ShipmentExtraReturnServiceTypeLasershipEnum { get; set; }
 
         public ReturnServiceTypeType Type { get; set; }
-        public static ReturnServiceType CreateShipmentExtraReturnServiceTypeUPSEnum(ShipmentExtraReturnServiceTypeUPSEnum shipmentExtraReturnServiceTypeUPSEnum)
-        {
+
+
+        public static ReturnServiceType CreateShipmentExtraReturnServiceTypeUPSEnum(ShipmentExtraReturnServiceTypeUPSEnum shipmentExtraReturnServiceTypeUPSEnum) {
             ReturnServiceTypeType typ = ReturnServiceTypeType.ShipmentExtraReturnServiceTypeUPSEnum;
 
             ReturnServiceType res = new ReturnServiceType(typ);
             res.ShipmentExtraReturnServiceTypeUPSEnum = shipmentExtraReturnServiceTypeUPSEnum;
             return res;
         }
-        public static ReturnServiceType CreateShipmentExtraReturnServiceTypeLasershipEnum(ShipmentExtraReturnServiceTypeLasershipEnum shipmentExtraReturnServiceTypeLasershipEnum)
-        {
+
+        public static ReturnServiceType CreateShipmentExtraReturnServiceTypeLasershipEnum(ShipmentExtraReturnServiceTypeLasershipEnum shipmentExtraReturnServiceTypeLasershipEnum) {
             ReturnServiceTypeType typ = ReturnServiceTypeType.ShipmentExtraReturnServiceTypeLasershipEnum;
 
             ReturnServiceType res = new ReturnServiceType(typ);
@@ -88,20 +90,26 @@ namespace Shippo.Models.Components
             return res;
         }
 
+        public static ReturnServiceType CreateNull() {
+            ReturnServiceTypeType typ = ReturnServiceTypeType.Null;
+            return new ReturnServiceType(typ);
+        }
+
         public class ReturnServiceTypeConverter : JsonConverter
         {
+
             public override bool CanConvert(System.Type objectType) => objectType == typeof(ReturnServiceType);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                if (reader.TokenType == JsonToken.Null)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    throw new InvalidOperationException("Received unexpected null JSON value");
+                    return null;
                 }
 
-                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -169,24 +177,27 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Unexpected null JSON value.");
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
                 }
-
                 ReturnServiceType res = (ReturnServiceType)value;
-
+                if (ReturnServiceTypeType.FromString(res.Type).Equals(ReturnServiceTypeType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
                 if (res.ShipmentExtraReturnServiceTypeUPSEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ShipmentExtraReturnServiceTypeUPSEnum));
                     return;
                 }
-
                 if (res.ShipmentExtraReturnServiceTypeLasershipEnum != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ShipmentExtraReturnServiceTypeLasershipEnum));
                     return;
                 }
+
             }
 
         }

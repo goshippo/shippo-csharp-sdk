@@ -1,4 +1,5 @@
 # TrackingStatus
+(*TrackingStatus*)
 
 ## Overview
 
@@ -24,21 +25,24 @@ Registers a webhook that will send HTTP notifications to you when the status of 
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateTrack" method="post" path="/tracks" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.TrackingStatus.CreateAsync(tracksRequest: new TracksRequest() {
-    Carrier = "usps",
-    Metadata = "Order 000123",
-    TrackingNumber = "9205590164917312751089",
-});
+var res = await sdk.TrackingStatus.CreateAsync(
+    tracksRequest: new TracksRequest() {
+        Carrier = "usps",
+        Metadata = "Order 000123",
+        TrackingNumber = "9205590164917312751089",
+    },
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -66,19 +70,20 @@ Returns the tracking status of a shipment using a carrier name and a tracking nu
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetTrack" method="get" path="/tracks/{Carrier}/{TrackingNumber}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 var res = await sdk.TrackingStatus.GetAsync(
     trackingNumber: "<value>",
-    carrier: "<value>"
+    carrier: "<value>",
+    shippoApiVersion: "2018-02-08"
 );
 
 // handle response

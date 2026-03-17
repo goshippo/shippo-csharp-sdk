@@ -9,26 +9,28 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
+    using System;
+    
 
     public class ConnectExistingOwnAccountRequestParametersType
     {
         private ConnectExistingOwnAccountRequestParametersType(string value) { Value = value; }
 
         public string Value { get; private set; }
-
         public static ConnectExistingOwnAccountRequestParametersType MapOfAny { get { return new ConnectExistingOwnAccountRequestParametersType("mapOfAny"); } }
-
+        
         public static ConnectExistingOwnAccountRequestParametersType FedExConnectExistingOwnAccountParameters { get { return new ConnectExistingOwnAccountRequestParametersType("FedExConnectExistingOwnAccountParameters"); } }
-
+        
         public static ConnectExistingOwnAccountRequestParametersType UPSConnectExistingOwnAccountParameters { get { return new ConnectExistingOwnAccountRequestParametersType("UPSConnectExistingOwnAccountParameters"); } }
+        
+        public static ConnectExistingOwnAccountRequestParametersType Null { get { return new ConnectExistingOwnAccountRequestParametersType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(ConnectExistingOwnAccountRequestParametersType v) { return v.Value; }
@@ -37,6 +39,7 @@ namespace Shippo.Models.Components
                 case "mapOfAny": return MapOfAny;
                 case "FedExConnectExistingOwnAccountParameters": return FedExConnectExistingOwnAccountParameters;
                 case "UPSConnectExistingOwnAccountParameters": return UPSConnectExistingOwnAccountParameters;
+                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ConnectExistingOwnAccountRequestParametersType");
             }
         }
@@ -57,10 +60,8 @@ namespace Shippo.Models.Components
 
 
     [JsonConverter(typeof(ConnectExistingOwnAccountRequestParameters.ConnectExistingOwnAccountRequestParametersConverter))]
-    public class ConnectExistingOwnAccountRequestParameters
-    {
-        public ConnectExistingOwnAccountRequestParameters(ConnectExistingOwnAccountRequestParametersType type)
-        {
+    public class ConnectExistingOwnAccountRequestParameters {
+        public ConnectExistingOwnAccountRequestParameters(ConnectExistingOwnAccountRequestParametersType type) {
             Type = type;
         }
 
@@ -74,24 +75,25 @@ namespace Shippo.Models.Components
         public UPSConnectExistingOwnAccountParameters? UPSConnectExistingOwnAccountParameters { get; set; }
 
         public ConnectExistingOwnAccountRequestParametersType Type { get; set; }
-        public static ConnectExistingOwnAccountRequestParameters CreateMapOfAny(Dictionary<string, object> mapOfAny)
-        {
+
+
+        public static ConnectExistingOwnAccountRequestParameters CreateMapOfAny(Dictionary<string, object> mapOfAny) {
             ConnectExistingOwnAccountRequestParametersType typ = ConnectExistingOwnAccountRequestParametersType.MapOfAny;
 
             ConnectExistingOwnAccountRequestParameters res = new ConnectExistingOwnAccountRequestParameters(typ);
             res.MapOfAny = mapOfAny;
             return res;
         }
-        public static ConnectExistingOwnAccountRequestParameters CreateFedExConnectExistingOwnAccountParameters(FedExConnectExistingOwnAccountParameters fedExConnectExistingOwnAccountParameters)
-        {
+
+        public static ConnectExistingOwnAccountRequestParameters CreateFedExConnectExistingOwnAccountParameters(FedExConnectExistingOwnAccountParameters fedExConnectExistingOwnAccountParameters) {
             ConnectExistingOwnAccountRequestParametersType typ = ConnectExistingOwnAccountRequestParametersType.FedExConnectExistingOwnAccountParameters;
 
             ConnectExistingOwnAccountRequestParameters res = new ConnectExistingOwnAccountRequestParameters(typ);
             res.FedExConnectExistingOwnAccountParameters = fedExConnectExistingOwnAccountParameters;
             return res;
         }
-        public static ConnectExistingOwnAccountRequestParameters CreateUPSConnectExistingOwnAccountParameters(UPSConnectExistingOwnAccountParameters upsConnectExistingOwnAccountParameters)
-        {
+
+        public static ConnectExistingOwnAccountRequestParameters CreateUPSConnectExistingOwnAccountParameters(UPSConnectExistingOwnAccountParameters upsConnectExistingOwnAccountParameters) {
             ConnectExistingOwnAccountRequestParametersType typ = ConnectExistingOwnAccountRequestParametersType.UPSConnectExistingOwnAccountParameters;
 
             ConnectExistingOwnAccountRequestParameters res = new ConnectExistingOwnAccountRequestParameters(typ);
@@ -99,20 +101,26 @@ namespace Shippo.Models.Components
             return res;
         }
 
+        public static ConnectExistingOwnAccountRequestParameters CreateNull() {
+            ConnectExistingOwnAccountRequestParametersType typ = ConnectExistingOwnAccountRequestParametersType.Null;
+            return new ConnectExistingOwnAccountRequestParameters(typ);
+        }
+
         public class ConnectExistingOwnAccountRequestParametersConverter : JsonConverter
         {
+
             public override bool CanConvert(System.Type objectType) => objectType == typeof(ConnectExistingOwnAccountRequestParameters);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                if (reader.TokenType == JsonToken.Null)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    throw new InvalidOperationException("Received unexpected null JSON value");
+                    return null;
                 }
 
-                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -200,30 +208,32 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Unexpected null JSON value.");
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
                 }
-
                 ConnectExistingOwnAccountRequestParameters res = (ConnectExistingOwnAccountRequestParameters)value;
-
+                if (ConnectExistingOwnAccountRequestParametersType.FromString(res.Type).Equals(ConnectExistingOwnAccountRequestParametersType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
                 if (res.MapOfAny != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.MapOfAny));
                     return;
                 }
-
                 if (res.FedExConnectExistingOwnAccountParameters != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.FedExConnectExistingOwnAccountParameters));
                     return;
                 }
-
                 if (res.UPSConnectExistingOwnAccountParameters != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.UPSConnectExistingOwnAccountParameters));
                     return;
                 }
+
             }
 
         }

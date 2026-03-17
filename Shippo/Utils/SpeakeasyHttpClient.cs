@@ -19,9 +19,6 @@ namespace Shippo.Utils
         /// <summary>
         /// Sends an HTTP request asynchronously.
         /// </summary>
-        /// <remarks>
-        /// When overriding this method, use HttpCompletionOption.ResponseHeadersRead to support streaming response bodies.
-        /// </remarks>
         /// <param name="request">The HTTP request message to send.</param>
         /// <returns>The value of the TResult parameter contains the HTTP response message.</returns>
         Task<HttpResponseMessage> SendAsync(HttpRequestMessage request);
@@ -49,7 +46,7 @@ namespace Shippo.Utils
 
         public virtual async Task<HttpResponseMessage> SendAsync(HttpRequestMessage request)
         {
-            return await httpClient.SendAsync(request, HttpCompletionOption.ResponseHeadersRead);
+            return await httpClient.SendAsync(request);
         }
 
         public virtual async Task<HttpRequestMessage> CloneAsync(HttpRequestMessage request)

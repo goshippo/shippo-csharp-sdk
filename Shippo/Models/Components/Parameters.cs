@@ -9,26 +9,28 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
+    using System;
+    
 
     public class ParametersType
     {
         private ParametersType(string value) { Value = value; }
 
         public string Value { get; private set; }
-
         public static ParametersType MapOfAny { get { return new ParametersType("mapOfAny"); } }
-
+        
         public static ParametersType FedExConnectExistingOwnAccountParameters { get { return new ParametersType("FedExConnectExistingOwnAccountParameters"); } }
-
+        
         public static ParametersType UPSConnectExistingOwnAccountParameters { get { return new ParametersType("UPSConnectExistingOwnAccountParameters"); } }
+        
+        public static ParametersType Null { get { return new ParametersType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(ParametersType v) { return v.Value; }
@@ -37,6 +39,7 @@ namespace Shippo.Models.Components
                 case "mapOfAny": return MapOfAny;
                 case "FedExConnectExistingOwnAccountParameters": return FedExConnectExistingOwnAccountParameters;
                 case "UPSConnectExistingOwnAccountParameters": return UPSConnectExistingOwnAccountParameters;
+                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ParametersType");
             }
         }
@@ -57,10 +60,8 @@ namespace Shippo.Models.Components
 
 
     [JsonConverter(typeof(Parameters.ParametersConverter))]
-    public class Parameters
-    {
-        public Parameters(ParametersType type)
-        {
+    public class Parameters {
+        public Parameters(ParametersType type) {
             Type = type;
         }
 
@@ -74,24 +75,25 @@ namespace Shippo.Models.Components
         public UPSConnectExistingOwnAccountParameters? UPSConnectExistingOwnAccountParameters { get; set; }
 
         public ParametersType Type { get; set; }
-        public static Parameters CreateMapOfAny(Dictionary<string, object> mapOfAny)
-        {
+
+
+        public static Parameters CreateMapOfAny(Dictionary<string, object> mapOfAny) {
             ParametersType typ = ParametersType.MapOfAny;
 
             Parameters res = new Parameters(typ);
             res.MapOfAny = mapOfAny;
             return res;
         }
-        public static Parameters CreateFedExConnectExistingOwnAccountParameters(FedExConnectExistingOwnAccountParameters fedExConnectExistingOwnAccountParameters)
-        {
+
+        public static Parameters CreateFedExConnectExistingOwnAccountParameters(FedExConnectExistingOwnAccountParameters fedExConnectExistingOwnAccountParameters) {
             ParametersType typ = ParametersType.FedExConnectExistingOwnAccountParameters;
 
             Parameters res = new Parameters(typ);
             res.FedExConnectExistingOwnAccountParameters = fedExConnectExistingOwnAccountParameters;
             return res;
         }
-        public static Parameters CreateUPSConnectExistingOwnAccountParameters(UPSConnectExistingOwnAccountParameters upsConnectExistingOwnAccountParameters)
-        {
+
+        public static Parameters CreateUPSConnectExistingOwnAccountParameters(UPSConnectExistingOwnAccountParameters upsConnectExistingOwnAccountParameters) {
             ParametersType typ = ParametersType.UPSConnectExistingOwnAccountParameters;
 
             Parameters res = new Parameters(typ);
@@ -99,20 +101,26 @@ namespace Shippo.Models.Components
             return res;
         }
 
+        public static Parameters CreateNull() {
+            ParametersType typ = ParametersType.Null;
+            return new Parameters(typ);
+        }
+
         public class ParametersConverter : JsonConverter
         {
+
             public override bool CanConvert(System.Type objectType) => objectType == typeof(Parameters);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                if (reader.TokenType == JsonToken.Null)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    throw new InvalidOperationException("Received unexpected null JSON value");
+                    return null;
                 }
 
-                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -200,30 +208,32 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Unexpected null JSON value.");
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
                 }
-
                 Parameters res = (Parameters)value;
-
+                if (ParametersType.FromString(res.Type).Equals(ParametersType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
                 if (res.MapOfAny != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.MapOfAny));
                     return;
                 }
-
                 if (res.FedExConnectExistingOwnAccountParameters != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.FedExConnectExistingOwnAccountParameters));
                     return;
                 }
-
                 if (res.UPSConnectExistingOwnAccountParameters != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.UPSConnectExistingOwnAccountParameters));
                     return;
                 }
+
             }
 
         }

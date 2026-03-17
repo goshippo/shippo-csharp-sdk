@@ -1,4 +1,5 @@
 # Refunds
+(*Refunds*)
 
 ## Overview
 
@@ -16,20 +17,23 @@ Creates a new refund object.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateRefund" method="post" path="/refunds" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Refunds.CreateAsync(refundRequestBody: new RefundRequestBody() {
-    Async = false,
-    Transaction = "915d94940ea54c3a80cbfa328722f5a1",
-});
+var res = await sdk.Refunds.CreateAsync(
+    refundRequestBody: new RefundRequestBody() {
+        Async = false,
+        Transaction = "915d94940ea54c3a80cbfa328722f5a1",
+    },
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -57,17 +61,17 @@ Returns a list all refund objects.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListRefunds" method="get" path="/refunds/" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Refunds.ListAsync();
+var res = await sdk.Refunds.ListAsync(shippoApiVersion: "2018-02-08");
 
 // handle response
 ```
@@ -94,17 +98,20 @@ Returns an existing rate using a rate object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetRefund" method="get" path="/refunds/{RefundId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Refunds.GetAsync(refundId: "<id>");
+var res = await sdk.Refunds.GetAsync(
+    refundId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```

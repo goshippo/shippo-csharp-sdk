@@ -9,24 +9,26 @@
 #nullable enable
 namespace Shippo.Models.Requests
 {
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
+    using System;
+    
 
     public class CreateParcelRequestBodyType
     {
         private CreateParcelRequestBodyType(string value) { Value = value; }
 
         public string Value { get; private set; }
-
         public static CreateParcelRequestBodyType ParcelCreateRequest { get { return new CreateParcelRequestBodyType("ParcelCreateRequest"); } }
-
+        
         public static CreateParcelRequestBodyType ParcelCreateFromTemplateRequest { get { return new CreateParcelRequestBodyType("ParcelCreateFromTemplateRequest"); } }
+        
+        public static CreateParcelRequestBodyType Null { get { return new CreateParcelRequestBodyType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(CreateParcelRequestBodyType v) { return v.Value; }
@@ -34,6 +36,7 @@ namespace Shippo.Models.Requests
             switch(v) {
                 case "ParcelCreateRequest": return ParcelCreateRequest;
                 case "ParcelCreateFromTemplateRequest": return ParcelCreateFromTemplateRequest;
+                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for CreateParcelRequestBodyType");
             }
         }
@@ -57,10 +60,8 @@ namespace Shippo.Models.Requests
     /// Parcel details.
     /// </summary>
     [JsonConverter(typeof(CreateParcelRequestBody.CreateParcelRequestBodyConverter))]
-    public class CreateParcelRequestBody
-    {
-        public CreateParcelRequestBody(CreateParcelRequestBodyType type)
-        {
+    public class CreateParcelRequestBody {
+        public CreateParcelRequestBody(CreateParcelRequestBodyType type) {
             Type = type;
         }
 
@@ -71,16 +72,17 @@ namespace Shippo.Models.Requests
         public ParcelCreateFromTemplateRequest? ParcelCreateFromTemplateRequest { get; set; }
 
         public CreateParcelRequestBodyType Type { get; set; }
-        public static CreateParcelRequestBody CreateParcelCreateRequest(ParcelCreateRequest parcelCreateRequest)
-        {
+
+
+        public static CreateParcelRequestBody CreateParcelCreateRequest(ParcelCreateRequest parcelCreateRequest) {
             CreateParcelRequestBodyType typ = CreateParcelRequestBodyType.ParcelCreateRequest;
 
             CreateParcelRequestBody res = new CreateParcelRequestBody(typ);
             res.ParcelCreateRequest = parcelCreateRequest;
             return res;
         }
-        public static CreateParcelRequestBody CreateParcelCreateFromTemplateRequest(ParcelCreateFromTemplateRequest parcelCreateFromTemplateRequest)
-        {
+
+        public static CreateParcelRequestBody CreateParcelCreateFromTemplateRequest(ParcelCreateFromTemplateRequest parcelCreateFromTemplateRequest) {
             CreateParcelRequestBodyType typ = CreateParcelRequestBodyType.ParcelCreateFromTemplateRequest;
 
             CreateParcelRequestBody res = new CreateParcelRequestBody(typ);
@@ -88,20 +90,26 @@ namespace Shippo.Models.Requests
             return res;
         }
 
+        public static CreateParcelRequestBody CreateNull() {
+            CreateParcelRequestBodyType typ = CreateParcelRequestBodyType.Null;
+            return new CreateParcelRequestBody(typ);
+        }
+
         public class CreateParcelRequestBodyConverter : JsonConverter
         {
+
             public override bool CanConvert(System.Type objectType) => objectType == typeof(CreateParcelRequestBody);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                if (reader.TokenType == JsonToken.Null)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    throw new InvalidOperationException("Received unexpected null JSON value");
+                    return null;
                 }
 
-                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -169,24 +177,27 @@ namespace Shippo.Models.Requests
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Unexpected null JSON value.");
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
                 }
-
                 CreateParcelRequestBody res = (CreateParcelRequestBody)value;
-
+                if (CreateParcelRequestBodyType.FromString(res.Type).Equals(CreateParcelRequestBodyType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
                 if (res.ParcelCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelCreateRequest));
                     return;
                 }
-
                 if (res.ParcelCreateFromTemplateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.ParcelCreateFromTemplateRequest));
                     return;
                 }
+
             }
 
         }

@@ -1,4 +1,5 @@
 # Transactions
+(*Transactions*)
 
 ## Overview
 
@@ -16,20 +17,19 @@ Returns a list of all transaction objects.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListTransactions" method="get" path="/transactions" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 ListTransactionsRequest req = new ListTransactionsRequest() {
-    ObjectStatus = TransactionStatusEnum.Success,
-    TrackingStatus = TrackingStatusEnum.Delivered,
+    ObjectStatus = Shippo.Models.Components.TransactionStatusEnum.Success,
+    TrackingStatus = Shippo.Models.Components.TrackingStatusEnum.Delivered,
 };
 
 var res = await sdk.Transactions.ListAsync(req);
@@ -59,26 +59,29 @@ Creates a new transaction object and purchases the shipping label using a rate o
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateTransaction" method="post" path="/transactions" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Transactions.CreateAsync(requestBody: CreateTransactionRequestBody.CreateTransactionCreateRequest(
-    new TransactionCreateRequest() {
-        Async = false,
-        LabelFileType = LabelFileTypeEnum.Pdf4x6,
-        Metadata = "Order ID #12345",
-        Rate = "ec9f0d3adc9441449c85d315f0997fd5",
-        Order = "adcfdddf8ec64b84ad22772bce3ea37a",
-    }
-));
+var res = await sdk.Transactions.CreateAsync(
+    requestBody: CreateTransactionRequestBody.CreateTransactionCreateRequest(
+        new TransactionCreateRequest() {
+            Async = false,
+            LabelFileType = Shippo.Models.Components.LabelFileTypeEnum.Pdf4x6,
+            Metadata = "Order ID #12345",
+            Rate = "ec9f0d3adc9441449c85d315f0997fd5",
+            Order = "adcfdddf8ec64b84ad22772bce3ea37a",
+        }
+    ),
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -106,17 +109,20 @@ Returns an existing transaction using an object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetTransaction" method="get" path="/transactions/{TransactionId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Transactions.GetAsync(transactionId: "<id>");
+var res = await sdk.Transactions.GetAsync(
+    transactionId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```

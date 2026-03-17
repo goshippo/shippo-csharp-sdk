@@ -13,12 +13,12 @@ namespace Shippo
     using Shippo.Hooks;
     using Shippo.Models.Components;
     using Shippo.Models.Errors;
-    using Shippo.Utils;
     using Shippo.Utils.Retries;
-    using System;
+    using Shippo.Utils;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
+    using System;
 
     /// <summary>
     /// Shippo external API.: Use this API to integrate with the Shippo service
@@ -184,6 +184,41 @@ namespace Shippo
         public IWebhooks Webhooks { get; }
     }
 
+    public class SDKConfig
+    {
+        /// <summary>
+        /// List of server URLs available to the SDK.
+        /// </summary>
+        public static readonly string[] ServerList = {
+            "https://api.goshippo.com",
+        };
+
+        public string ServerUrl = "";
+        public int ServerIndex = 0;
+        public string? ShippoApiVersion;
+        public SDKHooks Hooks = new SDKHooks();
+        public RetryConfig? RetryConfig = null;
+
+        public string GetTemplatedServerUrl()
+        {
+            if (!String.IsNullOrEmpty(this.ServerUrl))
+            {
+                return Utilities.TemplateUrl(Utilities.RemoveSuffix(this.ServerUrl, "/"), new Dictionary<string, string>());
+            }
+            return Utilities.TemplateUrl(SDKConfig.ServerList[this.ServerIndex], new Dictionary<string, string>());
+        }
+
+        public ISpeakeasyHttpClient InitHooks(ISpeakeasyHttpClient client)
+        {
+            string preHooksUrl = GetTemplatedServerUrl();
+            var (postHooksUrl, postHooksClient) = this.Hooks.SDKInit(preHooksUrl, client);
+            if (preHooksUrl != postHooksUrl)
+            {
+                this.ServerUrl = postHooksUrl;
+            }
+            return postHooksClient;
+        }
+    }
 
     /// <summary>
     /// Shippo external API.: Use this API to integrate with the Shippo service
@@ -192,10 +227,15 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
 
-        private const string _language = Constants.Language;
-        private const string _sdkVersion = Constants.SdkVersion;
-        private const string _sdkGenVersion = Constants.SdkGenVersion;
-        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
+        private const string _language = "csharp";
+        private const string _sdkVersion = "5.0.0-beta.12";
+        private const string _sdkGenVersion = "2.463.0";
+        private const string _openapiDocVersion = "2018-02-08";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.12 2.463.0 2018-02-08 Shippo";
+        private string _serverUrl = "";
+        private int _serverIndex = 0;
+        private ISpeakeasyHttpClient _client;
+        private Func<Shippo.Models.Components.Security>? _securitySource;
         public IAddresses Addresses { get; private set; }
         public IBatches Batches { get; private set; }
         public ICarrierAccounts CarrierAccounts { get; private set; }
@@ -217,64 +257,6 @@ namespace Shippo
         public IShippoAccounts ShippoAccounts { get; private set; }
         public IWebhooks Webhooks { get; private set; }
 
-        public ShippoSDK(SDKConfig config)
-        {
-            SDKConfiguration = config;
-            InitHooks();
-
-            Addresses = new Addresses(SDKConfiguration);
-
-            Batches = new Batches(SDKConfiguration);
-
-            CarrierAccounts = new CarrierAccounts(SDKConfiguration);
-
-            CustomsDeclarations = new CustomsDeclarations(SDKConfiguration);
-
-            CustomsItems = new CustomsItems(SDKConfiguration);
-
-            RatesAtCheckout = new RatesAtCheckout(SDKConfiguration);
-
-            Manifests = new Manifests(SDKConfiguration);
-
-            Orders = new Orders(SDKConfiguration);
-
-            CarrierParcelTemplates = new CarrierParcelTemplates(SDKConfiguration);
-
-            Parcels = new Parcels(SDKConfiguration);
-
-            Pickups = new Pickups(SDKConfiguration);
-
-            Rates = new Rates(SDKConfiguration);
-
-            Refunds = new Refunds(SDKConfiguration);
-
-            ServiceGroups = new ServiceGroups(SDKConfiguration);
-
-            Shipments = new Shipments(SDKConfiguration);
-
-            TrackingStatus = new TrackingStatus(SDKConfiguration);
-
-            Transactions = new Transactions(SDKConfiguration);
-
-            UserParcelTemplates = new UserParcelTemplates(SDKConfiguration);
-
-            ShippoAccounts = new ShippoAccounts(SDKConfiguration);
-
-            Webhooks = new Webhooks(SDKConfiguration);
-        }
-
-        /// <summary>
-        /// Initializes a new instance of the SDK with optional configuration parameters.
-        /// </summary>
-        /// <param name="apiKeyHeader">The security configuration to use for API requests. If provided, this will be used as a static security configuration.</param>
-        /// <param name="apiKeyHeaderSource">A function that returns the security configuration dynamically. This takes precedence over the static security parameter if both are provided.</param>
-        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.</param>
-        /// <param name="serverIndex">The index of the server to use from the predefined server list. Must be between 0 and the length of the server list. Defaults to 0 if not specified.</param>
-        /// <param name="serverUrl">A custom server URL to use instead of the predefined server list. If provided with urlParams, the URL will be templated with the provided parameters.</param>
-        /// <param name="urlParams">A dictionary of parameters to use for templating the serverUrl. Only used when serverUrl is provided.</param>
-        /// <param name="client">A custom HTTP client implementation to use for making API requests. If not provided, the default SpeakeasyHttpClient will be used.</param>
-        /// <param name="retryConfig">Configuration for retry behavior when API requests fail. Defines retry strategies, backoff policies, and maximum retry attempts.</param>
-        /// <exception cref="Exception">Thrown when the serverIndex is out of range (less than 0 or greater than or equal to the server list length).</exception>
         public ShippoSDK(string? apiKeyHeader = null, Func<string>? apiKeyHeaderSource = null, string? shippoApiVersion = null, int? serverIndex = null, string? serverUrl = null, Dictionary<string, string>? urlParams = null, ISpeakeasyHttpClient? client = null, RetryConfig? retryConfig = null)
         {
             if (serverIndex != null)
@@ -283,6 +265,7 @@ namespace Shippo
                 {
                     throw new Exception($"Invalid server index {serverIndex.Value}");
                 }
+                _serverIndex = serverIndex.Value;
             }
 
             if (serverUrl != null)
@@ -291,8 +274,10 @@ namespace Shippo
                 {
                     serverUrl = Utilities.TemplateUrl(serverUrl, urlParams);
                 }
+                _serverUrl = serverUrl;
             }
-            Func<Shippo.Models.Components.Security>? _securitySource = null;
+
+            _client = client ?? new SpeakeasyHttpClient();
 
             if(apiKeyHeaderSource != null)
             {
@@ -307,137 +292,75 @@ namespace Shippo
                 throw new Exception("apiKeyHeader and apiKeyHeaderSource cannot both be null");
             }
 
-            SDKConfiguration = new SDKConfig(client)
+            SDKConfiguration = new SDKConfig()
             {
                 ShippoApiVersion = shippoApiVersion,
-                ServerIndex = serverIndex == null ? 0 : serverIndex.Value,
-                ServerUrl = serverUrl == null ? "" : serverUrl,
-                SecuritySource = _securitySource,
+                ServerIndex = _serverIndex,
+                ServerUrl = _serverUrl,
                 RetryConfig = retryConfig
             };
 
-            InitHooks();
+            _client = SDKConfiguration.InitHooks(_client);
 
-            Addresses = new Addresses(SDKConfiguration);
 
-            Batches = new Batches(SDKConfiguration);
+            Addresses = new Addresses(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            CarrierAccounts = new CarrierAccounts(SDKConfiguration);
 
-            CustomsDeclarations = new CustomsDeclarations(SDKConfiguration);
+            Batches = new Batches(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            CustomsItems = new CustomsItems(SDKConfiguration);
 
-            RatesAtCheckout = new RatesAtCheckout(SDKConfiguration);
+            CarrierAccounts = new CarrierAccounts(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            Manifests = new Manifests(SDKConfiguration);
 
-            Orders = new Orders(SDKConfiguration);
+            CustomsDeclarations = new CustomsDeclarations(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            CarrierParcelTemplates = new CarrierParcelTemplates(SDKConfiguration);
 
-            Parcels = new Parcels(SDKConfiguration);
+            CustomsItems = new CustomsItems(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            Pickups = new Pickups(SDKConfiguration);
 
-            Rates = new Rates(SDKConfiguration);
+            RatesAtCheckout = new RatesAtCheckout(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            Refunds = new Refunds(SDKConfiguration);
 
-            ServiceGroups = new ServiceGroups(SDKConfiguration);
+            Manifests = new Manifests(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            Shipments = new Shipments(SDKConfiguration);
 
-            TrackingStatus = new TrackingStatus(SDKConfiguration);
+            Orders = new Orders(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            Transactions = new Transactions(SDKConfiguration);
 
-            UserParcelTemplates = new UserParcelTemplates(SDKConfiguration);
+            CarrierParcelTemplates = new CarrierParcelTemplates(_client, _securitySource, _serverUrl, SDKConfiguration);
 
-            ShippoAccounts = new ShippoAccounts(SDKConfiguration);
 
-            Webhooks = new Webhooks(SDKConfiguration);
+            Parcels = new Parcels(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            Pickups = new Pickups(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            Rates = new Rates(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            Refunds = new Refunds(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            ServiceGroups = new ServiceGroups(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            Shipments = new Shipments(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            TrackingStatus = new TrackingStatus(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            Transactions = new Transactions(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            UserParcelTemplates = new UserParcelTemplates(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            ShippoAccounts = new ShippoAccounts(_client, _securitySource, _serverUrl, SDKConfiguration);
+
+
+            Webhooks = new Webhooks(_client, _securitySource, _serverUrl, SDKConfiguration);
         }
-
-        private void InitHooks()
-        {
-            string preHooksUrl = SDKConfiguration.GetTemplatedServerUrl();
-            var (postHooksUrl, postHooksClient) = SDKConfiguration.Hooks.SDKInit(preHooksUrl, SDKConfiguration.Client);
-            var config = SDKConfiguration;
-            if (preHooksUrl != postHooksUrl)
-            {
-                config.ServerUrl = postHooksUrl;
-            }
-            config.Client = postHooksClient;
-            SDKConfiguration = config;
-        }
-
-        public class SDKBuilder
-        {
-            private SDKConfig _sdkConfig = new SDKConfig(client: new SpeakeasyHttpClient());
-
-            public SDKBuilder() { }
-
-            public SDKBuilder WithServerIndex(int serverIndex)
-            {
-                if (serverIndex < 0 || serverIndex >= SDKConfig.ServerList.Length)
-                {
-                    throw new Exception($"Invalid server index {serverIndex}");
-                }
-                _sdkConfig.ServerIndex = serverIndex;
-                return this;
-            }
-
-            public SDKBuilder WithServerUrl(string serverUrl, Dictionary<string, string>? serverVariables = null)
-            {
-                if (serverVariables != null)
-                {
-                    serverUrl = Utilities.TemplateUrl(serverUrl, serverVariables);
-                }
-                _sdkConfig.ServerUrl = serverUrl;
-                return this;
-            }
-
-            public SDKBuilder WithShippoApiVersion(string shippoApiVersion)
-            {
-                _sdkConfig.ShippoApiVersion = shippoApiVersion;
-                return this;
-            }
-
-            public SDKBuilder WithApiKeyHeaderSource(Func<string> apiKeyHeaderSource)
-            {
-                _sdkConfig.SecuritySource = () => new Shippo.Models.Components.Security() { APIKeyHeader = apiKeyHeaderSource() };
-                return this;
-            }
-
-            public SDKBuilder WithApiKeyHeader(string apiKeyHeader)
-            {
-                _sdkConfig.SecuritySource = () => new Shippo.Models.Components.Security() { APIKeyHeader = apiKeyHeader };
-                return this;
-            }
-
-            public SDKBuilder WithClient(ISpeakeasyHttpClient client)
-            {
-                _sdkConfig.Client = client;
-                return this;
-            }
-
-            public SDKBuilder WithRetryConfig(RetryConfig retryConfig)
-            {
-                _sdkConfig.RetryConfig = retryConfig;
-                return this;
-            }
-
-            public ShippoSDK Build()
-            {
-              if (_sdkConfig.SecuritySource == null) {
-                  throw new Exception("securitySource cannot be null. One of `ApiKeyHeader` or `apiKeyHeaderSource` needs to be defined.");
-              }
-              return new ShippoSDK(_sdkConfig);
-            }
-
-        }
-
-        public static SDKBuilder Builder() => new SDKBuilder();
     }
 }

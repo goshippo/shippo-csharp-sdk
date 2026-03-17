@@ -1,4 +1,5 @@
 # UserParcelTemplates
+(*UserParcelTemplates*)
 
 ## Overview
 
@@ -23,17 +24,17 @@ Returns a list all of all user parcel template objects.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListUserParcelTemplates" method="get" path="/user-parcel-templates" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.UserParcelTemplates.ListAsync();
+var res = await sdk.UserParcelTemplates.ListAsync(shippoApiVersion: "2018-02-08");
 
 // handle response
 ```
@@ -66,27 +67,25 @@ and depth, as well as their units."
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateUserParcelTemplate" method="post" path="/user-parcel-templates" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.UserParcelTemplates.CreateAsync(userParcelTemplateCreateRequest: UserParcelTemplateCreateRequest.CreateUserParcelTemplateWithoutCarrierTemplateCreateRequest(
-    new UserParcelTemplateWithoutCarrierTemplateCreateRequest() {
-        DistanceUnit = DistanceUnitEnum.In,
-        Height = "6",
-        Length = "10",
-        Name = "My Custom Template",
-        Weight = "12",
-        WeightUnit = WeightUnitEnum.Lb,
-        Width = "8",
-    }
-));
+var res = await sdk.UserParcelTemplates.CreateAsync(
+    userParcelTemplateCreateRequest: UserParcelTemplateCreateRequest.CreateUserParcelTemplateWithCarrierTemplateCreateRequest(
+        new UserParcelTemplateWithCarrierTemplateCreateRequest() {
+            Weight = "12",
+            WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
+        }
+    ),
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -114,17 +113,20 @@ Deletes a user parcel template using an object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="DeleteUserParcelTemplate" method="delete" path="/user-parcel-templates/{UserParcelTemplateObjectId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-await sdk.UserParcelTemplates.DeleteAsync(userParcelTemplateObjectId: "<id>");
+await sdk.UserParcelTemplates.DeleteAsync(
+    userParcelTemplateObjectId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -149,17 +151,20 @@ template, identified by the object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetUserParcelTemplate" method="get" path="/user-parcel-templates/{UserParcelTemplateObjectId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.UserParcelTemplates.GetAsync(userParcelTemplateObjectId: "<id>");
+var res = await sdk.UserParcelTemplates.GetAsync(
+    userParcelTemplateObjectId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -187,25 +192,26 @@ Updates an existing user parcel template.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="UpdateUserParcelTemplate" method="put" path="/user-parcel-templates/{UserParcelTemplateObjectId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 var res = await sdk.UserParcelTemplates.UpdateAsync(
     userParcelTemplateObjectId: "<id>",
+    shippoApiVersion: "2018-02-08",
     userParcelTemplateUpdateRequest: new UserParcelTemplateUpdateRequest() {
-        DistanceUnit = DistanceUnitEnum.In,
+        DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
         Height = "6",
         Length = "10",
         Name = "My Custom Template",
         Weight = "12",
-        WeightUnit = WeightUnitEnum.Lb,
+        WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
         Width = "8",
     }
 );

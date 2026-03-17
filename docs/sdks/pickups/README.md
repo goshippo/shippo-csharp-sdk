@@ -1,4 +1,5 @@
 # Pickups
+(*Pickups*)
 
 ## Overview
 
@@ -15,47 +16,49 @@ Creates a pickup object. This request is for a carrier to come to a specified lo
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreatePickup" method="post" path="/pickups" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
-using System;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Pickups.CreateAsync(pickupBase: new PickupBase() {
-    CarrierAccount = "adcfdddf8ec64b84ad22772bce3ea37a",
-    Location = new Location() {
-        Address = new AddressCompleteCreateRequest() {
-            Name = "Shwan Ippotle",
-            Company = "Shippo",
-            Street1 = "215 Clayton St.",
-            Street3 = "",
-            StreetNo = "",
-            City = "San Francisco",
-            State = "CA",
-            Zip = "94117",
-            Country = "US",
-            Phone = "+1 555 341 9393",
-            Email = "shippotle@shippo.com",
-            IsResidential = true,
-            Metadata = "Customer ID 123456",
-            Validate = true,
+var res = await sdk.Pickups.CreateAsync(
+    pickupBase: new PickupBase() {
+        CarrierAccount = "adcfdddf8ec64b84ad22772bce3ea37a",
+        Location = new Location() {
+            Address = new AddressCompleteCreateRequest() {
+                Name = "Shwan Ippotle",
+                Company = "Shippo",
+                Street1 = "215 Clayton St.",
+                Street3 = "",
+                StreetNo = "",
+                City = "San Francisco",
+                State = "CA",
+                Zip = "94117",
+                Country = "US",
+                Phone = "+1 555 341 9393",
+                Email = "shippotle@shippo.com",
+                IsResidential = true,
+                Metadata = "Customer ID 123456",
+                Validate = true,
+            },
+            BuildingLocationType = Shippo.Models.Components.BuildingLocationType.FrontDoor,
+            BuildingType = Shippo.Models.Components.BuildingType.Apartment,
+            Instructions = "Behind screen door",
         },
-        BuildingLocationType = BuildingLocationType.FrontDoor,
-        BuildingType = BuildingType.Apartment,
-        Instructions = "Behind screen door",
+        RequestedEndTime = System.DateTime.Parse("2025-06-17T07:14:55.338Z"),
+        RequestedStartTime = System.DateTime.Parse("2025-11-30T17:06:07.804Z"),
+        Transactions = new List<string>() {
+            "adcfdddf8ec64b84ad22772bce3ea37a",
+        },
     },
-    RequestedEndTime = System.DateTime.Parse("2025-03-28T03:12:16.314Z"),
-    RequestedStartTime = System.DateTime.Parse("2024-05-20T03:35:43.192Z"),
-    Transactions = new List<string>() {
-        "adcfdddf8ec64b84ad22772bce3ea37a",
-    },
-});
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```

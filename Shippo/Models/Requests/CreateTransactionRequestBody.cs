@@ -9,24 +9,26 @@
 #nullable enable
 namespace Shippo.Models.Requests
 {
-    using Newtonsoft.Json;
     using Newtonsoft.Json.Linq;
+    using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
+    using System;
+    
 
     public class CreateTransactionRequestBodyType
     {
         private CreateTransactionRequestBodyType(string value) { Value = value; }
 
         public string Value { get; private set; }
-
         public static CreateTransactionRequestBodyType TransactionCreateRequest { get { return new CreateTransactionRequestBodyType("TransactionCreateRequest"); } }
-
+        
         public static CreateTransactionRequestBodyType InstantTransactionCreateRequest { get { return new CreateTransactionRequestBodyType("InstantTransactionCreateRequest"); } }
+        
+        public static CreateTransactionRequestBodyType Null { get { return new CreateTransactionRequestBodyType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(CreateTransactionRequestBodyType v) { return v.Value; }
@@ -34,6 +36,7 @@ namespace Shippo.Models.Requests
             switch(v) {
                 case "TransactionCreateRequest": return TransactionCreateRequest;
                 case "InstantTransactionCreateRequest": return InstantTransactionCreateRequest;
+                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for CreateTransactionRequestBodyType");
             }
         }
@@ -57,10 +60,8 @@ namespace Shippo.Models.Requests
     /// Examples.
     /// </summary>
     [JsonConverter(typeof(CreateTransactionRequestBody.CreateTransactionRequestBodyConverter))]
-    public class CreateTransactionRequestBody
-    {
-        public CreateTransactionRequestBody(CreateTransactionRequestBodyType type)
-        {
+    public class CreateTransactionRequestBody {
+        public CreateTransactionRequestBody(CreateTransactionRequestBodyType type) {
             Type = type;
         }
 
@@ -71,16 +72,17 @@ namespace Shippo.Models.Requests
         public InstantTransactionCreateRequest? InstantTransactionCreateRequest { get; set; }
 
         public CreateTransactionRequestBodyType Type { get; set; }
-        public static CreateTransactionRequestBody CreateTransactionCreateRequest(TransactionCreateRequest transactionCreateRequest)
-        {
+
+
+        public static CreateTransactionRequestBody CreateTransactionCreateRequest(TransactionCreateRequest transactionCreateRequest) {
             CreateTransactionRequestBodyType typ = CreateTransactionRequestBodyType.TransactionCreateRequest;
 
             CreateTransactionRequestBody res = new CreateTransactionRequestBody(typ);
             res.TransactionCreateRequest = transactionCreateRequest;
             return res;
         }
-        public static CreateTransactionRequestBody CreateInstantTransactionCreateRequest(InstantTransactionCreateRequest instantTransactionCreateRequest)
-        {
+
+        public static CreateTransactionRequestBody CreateInstantTransactionCreateRequest(InstantTransactionCreateRequest instantTransactionCreateRequest) {
             CreateTransactionRequestBodyType typ = CreateTransactionRequestBodyType.InstantTransactionCreateRequest;
 
             CreateTransactionRequestBody res = new CreateTransactionRequestBody(typ);
@@ -88,20 +90,26 @@ namespace Shippo.Models.Requests
             return res;
         }
 
+        public static CreateTransactionRequestBody CreateNull() {
+            CreateTransactionRequestBodyType typ = CreateTransactionRequestBodyType.Null;
+            return new CreateTransactionRequestBody(typ);
+        }
+
         public class CreateTransactionRequestBodyConverter : JsonConverter
         {
+
             public override bool CanConvert(System.Type objectType) => objectType == typeof(CreateTransactionRequestBody);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                if (reader.TokenType == JsonToken.Null)
+                var json = JRaw.Create(reader).ToString();
+                if (json == "null")
                 {
-                    throw new InvalidOperationException("Received unexpected null JSON value");
+                    return null;
                 }
 
-                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -169,24 +177,27 @@ namespace Shippo.Models.Requests
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null)
-                {
-                    throw new InvalidOperationException("Unexpected null JSON value.");
+                if (value == null) {
+                    writer.WriteRawValue("null");
+                    return;
                 }
-
                 CreateTransactionRequestBody res = (CreateTransactionRequestBody)value;
-
+                if (CreateTransactionRequestBodyType.FromString(res.Type).Equals(CreateTransactionRequestBodyType.Null))
+                {
+                    writer.WriteRawValue("null");
+                    return;
+                }
                 if (res.TransactionCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.TransactionCreateRequest));
                     return;
                 }
-
                 if (res.InstantTransactionCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.InstantTransactionCreateRequest));
                     return;
                 }
+
             }
 
         }

@@ -1,4 +1,5 @@
 # CarrierAccounts
+(*CarrierAccounts*)
 
 ## Overview
 
@@ -24,15 +25,14 @@ By default, if the query parameter is omitted, the `service_levels` property wil
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListCarrierAccounts" method="get" path="/carrier_accounts" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 ListCarrierAccountsRequest req = new ListCarrierAccountsRequest() {};
@@ -64,40 +64,44 @@ Creates a new carrier account or connects an existing carrier account to the Shi
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateCarrierAccount" method="post" path="/carrier_accounts" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
+using NodaTime;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.CarrierAccounts.CreateAsync(connectExistingOwnAccountRequest: new ConnectExistingOwnAccountRequest() {
-    AccountId = "321123",
-    Carrier = "fedex",
-    Metadata = "FEDEX Account",
-    Parameters = ConnectExistingOwnAccountRequestParameters.CreateMapOfAny(
-        new Dictionary<string, object>() {
-            { "first_name", "Abdullah" },
-            { "last_name", "Ward" },
-            { "phone_number", "915-577-4415 x207" },
-            { "from_address_st", "<value>" },
-            { "from_address_city", "<value>" },
-            { "from_address_state", "<value>" },
-            { "from_address_zip", "<value>" },
-            { "from_address_country_iso2", "<value>" },
-            { "use_multi_factor_registration", false },
-            { "verification_option", "SMS" },
-            { "verification_invoice_amount", "340" },
-            { "verification_invoice_date", "2024-03-09" },
-            { "verification_invoice_currency", "USD" },
-        }
-    ),
-    Test = false,
-});
+var res = await sdk.CarrierAccounts.CreateAsync(
+    connectExistingOwnAccountRequest: new ConnectExistingOwnAccountRequest() {
+        AccountId = "321123",
+        Carrier = "fedex",
+        Metadata = "FEDEX Account",
+        Parameters = ConnectExistingOwnAccountRequestParameters.CreateFedExConnectExistingOwnAccountParameters(
+            new FedExConnectExistingOwnAccountParameters() {
+                FirstName = "Loyal",
+                LastName = "Collier",
+                PhoneNumber = "(890) 307-8579",
+                FromAddressSt = "<value>",
+                FromAddressCity = "<value>",
+                FromAddressState = "<value>",
+                FromAddressZip = "<value>",
+                FromAddressCountryIso2 = "<value>",
+                UseMultiFactorRegistration = false,
+                VerificationOption = Shippo.Models.Components.VerificationOption.Email,
+                VerificationInvoiceAmount = 340M,
+                VerificationInvoiceDate = LocalDate.FromDateTime(System.DateTime.Parse("2024-03-09")),
+                VerificationInvoiceCurrency = "USD",
+            }
+        ),
+        Test = false,
+    },
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -125,17 +129,20 @@ Returns an existing carrier account using an object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetCarrierAccount" method="get" path="/carrier_accounts/{CarrierAccountId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.CarrierAccounts.GetAsync(carrierAccountId: "<id>");
+var res = await sdk.CarrierAccounts.GetAsync(
+    carrierAccountId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -163,37 +170,48 @@ Updates an existing carrier account object. The account_id and carrier can't be 
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="UpdateCarrierAccount" method="put" path="/carrier_accounts/{CarrierAccountId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
+using NodaTime;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 var res = await sdk.CarrierAccounts.UpdateAsync(
     carrierAccountId: "<id>",
+    shippoApiVersion: "2018-02-08",
     carrierAccountBase: new CarrierAccountBase() {
         AccountId = "****",
         Carrier = "usps",
-        Parameters = CarrierAccountBaseParameters.CreateMapOfAny(
-            new Dictionary<string, object>() {
-                { "first_name", "Eldora" },
-                { "last_name", "Weber" },
-                { "phone_number", "1-505-428-6798" },
-                { "from_address_st", "<value>" },
-                { "from_address_city", "<value>" },
-                { "from_address_state", "<value>" },
-                { "from_address_zip", "<value>" },
-                { "from_address_country_iso2", "<value>" },
-                { "use_multi_factor_registration", false },
-                { "verification_option", "EMAIL" },
-                { "verification_invoice_amount", "340" },
-                { "verification_invoice_date", "2024-03-09" },
-                { "verification_invoice_currency", "USD" },
+        Parameters = CarrierAccountBaseParameters.CreateUPSConnectExistingOwnAccountParameters(
+            new UPSConnectExistingOwnAccountParameters() {
+                AccountNumber = "94567e",
+                AiaCountryIso2 = "US",
+                BillingAddressCity = "San Francisco",
+                BillingAddressCountryIso2 = "US",
+                BillingAddressState = "CA",
+                BillingAddressStreet1 = "731 Market St",
+                BillingAddressStreet2 = "STE 200",
+                BillingAddressZip = "94103",
+                CollecCountryIso2 = "US",
+                CollecZip = "94103",
+                Company = "Shippo",
+                CurrencyCode = "USD",
+                Email = "hippo@shippo.com",
+                FullName = "Shippo Meister",
+                HasInvoice = false,
+                InvoiceControlid = "1234",
+                InvoiceDate = "20210529",
+                InvoiceNumber = "1112234",
+                InvoiceValue = "11.23",
+                Phone = "1112223333",
+                Title = "Manager",
+                UpsAgreements = false,
             }
         ),
     }
@@ -226,20 +244,19 @@ Used by client applications to setup or reconnect an existing carrier account wi
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="InitiateOauth2Signin" method="get" path="/carrier_accounts/{CarrierAccountObjectId}/signin/initiate" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 InitiateOauth2SigninRequest req = new InitiateOauth2SigninRequest() {
     CarrierAccountObjectId = "<id>",
-    RedirectUri = "https://ashamed-reporter.biz",
+    RedirectUri = "https://enlightened-mortise.com/",
 };
 
 var res = await sdk.CarrierAccounts.InitiateOauth2SigninAsync(req);
@@ -272,22 +289,24 @@ Adds a Shippo carrier account
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="RegisterCarrierAccount" method="post" path="/carrier_accounts/register/new" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.CarrierAccounts.RegisterAsync(requestBody: RegisterCarrierAccountRequestBody.CreateDeutschePost(
-    new CarrierAccountDeutschePostCreateRequest() {
-        Parameters = new CarrierAccountDeutschePostCreateRequestParameters() {},
-    }
-));
+var res = await sdk.CarrierAccounts.RegisterAsync(
+    requestBody: RegisterCarrierAccountRequestBody.CreateCarrierAccountCorreosCreateRequest(
+        new CarrierAccountCorreosCreateRequest() {
+            Parameters = new CarrierAccountCorreosCreateRequestParameters() {},
+        }
+    ),
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -315,18 +334,20 @@ Returns the registration status for the given account for the given carrier
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetCarrierRegistrationStatus" method="get" path="/carrier_accounts/reg-status" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Components;
 using Shippo.Models.Requests;
+using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.CarrierAccounts.GetRegistrationStatusAsync(carrier: Carrier.Ups);
+var res = await sdk.CarrierAccounts.GetRegistrationStatusAsync(
+    carrier: Shippo.Models.Requests.Carrier.Usps,
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```

@@ -44,7 +44,7 @@ namespace Shippo.Models.Components
         /// <summary>
         /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
         /// </summary>
-        [JsonProperty("template", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("template")]
         public ParcelTemplateEnumSet Template { get; set; } = default!;
     }
 }

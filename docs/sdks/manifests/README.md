@@ -1,4 +1,5 @@
 # Manifests
+(*Manifests*)
 
 ## Overview
 
@@ -17,19 +18,20 @@ Returns a list of all manifest objects.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListManifests" method="get" path="/manifests" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
 var res = await sdk.Manifests.ListAsync(
     page: 1,
-    results: 5
+    results: 5,
+    shippoApiVersion: "2018-02-08"
 );
 
 // handle response
@@ -59,27 +61,45 @@ Creates a new manifest object.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateManifest" method="post" path="/manifests" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Manifests.CreateAsync(manifestCreateRequest: new ManifestCreateRequest() {
-    CarrierAccount = "adcfdddf8ec64b84ad22772bce3ea37a",
-    ShipmentDate = "2014-05-16T23:59:59Z",
-    Transactions = new List<string>() {
-        "adcfdddf8ec64b84ad22772bce3ea37a",
+var res = await sdk.Manifests.CreateAsync(
+    manifestCreateRequest: new ManifestCreateRequest() {
+        CarrierAccount = "adcfdddf8ec64b84ad22772bce3ea37a",
+        ShipmentDate = "2014-05-16T23:59:59Z",
+        Transactions = new List<string>() {
+            "adcfdddf8ec64b84ad22772bce3ea37a",
+        },
+        AddressFrom = ManifestCreateRequestAddressFrom.CreateAddressCreateRequest(
+            new AddressCreateRequest() {
+                Name = "Shwan Ippotle",
+                Company = "Shippo",
+                Street1 = "215 Clayton St.",
+                Street3 = "",
+                StreetNo = "",
+                City = "San Francisco",
+                State = "CA",
+                Zip = "94117",
+                Country = "US",
+                Phone = "+1 555 341 9393",
+                Email = "shippotle@shippo.com",
+                IsResidential = true,
+                Metadata = "Customer ID 123456",
+                Validate = true,
+            }
+        ),
     },
-    AddressFrom = ManifestCreateRequestAddressFrom.CreateStr(
-        "<value>"
-    ),
-});
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -107,17 +127,20 @@ Returns an existing manifest using an object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="GetManifest" method="get" path="/manifests/{ManifestId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.Manifests.GetAsync(manifestId: "<id>");
+var res = await sdk.Manifests.GetAsync(
+    manifestId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```

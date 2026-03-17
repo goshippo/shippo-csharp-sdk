@@ -221,13 +221,13 @@ namespace Shippo.Models.Components
         /// <summary>
         /// Latitude of address
         /// </summary>
-        [JsonProperty("latitude", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("latitude")]
         public Latitude? Latitude { get; set; }
 
         /// <summary>
         /// Longitude of address
         /// </summary>
-        [JsonProperty("longitude", NullValueHandling = NullValueHandling.Include)]
+        [JsonProperty("longitude")]
         public Longitude? Longitude { get; set; }
 
         /// <summary>

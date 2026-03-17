@@ -1,4 +1,5 @@
 # ServiceGroups
+(*ServiceGroups*)
 
 ## Overview
 
@@ -18,17 +19,17 @@ Returns a list of service group objects.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="ListServiceGroups" method="get" path="/service-groups" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.ServiceGroups.ListAsync();
+var res = await sdk.ServiceGroups.ListAsync(shippoApiVersion: "2018-02-08");
 
 // handle response
 ```
@@ -55,28 +56,36 @@ Creates a new service group.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="CreateServiceGroup" method="post" path="/service-groups" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.ServiceGroups.CreateAsync(serviceGroupCreateRequest: new ServiceGroupCreateRequest() {
-    Description = "USPS shipping options",
-    FlatRate = "5",
-    FlatRateCurrency = "USD",
-    FreeShippingThresholdCurrency = "USD",
-    FreeShippingThresholdMin = "5",
-    Name = "USPS Shipping",
-    RateAdjustment = 15,
-    Type = ServiceGroupTypeEnum.FlatRate,
-    ServiceLevels = new List<ServiceGroupAccountAndServiceLevel>() {},
-});
+var res = await sdk.ServiceGroups.CreateAsync(
+    serviceGroupCreateRequest: new ServiceGroupCreateRequest() {
+        Description = "USPS shipping options",
+        FlatRate = "5",
+        FlatRateCurrency = "USD",
+        FreeShippingThresholdCurrency = "USD",
+        FreeShippingThresholdMin = "5",
+        Name = "USPS Shipping",
+        RateAdjustment = 15,
+        Type = Shippo.Models.Components.ServiceGroupTypeEnum.FlatRate,
+        ServiceLevels = new List<ServiceGroupAccountAndServiceLevel>() {
+            new ServiceGroupAccountAndServiceLevel() {
+                AccountObjectId = "80feb1633d4a43c898f0058506cfd82d",
+                ServiceLevelToken = "ups_next_day_air_saver",
+            },
+        },
+    },
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
@@ -104,35 +113,38 @@ Updates an existing service group object. <br>The object_id cannot be updated as
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="UpdateServiceGroup" method="put" path="/service-groups" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-var res = await sdk.ServiceGroups.UpdateAsync(serviceGroupUpdateRequest: new ServiceGroupUpdateRequest() {
-    Description = "USPS shipping options",
-    FlatRate = "5",
-    FlatRateCurrency = "USD",
-    FreeShippingThresholdCurrency = "USD",
-    FreeShippingThresholdMin = "5",
-    Name = "USPS Shipping",
-    RateAdjustment = 15,
-    Type = ServiceGroupTypeEnum.FlatRate,
-    ObjectId = "80feb1633d4a43c898f005850",
-    IsActive = true,
-    ServiceLevels = new List<ServiceGroupAccountAndServiceLevel>() {
-        new ServiceGroupAccountAndServiceLevel() {
-            AccountObjectId = "80feb1633d4a43c898f0058506cfd82d",
-            ServiceLevelToken = "ups_next_day_air_saver",
+var res = await sdk.ServiceGroups.UpdateAsync(
+    shippoApiVersion: "2018-02-08",
+    serviceGroupUpdateRequest: new ServiceGroupUpdateRequest() {
+        Description = "USPS shipping options",
+        FlatRate = "5",
+        FlatRateCurrency = "USD",
+        FreeShippingThresholdCurrency = "USD",
+        FreeShippingThresholdMin = "5",
+        Name = "USPS Shipping",
+        RateAdjustment = 15,
+        Type = Shippo.Models.Components.ServiceGroupTypeEnum.FlatRate,
+        ObjectId = "80feb1633d4a43c898f005850",
+        IsActive = true,
+        ServiceLevels = new List<ServiceGroupAccountAndServiceLevel>() {
+            new ServiceGroupAccountAndServiceLevel() {
+                AccountObjectId = "80feb1633d4a43c898f0058506cfd82d",
+                ServiceLevelToken = "ups_next_day_air_saver",
+            },
         },
-    },
-});
+    }
+);
 
 // handle response
 ```
@@ -160,17 +172,20 @@ Deletes an existing service group using an object ID.
 
 ### Example Usage
 
-<!-- UsageSnippet language="csharp" operationID="DeleteServiceGroup" method="delete" path="/service-groups/{ServiceGroupId}" -->
 ```csharp
 using Shippo;
+using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    shippoApiVersion: "2018-02-08",
-    apiKeyHeader: "<YOUR_API_KEY_HERE>"
+    apiKeyHeader: "<YOUR_API_KEY_HERE>",
+    shippoApiVersion: "2018-02-08"
 );
 
-await sdk.ServiceGroups.DeleteAsync(serviceGroupId: "<id>");
+await sdk.ServiceGroups.DeleteAsync(
+    serviceGroupId: "<id>",
+    shippoApiVersion: "2018-02-08"
+);
 
 // handle response
 ```
