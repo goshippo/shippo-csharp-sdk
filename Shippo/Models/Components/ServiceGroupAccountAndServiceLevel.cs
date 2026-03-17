@@ -25,7 +25,7 @@ namespace Shippo.Models.Components
         /// Service level token, e.g. `usps_priority` or `fedex_ground`.&lt;br&gt;<br/>
         /// 
         /// <remarks>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;Service Levels&lt;/a&gt;.
+        /// See &lt;a href=&quot;/shippoapi/public-api/service-levels&quot;&gt;Service Levels&lt;/a&gt;.
         /// </remarks>
         /// </summary>
         [JsonProperty("service_level_token")]

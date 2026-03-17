@@ -18,7 +18,7 @@ namespace Shippo.Models.Components
     /// 
     /// <remarks>
     /// other shipments from the US, `NOEEI_30_37_a` is applicable.<br/>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-EELPFC&quot;&gt;here&lt;/a&gt;
+    /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-eelpfc&quot;&gt;here&lt;/a&gt;
     /// </remarks>
     /// </summary>
     public enum CustomsDeclarationEelPfcEnum

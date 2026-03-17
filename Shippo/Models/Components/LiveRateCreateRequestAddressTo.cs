@@ -9,26 +9,24 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
-    
 
     public class LiveRateCreateRequestAddressToType
     {
         private LiveRateCreateRequestAddressToType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static LiveRateCreateRequestAddressToType Str { get { return new LiveRateCreateRequestAddressToType("str"); } }
-        
+
         public static LiveRateCreateRequestAddressToType AddressCompleteCreateRequest { get { return new LiveRateCreateRequestAddressToType("AddressCompleteCreateRequest"); } }
-        
-        public static LiveRateCreateRequestAddressToType Null { get { return new LiveRateCreateRequestAddressToType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(LiveRateCreateRequestAddressToType v) { return v.Value; }
@@ -36,7 +34,6 @@ namespace Shippo.Models.Components
             switch(v) {
                 case "str": return Str;
                 case "AddressCompleteCreateRequest": return AddressCompleteCreateRequest;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for LiveRateCreateRequestAddressToType");
             }
         }
@@ -65,8 +62,10 @@ namespace Shippo.Models.Components
     /// </remarks>
     /// </summary>
     [JsonConverter(typeof(LiveRateCreateRequestAddressTo.LiveRateCreateRequestAddressToConverter))]
-    public class LiveRateCreateRequestAddressTo {
-        public LiveRateCreateRequestAddressTo(LiveRateCreateRequestAddressToType type) {
+    public class LiveRateCreateRequestAddressTo
+    {
+        public LiveRateCreateRequestAddressTo(LiveRateCreateRequestAddressToType type)
+        {
             Type = type;
         }
 
@@ -77,17 +76,16 @@ namespace Shippo.Models.Components
         public AddressCompleteCreateRequest? AddressCompleteCreateRequest { get; set; }
 
         public LiveRateCreateRequestAddressToType Type { get; set; }
-
-
-        public static LiveRateCreateRequestAddressTo CreateStr(string str) {
+        public static LiveRateCreateRequestAddressTo CreateStr(string str)
+        {
             LiveRateCreateRequestAddressToType typ = LiveRateCreateRequestAddressToType.Str;
 
             LiveRateCreateRequestAddressTo res = new LiveRateCreateRequestAddressTo(typ);
             res.Str = str;
             return res;
         }
-
-        public static LiveRateCreateRequestAddressTo CreateAddressCompleteCreateRequest(AddressCompleteCreateRequest addressCompleteCreateRequest) {
+        public static LiveRateCreateRequestAddressTo CreateAddressCompleteCreateRequest(AddressCompleteCreateRequest addressCompleteCreateRequest)
+        {
             LiveRateCreateRequestAddressToType typ = LiveRateCreateRequestAddressToType.AddressCompleteCreateRequest;
 
             LiveRateCreateRequestAddressTo res = new LiveRateCreateRequestAddressTo(typ);
@@ -95,26 +93,20 @@ namespace Shippo.Models.Components
             return res;
         }
 
-        public static LiveRateCreateRequestAddressTo CreateNull() {
-            LiveRateCreateRequestAddressToType typ = LiveRateCreateRequestAddressToType.Null;
-            return new LiveRateCreateRequestAddressTo(typ);
-        }
-
         public class LiveRateCreateRequestAddressToConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(LiveRateCreateRequestAddressTo);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -169,27 +161,24 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
-                }
-                LiveRateCreateRequestAddressTo res = (LiveRateCreateRequestAddressTo)value;
-                if (LiveRateCreateRequestAddressToType.FromString(res.Type).Equals(LiveRateCreateRequestAddressToType.Null))
+                if (value == null)
                 {
-                    writer.WriteRawValue("null");
-                    return;
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
+
+                LiveRateCreateRequestAddressTo res = (LiveRateCreateRequestAddressTo)value;
+
                 if (res.Str != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Str));
                     return;
                 }
+
                 if (res.AddressCompleteCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.AddressCompleteCreateRequest));
                     return;
                 }
-
             }
 
         }

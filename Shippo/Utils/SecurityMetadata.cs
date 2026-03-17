@@ -196,6 +196,8 @@ namespace Shippo.Utils
                         case "bearer":
                             headerParams.Add(key, Utilities.PrefixBearer(valStr));
                             break;
+                        case "custom":
+                            break;
                         default:
                             throw new Exception($"Unknown http subType: {schemeMetadata.SubType}");
                     }

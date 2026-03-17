@@ -18,10 +18,10 @@ namespace Shippo.Models.Components
     {
 
         /// <summary>
-        /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment. <br/>
+        /// An object holding optional extra services to be requested for each parcel in a multi-piece shipment.<br/>
         /// 
         /// <remarks>
-        /// See the &lt;a href=&quot;#section/Parcel-Extras&quot;&gt;Parcel Extra table below&lt;/a&gt; for all available services.
+        /// The following values are supported for the `extra` field of the parcel object.
         /// </remarks>
         /// </summary>
         [JsonProperty("extra")]
@@ -99,7 +99,7 @@ namespace Shippo.Models.Components
         /// <summary>
         /// If template is passed, `length`, `width`, `height`, and `distance_unit` are not required
         /// </summary>
-        [JsonProperty("template")]
+        [JsonProperty("template", NullValueHandling = NullValueHandling.Include)]
         public ParcelTemplateEnumSet? Template { get; set; }
 
         /// <summary>

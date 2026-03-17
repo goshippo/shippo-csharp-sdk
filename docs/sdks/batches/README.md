@@ -1,18 +1,8 @@
 # Batches
-(*Batches*)
 
 ## Overview
 
 A batch is a technique for creating multiple labels at once. Use the  batch object to create and purchase many shipments in two API calls. After creating the batch, retrieve the batch to verify that all shipments are valid. You can add and remove shipments after you have created the batch. When all shipments are valid you can purchase the batch and retrieve all the shipping labels.
-<SchemaDefinition schemaRef="#/components/schemas/Batch"/>
-
-# Batch Shipment
-The batch shipment object is a wrapper around a shipment object, which include shipment-specific information 
-for batch processing.
-
-Note: batch shipments can only be created on the batch endpoint, either when creating a batch object or by through 
-the `/batches/{BATCH_OBJECT_ID}/add_shipments` endpoint
-<SchemaDefinition schemaRef="#/components/schemas/BatchShipment"/>
 
 ### Available Operations
 
@@ -28,266 +18,24 @@ Creates a new batch object for purchasing shipping labels for many shipments at 
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="CreateBatch" method="post" path="/batches" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.Batches.CreateAsync(
-    batchCreateRequest: new BatchCreateRequest() {
-        DefaultCarrierAccount = "078870331023437cb917f5187429b093",
-        DefaultServicelevelToken = "usps_priority",
-        LabelFiletype = Shippo.Models.Components.LabelFileTypeEnum.Pdf4x6,
-        Metadata = "BATCH #1",
-        BatchShipments = new List<BatchShipmentCreateRequest>() {
-            new BatchShipmentCreateRequest() {
-                CarrierAccount = "a4391cd4ab974f478f55dc08b5c8e3b3",
-                Metadata = "SHIPMENT #1",
-                ServicelevelToken = "fedex_ground",
-                Shipment = new ShipmentCreateRequest() {
-                    Extra = new ShipmentExtra() {
-                        AccountsReceivableCustomerAccount = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        AppropriationNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        BillOfLadingNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        Cod = new Cod() {
-                            Amount = "5.5",
-                            Currency = "USD",
-                            PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
-                        },
-                        CodNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        CustomerReference = new CustomerReference() {
-                            RefSort = 1,
-                        },
-                        DealerOrderNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        DeptNumber = new DepartmentNumber() {
-                            RefSort = 3,
-                        },
-                        FdaProductCode = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        Insurance = new Insurance() {
-                            Amount = "5.5",
-                            Currency = "USD",
-                        },
-                        InvoiceNumber = new InvoiceNumber() {
-                            RefSort = 2,
-                        },
-                        ManifestNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        ModelNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        PartNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        PoNumber = new PoNumber() {
-                            RefSort = 2,
-                        },
-                        ProductionCode = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        PurchaseRequestNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        RmaNumber = new RmaNumber() {
-                            RefSort = 1,
-                        },
-                        SalespersonNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        SerialNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        StoreNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                        TransactionReferenceNumber = new UPSReferenceFields() {
-                            Prefix = "ABC",
-                            Value = "value",
-                            RefSort = 1,
-                        },
-                    },
-                    Metadata = "Customer ID 123456",
-                    ShipmentDate = "2021-03-22T12:00:00Z",
-                    AddressFrom = AddressFrom.CreateAddressCreateRequest(
-                        new AddressCreateRequest() {
-                            Name = "Shwan Ippotle",
-                            Company = "Shippo",
-                            Street1 = "215 Clayton St.",
-                            Street3 = "",
-                            StreetNo = "",
-                            City = "San Francisco",
-                            State = "CA",
-                            Zip = "94117",
-                            Country = "US",
-                            Phone = "+1 555 341 9393",
-                            Email = "shippotle@shippo.com",
-                            IsResidential = true,
-                            Metadata = "Customer ID 123456",
-                            Validate = true,
-                        }
-                    ),
-                    AddressReturn = AddressReturn.CreateStr(
-                        "d799c2679e644279b59fe661ac8fa488"
-                    ),
-                    AddressTo = AddressTo.CreateAddressCreateRequest(
-                        new AddressCreateRequest() {
-                            Name = "Shwan Ippotle",
-                            Company = "Shippo",
-                            Street1 = "215 Clayton St.",
-                            Street3 = "",
-                            StreetNo = "",
-                            City = "San Francisco",
-                            State = "CA",
-                            Zip = "94117",
-                            Country = "US",
-                            Phone = "+1 555 341 9393",
-                            Email = "shippotle@shippo.com",
-                            IsResidential = true,
-                            Metadata = "Customer ID 123456",
-                            Validate = true,
-                        }
-                    ),
-                    CustomsDeclaration = ShipmentCreateRequestCustomsDeclaration.CreateCustomsDeclarationCreateRequest(
-                        new CustomsDeclarationCreateRequest() {
-                            B13aFilingOption = Shippo.Models.Components.CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
-                            Certify = true,
-                            CertifySigner = "Shawn Ippotle",
-                            ContentsExplanation = "T-Shirt purchase",
-                            DutiesPayor = new DutiesPayor() {
-                                Account = "2323434543",
-                                Type = Shippo.Models.Components.CustomsDeclarationCreateRequestType.ThirdParty,
-                                Address = new CustomsDeclarationCreateRequestAddress() {
-                                    Name = "Patrick Kavanagh",
-                                    Zip = "80331",
-                                    Country = "DE",
-                                },
-                            },
-                            ExporterIdentification = new CustomsExporterIdentification() {
-                                EoriNumber = "PL123456790ABCDE",
-                                TaxId = new CustomsTaxIdentification() {
-                                    Number = "123456789",
-                                    Type = Shippo.Models.Components.CustomsTaxIdentificationType.Ein,
-                                },
-                            },
-                            Invoice = "#123123",
-                            Metadata = "Order ID #123123",
-                            AddressImporter = new AddressImporter() {
-                                Name = "Shwan Ippotle",
-                                Company = "Shippo",
-                                Street1 = "Blumenstraße",
-                                Street3 = "",
-                                StreetNo = "22",
-                                City = "München",
-                                State = "CA",
-                                Zip = "80331",
-                                Country = "DE",
-                                Phone = "80331",
-                                Email = "shippotle@shippo.com",
-                                IsResidential = true,
-                            },
-                            ContentsType = Shippo.Models.Components.CustomsDeclarationContentsTypeEnum.Merchandise,
-                            EelPfc = Shippo.Models.Components.CustomsDeclarationEelPfcEnum.Noeei3037A,
-                            Incoterm = Shippo.Models.Components.CustomsDeclarationIncotermEnum.Ddp,
-                            Items = new List<CustomsItemCreateRequest>() {
-                                new CustomsItemCreateRequest() {
-                                    Description = "T-Shirt",
-                                    MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
-                                    Metadata = "Order ID \"123454\"",
-                                    NetWeight = "5",
-                                    OriginCountry = "<value>",
-                                    Quantity = 20,
-                                    SkuCode = "HM-123",
-                                    HsCode = "0901.21",
-                                    ValueAmount = "200",
-                                    ValueCurrency = "USD",
-                                },
-                            },
-                            NonDeliveryOption = Shippo.Models.Components.CustomsDeclarationNonDeliveryOptionEnum.Return,
-                            Test = true,
-                        }
-                    ),
-                    CarrierAccounts = new List<string>() {
-                        "065a4a8c10d24a34ab932163a1b87f52",
-                        "73f706f4bdb94b54a337563840ce52b0",
-                    },
-                    Parcels = new List<Models.Components.Parcels>() {
-                        Parcels.CreateParcelCreateRequest(
-                            new ParcelCreateRequest() {
-                                Extra = new ParcelExtra() {
-                                    Cod = new Cod() {
-                                        Amount = "5.5",
-                                        Currency = "USD",
-                                        PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
-                                    },
-                                    Insurance = new ParcelInsurance() {
-                                        Amount = "5.5",
-                                        Content = "Laptop",
-                                        Currency = "USD",
-                                        Provider = Shippo.Models.Components.ParcelInsuranceProvider.Ups,
-                                    },
-                                },
-                                Metadata = "Customer ID 123456",
-                                MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
-                                Weight = "1",
-                                DistanceUnit = Shippo.Models.Components.DistanceUnitEnum.In,
-                                Height = "1",
-                                Length = "1",
-                                Width = "1",
-                            }
-                        ),
-                    },
-                },
-            },
-        },
-    },
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.Batches.CreateAsync(batchCreateRequest: new BatchCreateRequest() {
+    DefaultCarrierAccount = "078870331023437cb917f5187429b093",
+    DefaultServicelevelToken = "usps_priority",
+    LabelFiletype = LabelFileTypeEnum.Pdf4x6,
+    Metadata = "BATCH #1",
+    BatchShipments = new List<BatchShipmentCreateRequest>() {},
+});
 
 // handle response
 ```
@@ -318,14 +66,15 @@ For more details on filtering results, see our guide on <a href="https://docs.go
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="GetBatch" method="get" path="/batches/{BatchId}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
+using Shippo.Models.Requests;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 GetBatchRequest req = new GetBatchRequest() {
@@ -359,15 +108,15 @@ Adds batch shipments to an existing batch.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="AddShipmentsToBatch" method="post" path="/batches/{BatchId}/add_shipments" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
-using System.Collections.Generic;
 using Shippo.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.Batches.AddShipmentsAsync(
@@ -397,7 +146,7 @@ var res = await sdk.Batches.AddShipmentsAsync(
                     Cod = new Cod() {
                         Amount = "5.5",
                         Currency = "USD",
-                        PaymentMethod = Shippo.Models.Components.PaymentMethod.Cash,
+                        PaymentMethod = PaymentMethod.Cash,
                     },
                     CodNumber = new UPSReferenceFields() {
                         Prefix = "ABC",
@@ -484,41 +233,11 @@ var res = await sdk.Batches.AddShipmentsAsync(
                 AddressFrom = AddressFrom.CreateStr(
                     "d799c2679e644279b59fe661ac8fa488"
                 ),
-                AddressReturn = AddressReturn.CreateAddressCreateRequest(
-                    new AddressCreateRequest() {
-                        Name = "Shwan Ippotle",
-                        Company = "Shippo",
-                        Street1 = "215 Clayton St.",
-                        Street3 = "",
-                        StreetNo = "",
-                        City = "San Francisco",
-                        State = "CA",
-                        Zip = "94117",
-                        Country = "US",
-                        Phone = "+1 555 341 9393",
-                        Email = "shippotle@shippo.com",
-                        IsResidential = true,
-                        Metadata = "Customer ID 123456",
-                        Validate = true,
-                    }
+                AddressReturn = AddressReturn.CreateStr(
+                    "d799c2679e644279b59fe661ac8fa488"
                 ),
-                AddressTo = AddressTo.CreateAddressCreateRequest(
-                    new AddressCreateRequest() {
-                        Name = "Shwan Ippotle",
-                        Company = "Shippo",
-                        Street1 = "215 Clayton St.",
-                        Street3 = "",
-                        StreetNo = "",
-                        City = "San Francisco",
-                        State = "CA",
-                        Zip = "94117",
-                        Country = "US",
-                        Phone = "+1 555 341 9393",
-                        Email = "shippotle@shippo.com",
-                        IsResidential = true,
-                        Metadata = "Customer ID 123456",
-                        Validate = true,
-                    }
+                AddressTo = AddressTo.CreateStr(
+                    "d799c2679e644279b59fe661ac8fa489"
                 ),
                 CustomsDeclaration = ShipmentCreateRequestCustomsDeclaration.CreateStr(
                     "adcfdddf8ec64b84ad22772bce3ea37a"
@@ -527,15 +246,14 @@ var res = await sdk.Batches.AddShipmentsAsync(
                     "065a4a8c10d24a34ab932163a1b87f52",
                     "73f706f4bdb94b54a337563840ce52b0",
                 },
-                Parcels = new List<Models.Components.Parcels>() {
-                    Parcels.CreateStr(
+                Parcels = new List<Shippo.Models.Components.Parcels>() {
+                    Shippo.Models.Components.Parcels.CreateStr(
                         "<value>"
                     ),
                 },
             },
         },
-    },
-    shippoApiVersion: "2018-02-08"
+    }
 );
 
 // handle response
@@ -568,20 +286,17 @@ When all the shipments are purchased, the status will change to `PURCHASED` and 
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="PurchaseBatch" method="post" path="/batches/{BatchId}/purchase" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.Batches.PurchaseAsync(
-    batchId: "<id>",
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.Batches.PurchaseAsync(batchId: "<id>");
 
 // handle response
 ```
@@ -609,23 +324,22 @@ Removes shipments from an existing batch shipment.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="RemoveShipmentsFromBatch" method="post" path="/batches/{BatchId}/remove_shipments" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
-using System.Collections.Generic;
 using Shippo.Models.Components;
+using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.Batches.RemoveShipmentsAsync(
     batchId: "<id>",
     requestBody: new List<string>() {
-        "<value>",
-    },
-    shippoApiVersion: "2018-02-08"
+        "<value 1>",
+    }
 );
 
 // handle response

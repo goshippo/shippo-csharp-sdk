@@ -28,7 +28,7 @@ namespace Shippo.Models.Components
         [JsonProperty("metadata")]
         public string? Metadata { get; set; }
 
-        [JsonProperty("parameters")]
+        [JsonProperty("parameters", NullValueHandling = NullValueHandling.Include)]
         public ConnectExistingOwnAccountRequestParameters Parameters { get; set; } = default!;
 
         [JsonProperty("test")]

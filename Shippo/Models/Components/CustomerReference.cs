@@ -30,10 +30,15 @@ namespace Shippo.Models.Components
         public string? Prefix { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label for customer reference. Up to 40 characters. If <br/>
+        /// Optional text to be printed on the shipping label for customer reference. Up to 40 characters. If<br/>
         /// 
         /// <remarks>
-        /// this is provided, reference_1 will be ignored.
+        /// this is provided, reference_1 will be ignored.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 40 characters (Express services); Max 30 characters (Ground services) |
         /// </remarks>
         /// </summary>
         [JsonProperty("value")]

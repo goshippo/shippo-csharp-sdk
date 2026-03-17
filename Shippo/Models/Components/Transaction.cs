@@ -12,8 +12,8 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
     
     public class Transaction
     {
@@ -125,7 +125,7 @@ namespace Shippo.Models.Components
         /// &lt;/br&gt;Note, only rates less than 7 days old can be purchased to ensure up-to-date pricing.
         /// </remarks>
         /// </summary>
-        [JsonProperty("rate")]
+        [JsonProperty("rate", NullValueHandling = NullValueHandling.Include)]
         public TransactionRate? Rate { get; set; }
 
         /// <summary>

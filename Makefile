@@ -99,7 +99,7 @@ speakeasy-install: ## install speakeasy
 else ifeq ($(OS),Darwin)
 .PHONY: dotnet-install
 dotnet-install: ## install dotnet
-	brew install dotnet@6
+	brew install dotnet@8
 
 .PHONY: speakeasy-install
 speakeasy-install:

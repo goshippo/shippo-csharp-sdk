@@ -109,19 +109,19 @@ namespace Shippo.Models.Components
         public WeightUnitEnum? WeightUnit { get; set; }
 
         /// <summary>
-        /// &lt;a href=&quot;#tag/Addresses&quot;&gt;Address&lt;/a&gt; object of the sender / seller. Will be returned expanded by default..
+        /// &lt;a href=&quot;/shippoapi/public-api/addresses&quot;&gt;Address&lt;/a&gt; object of the sender / seller. Will be returned expanded by default..
         /// </summary>
         [JsonProperty("from_address")]
         public AddressCreateRequest? FromAddress { get; set; }
 
         /// <summary>
-        /// &lt;a href=&quot;#tag/Addresses&quot;&gt;Address&lt;/a&gt; object of the recipient / buyer. Will be returned expanded by default.
+        /// &lt;a href=&quot;/shippoapi/public-api/addresses&quot;&gt;Address&lt;/a&gt; object of the recipient / buyer. Will be returned expanded by default.
         /// </summary>
         [JsonProperty("to_address")]
         public AddressCreateRequest ToAddress { get; set; } = default!;
 
         /// <summary>
-        /// Array of &lt;a href=&quot;#section/Line-Item&quot;&gt;line item&lt;/a&gt; objects representing the items in this order. <br/>
+        /// Array of &lt;a href=&quot;/shippoapi/public-api/orders/lineitem&quot;&gt;line item&lt;/a&gt; objects representing the items in this order. <br/>
         /// 
         /// <remarks>
         /// All objects will be returned expanded by default.

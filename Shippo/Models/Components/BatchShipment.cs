@@ -14,6 +14,16 @@ namespace Shippo.Models.Components
     using Shippo.Utils;
     using System.Collections.Generic;
     
+    /// <summary>
+    /// The batch shipment object is a wrapper around a shipment object, which include shipment-specific information<br/>
+    /// 
+    /// <remarks>
+    /// for batch processing.<br/>
+    /// <br/>
+    /// Note: batch shipments can only be created on the batch endpoint, either when creating a batch object or by through<br/>
+    /// the `/batches/{BATCH_OBJECT_ID}/add_shipments` endpoint
+    /// </remarks>
+    /// </summary>
     public class BatchShipment
     {
 
@@ -37,8 +47,8 @@ namespace Shippo.Models.Components
         /// A token that sets the shipping method for the batch, overriding the batch default. <br/>
         /// 
         /// <remarks>
-        /// Servicelevel tokens can be found &lt;a href=&quot;#tag/Service-Levels&quot;&gt;in this list&lt;/a&gt; <br/>
-        /// or &lt;a href=&quot;#operation/ListCarrierAccounts&quot;&gt;at this endpoint&lt;/a&gt;.
+        /// Servicelevel tokens can be found &lt;a href=&quot;/shippoapi/public-api/service-levels&quot;&gt;in this list&lt;/a&gt; <br/>
+        /// or &lt;a href=&quot;/shippoapi/public-api/carrier-accounts/listcarrieraccounts&quot;&gt;at this endpoint&lt;/a&gt;.
         /// </remarks>
         /// </summary>
         [JsonProperty("servicelevel_token")]

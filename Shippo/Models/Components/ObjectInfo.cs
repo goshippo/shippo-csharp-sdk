@@ -21,5 +21,8 @@ namespace Shippo.Models.Components
 
         [JsonProperty("authentication")]
         public Authentication? Authentication { get; set; }
+
+        [JsonProperty("verification")]
+        public Verification? Verification { get; set; }
     }
 }

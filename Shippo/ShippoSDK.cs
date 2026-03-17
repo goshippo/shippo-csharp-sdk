@@ -13,12 +13,12 @@ namespace Shippo
     using Shippo.Hooks;
     using Shippo.Models.Components;
     using Shippo.Models.Errors;
-    using Shippo.Utils.Retries;
     using Shippo.Utils;
+    using Shippo.Utils.Retries;
+    using System;
     using System.Collections.Generic;
     using System.Net.Http;
     using System.Threading.Tasks;
-    using System;
 
     /// <summary>
     /// Shippo external API.: Use this API to integrate with the Shippo service
@@ -27,38 +27,17 @@ namespace Shippo
     {
 
         /// <summary>
-        /// Addresses are the locations a parcel is being shipped **from** and **to**. They represent company and residential places. Among other things, you can use address objects to create shipments, calculate shipping rates, and purchase shipping labels.<br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Address&quot;/&gt;
-        /// </remarks>
+        /// Addresses are the locations a parcel is being shipped **from** and **to**. They represent company and residential places. Among other things, you can use address objects to create shipments, calculate shipping rates, and purchase shipping labels.
         /// </summary>
         public IAddresses Addresses { get; }
 
         /// <summary>
-        /// A batch is a technique for creating multiple labels at once. Use the  batch object to create and purchase many shipments in two API calls. After creating the batch, retrieve the batch to verify that all shipments are valid. You can add and remove shipments after you have created the batch. When all shipments are valid you can purchase the batch and retrieve all the shipping labels.<br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Batch&quot;/&gt;<br/>
-        /// <br/>
-        /// # Batch Shipment<br/>
-        /// The batch shipment object is a wrapper around a shipment object, which include shipment-specific information <br/>
-        /// for batch processing.<br/>
-        /// <br/>
-        /// Note: batch shipments can only be created on the batch endpoint, either when creating a batch object or by through <br/>
-        /// the `/batches/{BATCH_OBJECT_ID}/add_shipments` endpoint<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/BatchShipment&quot;/&gt;
-        /// </remarks>
+        /// A batch is a technique for creating multiple labels at once. Use the  batch object to create and purchase many shipments in two API calls. After creating the batch, retrieve the batch to verify that all shipments are valid. You can add and remove shipments after you have created the batch. When all shipments are valid you can purchase the batch and retrieve all the shipping labels.
         /// </summary>
         public IBatches Batches { get; }
 
         /// <summary>
-        /// Carriers are the companies who deliver your package. Shippo uses Carrier account objects as credentials to retrieve shipping rates and purchase labels from shipping Carriers.<br/>
-        /// 
-        /// <remarks>
-        /// <br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CarrierAccount&quot;/&gt;
-        /// </remarks>
+        /// Carriers are the companies who deliver your package. Shippo uses Carrier account objects as credentials to retrieve shipping rates and purchase labels from shipping Carriers.
         /// </summary>
         public ICarrierAccounts CarrierAccounts { get; }
 
@@ -66,18 +45,13 @@ namespace Shippo
         /// Customs declarations are relevant information, including one or multiple customs items, you need to provide for <br/>
         /// 
         /// <remarks>
-        /// customs clearance for your international shipments.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CustomsDeclaration&quot;/&gt;
+        /// customs clearance for your international shipments.
         /// </remarks>
         /// </summary>
         public ICustomsDeclarations CustomsDeclarations { get; }
 
         /// <summary>
-        /// Customs declarations are relevant information, including one or multiple customs items, you need to provide for customs clearance for your international shipments.<br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CustomsItem&quot;/&gt;
-        /// </remarks>
+        /// Customs declarations are relevant information, including one or multiple customs items, you need to provide for customs clearance for your international shipments.
         /// </summary>
         public ICustomsItems CustomsItems { get; }
 
@@ -86,72 +60,43 @@ namespace Shippo
         /// 
         /// <remarks>
         /// Merchants set up curated shipping options for customers in the checkout flow based on data in the shopping cart. The request must include the **to** address and item information. Optional fields are the **from** address and package information. If the optional fields are not included, the service will use the default address and/or package configured for rates at checkout. The response is a list of shipping options based on the Service Group configuration.<br/>
-        /// (see &lt;a href=&quot;#tag/Service-Groups&quot;&gt;Service Group configuration&lt;/a&gt; for details).<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/LiveRate&quot;/&gt;<br/>
+        /// (see &lt;a href=&quot;/shippoapi/public-api/service-groups&quot;&gt;Service Group configuration&lt;/a&gt; for details).<br/>
+        /// <br/>
         /// <br/>
         /// <br/>
         /// # Default Parcel Template<br/>
-        /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/UserParcelTemplate&quot;/&gt;
+        /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.
         /// </remarks>
         /// </summary>
         public IRatesAtCheckout RatesAtCheckout { get; }
 
         /// <summary>
-        /// A manifest is a single-page document with a barcode that carriers can scan to accept all packages into transit without the need to scan each item individually. <br/>
+        /// A manifest is a single-page document with a barcode that carriers can scan to accept all packages into transit without the need to scan each item individually.<br/>
         /// 
         /// <remarks>
-        /// They are close-outs of shipping labels of a certain day. Some carriers require manifests to  process the shipments.<br/>
-        /// <br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Manifest&quot;/&gt;<br/>
-        /// <br/>
-        /// # Manifest Errors<br/>
-        /// The following codes and messages are the possible errors that may occur when creating Manifests.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ManifestErrors&quot;/&gt;
+        /// They are close-outs of shipping labels of a certain day. Some carriers require manifests to  process the shipments.
         /// </remarks>
         /// </summary>
         public IManifests Manifests { get; }
 
         /// <summary>
-        /// An order is a request from a customer to purchase goods from a merchant. <br/>
+        /// An order is a request from a customer to purchase goods from a merchant.<br/>
         /// 
         /// <remarks>
         /// Use the orders object to load orders from your system to the Shippo dashboard.<br/>
-        /// You can use the orders object to create, retrieve, list, and manage orders programmatically. <br/>
-        /// You can also retrieve shipping rates, purchase labels, and track shipments for each order.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Order&quot;/&gt;<br/>
-        /// <br/>
-        /// # Line Item<br/>
-        /// &lt;p style=&quot;text-align: center; background-color: #F2F3F4;&quot;&gt;<br/>
-        ///   &lt;/br&gt;Line Items, and their corresponding abstract Products and Variants, might be exposed as a separate resource <br/>
-        ///   in the future. Currently it&apos;s a nested object within the order resource.&lt;/br&gt;&lt;/br&gt;<br/>
-        /// &lt;/p&gt;<br/>
-        ///  A line item is an individual object in an order. For example, if your order contains a t-shirt, shorts, and a jacket, each item is represented by a line item.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/LineItem&quot;/&gt;
+        /// You can use the orders object to create, retrieve, list, and manage orders programmatically.<br/>
+        /// You can also retrieve shipping rates, purchase labels, and track shipments for each order.
         /// </remarks>
         /// </summary>
         public IOrders Orders { get; }
 
         /// <summary>
-        /// A carrier parcel template represents a package used for shipping that has preset dimensions defined by a carrier. Some examples of a carrier parcel template include USPS Flat Rate Box and Fedex Small Pak. When using a carrier parcel template, the rates returned may be limited to the carrier that provides the box. You can create user parcel templates using a carrier parcel template. Shippo takes the dimensions of the carrier parcel template but you must configure the weight.<br/>
-        /// 
-        /// <remarks>
-        /// <br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CarrierParcelTemplate&quot;/&gt;
-        /// </remarks>
+        /// A carrier parcel template represents a package used for shipping that has preset dimensions defined by a carrier. Some examples of a carrier parcel template include USPS Flat Rate Box and Fedex Small Pak. When using a carrier parcel template, the rates returned may be limited to the carrier that provides the box. You can create user parcel templates using a carrier parcel template. Shippo takes the dimensions of the carrier parcel template but you must configure the weight.
         /// </summary>
         public ICarrierParcelTemplates CarrierParcelTemplates { get; }
 
         /// <summary>
-        /// A parcel is an item you are shipping. The parcel object includes details about its physical make-up of the parcel. It includes dimensions and weight that Shippo uses to calculate rates. <br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Parcel&quot;/&gt;<br/>
-        /// <br/>
-        /// # Parcel Extras<br/>
-        /// The following values are supported for the `extra` field of the parcel object.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ParcelExtra&quot;/&gt;
-        /// </remarks>
+        /// A parcel is an item you are shipping. The parcel object includes details about its physical make-up of the parcel. It includes dimensions and weight that Shippo uses to calculate rates.
         /// </summary>
         public IParcels Parcels { get; }
 
@@ -159,27 +104,18 @@ namespace Shippo
         /// A pickup is when you schedule a carrier to collect a package for delivery.<br/>
         /// 
         /// <remarks>
-        /// Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Pickup&quot;/&gt;
+        /// Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.
         /// </remarks>
         /// </summary>
         public IPickups Pickups { get; }
 
         /// <summary>
-        /// A rate is the cost to ship a parcel from a carrier. The rate object details the service level including the cost and transit time. <br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Rate&quot;/&gt;
-        /// </remarks>
+        /// A rate is the cost to ship a parcel from a carrier. The rate object details the service level including the cost and transit time. 
         /// </summary>
         public IRates Rates { get; }
 
         /// <summary>
-        /// Refunds are reimbursements for successfully created but unused shipping labels or other charges.<br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Refund&quot;/&gt;
-        /// </remarks>
+        /// Refunds are reimbursements for successfully created but unused shipping labels or other charges.
         /// </summary>
         public IRefunds Refunds { get; }
 
@@ -187,22 +123,13 @@ namespace Shippo
         /// A service group is a set of service levels grouped together. <br/>
         /// 
         /// <remarks>
-        /// Rates at checkout uses services groups to present available shipping options to customers in their shopping basket.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ServiceGroup&quot;/&gt;
+        /// Rates at checkout uses services groups to present available shipping options to customers in their shopping basket.
         /// </remarks>
         /// </summary>
         public IServiceGroups ServiceGroups { get; }
 
         /// <summary>
-        /// A shipment is the act of transporting goods. A shipment object contains **to** and **from** addresses, and the parcel details that you are shipping. You can use the shipment object to retrieve shipping rates and purchase a shipping label.<br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Shipment&quot;/&gt;<br/>
-        ///  <br/>
-        /// # Shipment Extras<br/>
-        /// The following values are supported for the `extra` field of the shipment object.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShipmentExtra&quot;/&gt;
-        /// </remarks>
+        /// A shipment is the act of transporting goods. A shipment object contains **to** and **from** addresses, and the parcel details that you are shipping. You can use the shipment object to retrieve shipping rates and purchase a shipping label.
         /// </summary>
         public IShipments Shipments { get; }
 
@@ -211,25 +138,20 @@ namespace Shippo
         /// 
         /// <remarks>
         /// If you purchased your shipping label through Shippo, you can also get all the tracking details of your Shipment <br/>
-        /// from the &lt;a href=&quot;#tag/Transactions&quot;&gt;Transaction&lt;/a&gt; object.<br/>
+        /// from the &lt;a href=&quot;/shippoapi/public-api/transactions&quot;&gt;Transaction&lt;/a&gt; object.<br/>
         /// &lt;/br&gt;&lt;/br&gt;&lt;/p&gt;<br/>
         /// A tracking status of a package is an indication of current location of a package in the supply chain. For example,  sorting, warehousing, or out for delivery. Use the tracking status object to track the location of your shipments.<br/>
         /// <br/>
         /// When using your &lt;a href=&quot;https://docs.goshippo.com/docs/guides_general/authentication/&quot;&gt;Test&lt;/a&gt; token for tracking, you need to use Shippo&apos;s <br/>
         /// predefined tokens for testing different tracking statuses. You can find more information in our <br/>
         /// &lt;a href=&quot;https://docs.goshippo.com/docs/tracking/tracking/&quot;&gt;Tracking tutorial&lt;/a&gt; on how to do this, and what the <br/>
-        /// payloads look like.      <br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Track&quot;/&gt;
+        /// payloads look like.      
         /// </remarks>
         /// </summary>
         public ITrackingStatus TrackingStatus { get; }
 
         /// <summary>
-        /// A transaction is the purchase of a shipping label from a shipping provider for a specific service. You can print purchased labels and used them to ship a parcel with a carrier, such as USPS or FedEx.<br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Transaction&quot;/&gt;
-        /// </remarks>
+        /// A transaction is the purchase of a shipping label from a shipping provider for a specific service. You can print purchased labels and used them to ship a parcel with a carrier, such as USPS or FedEx.
         /// </summary>
         public ITransactions Transactions { get; }
 
@@ -241,8 +163,7 @@ namespace Shippo
         /// them to be defined once and then used for many shipments. These parcel templates can also be used for live rates.<br/>
         /// <br/>
         /// User parcel templates can also be created using a carrier parcel template, where the dimensions will be copied from <br/>
-        /// the carrier presets, but the weight can be configured by you.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/UserParcelTemplate&quot;/&gt;
+        /// the carrier presets, but the weight can be configured by you.
         /// </remarks>
         /// </summary>
         public IUserParcelTemplates UserParcelTemplates { get; }
@@ -252,61 +173,17 @@ namespace Shippo
         /// 
         /// <remarks>
         /// Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. <br/>
-        /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShippoAccount&quot;/&gt;
+        /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.
         /// </remarks>
         /// </summary>
         public IShippoAccounts ShippoAccounts { get; }
 
         /// <summary>
-        /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.<br/>
-        /// 
-        /// <remarks>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Webhook&quot;/&gt;<br/>
-        /// <br/>
-        /// # Webhook Payload<br/>
-        /// The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.<br/>
-        /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/WebhookPayload&quot;/&gt;
-        /// </remarks>
+        /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.
         /// </summary>
         public IWebhooks Webhooks { get; }
     }
 
-    public class SDKConfig
-    {
-        /// <summary>
-        /// List of server URLs available to the SDK.
-        /// </summary>
-        public static readonly string[] ServerList = {
-            "https://api.goshippo.com",
-        };
-
-        public string ServerUrl = "";
-        public int ServerIndex = 0;
-        public string? ShippoApiVersion;
-        public SDKHooks Hooks = new SDKHooks();
-        public RetryConfig? RetryConfig = null;
-
-        public string GetTemplatedServerUrl()
-        {
-            if (!String.IsNullOrEmpty(this.ServerUrl))
-            {
-                return Utilities.TemplateUrl(Utilities.RemoveSuffix(this.ServerUrl, "/"), new Dictionary<string, string>());
-            }
-            return Utilities.TemplateUrl(SDKConfig.ServerList[this.ServerIndex], new Dictionary<string, string>());
-        }
-
-        public ISpeakeasyHttpClient InitHooks(ISpeakeasyHttpClient client)
-        {
-            string preHooksUrl = GetTemplatedServerUrl();
-            var (postHooksUrl, postHooksClient) = this.Hooks.SDKInit(preHooksUrl, client);
-            if (preHooksUrl != postHooksUrl)
-            {
-                this.ServerUrl = postHooksUrl;
-            }
-            return postHooksClient;
-        }
-    }
 
     /// <summary>
     /// Shippo external API.: Use this API to integrate with the Shippo service
@@ -315,15 +192,10 @@ namespace Shippo
     {
         public SDKConfig SDKConfiguration { get; private set; }
 
-        private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
-        private const string _sdkGenVersion = "2.463.0";
-        private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
-        private string _serverUrl = "";
-        private int _serverIndex = 0;
-        private ISpeakeasyHttpClient _client;
-        private Func<Shippo.Models.Components.Security>? _securitySource;
+        private const string _language = Constants.Language;
+        private const string _sdkVersion = Constants.SdkVersion;
+        private const string _sdkGenVersion = Constants.SdkGenVersion;
+        private const string _openapiDocVersion = Constants.OpenApiDocVersion;
         public IAddresses Addresses { get; private set; }
         public IBatches Batches { get; private set; }
         public ICarrierAccounts CarrierAccounts { get; private set; }
@@ -345,6 +217,64 @@ namespace Shippo
         public IShippoAccounts ShippoAccounts { get; private set; }
         public IWebhooks Webhooks { get; private set; }
 
+        public ShippoSDK(SDKConfig config)
+        {
+            SDKConfiguration = config;
+            InitHooks();
+
+            Addresses = new Addresses(SDKConfiguration);
+
+            Batches = new Batches(SDKConfiguration);
+
+            CarrierAccounts = new CarrierAccounts(SDKConfiguration);
+
+            CustomsDeclarations = new CustomsDeclarations(SDKConfiguration);
+
+            CustomsItems = new CustomsItems(SDKConfiguration);
+
+            RatesAtCheckout = new RatesAtCheckout(SDKConfiguration);
+
+            Manifests = new Manifests(SDKConfiguration);
+
+            Orders = new Orders(SDKConfiguration);
+
+            CarrierParcelTemplates = new CarrierParcelTemplates(SDKConfiguration);
+
+            Parcels = new Parcels(SDKConfiguration);
+
+            Pickups = new Pickups(SDKConfiguration);
+
+            Rates = new Rates(SDKConfiguration);
+
+            Refunds = new Refunds(SDKConfiguration);
+
+            ServiceGroups = new ServiceGroups(SDKConfiguration);
+
+            Shipments = new Shipments(SDKConfiguration);
+
+            TrackingStatus = new TrackingStatus(SDKConfiguration);
+
+            Transactions = new Transactions(SDKConfiguration);
+
+            UserParcelTemplates = new UserParcelTemplates(SDKConfiguration);
+
+            ShippoAccounts = new ShippoAccounts(SDKConfiguration);
+
+            Webhooks = new Webhooks(SDKConfiguration);
+        }
+
+        /// <summary>
+        /// Initializes a new instance of the SDK with optional configuration parameters.
+        /// </summary>
+        /// <param name="apiKeyHeader">The security configuration to use for API requests. If provided, this will be used as a static security configuration.</param>
+        /// <param name="apiKeyHeaderSource">A function that returns the security configuration dynamically. This takes precedence over the static security parameter if both are provided.</param>
+        /// <param name="shippoApiVersion">Optional string used to pick a non-default API version to use. See our &lt;a href=&quot;https://docs.goshippo.com/docs/api_concepts/apiversioning/&quot;&gt;API version&lt;/a&gt; guide.</param>
+        /// <param name="serverIndex">The index of the server to use from the predefined server list. Must be between 0 and the length of the server list. Defaults to 0 if not specified.</param>
+        /// <param name="serverUrl">A custom server URL to use instead of the predefined server list. If provided with urlParams, the URL will be templated with the provided parameters.</param>
+        /// <param name="urlParams">A dictionary of parameters to use for templating the serverUrl. Only used when serverUrl is provided.</param>
+        /// <param name="client">A custom HTTP client implementation to use for making API requests. If not provided, the default SpeakeasyHttpClient will be used.</param>
+        /// <param name="retryConfig">Configuration for retry behavior when API requests fail. Defines retry strategies, backoff policies, and maximum retry attempts.</param>
+        /// <exception cref="Exception">Thrown when the serverIndex is out of range (less than 0 or greater than or equal to the server list length).</exception>
         public ShippoSDK(string? apiKeyHeader = null, Func<string>? apiKeyHeaderSource = null, string? shippoApiVersion = null, int? serverIndex = null, string? serverUrl = null, Dictionary<string, string>? urlParams = null, ISpeakeasyHttpClient? client = null, RetryConfig? retryConfig = null)
         {
             if (serverIndex != null)
@@ -353,7 +283,6 @@ namespace Shippo
                 {
                     throw new Exception($"Invalid server index {serverIndex.Value}");
                 }
-                _serverIndex = serverIndex.Value;
             }
 
             if (serverUrl != null)
@@ -362,10 +291,8 @@ namespace Shippo
                 {
                     serverUrl = Utilities.TemplateUrl(serverUrl, urlParams);
                 }
-                _serverUrl = serverUrl;
             }
-
-            _client = client ?? new SpeakeasyHttpClient();
+            Func<Shippo.Models.Components.Security>? _securitySource = null;
 
             if(apiKeyHeaderSource != null)
             {
@@ -380,75 +307,137 @@ namespace Shippo
                 throw new Exception("apiKeyHeader and apiKeyHeaderSource cannot both be null");
             }
 
-            SDKConfiguration = new SDKConfig()
+            SDKConfiguration = new SDKConfig(client)
             {
                 ShippoApiVersion = shippoApiVersion,
-                ServerIndex = _serverIndex,
-                ServerUrl = _serverUrl,
+                ServerIndex = serverIndex == null ? 0 : serverIndex.Value,
+                ServerUrl = serverUrl == null ? "" : serverUrl,
+                SecuritySource = _securitySource,
                 RetryConfig = retryConfig
             };
 
-            _client = SDKConfiguration.InitHooks(_client);
+            InitHooks();
 
+            Addresses = new Addresses(SDKConfiguration);
 
-            Addresses = new Addresses(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Batches = new Batches(SDKConfiguration);
 
+            CarrierAccounts = new CarrierAccounts(SDKConfiguration);
 
-            Batches = new Batches(_client, _securitySource, _serverUrl, SDKConfiguration);
+            CustomsDeclarations = new CustomsDeclarations(SDKConfiguration);
 
+            CustomsItems = new CustomsItems(SDKConfiguration);
 
-            CarrierAccounts = new CarrierAccounts(_client, _securitySource, _serverUrl, SDKConfiguration);
+            RatesAtCheckout = new RatesAtCheckout(SDKConfiguration);
 
+            Manifests = new Manifests(SDKConfiguration);
 
-            CustomsDeclarations = new CustomsDeclarations(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Orders = new Orders(SDKConfiguration);
 
+            CarrierParcelTemplates = new CarrierParcelTemplates(SDKConfiguration);
 
-            CustomsItems = new CustomsItems(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Parcels = new Parcels(SDKConfiguration);
 
+            Pickups = new Pickups(SDKConfiguration);
 
-            RatesAtCheckout = new RatesAtCheckout(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Rates = new Rates(SDKConfiguration);
 
+            Refunds = new Refunds(SDKConfiguration);
 
-            Manifests = new Manifests(_client, _securitySource, _serverUrl, SDKConfiguration);
+            ServiceGroups = new ServiceGroups(SDKConfiguration);
 
+            Shipments = new Shipments(SDKConfiguration);
 
-            Orders = new Orders(_client, _securitySource, _serverUrl, SDKConfiguration);
+            TrackingStatus = new TrackingStatus(SDKConfiguration);
 
+            Transactions = new Transactions(SDKConfiguration);
 
-            CarrierParcelTemplates = new CarrierParcelTemplates(_client, _securitySource, _serverUrl, SDKConfiguration);
+            UserParcelTemplates = new UserParcelTemplates(SDKConfiguration);
 
+            ShippoAccounts = new ShippoAccounts(SDKConfiguration);
 
-            Parcels = new Parcels(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            Pickups = new Pickups(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            Rates = new Rates(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            Refunds = new Refunds(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            ServiceGroups = new ServiceGroups(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            Shipments = new Shipments(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            TrackingStatus = new TrackingStatus(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            Transactions = new Transactions(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            UserParcelTemplates = new UserParcelTemplates(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            ShippoAccounts = new ShippoAccounts(_client, _securitySource, _serverUrl, SDKConfiguration);
-
-
-            Webhooks = new Webhooks(_client, _securitySource, _serverUrl, SDKConfiguration);
+            Webhooks = new Webhooks(SDKConfiguration);
         }
+
+        private void InitHooks()
+        {
+            string preHooksUrl = SDKConfiguration.GetTemplatedServerUrl();
+            var (postHooksUrl, postHooksClient) = SDKConfiguration.Hooks.SDKInit(preHooksUrl, SDKConfiguration.Client);
+            var config = SDKConfiguration;
+            if (preHooksUrl != postHooksUrl)
+            {
+                config.ServerUrl = postHooksUrl;
+            }
+            config.Client = postHooksClient;
+            SDKConfiguration = config;
+        }
+
+        public class SDKBuilder
+        {
+            private SDKConfig _sdkConfig = new SDKConfig(client: new SpeakeasyHttpClient());
+
+            public SDKBuilder() { }
+
+            public SDKBuilder WithServerIndex(int serverIndex)
+            {
+                if (serverIndex < 0 || serverIndex >= SDKConfig.ServerList.Length)
+                {
+                    throw new Exception($"Invalid server index {serverIndex}");
+                }
+                _sdkConfig.ServerIndex = serverIndex;
+                return this;
+            }
+
+            public SDKBuilder WithServerUrl(string serverUrl, Dictionary<string, string>? serverVariables = null)
+            {
+                if (serverVariables != null)
+                {
+                    serverUrl = Utilities.TemplateUrl(serverUrl, serverVariables);
+                }
+                _sdkConfig.ServerUrl = serverUrl;
+                return this;
+            }
+
+            public SDKBuilder WithShippoApiVersion(string shippoApiVersion)
+            {
+                _sdkConfig.ShippoApiVersion = shippoApiVersion;
+                return this;
+            }
+
+            public SDKBuilder WithApiKeyHeaderSource(Func<string> apiKeyHeaderSource)
+            {
+                _sdkConfig.SecuritySource = () => new Shippo.Models.Components.Security() { APIKeyHeader = apiKeyHeaderSource() };
+                return this;
+            }
+
+            public SDKBuilder WithApiKeyHeader(string apiKeyHeader)
+            {
+                _sdkConfig.SecuritySource = () => new Shippo.Models.Components.Security() { APIKeyHeader = apiKeyHeader };
+                return this;
+            }
+
+            public SDKBuilder WithClient(ISpeakeasyHttpClient client)
+            {
+                _sdkConfig.Client = client;
+                return this;
+            }
+
+            public SDKBuilder WithRetryConfig(RetryConfig retryConfig)
+            {
+                _sdkConfig.RetryConfig = retryConfig;
+                return this;
+            }
+
+            public ShippoSDK Build()
+            {
+              if (_sdkConfig.SecuritySource == null) {
+                  throw new Exception("securitySource cannot be null. One of `ApiKeyHeader` or `apiKeyHeaderSource` needs to be defined.");
+              }
+              return new ShippoSDK(_sdkConfig);
+            }
+
+        }
+
+        public static SDKBuilder Builder() => new SDKBuilder();
     }
 }

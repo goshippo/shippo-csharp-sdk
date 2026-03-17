@@ -12,8 +12,8 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
     
     public class Pickup
     {
@@ -22,7 +22,7 @@ namespace Shippo.Models.Components
         /// The object ID of your USPS or DHL Express carrier account. <br/>
         /// 
         /// <remarks>
-        /// You can retrieve this from your Rate requests or our &lt;a href=&quot;#tag/Carrier-Accounts/&quot;&gt;Carrier Accounts&lt;/a&gt; endpoint.
+        /// You can retrieve this from your Rate requests or our &lt;a href=&quot;/shippoapi/public-api/carrier-accounts&quot;&gt;Carrier Accounts&lt;/a&gt; endpoint.
         /// </remarks>
         /// </summary>
         [JsonProperty("carrier_account")]

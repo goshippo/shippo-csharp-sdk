@@ -9,26 +9,24 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
-    
 
     public class ManifestCreateRequestAddressFromType
     {
         private ManifestCreateRequestAddressFromType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static ManifestCreateRequestAddressFromType AddressCreateRequest { get { return new ManifestCreateRequestAddressFromType("AddressCreateRequest"); } }
-        
+
         public static ManifestCreateRequestAddressFromType Str { get { return new ManifestCreateRequestAddressFromType("str"); } }
-        
-        public static ManifestCreateRequestAddressFromType Null { get { return new ManifestCreateRequestAddressFromType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(ManifestCreateRequestAddressFromType v) { return v.Value; }
@@ -36,7 +34,6 @@ namespace Shippo.Models.Components
             switch(v) {
                 case "AddressCreateRequest": return AddressCreateRequest;
                 case "str": return Str;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for ManifestCreateRequestAddressFromType");
             }
         }
@@ -57,8 +54,10 @@ namespace Shippo.Models.Components
 
 
     [JsonConverter(typeof(ManifestCreateRequestAddressFrom.ManifestCreateRequestAddressFromConverter))]
-    public class ManifestCreateRequestAddressFrom {
-        public ManifestCreateRequestAddressFrom(ManifestCreateRequestAddressFromType type) {
+    public class ManifestCreateRequestAddressFrom
+    {
+        public ManifestCreateRequestAddressFrom(ManifestCreateRequestAddressFromType type)
+        {
             Type = type;
         }
 
@@ -69,17 +68,16 @@ namespace Shippo.Models.Components
         public string? Str { get; set; }
 
         public ManifestCreateRequestAddressFromType Type { get; set; }
-
-
-        public static ManifestCreateRequestAddressFrom CreateAddressCreateRequest(AddressCreateRequest addressCreateRequest) {
+        public static ManifestCreateRequestAddressFrom CreateAddressCreateRequest(AddressCreateRequest addressCreateRequest)
+        {
             ManifestCreateRequestAddressFromType typ = ManifestCreateRequestAddressFromType.AddressCreateRequest;
 
             ManifestCreateRequestAddressFrom res = new ManifestCreateRequestAddressFrom(typ);
             res.AddressCreateRequest = addressCreateRequest;
             return res;
         }
-
-        public static ManifestCreateRequestAddressFrom CreateStr(string str) {
+        public static ManifestCreateRequestAddressFrom CreateStr(string str)
+        {
             ManifestCreateRequestAddressFromType typ = ManifestCreateRequestAddressFromType.Str;
 
             ManifestCreateRequestAddressFrom res = new ManifestCreateRequestAddressFrom(typ);
@@ -87,26 +85,20 @@ namespace Shippo.Models.Components
             return res;
         }
 
-        public static ManifestCreateRequestAddressFrom CreateNull() {
-            ManifestCreateRequestAddressFromType typ = ManifestCreateRequestAddressFromType.Null;
-            return new ManifestCreateRequestAddressFrom(typ);
-        }
-
         public class ManifestCreateRequestAddressFromConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(ManifestCreateRequestAddressFrom);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -161,27 +153,24 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
-                }
-                ManifestCreateRequestAddressFrom res = (ManifestCreateRequestAddressFrom)value;
-                if (ManifestCreateRequestAddressFromType.FromString(res.Type).Equals(ManifestCreateRequestAddressFromType.Null))
+                if (value == null)
                 {
-                    writer.WriteRawValue("null");
-                    return;
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
+
+                ManifestCreateRequestAddressFrom res = (ManifestCreateRequestAddressFrom)value;
+
                 if (res.AddressCreateRequest != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.AddressCreateRequest));
                     return;
                 }
+
                 if (res.Str != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Str));
                     return;
                 }
-
             }
 
         }

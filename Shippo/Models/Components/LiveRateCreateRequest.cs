@@ -25,7 +25,7 @@ namespace Shippo.Models.Components
         /// any address element, especially name, company, and email.
         /// </remarks>
         /// </summary>
-        [JsonProperty("address_from")]
+        [JsonProperty("address_from", NullValueHandling = NullValueHandling.Include)]
         public LiveRateCreateRequestAddressFrom? AddressFrom { get; set; }
 
         /// <summary>
@@ -36,7 +36,7 @@ namespace Shippo.Models.Components
         /// any address element, especially name, company, and email.
         /// </remarks>
         /// </summary>
-        [JsonProperty("address_to")]
+        [JsonProperty("address_to", NullValueHandling = NullValueHandling.Include)]
         public LiveRateCreateRequestAddressTo AddressTo { get; set; } = default!;
 
         /// <summary>
@@ -48,7 +48,7 @@ namespace Shippo.Models.Components
         /// <summary>
         /// Object ID for an existing User Parcel Template OR a fully formed Parcel object.
         /// </summary>
-        [JsonProperty("parcel")]
+        [JsonProperty("parcel", NullValueHandling = NullValueHandling.Include)]
         public LiveRateCreateRequestParcel? Parcel { get; set; }
     }
 }

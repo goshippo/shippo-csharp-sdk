@@ -14,6 +14,16 @@ namespace Shippo.Models.Components
     using Shippo.Utils;
     using System;
     
+    /// <summary>
+    /// &lt;p style=&quot;text-align: center; background-color: #F2F3F4;&quot;&gt;<br/>
+    /// 
+    /// <remarks>
+    ///   &lt;/br&gt;Line Items, and their corresponding abstract Products and Variants, might be exposed as a separate resource<br/>
+    ///   in the future. Currently it&apos;s a nested object within the order resource.&lt;/br&gt;&lt;/br&gt;<br/>
+    /// &lt;/p&gt;<br/>
+    /// A line item is an individual object in an order. For example, if your order contains a t-shirt, shorts, and a jacket, each item is represented by a line item.
+    /// </remarks>
+    /// </summary>
     public class LineItem
     {
 

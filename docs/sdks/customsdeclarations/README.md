@@ -1,11 +1,9 @@
 # CustomsDeclarations
-(*CustomsDeclarations*)
 
 ## Overview
 
 Customs declarations are relevant information, including one or multiple customs items, you need to provide for 
 customs clearance for your international shipments.
-<SchemaDefinition schemaRef="#/components/schemas/CustomsDeclaration"/>
 
 ### Available Operations
 
@@ -15,24 +13,23 @@ customs clearance for your international shipments.
 
 ## List
 
-Returns a a list of all customs declaration objects
+Returns a list of all customs declaration objects
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="ListCustomsDeclarations" method="get" path="/customs/declarations" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.CustomsDeclarations.ListAsync(
     page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08"
+    results: 5
 );
 
 // handle response
@@ -62,77 +59,61 @@ Creates a new customs declaration object
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="CreateCustomsDeclaration" method="post" path="/customs/declarations" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.CustomsDeclarations.CreateAsync(
-    customsDeclarationCreateRequest: new CustomsDeclarationCreateRequest() {
-        B13aFilingOption = Shippo.Models.Components.CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
-        Certify = true,
-        CertifySigner = "Shawn Ippotle",
-        ContentsExplanation = "T-Shirt purchase",
-        DutiesPayor = new DutiesPayor() {
-            Account = "2323434543",
-            Type = Shippo.Models.Components.CustomsDeclarationCreateRequestType.ThirdParty,
-            Address = new CustomsDeclarationCreateRequestAddress() {
-                Name = "Patrick Kavanagh",
-                Zip = "80331",
-                Country = "DE",
-            },
-        },
-        ExporterIdentification = new CustomsExporterIdentification() {
-            EoriNumber = "PL123456790ABCDE",
-            TaxId = new CustomsTaxIdentification() {
-                Number = "123456789",
-                Type = Shippo.Models.Components.CustomsTaxIdentificationType.Ein,
-            },
-        },
-        Invoice = "#123123",
-        Metadata = "Order ID #123123",
-        AddressImporter = new AddressImporter() {
-            Name = "Shwan Ippotle",
-            Company = "Shippo",
-            Street1 = "Blumenstraße",
-            Street3 = "",
-            StreetNo = "22",
-            City = "München",
-            State = "CA",
+var res = await sdk.CustomsDeclarations.CreateAsync(customsDeclarationCreateRequest: new CustomsDeclarationCreateRequest() {
+    B13aFilingOption = CustomsDeclarationB13AFilingOptionEnum.FiledElectronically,
+    Certify = true,
+    CertifySigner = "Shawn Ippotle",
+    ContentsExplanation = "T-Shirt purchase",
+    DutiesPayor = new DutiesPayor() {
+        Account = "2323434543",
+        Type = CustomsDeclarationCreateRequestType.ThirdParty,
+        Address = new CustomsDeclarationCreateRequestAddress() {
+            Name = "Patrick Kavanagh",
             Zip = "80331",
             Country = "DE",
-            Phone = "80331",
-            Email = "shippotle@shippo.com",
-            IsResidential = true,
         },
-        ContentsType = Shippo.Models.Components.CustomsDeclarationContentsTypeEnum.Merchandise,
-        EelPfc = Shippo.Models.Components.CustomsDeclarationEelPfcEnum.Noeei3037A,
-        Incoterm = Shippo.Models.Components.CustomsDeclarationIncotermEnum.Ddp,
-        Items = new List<CustomsItemCreateRequest>() {
-            new CustomsItemCreateRequest() {
-                Description = "T-Shirt",
-                MassUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
-                Metadata = "Order ID \"123454\"",
-                NetWeight = "5",
-                OriginCountry = "<value>",
-                Quantity = 20,
-                SkuCode = "HM-123",
-                HsCode = "0901.21",
-                ValueAmount = "200",
-                ValueCurrency = "USD",
-            },
-        },
-        NonDeliveryOption = Shippo.Models.Components.CustomsDeclarationNonDeliveryOptionEnum.Return,
-        Test = true,
     },
-    shippoApiVersion: "2018-02-08"
-);
+    ExporterIdentification = new CustomsExporterIdentification() {
+        EoriNumber = "PL123456790ABCDE",
+        TaxId = new CustomsTaxIdentification() {
+            Number = "123456789",
+            Type = CustomsTaxIdentificationType.Ein,
+        },
+    },
+    Invoice = "#123123",
+    Metadata = "Order ID #123123",
+    AddressImporter = new AddressImporter() {
+        Name = "Shwan Ippotle",
+        Company = "Shippo",
+        Street1 = "Blumenstraße",
+        Street3 = "",
+        StreetNo = "22",
+        City = "München",
+        State = "CA",
+        Zip = "80331",
+        Country = "DE",
+        Phone = "80331",
+        Email = "shippotle@shippo.com",
+        IsResidential = true,
+    },
+    ContentsType = CustomsDeclarationContentsTypeEnum.Merchandise,
+    EelPfc = CustomsDeclarationEelPfcEnum.Noeei3037A,
+    Incoterm = CustomsDeclarationIncotermEnum.Ddp,
+    Items = new List<CustomsItemCreateRequest>() {},
+    NonDeliveryOption = CustomsDeclarationNonDeliveryOptionEnum.Return,
+    Test = true,
+});
 
 // handle response
 ```
@@ -160,20 +141,19 @@ Returns an existing customs declaration using an object ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="GetCustomsDeclaration" method="get" path="/customs/declarations/{CustomsDeclarationId}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.CustomsDeclarations.GetAsync(
     customsDeclarationId: "<id>",
-    page: 1,
-    shippoApiVersion: "2018-02-08"
+    page: 1
 );
 
 // handle response

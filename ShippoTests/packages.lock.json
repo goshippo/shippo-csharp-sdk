@@ -1,7 +1,7 @@
 {
   "version": 1,
   "dependencies": {
-    "net6.0": {
+    "net8.0": {
       "coverlet.collector": {
         "type": "Direct",
         "requested": "[3.1.0, )",
@@ -1054,8 +1054,8 @@
       "shippo": {
         "type": "Project",
         "dependencies": {
-          "newtonsoft.json": "13.0.3",
-          "nodatime": "3.1.9"
+          "newtonsoft.json": "[13.0.3, )",
+          "nodatime": "[3.1.9, )"
         }
       }
     }

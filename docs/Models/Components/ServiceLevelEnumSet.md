@@ -75,12 +75,6 @@ ServiceLevelEnumSet.CreateServiceLevelCDLEnum(/* values here */);
 ServiceLevelEnumSet.CreateServiceLevelChronopostEnum(/* values here */);
 ```
 
-### ServiceLevelCouriersPleaseEnum
-
-```csharp
-ServiceLevelEnumSet.CreateServiceLevelCouriersPleaseEnum(/* values here */);
-```
-
 ### ServiceLevelCorreosEspanaEnum
 
 ```csharp
@@ -189,10 +183,10 @@ ServiceLevelEnumSet.CreateServiceLevelePostGlobalEnum(/* values here */);
 ServiceLevelEnumSet.CreateServiceLevelRoyalMailEnum(/* values here */);
 ```
 
-### ServiceLevelSendleEnum
+### ServiceLevelRoyalMailSFEnum
 
 ```csharp
-ServiceLevelEnumSet.CreateServiceLevelSendleEnum(/* values here */);
+ServiceLevelEnumSet.CreateServiceLevelRoyalMailSFEnum(/* values here */);
 ```
 
 ### ServiceLevelOnTracEnum

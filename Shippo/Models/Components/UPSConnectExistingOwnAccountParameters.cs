@@ -17,7 +17,14 @@ namespace Shippo.Models.Components
     /// 
     /// <remarks>
     /// Please check the &lt;a href=&quot;https://docs.goshippo.com/docs/carriers/carrieraccounts/&quot;&gt;carrier accounts tutorial&lt;/a&gt; page for the parameters per carrier.&lt;br&gt; <br/>
-    /// To protect account information, this field will be masked in any API response.
+    /// To protect account information, this field will be masked in any API response.<br/>
+    /// In the case of masked fields, they should be handled carefully.<br/>
+    /// <br/>
+    /// Fields also must consider: <br/>
+    /// - Not providing a *fields* in parameters will not result in a change to any configured value <br/>
+    /// - Providing a value in a *masked field* with ****** (exactly 6 asterisks) will not change the configured value <br/>
+    /// - Providing *field* with null will clear the configured value <br/>
+    /// - Providing *field* with any other value will change the configured value and may affect the behavior of the account.
     /// </remarks>
     /// </summary>
     public class UPSConnectExistingOwnAccountParameters

@@ -9,26 +9,24 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
-    
 
     public class TransactionRateType
     {
         private TransactionRateType(string value) { Value = value; }
 
         public string Value { get; private set; }
+
         public static TransactionRateType CoreRate { get { return new TransactionRateType("CoreRate"); } }
-        
+
         public static TransactionRateType Str { get { return new TransactionRateType("str"); } }
-        
-        public static TransactionRateType Null { get { return new TransactionRateType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(TransactionRateType v) { return v.Value; }
@@ -36,7 +34,6 @@ namespace Shippo.Models.Components
             switch(v) {
                 case "CoreRate": return CoreRate;
                 case "str": return Str;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for TransactionRateType");
             }
         }
@@ -66,8 +63,10 @@ namespace Shippo.Models.Components
     /// </remarks>
     /// </summary>
     [JsonConverter(typeof(TransactionRate.TransactionRateConverter))]
-    public class TransactionRate {
-        public TransactionRate(TransactionRateType type) {
+    public class TransactionRate
+    {
+        public TransactionRate(TransactionRateType type)
+        {
             Type = type;
         }
 
@@ -78,17 +77,16 @@ namespace Shippo.Models.Components
         public string? Str { get; set; }
 
         public TransactionRateType Type { get; set; }
-
-
-        public static TransactionRate CreateCoreRate(CoreRate coreRate) {
+        public static TransactionRate CreateCoreRate(CoreRate coreRate)
+        {
             TransactionRateType typ = TransactionRateType.CoreRate;
 
             TransactionRate res = new TransactionRate(typ);
             res.CoreRate = coreRate;
             return res;
         }
-
-        public static TransactionRate CreateStr(string str) {
+        public static TransactionRate CreateStr(string str)
+        {
             TransactionRateType typ = TransactionRateType.Str;
 
             TransactionRate res = new TransactionRate(typ);
@@ -96,26 +94,20 @@ namespace Shippo.Models.Components
             return res;
         }
 
-        public static TransactionRate CreateNull() {
-            TransactionRateType typ = TransactionRateType.Null;
-            return new TransactionRate(typ);
-        }
-
         public class TransactionRateConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(TransactionRate);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
-                var json = JRaw.Create(reader).ToString();
-                if (json == "null")
+                if (reader.TokenType == JsonToken.Null)
                 {
-                    return null;
+                    throw new InvalidOperationException("Received unexpected null JSON value");
                 }
 
+                var json = JRaw.Create(reader).ToString();
                 var fallbackCandidates = new List<(System.Type, object, string)>();
 
                 try
@@ -170,27 +162,24 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
-                }
-                TransactionRate res = (TransactionRate)value;
-                if (TransactionRateType.FromString(res.Type).Equals(TransactionRateType.Null))
+                if (value == null)
                 {
-                    writer.WriteRawValue("null");
-                    return;
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
+
+                TransactionRate res = (TransactionRate)value;
+
                 if (res.CoreRate != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.CoreRate));
                     return;
                 }
+
                 if (res.Str != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.Str));
                     return;
                 }
-
             }
 
         }

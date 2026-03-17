@@ -9,28 +9,30 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
-    using Newtonsoft.Json.Linq;
     using Newtonsoft.Json;
+    using Newtonsoft.Json.Linq;
     using Shippo.Models.Components;
     using Shippo.Utils;
+    using System;
     using System.Collections.Generic;
     using System.Numerics;
     using System.Reflection;
-    using System;
-    
 
     public class WebhookPayloadType
     {
         private WebhookPayloadType(string value) { Value = value; }
 
         public string Value { get; private set; }
-        
+
         public static WebhookPayloadType TrackUpdated { get { return new WebhookPayloadType("track_updated"); } }
+
         public static WebhookPayloadType BatchCreated { get { return new WebhookPayloadType("batch_created"); } }
+
         public static WebhookPayloadType BatchPurchased { get { return new WebhookPayloadType("batch_purchased"); } }
+
         public static WebhookPayloadType TransactionCreated { get { return new WebhookPayloadType("transaction_created"); } }
+
         public static WebhookPayloadType TransactionUpdated { get { return new WebhookPayloadType("transaction_updated"); } }
-        public static WebhookPayloadType Null { get { return new WebhookPayloadType("null"); } }
 
         public override string ToString() { return Value; }
         public static implicit operator String(WebhookPayloadType v) { return v.Value; }
@@ -41,7 +43,6 @@ namespace Shippo.Models.Components
                 case "batch_purchased": return BatchPurchased;
                 case "transaction_created": return TransactionCreated;
                 case "transaction_updated": return TransactionUpdated;
-                case "null": return Null;
                 default: throw new ArgumentException("Invalid value for WebhookPayloadType");
             }
         }
@@ -61,9 +62,14 @@ namespace Shippo.Models.Components
     }
 
 
+    /// <summary>
+    /// The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.
+    /// </summary>
     [JsonConverter(typeof(WebhookPayload.WebhookPayloadConverter))]
-    public class WebhookPayload {
-        public WebhookPayload(WebhookPayloadType type) {
+    public class WebhookPayload
+    {
+        public WebhookPayload(WebhookPayloadType type)
+        {
             Type = type;
         }
 
@@ -78,97 +84,95 @@ namespace Shippo.Models.Components
 
         public WebhookPayloadType Type { get; set; }
 
-
-        public static WebhookPayload CreateTrackUpdated(WebhookPayloadTrack trackUpdated) {
+        public static WebhookPayload CreateTrackUpdated(WebhookPayloadTrack trackUpdated)
+        {
             WebhookPayloadType typ = WebhookPayloadType.TrackUpdated;
-        
             string typStr = WebhookPayloadType.TrackUpdated.ToString();
-            
             trackUpdated.Event = WebhookEventTypeEnumExtension.ToEnum(WebhookPayloadType.TrackUpdated.ToString());
             WebhookPayload res = new WebhookPayload(typ);
             res.WebhookPayloadTrack = trackUpdated;
             return res;
         }
-        public static WebhookPayload CreateBatchCreated(WebhookPayloadBatch batchCreated) {
+
+        public static WebhookPayload CreateBatchCreated(WebhookPayloadBatch batchCreated)
+        {
             WebhookPayloadType typ = WebhookPayloadType.BatchCreated;
-        
             string typStr = WebhookPayloadType.BatchCreated.ToString();
-            
             batchCreated.Event = WebhookEventTypeEnumExtension.ToEnum(WebhookPayloadType.BatchCreated.ToString());
             WebhookPayload res = new WebhookPayload(typ);
             res.WebhookPayloadBatch = batchCreated;
             return res;
         }
-        public static WebhookPayload CreateBatchPurchased(WebhookPayloadBatch batchPurchased) {
+
+        public static WebhookPayload CreateBatchPurchased(WebhookPayloadBatch batchPurchased)
+        {
             WebhookPayloadType typ = WebhookPayloadType.BatchPurchased;
-        
             string typStr = WebhookPayloadType.BatchPurchased.ToString();
-            
             batchPurchased.Event = WebhookEventTypeEnumExtension.ToEnum(WebhookPayloadType.BatchPurchased.ToString());
             WebhookPayload res = new WebhookPayload(typ);
             res.WebhookPayloadBatch = batchPurchased;
             return res;
         }
-        public static WebhookPayload CreateTransactionCreated(WebhookPayloadTransaction transactionCreated) {
+
+        public static WebhookPayload CreateTransactionCreated(WebhookPayloadTransaction transactionCreated)
+        {
             WebhookPayloadType typ = WebhookPayloadType.TransactionCreated;
-        
             string typStr = WebhookPayloadType.TransactionCreated.ToString();
-            
             transactionCreated.Event = WebhookEventTypeEnumExtension.ToEnum(WebhookPayloadType.TransactionCreated.ToString());
             WebhookPayload res = new WebhookPayload(typ);
             res.WebhookPayloadTransaction = transactionCreated;
             return res;
         }
-        public static WebhookPayload CreateTransactionUpdated(WebhookPayloadTransaction transactionUpdated) {
+
+        public static WebhookPayload CreateTransactionUpdated(WebhookPayloadTransaction transactionUpdated)
+        {
             WebhookPayloadType typ = WebhookPayloadType.TransactionUpdated;
-        
             string typStr = WebhookPayloadType.TransactionUpdated.ToString();
-            
             transactionUpdated.Event = WebhookEventTypeEnumExtension.ToEnum(WebhookPayloadType.TransactionUpdated.ToString());
             WebhookPayload res = new WebhookPayload(typ);
             res.WebhookPayloadTransaction = transactionUpdated;
             return res;
         }
-        public static WebhookPayload CreateNull() {
-            WebhookPayloadType typ = WebhookPayloadType.Null;
-            return new WebhookPayload(typ);
-        }
 
         public class WebhookPayloadConverter : JsonConverter
         {
-
             public override bool CanConvert(System.Type objectType) => objectType == typeof(WebhookPayload);
 
             public override bool CanRead => true;
 
             public override object? ReadJson(JsonReader reader, System.Type objectType, object? existingValue, JsonSerializer serializer)
             {
+                if (reader.TokenType == JsonToken.Null)
+                {
+                    throw new InvalidOperationException("Received unexpected null JSON value");
+                }
+
                 JObject jo = JObject.Load(reader);
                 string discriminator = jo.GetValue("event")?.ToString() ?? throw new ArgumentNullException("Could not find discriminator field.");
                 if (discriminator == WebhookPayloadType.TrackUpdated.ToString())
                 {
-                    WebhookPayloadTrack? webhookPayloadTrack = ResponseBodyDeserializer.Deserialize<WebhookPayloadTrack>(jo.ToString());
-                    return CreateTrackUpdated(webhookPayloadTrack!);
+                    WebhookPayloadTrack webhookPayloadTrack = ResponseBodyDeserializer.DeserializeNotNull<WebhookPayloadTrack>(jo.ToString());
+                    return CreateTrackUpdated(webhookPayloadTrack);
                 }
                 if (discriminator == WebhookPayloadType.BatchCreated.ToString())
                 {
-                    WebhookPayloadBatch? webhookPayloadBatch = ResponseBodyDeserializer.Deserialize<WebhookPayloadBatch>(jo.ToString());
-                    return CreateBatchCreated(webhookPayloadBatch!);
+                    WebhookPayloadBatch webhookPayloadBatch = ResponseBodyDeserializer.DeserializeNotNull<WebhookPayloadBatch>(jo.ToString());
+                    return CreateBatchCreated(webhookPayloadBatch);
                 }
                 if (discriminator == WebhookPayloadType.BatchPurchased.ToString())
                 {
-                    WebhookPayloadBatch? webhookPayloadBatch = ResponseBodyDeserializer.Deserialize<WebhookPayloadBatch>(jo.ToString());
-                    return CreateBatchPurchased(webhookPayloadBatch!);
+                    WebhookPayloadBatch webhookPayloadBatch = ResponseBodyDeserializer.DeserializeNotNull<WebhookPayloadBatch>(jo.ToString());
+                    return CreateBatchPurchased(webhookPayloadBatch);
                 }
                 if (discriminator == WebhookPayloadType.TransactionCreated.ToString())
                 {
-                    WebhookPayloadTransaction? webhookPayloadTransaction = ResponseBodyDeserializer.Deserialize<WebhookPayloadTransaction>(jo.ToString());
-                    return CreateTransactionCreated(webhookPayloadTransaction!);
+                    WebhookPayloadTransaction webhookPayloadTransaction = ResponseBodyDeserializer.DeserializeNotNull<WebhookPayloadTransaction>(jo.ToString());
+                    return CreateTransactionCreated(webhookPayloadTransaction);
                 }
                 if (discriminator == WebhookPayloadType.TransactionUpdated.ToString())
                 {
-                    WebhookPayloadTransaction? webhookPayloadTransaction = ResponseBodyDeserializer.Deserialize<WebhookPayloadTransaction>(jo.ToString());
-                    return CreateTransactionUpdated(webhookPayloadTransaction!);
+                    WebhookPayloadTransaction webhookPayloadTransaction = ResponseBodyDeserializer.DeserializeNotNull<WebhookPayloadTransaction>(jo.ToString());
+                    return CreateTransactionUpdated(webhookPayloadTransaction);
                 }
 
                 throw new InvalidOperationException("Could not deserialize into any supported types.");
@@ -176,32 +180,30 @@ namespace Shippo.Models.Components
 
             public override void WriteJson(JsonWriter writer, object? value, JsonSerializer serializer)
             {
-                if (value == null) {
-                    writer.WriteRawValue("null");
-                    return;
-                }
-                WebhookPayload res = (WebhookPayload)value;
-                if (WebhookPayloadType.FromString(res.Type).Equals(WebhookPayloadType.Null))
+                if (value == null)
                 {
-                    writer.WriteRawValue("null");
-                    return;
+                    throw new InvalidOperationException("Unexpected null JSON value.");
                 }
+
+                WebhookPayload res = (WebhookPayload)value;
+
                 if (res.WebhookPayloadTrack != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.WebhookPayloadTrack));
                     return;
                 }
+
                 if (res.WebhookPayloadBatch != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.WebhookPayloadBatch));
                     return;
                 }
+
                 if (res.WebhookPayloadTransaction != null)
                 {
                     writer.WriteRawValue(Utilities.SerializeJSON(res.WebhookPayloadTransaction));
                     return;
                 }
-
             }
 
         }

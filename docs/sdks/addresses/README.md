@@ -1,10 +1,8 @@
 # Addresses
-(*Addresses*)
 
 ## Overview
 
 Addresses are the locations a parcel is being shipped **from** and **to**. They represent company and residential places. Among other things, you can use address objects to create shipments, calculate shipping rates, and purchase shipping labels.
-<SchemaDefinition schemaRef="#/components/schemas/Address"/>
 
 ### Available Operations
 
@@ -19,20 +17,19 @@ Returns a list of all address objects that have been created in this account.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="ListAddresses" method="get" path="/addresses" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
 var res = await sdk.Addresses.ListAsync(
     page: 1,
-    results: 5,
-    shippoApiVersion: "2018-02-08"
+    results: 5
 );
 
 // handle response
@@ -62,35 +59,32 @@ Creates a new address object. You can use address objects to create new shipment
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="CreateAddress" method="post" path="/addresses" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.Addresses.CreateAsync(
-    addressCreateRequest: new AddressCreateRequest() {
-        Name = "Shwan Ippotle",
-        Company = "Shippo",
-        Street1 = "215 Clayton St.",
-        Street3 = "",
-        StreetNo = "",
-        City = "San Francisco",
-        State = "CA",
-        Zip = "94117",
-        Country = "US",
-        Phone = "+1 555 341 9393",
-        Email = "shippotle@shippo.com",
-        IsResidential = true,
-        Metadata = "Customer ID 123456",
-        Validate = true,
-    },
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.Addresses.CreateAsync(addressCreateRequest: new AddressCreateRequest() {
+    Name = "Shwan Ippotle",
+    Company = "Shippo",
+    Street1 = "215 Clayton St.",
+    Street3 = "",
+    StreetNo = "",
+    City = "San Francisco",
+    State = "CA",
+    Zip = "94117",
+    Country = "US",
+    Phone = "+1 555 341 9393",
+    Email = "shippotle@shippo.com",
+    IsResidential = true,
+    Metadata = "Customer ID 123456",
+    Validate = true,
+});
 
 // handle response
 ```
@@ -118,20 +112,17 @@ Returns an existing address using an object ID.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="GetAddress" method="get" path="/addresses/{AddressId}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.Addresses.GetAsync(
-    addressId: "<id>",
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.Addresses.GetAsync(addressId: "<id>");
 
 // handle response
 ```
@@ -159,20 +150,17 @@ Validates an existing address using an object ID
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="ValidateAddress" method="get" path="/addresses/{AddressId}/validate" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.Addresses.ValidateAsync(
-    addressId: "<id>",
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.Addresses.ValidateAsync(addressId: "<id>");
 
 // handle response
 ```

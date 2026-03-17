@@ -17,7 +17,7 @@ namespace Shippo.Models.Components
     /// Type of goods of the shipment.  <br/>
     /// 
     /// <remarks>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-Contents-Type&quot;&gt;here&lt;/a&gt;
+    /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-contents-type&quot;&gt;here&lt;/a&gt;
     /// </remarks>
     /// </summary>
     public enum CustomsDeclarationContentsTypeEnum

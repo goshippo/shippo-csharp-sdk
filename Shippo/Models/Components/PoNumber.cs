@@ -30,10 +30,15 @@ namespace Shippo.Models.Components
         public string? Prefix { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label for PO number. Up to 40 characters. If <br/>
+        /// Optional text to be printed on the shipping label for PO number. Up to 40 characters. If<br/>
         /// 
         /// <remarks>
-        /// this is provided, reference_2 will be ignored.
+        /// this is provided, reference_2 will be ignored.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 30 characters |
         /// </remarks>
         /// </summary>
         [JsonProperty("value")]

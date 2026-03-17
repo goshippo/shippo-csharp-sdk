@@ -1,11 +1,8 @@
 # CarrierParcelTemplates
-(*CarrierParcelTemplates*)
 
 ## Overview
 
 A carrier parcel template represents a package used for shipping that has preset dimensions defined by a carrier. Some examples of a carrier parcel template include USPS Flat Rate Box and Fedex Small Pak. When using a carrier parcel template, the rates returned may be limited to the carrier that provides the box. You can create user parcel templates using a carrier parcel template. Shippo takes the dimensions of the carrier parcel template but you must configure the weight.
-
-<SchemaDefinition schemaRef="#/components/schemas/CarrierParcelTemplate"/>
 
 ### Available Operations
 
@@ -24,21 +21,17 @@ List all carrier parcel template objects. <br> Use the following query string pa
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="ListCarrierParcelTemplates" method="get" path="/parcel-templates" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.CarrierParcelTemplates.ListAsync(
-    include: Shippo.Models.Requests.Include.Enabled,
-    carrier: "fedex",
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.CarrierParcelTemplates.ListAsync(carrier: "fedex");
 
 // handle response
 ```
@@ -67,20 +60,17 @@ Fetches the parcel template information for a specific carrier parcel template, 
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="GetCarrierParcelTemplate" method="get" path="/parcel-templates/{CarrierParcelTemplateToken}" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.CarrierParcelTemplates.GetAsync(
-    carrierParcelTemplateToken: "<value>",
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.CarrierParcelTemplates.GetAsync(carrierParcelTemplateToken: "<value>");
 
 // handle response
 ```

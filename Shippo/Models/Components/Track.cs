@@ -12,8 +12,8 @@ namespace Shippo.Models.Components
     using Newtonsoft.Json;
     using Shippo.Models.Components;
     using Shippo.Utils;
-    using System.Collections.Generic;
     using System;
+    using System.Collections.Generic;
     
     public class Track
     {
@@ -31,7 +31,7 @@ namespace Shippo.Models.Components
         public TrackingStatusLocationBase? AddressTo { get; set; }
 
         /// <summary>
-        /// Name of the carrier of the shipment to track. See &lt;a href=&quot;#tag/Carriers&quot;&gt;Carriers&lt;/a&gt;.
+        /// Name of the carrier of the shipment to track. See &lt;a href=&quot;/shippoapi/public-api/carriers&quot;&gt;Carriers&lt;/a&gt;.
         /// </summary>
         [JsonProperty("carrier")]
         public string Carrier { get; set; } = default!;

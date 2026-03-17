@@ -30,7 +30,15 @@ namespace Shippo.Models.Components
         public string? Prefix { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label for RMA number. Up to 40 characters.
+        /// Optional text to be printed on the shipping label for RMA number. Up to 40 characters.<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 20 characters |
+        /// </remarks>
         /// </summary>
         [JsonProperty("value")]
         public string? Value { get; set; }

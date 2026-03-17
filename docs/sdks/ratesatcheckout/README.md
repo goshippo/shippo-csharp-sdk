@@ -1,17 +1,15 @@
 # RatesAtCheckout
-(*RatesAtCheckout*)
 
 ## Overview
 
 Rates at checkout is a tool for merchants to display up-to-date shipping estimates based on what's in their customers cart and where they’re shipping to.
 Merchants set up curated shipping options for customers in the checkout flow based on data in the shopping cart. The request must include the **to** address and item information. Optional fields are the **from** address and package information. If the optional fields are not included, the service will use the default address and/or package configured for rates at checkout. The response is a list of shipping options based on the Service Group configuration.
-(see <a href="#tag/Service-Groups">Service Group configuration</a> for details).
-<SchemaDefinition schemaRef="#/components/schemas/LiveRate"/>
+(see <a href="/shippoapi/public-api/service-groups">Service Group configuration</a> for details).
+
 
 
 # Default Parcel Template
 Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.
-<SchemaDefinition schemaRef="#/components/schemas/UserParcelTemplate"/>
 
 ### Available Operations
 
@@ -29,62 +27,29 @@ template or a fully formed user parcel template object as the parcel value.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="CreateLiveRate" method="post" path="/live-rates" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.RatesAtCheckout.CreateAsync(
-    liveRateCreateRequest: new LiveRateCreateRequest() {
-        AddressFrom = LiveRateCreateRequestAddressFrom.CreateStr(
-            "<value>"
-        ),
-        AddressTo = LiveRateCreateRequestAddressTo.CreateAddressCompleteCreateRequest(
-            new AddressCompleteCreateRequest() {
-                Name = "Shwan Ippotle",
-                Company = "Shippo",
-                Street1 = "215 Clayton St.",
-                Street3 = "",
-                StreetNo = "",
-                City = "San Francisco",
-                State = "CA",
-                Zip = "94117",
-                Country = "US",
-                Phone = "+1 555 341 9393",
-                Email = "shippotle@shippo.com",
-                IsResidential = true,
-                Metadata = "Customer ID 123456",
-                Validate = true,
-            }
-        ),
-        LineItems = new List<LineItem>() {
-            new LineItem() {
-                Currency = "USD",
-                ManufactureCountry = "US",
-                MaxDeliveryTime = System.DateTime.Parse("2016-07-23T00:00:00Z"),
-                MaxShipTime = System.DateTime.Parse("2016-07-23T00:00:00Z"),
-                Quantity = 20,
-                Sku = "HM-123",
-                Title = "Hippo Magazines",
-                TotalPrice = "12.1",
-                VariantTitle = "June Edition",
-                Weight = "0.4",
-                WeightUnit = Shippo.Models.Components.WeightUnitEnum.Lb,
-                ObjectId = "abf7d5675d744b6ea9fdb6f796b28f28",
-            },
-        },
-        Parcel = LiveRateCreateRequestParcel.CreateStr(
-            "5df144dca289442cv7a06"
-        ),
-    },
-    shippoApiVersion: "2018-02-08"
-);
+var res = await sdk.RatesAtCheckout.CreateAsync(liveRateCreateRequest: new LiveRateCreateRequest() {
+    AddressFrom = LiveRateCreateRequestAddressFrom.CreateStr(
+        "<value>"
+    ),
+    AddressTo = LiveRateCreateRequestAddressTo.CreateStr(
+        "<value>"
+    ),
+    LineItems = new List<LineItem>() {},
+    Parcel = LiveRateCreateRequestParcel.CreateStr(
+        "5df144dca289442cv7a06"
+    ),
+});
 
 // handle response
 ```
@@ -112,17 +77,17 @@ Retrieve and display the currently configured default parcel template for live r
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="GetDefaultParcelTemplate" method="get" path="/live-rates/settings/parcel-template" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.RatesAtCheckout.GetDefaultParcelTemplateAsync(shippoApiVersion: "2018-02-08");
+var res = await sdk.RatesAtCheckout.GetDefaultParcelTemplateAsync();
 
 // handle response
 ```
@@ -149,22 +114,19 @@ Update the currently configured default parcel template for live rates. The obje
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="UpdateDefaultParcelTemplate" method="put" path="/live-rates/settings/parcel-template" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-var res = await sdk.RatesAtCheckout.UpdateDefaultParcelTemplateAsync(
-    shippoApiVersion: "2018-02-08",
-    defaultParcelTemplateUpdateRequest: new DefaultParcelTemplateUpdateRequest() {
-        ObjectId = "b958d3690bb04bb8b2986724872750f5",
-    }
-);
+var res = await sdk.RatesAtCheckout.UpdateDefaultParcelTemplateAsync(defaultParcelTemplateUpdateRequest: new DefaultParcelTemplateUpdateRequest() {
+    ObjectId = "b958d3690bb04bb8b2986724872750f5",
+});
 
 // handle response
 ```
@@ -192,17 +154,17 @@ Clears the currently configured default parcel template for live rates.
 
 ### Example Usage
 
+<!-- UsageSnippet language="csharp" operationID="DeleteDefaultParcelTemplate" method="delete" path="/live-rates/settings/parcel-template" -->
 ```csharp
 using Shippo;
-using Shippo.Models.Requests;
 using Shippo.Models.Components;
 
 var sdk = new ShippoSDK(
-    apiKeyHeader: "<YOUR_API_KEY_HERE>",
-    shippoApiVersion: "2018-02-08"
+    shippoApiVersion: "2018-02-08",
+    apiKeyHeader: "<YOUR_API_KEY_HERE>"
 );
 
-await sdk.RatesAtCheckout.DeleteDefaultParcelTemplateAsync(shippoApiVersion: "2018-02-08");
+await sdk.RatesAtCheckout.DeleteDefaultParcelTemplateAsync();
 
 // handle response
 ```

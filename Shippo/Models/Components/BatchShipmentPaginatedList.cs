@@ -15,7 +15,7 @@ namespace Shippo.Models.Components
     using System.Collections.Generic;
     
     /// <summary>
-    /// Array of &lt;a href=&quot;#section/Batch-Shipment&quot;&gt;BatchShipment&lt;/a&gt; objects. <br/>
+    /// Array of &lt;a href=&quot;/shippoapi/public-api/batches/batchshipment&quot;&gt;BatchShipment&lt;/a&gt; objects. <br/>
     /// 
     /// <remarks>
     /// The response keeps the same order as in the request array.

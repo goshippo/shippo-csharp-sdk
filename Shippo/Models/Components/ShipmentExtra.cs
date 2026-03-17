@@ -242,13 +242,29 @@ namespace Shippo.Models.Components
         public bool? QrCodeRequested { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.
+        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters.<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 40 characters (Express services); Max 30 characters (Ground services) |
+        /// </remarks>
         /// </summary>
         [JsonProperty("reference_1")]
         public string? Reference1 { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters. For DHL eCommerce, this field can be used for billing reference.
+        /// Optional text to be printed on the shipping label if supported by carrier. Up to 50 characters. For DHL eCommerce, this field can be used for billing reference.<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 30 characters |
+        /// </remarks>
         /// </summary>
         [JsonProperty("reference_2")]
         public string? Reference2 { get; set; }
@@ -262,7 +278,7 @@ namespace Shippo.Models.Components
         /// <summary>
         /// Request additional return option for return shipments (UPS and Lasership only).
         /// </summary>
-        [JsonProperty("return_service_type")]
+        [JsonProperty("return_service_type", NullValueHandling = NullValueHandling.Include)]
         public ReturnServiceType? ReturnServiceType { get; set; }
 
         /// <summary>
@@ -298,5 +314,22 @@ namespace Shippo.Models.Components
 
         [JsonProperty("transaction_reference_number")]
         public UPSReferenceFields? TransactionReferenceNumber { get; set; }
+
+        /// <summary>
+        /// UPS only. Request USMCA (United States-Mexico-Canada Agreement) preferential tariff treatment. <br/>
+        /// 
+        /// <remarks>
+        /// When enabled, it includes the USMCA eligibility declaration in customs documentation.<br/>
+        /// <br/>
+        /// Supported routes and value limits:<br/>
+        /// - USA/Canada → Mexico: ≤ $1,000 USD<br/>
+        /// - Canada/Mexico → USA: ≤ $2,500 USD  <br/>
+        /// - USA/Mexico → Canada: ≤ $3,300 CAD<br/>
+        /// <br/>
+        /// Only for declaration-only shipments, full USMCA - FormType 04 (Certificate of Origin) is not supported.
+        /// </remarks>
+        /// </summary>
+        [JsonProperty("usmca_eligible")]
+        public bool? UsmcaEligible { get; set; }
     }
 }

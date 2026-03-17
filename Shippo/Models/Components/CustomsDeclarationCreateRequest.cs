@@ -78,7 +78,15 @@ namespace Shippo.Models.Components
         public string? ContentsExplanation { get; set; }
 
         /// <summary>
-        /// Disclaimer for the shipment and customs information that have been provided.
+        /// Disclaimer for the shipment and customs information that have been provided.<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 554 characters |
+        /// </remarks>
         /// </summary>
         [JsonProperty("disclaimer")]
         public string? Disclaimer { get; set; }
