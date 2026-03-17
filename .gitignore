@@ -10,3 +10,4 @@ debug/
 .idea
 build/
 ShippoTests/TestResults/
+nupkg/
