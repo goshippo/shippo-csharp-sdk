@@ -22,7 +22,7 @@ jobs:
     with:
       force: ${{ github.event.inputs.force }}
       mode: pr
-      speakeasy_version: 1.447.0
+      dotnet_version: "8.0.x"
     secrets:
       github_access_token: ${{ secrets.GITHUB_TOKEN }}
       nuget_api_key: ${{ secrets.NUGET_API_KEY }}
