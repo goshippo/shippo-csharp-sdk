@@ -13,13 +13,13 @@ namespace Shippo.Models.Components
     using Shippo.Models.Components;
     using Shippo.Utils;
     
-    public class CarrierAccountSendleCreateRequest
+    public class CarrierAccountRoyalMailSfCreateRequest
     {
 
         [JsonProperty("carrier")]
-        public string Carrier { get; set; } = default!;
+        public string Carrier { get; } = "royal_mail_sf";
 
         [JsonProperty("parameters")]
-        public CarrierAccountSendleCreateRequestParameters Parameters { get; set; } = default!;
+        public CarrierAccountRoyalMailSfCreateRequestParameters Parameters { get; set; } = default!;
     }
 }

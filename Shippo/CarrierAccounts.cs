@@ -23,12 +23,7 @@ namespace Shippo
     using System;
 
     /// <summary>
-    /// Carriers are the companies who deliver your package. Shippo uses Carrier account objects as credentials to retrieve shipping rates and purchase labels from shipping Carriers.<br/>
-    /// 
-    /// <remarks>
-    /// <br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CarrierAccount&quot;/&gt;
-    /// </remarks>
+    /// Carriers are the companies who deliver your package. Shippo uses Carrier account objects as credentials to retrieve shipping rates and purchase labels from shipping Carriers.
     /// </summary>
     public interface ICarrierAccounts
     {
@@ -102,21 +97,16 @@ namespace Shippo
     }
 
     /// <summary>
-    /// Carriers are the companies who deliver your package. Shippo uses Carrier account objects as credentials to retrieve shipping rates and purchase labels from shipping Carriers.<br/>
-    /// 
-    /// <remarks>
-    /// <br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CarrierAccount&quot;/&gt;
-    /// </remarks>
+    /// Carriers are the companies who deliver your package. Shippo uses Carrier account objects as credentials to retrieve shipping rates and purchase labels from shipping Carriers.
     /// </summary>
     public class CarrierAccounts: ICarrierAccounts
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;
@@ -512,7 +502,7 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<InitiateOauth2SigninCarrierAccountsResponseBody>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var obj = ResponseBodyDeserializer.Deserialize<InitiateOauth2SigninCarrierAccountsResponseResponseBody>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
                     throw obj!;
                 }
 
@@ -522,7 +512,7 @@ namespace Shippo
             {
                 if(Utilities.IsContentTypeMatch("application/json", contentType))
                 {
-                    var obj = ResponseBodyDeserializer.Deserialize<InitiateOauth2SigninCarrierAccountsResponseResponseBody>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
+                    var obj = ResponseBodyDeserializer.Deserialize<InitiateOauth2SigninCarrierAccountsResponseBody>(await httpResponse.Content.ReadAsStringAsync(), NullValueHandling.Ignore);
                     throw obj!;
                 }
 

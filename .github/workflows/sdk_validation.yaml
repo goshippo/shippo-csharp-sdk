@@ -22,7 +22,7 @@ jobs:
         with:
           cache: true
           cache-dependency-path: "*/packages.lock.json"
-          dotnet-version: 6.0.x
+          dotnet-version: 8.0.x
       - name: Check
         env:
           CONFIGURATION: Release

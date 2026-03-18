@@ -23,12 +23,7 @@ namespace Shippo
     using System;
 
     /// <summary>
-    /// A carrier parcel template represents a package used for shipping that has preset dimensions defined by a carrier. Some examples of a carrier parcel template include USPS Flat Rate Box and Fedex Small Pak. When using a carrier parcel template, the rates returned may be limited to the carrier that provides the box. You can create user parcel templates using a carrier parcel template. Shippo takes the dimensions of the carrier parcel template but you must configure the weight.<br/>
-    /// 
-    /// <remarks>
-    /// <br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CarrierParcelTemplate&quot;/&gt;
-    /// </remarks>
+    /// A carrier parcel template represents a package used for shipping that has preset dimensions defined by a carrier. Some examples of a carrier parcel template include USPS Flat Rate Box and Fedex Small Pak. When using a carrier parcel template, the rates returned may be limited to the carrier that provides the box. You can create user parcel templates using a carrier parcel template. Shippo takes the dimensions of the carrier parcel template but you must configure the weight.
     /// </summary>
     public interface ICarrierParcelTemplates
     {
@@ -59,21 +54,16 @@ namespace Shippo
     }
 
     /// <summary>
-    /// A carrier parcel template represents a package used for shipping that has preset dimensions defined by a carrier. Some examples of a carrier parcel template include USPS Flat Rate Box and Fedex Small Pak. When using a carrier parcel template, the rates returned may be limited to the carrier that provides the box. You can create user parcel templates using a carrier parcel template. Shippo takes the dimensions of the carrier parcel template but you must configure the weight.<br/>
-    /// 
-    /// <remarks>
-    /// <br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CarrierParcelTemplate&quot;/&gt;
-    /// </remarks>
+    /// A carrier parcel template represents a package used for shipping that has preset dimensions defined by a carrier. Some examples of a carrier parcel template include USPS Flat Rate Box and Fedex Small Pak. When using a carrier parcel template, the rates returned may be limited to the carrier that provides the box. You can create user parcel templates using a carrier parcel template. Shippo takes the dimensions of the carrier parcel template but you must configure the weight.
     /// </summary>
     public class CarrierParcelTemplates: ICarrierParcelTemplates
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

@@ -33,7 +33,7 @@ namespace Shippo.Models.Components
         /// 
         /// <remarks>
         /// The servicelevel can be changed on a per-shipment basis by changing the servicelevel_token in the <br/>
-        /// corresponding BatchShipment object. &lt;a href=&quot;#tag/Service-Levels&quot;&gt;Servicelevel tokens can be found here.&lt;/a&gt;
+        /// corresponding BatchShipment object. &lt;a href=&quot;/shippoapi/public-api/service-levels&quot;&gt;Servicelevel tokens can be found here.&lt;/a&gt;
         /// </remarks>
         /// </summary>
         [JsonProperty("default_servicelevel_token")]

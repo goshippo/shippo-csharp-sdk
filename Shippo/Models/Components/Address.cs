@@ -24,14 +24,27 @@ namespace Shippo.Models.Components
         /// **required for purchase**&lt;br&gt;<br/>
         /// 
         /// <remarks>
-        /// First and Last Name of the addressee
+        /// First and Last Name of the addressee<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Either company or name required; No length validation (first 35 chars printed on label) |
         /// </remarks>
         /// </summary>
         [JsonProperty("name")]
         public string? Name { get; set; }
 
         /// <summary>
-        /// Company Name
+        /// Company Name<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 35 characters; Either company or name required |
+        /// </remarks>
         /// </summary>
         [JsonProperty("company")]
         public string? Company { get; set; }
@@ -40,23 +53,41 @@ namespace Shippo.Models.Components
         /// **required for purchase**&lt;br&gt;<br/>
         /// 
         /// <remarks>
-        /// First street line, 35 character limit. Usually street number and street name (except for DHL Germany, see street_no).
+        /// First street line. Usually street number and street name (except for DHL Germany, see street_no).<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | At least one street line required; Max 35 characters per line |
         /// </remarks>
         /// </summary>
         [JsonProperty("street1")]
         public string? Street1 { get; set; }
 
         /// <summary>
-        /// Second street line, 35 character limit.
+        /// Second street line.<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | At least one street line required; Max 35 characters per line |
+        /// </remarks>
         /// </summary>
         [JsonProperty("street2")]
         public string? Street2 { get; set; }
 
         /// <summary>
-        /// Third street line, 35 character limit. <br/>
+        /// Third street line.<br/>
         /// 
         /// <remarks>
-        /// Only accepted for USPS international shipments, UPS domestic and UPS international shipments.
+        /// Only accepted for USPS international shipments, UPS domestic and UPS international shipments.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | At least one street line required; Max 35 characters per line |
         /// </remarks>
         /// </summary>
         [JsonProperty("street3")]
@@ -76,9 +107,14 @@ namespace Shippo.Models.Components
         /// **required for purchase**&lt;br&gt;<br/>
         /// 
         /// <remarks>
-        /// Name of a city. When creating a Quote Address, sending a city is optional but will yield more accurate Rates. <br/>
-        /// Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state <br/>
-        /// or a ZIP code (see below), if known, it will yield more accurate results.
+        /// Name of a city. When creating a Quote Address, sending a city is optional but will yield more accurate Rates.<br/>
+        /// Please bear in mind that city names may be ambiguous (there are 34 Springfields in the US). Pass in a state<br/>
+        /// or a ZIP code (see below), if known, it will yield more accurate results.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Required; Max 35 characters |
         /// </remarks>
         /// </summary>
         [JsonProperty("city")]
@@ -88,9 +124,14 @@ namespace Shippo.Models.Components
         /// **required for purchase for some countries**&lt;br&gt;<br/>
         /// 
         /// <remarks>
-        /// State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some <br/>
-        /// countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers <br/>
-        /// only accept two or three character state abbreviations.
+        /// State/Province values are required for shipments from/to the US, AU, and CA. UPS requires province for some<br/>
+        /// countries (i.e Ireland). To receive more accurate quotes, passing this field is recommended. Most carriers<br/>
+        /// only accept two or three character state abbreviations.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Required if country requires state; Max 2 characters for US, CA, PR |
         /// </remarks>
         /// </summary>
         [JsonProperty("state")]
@@ -100,15 +141,20 @@ namespace Shippo.Models.Components
         /// **required for purchase**&lt;br&gt;<br/>
         /// 
         /// <remarks>
-        /// Postal code of an Address. When creating a Quote Addresses, sending a ZIP is optional but will yield more <br/>
-        /// accurate Rates.
+        /// Postal code of an Address. When creating a Quote Addresses, sending a ZIP is optional but will yield more<br/>
+        /// accurate Rates.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 10 characters |
         /// </remarks>
         /// </summary>
         [JsonProperty("zip")]
         public string? Zip { get; set; }
 
         /// <summary>
-        /// ISO 3166-1 alpha-2 country codes and country names can be used. For most consistent results, we reccomend using country codes like `US` or `DE`.<br/>
+        /// ISO 3166-1 alpha-2 country codes and country names can be used. For most consistent results, we recommend using country codes like `US` or `DE`.<br/>
         /// 
         /// <remarks>
         /// If using country names, please ensure they are spelled correctly and in English. Country names are converted to country codes.<br/>
@@ -120,17 +166,30 @@ namespace Shippo.Models.Components
         public string Country { get; set; } = default!;
 
         /// <summary>
-        /// Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This <br/>
+        /// Addresses containing a phone number allow carriers to call the recipient when delivering the Parcel. This<br/>
         /// 
         /// <remarks>
-        /// increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.    
+        /// increases the probability of delivery and helps to avoid accessorial charges after a Parcel has been shipped.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Required; Min 1, max 15 characters |
         /// </remarks>
         /// </summary>
         [JsonProperty("phone")]
         public string? Phone { get; set; }
 
         /// <summary>
-        /// E-mail address of the contact person, RFC3696/5321-compliant.
+        /// E-mail address of the contact person, RFC3696/5321-compliant.<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 80 characters |
+        /// </remarks>
         /// </summary>
         [JsonProperty("email")]
         public string? Email { get; set; }

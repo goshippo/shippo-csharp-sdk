@@ -45,7 +45,7 @@ namespace Shippo.Models.Components
         public string? ShipmentDate { get; set; }
 
         /// <summary>
-        /// &lt;a href=&quot;#tag/Addresses&quot;&gt;Address&lt;/a&gt; object of the sender / seller. Will be returned expanded by default.
+        /// &lt;a href=&quot;/shippoapi/public-api/addresses&quot;&gt;Address&lt;/a&gt; object of the sender / seller. Will be returned expanded by default.
         /// </summary>
         [JsonProperty("address_from")]
         public Address AddressFrom { get; set; } = default!;
@@ -62,7 +62,7 @@ namespace Shippo.Models.Components
         public Address? AddressReturn { get; set; }
 
         /// <summary>
-        /// &lt;a href=&quot;#tag/Addresses&quot;&gt;Address&lt;/a&gt; object of the recipient / buyer. Will be returned expanded by default.
+        /// &lt;a href=&quot;/shippoapi/public-api/addresses&quot;&gt;Address&lt;/a&gt; object of the recipient / buyer. Will be returned expanded by default.
         /// </summary>
         [JsonProperty("address_to")]
         public Address AddressTo { get; set; } = default!;

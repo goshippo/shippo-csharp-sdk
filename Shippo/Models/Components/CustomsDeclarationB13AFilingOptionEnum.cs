@@ -18,7 +18,7 @@ namespace Shippo.Models.Components
     /// 
     /// <remarks>
     /// &lt;a href=&quot;https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt; More information on reporting commercial exports from Canada. &lt;/a&gt;<br/>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-B13A-Filing-Option&quot;&gt;here&lt;/a&gt;
+    /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-b13a-filing-option&quot;&gt;here&lt;/a&gt;
     /// </remarks>
     /// </summary>
     public enum CustomsDeclarationB13AFilingOptionEnum

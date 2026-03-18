@@ -5,8 +5,6 @@
 
 Carriers are the companies who deliver your package. Shippo uses Carrier account objects as credentials to retrieve shipping rates and purchase labels from shipping Carriers.
 
-<SchemaDefinition schemaRef="#/components/schemas/CarrierAccount"/>
-
 ### Available Operations
 
 * [List](#list) - List all carrier accounts
@@ -71,6 +69,7 @@ using Shippo;
 using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
+using NodaTime;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -92,6 +91,11 @@ var res = await sdk.CarrierAccounts.CreateAsync(
                 FromAddressState = "<value>",
                 FromAddressZip = "<value>",
                 FromAddressCountryIso2 = "<value>",
+                UseMultiFactorRegistration = false,
+                VerificationOption = Shippo.Models.Components.VerificationOption.Email,
+                VerificationInvoiceAmount = 340M,
+                VerificationInvoiceDate = LocalDate.FromDateTime(System.DateTime.Parse("2024-03-09")),
+                VerificationInvoiceCurrency = "USD",
             }
         ),
         Test = false,
@@ -171,6 +175,7 @@ using Shippo;
 using Shippo.Models.Requests;
 using Shippo.Models.Components;
 using System.Collections.Generic;
+using NodaTime;
 
 var sdk = new ShippoSDK(
     apiKeyHeader: "<YOUR_API_KEY_HERE>",
@@ -274,8 +279,8 @@ var res = await sdk.CarrierAccounts.InitiateOauth2SigninAsync(req);
 | Error Type                                                                   | Status Code                                                                  | Content Type                                                                 |
 | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | Shippo.Models.Errors.InitiateOauth2SigninResponseBody                        | 400                                                                          | application/json                                                             |
-| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401                                                                          | application/json                                                             |
-| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404                                                                          | application/json                                                             |
+| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 401                                                                          | application/json                                                             |
+| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 404                                                                          | application/json                                                             |
 | Shippo.Models.Errors.SDKException                                            | 4XX, 5XX                                                                     | \*/\*                                                                        |
 
 ## Register
@@ -297,7 +302,6 @@ var sdk = new ShippoSDK(
 var res = await sdk.CarrierAccounts.RegisterAsync(
     requestBody: RegisterCarrierAccountRequestBody.CreateCarrierAccountCorreosCreateRequest(
         new CarrierAccountCorreosCreateRequest() {
-            Carrier = "correos",
             Parameters = new CarrierAccountCorreosCreateRequestParameters() {},
         }
     ),
@@ -311,7 +315,7 @@ var res = await sdk.CarrierAccounts.RegisterAsync(
 
 | Parameter                                                                                                                                                          | Type                                                                                                                                                               | Required                                                                                                                                                           | Description                                                                                                                                                        | Example                                                                                                                                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `RequestBody`                                                                                                                                                      | [RegisterCarrierAccountRequestBody](../../Models/Requests/RegisterCarrierAccountRequestBody.md)                                                                    | :heavy_check_mark:                                                                                                                                                 | Examples.                                                                                                                                                          |                                                                                                                                                                    |
+| `RequestBody`                                                                                                                                                      | [RegisterCarrierAccountRequestBody](../../Models/Requests/RegisterCarrierAccountRequestBody.md)                                                                    | :heavy_check_mark:                                                                                                                                                 | The body of the request.                                                                                                                                           |                                                                                                                                                                    |
 | `ShippoApiVersion`                                                                                                                                                 | *string*                                                                                                                                                           | :heavy_minus_sign:                                                                                                                                                 | Optional string used to pick a non-default API version to use. See our <a href="https://docs.goshippo.com/docs/api_concepts/apiversioning/">API version</a> guide. | 2018-02-08                                                                                                                                                         |
 
 ### Response

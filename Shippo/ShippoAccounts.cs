@@ -27,8 +27,7 @@ namespace Shippo
     /// 
     /// <remarks>
     /// Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. <br/>
-    /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShippoAccount&quot;/&gt;
+    /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.
     /// </remarks>
     /// </summary>
     public interface IShippoAccounts
@@ -76,18 +75,17 @@ namespace Shippo
     /// 
     /// <remarks>
     /// Managed Shippo Accounts are headless accounts that represent your customers. They are opaque to your end customers, meaning customers do not need to create their own Shippo login or have a billing relationship with Shippo. <br/>
-    /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ShippoAccount&quot;/&gt;
+    /// They can be used by marketplaces, e-commerce platforms, and third-party logistics providers who want to offer, seamless, built-in shipping functionality to their customers. See our &lt;a href=&quot;https://docs.goshippo.com/docs/platformaccounts/platform_accounts/&quot;&gt;guide&lt;/a&gt; for more details.
     /// </remarks>
     /// </summary>
     public class ShippoAccounts: IShippoAccounts
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

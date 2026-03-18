@@ -5,13 +5,12 @@
 
 Rates at checkout is a tool for merchants to display up-to-date shipping estimates based on what's in their customers cart and where they’re shipping to.
 Merchants set up curated shipping options for customers in the checkout flow based on data in the shopping cart. The request must include the **to** address and item information. Optional fields are the **from** address and package information. If the optional fields are not included, the service will use the default address and/or package configured for rates at checkout. The response is a list of shipping options based on the Service Group configuration.
-(see <a href="#tag/Service-Groups">Service Group configuration</a> for details).
-<SchemaDefinition schemaRef="#/components/schemas/LiveRate"/>
+(see <a href="/shippoapi/public-api/service-groups">Service Group configuration</a> for details).
+
 
 
 # Default Parcel Template
 Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.
-<SchemaDefinition schemaRef="#/components/schemas/UserParcelTemplate"/>
 
 ### Available Operations
 

@@ -14,7 +14,7 @@ namespace Shippo.Models.Errors
     using System;
     
     /// <summary>
-    /// Invalid ShippoToken or unsupported carrier account provided by the user
+    /// Invalid carrier account provided by the user
     /// </summary>
     public class InitiateOauth2SigninCarrierAccountsResponseBody : Exception
     {

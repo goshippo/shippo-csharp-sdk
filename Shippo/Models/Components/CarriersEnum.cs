@@ -35,7 +35,6 @@ namespace Shippo.Models.Components
     /// | collect_plus | CollectPlus|<br/>
     /// | correios_br | CorreiosBR|<br/>
     /// | correos_espana | Correos España |<br/>
-    /// | couriersplease | Couriers Please|<br/>
     /// | colissimo | Colissimo|<br/>
     /// | deutsche_post | Deutsche Post|<br/>
     /// | dhl_benelux | DHL Benelux|<br/>
@@ -61,7 +60,6 @@ namespace Shippo.Models.Components
     /// | new_zealand_post | New Zealand Post (also used for Pace and CourierPost)|<br/>
     /// | nippon_express | Nippon Express|<br/>
     /// | ontrac | OnTrac|<br/>
-    /// | orangeds | OrangeDS|<br/>
     /// | parcelforce | Parcelforce|<br/>
     /// | passport | Passport|<br/>
     /// | pcf | PCF|<br/>
@@ -69,9 +67,9 @@ namespace Shippo.Models.Components
     /// | posti | Posti|<br/>
     /// | purolator | Purolator|<br/>
     /// | royal_mail | Royal Mail|<br/>
+    /// | royal_mail_sf | Royal Mail Storefeeder|<br/>
     /// | rr_donnelley | ePost Global|<br/>
     /// | russian_post | Russian Post|<br/>
-    /// | sendle | Sendle|<br/>
     /// | skypostal | SkyPostal|<br/>
     /// | stuart | Stuart|<br/>
     /// | swyft | Swyft|<br/>
@@ -118,8 +116,6 @@ namespace Shippo.Models.Components
         CorreiosBr,
         [JsonProperty("correos_espana")]
         CorreosEspana,
-        [JsonProperty("couriersplease")]
-        Couriersplease,
         [JsonProperty("colissimo")]
         Colissimo,
         [JsonProperty("deutsche_post")]
@@ -170,8 +166,6 @@ namespace Shippo.Models.Components
         NipponExpress,
         [JsonProperty("ontrac")]
         Ontrac,
-        [JsonProperty("orangeds")]
-        Orangeds,
         [JsonProperty("parcelforce")]
         Parcelforce,
         [JsonProperty("passport")]
@@ -186,12 +180,12 @@ namespace Shippo.Models.Components
         Purolator,
         [JsonProperty("royal_mail")]
         RoyalMail,
+        [JsonProperty("royal_mail_sf")]
+        RoyalMailSf,
         [JsonProperty("rr_donnelley")]
         RrDonnelley,
         [JsonProperty("russian_post")]
         RussianPost,
-        [JsonProperty("sendle")]
-        Sendle,
         [JsonProperty("skypostal")]
         Skypostal,
         [JsonProperty("stuart")]

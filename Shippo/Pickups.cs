@@ -26,8 +26,7 @@ namespace Shippo
     /// A pickup is when you schedule a carrier to collect a package for delivery.<br/>
     /// 
     /// <remarks>
-    /// Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Pickup&quot;/&gt;
+    /// Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.
     /// </remarks>
     /// </summary>
     public interface IPickups
@@ -47,18 +46,17 @@ namespace Shippo
     /// A pickup is when you schedule a carrier to collect a package for delivery.<br/>
     /// 
     /// <remarks>
-    /// Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Pickup&quot;/&gt;
+    /// Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.
     /// </remarks>
     /// </summary>
     public class Pickups: IPickups
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

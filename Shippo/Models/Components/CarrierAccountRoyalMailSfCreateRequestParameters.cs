@@ -9,9 +9,13 @@
 #nullable enable
 namespace Shippo.Models.Components
 {
+    using Newtonsoft.Json;
     using Shippo.Utils;
     
-    public class CarrierAccountSendleCreateRequestParameters
+    public class CarrierAccountRoyalMailSfCreateRequestParameters
     {
+
+        [JsonProperty("royal_mail_sf_agreements")]
+        public bool RoyalMailSfAgreements { get; set; } = default!;
     }
 }

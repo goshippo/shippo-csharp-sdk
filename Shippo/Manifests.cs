@@ -23,16 +23,10 @@ namespace Shippo
     using System;
 
     /// <summary>
-    /// A manifest is a single-page document with a barcode that carriers can scan to accept all packages into transit without the need to scan each item individually. <br/>
+    /// A manifest is a single-page document with a barcode that carriers can scan to accept all packages into transit without the need to scan each item individually.<br/>
     /// 
     /// <remarks>
-    /// They are close-outs of shipping labels of a certain day. Some carriers require manifests to  process the shipments.<br/>
-    /// <br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Manifest&quot;/&gt;<br/>
-    /// <br/>
-    /// # Manifest Errors<br/>
-    /// The following codes and messages are the possible errors that may occur when creating Manifests.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ManifestErrors&quot;/&gt;
+    /// They are close-outs of shipping labels of a certain day. Some carriers require manifests to  process the shipments.
     /// </remarks>
     /// </summary>
     public interface IManifests
@@ -67,26 +61,20 @@ namespace Shippo
     }
 
     /// <summary>
-    /// A manifest is a single-page document with a barcode that carriers can scan to accept all packages into transit without the need to scan each item individually. <br/>
+    /// A manifest is a single-page document with a barcode that carriers can scan to accept all packages into transit without the need to scan each item individually.<br/>
     /// 
     /// <remarks>
-    /// They are close-outs of shipping labels of a certain day. Some carriers require manifests to  process the shipments.<br/>
-    /// <br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Manifest&quot;/&gt;<br/>
-    /// <br/>
-    /// # Manifest Errors<br/>
-    /// The following codes and messages are the possible errors that may occur when creating Manifests.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/ManifestErrors&quot;/&gt;
+    /// They are close-outs of shipping labels of a certain day. Some carriers require manifests to  process the shipments.
     /// </remarks>
     /// </summary>
     public class Manifests: IManifests
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

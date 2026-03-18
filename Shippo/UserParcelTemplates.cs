@@ -30,8 +30,7 @@ namespace Shippo
     /// them to be defined once and then used for many shipments. These parcel templates can also be used for live rates.<br/>
     /// <br/>
     /// User parcel templates can also be created using a carrier parcel template, where the dimensions will be copied from <br/>
-    /// the carrier presets, but the weight can be configured by you.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/UserParcelTemplate&quot;/&gt;
+    /// the carrier presets, but the weight can be configured by you.
     /// </remarks>
     /// </summary>
     public interface IUserParcelTemplates
@@ -53,7 +52,7 @@ namespace Shippo
         /// Creates a new user parcel template. &lt;br&gt;You can choose to create a<br/>
         /// parcel template using a preset carrier template as a starting point, or<br/>
         /// you can create an entirely custom one. To use a preset carrier template,<br/>
-        /// pass in a unique template token from &lt;a href=&quot;#tag/Parcel-Templates&quot;&gt;this list&lt;/a&gt;<br/>
+        /// pass in a unique template token from &lt;a href=&quot;/shippoapi/public-api/parcel-templates&quot;&gt;this list&lt;/a&gt;<br/>
         /// plus the weight fields (**weight** and **weight_unit**). Otherwise, omit<br/>
         /// the template field and pass the other fields, for the weight, length, height,<br/>
         /// and depth, as well as their units.&quot;
@@ -98,18 +97,17 @@ namespace Shippo
     /// them to be defined once and then used for many shipments. These parcel templates can also be used for live rates.<br/>
     /// <br/>
     /// User parcel templates can also be created using a carrier parcel template, where the dimensions will be copied from <br/>
-    /// the carrier presets, but the weight can be configured by you.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/UserParcelTemplate&quot;/&gt;
+    /// the carrier presets, but the weight can be configured by you.
     /// </remarks>
     /// </summary>
     public class UserParcelTemplates: IUserParcelTemplates
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

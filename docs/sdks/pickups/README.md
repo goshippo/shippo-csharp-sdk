@@ -5,7 +5,6 @@
 
 A pickup is when you schedule a carrier to collect a package for delivery.
 Use Shippo’s pickups endpoint to schedule pickups with USPS and DHL Express for eligible shipments that you have already created.
-<SchemaDefinition schemaRef="#/components/schemas/Pickup"/>
 
 ### Available Operations
 
@@ -52,8 +51,8 @@ var res = await sdk.Pickups.CreateAsync(
             BuildingType = Shippo.Models.Components.BuildingType.Apartment,
             Instructions = "Behind screen door",
         },
-        RequestedEndTime = System.DateTime.Parse("2023-06-18T07:14:55.338Z"),
-        RequestedStartTime = System.DateTime.Parse("2023-12-01T17:06:07.804Z"),
+        RequestedEndTime = System.DateTime.Parse("2025-06-17T07:14:55.338Z"),
+        RequestedStartTime = System.DateTime.Parse("2025-11-30T17:06:07.804Z"),
         Transactions = new List<string>() {
             "adcfdddf8ec64b84ad22772bce3ea37a",
         },

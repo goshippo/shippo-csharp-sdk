@@ -4,25 +4,36 @@ generation:
   maintainOpenAPIOrder: true
   usageSnippets:
     optionalPropertyRendering: withExample
+    sdkInitStyle: constructor
   useClassNamesForArrayFields: true
   fixes:
     nameResolutionDec2023: true
     parameterOrderingFeb2024: true
     requestResponseComponentNamesFeb2024: true
+    nameResolutionFeb2025: false
+    securityFeb2025: false
+    sharedErrorComponentsApr2025: false
   auth:
     oAuth2ClientCredentialsEnabled: true
     oAuth2PasswordEnabled: false
+  persistentEdits: {}
+  requestBodyFieldName: ""
+  schemas:
+    allOfMergeStrategy: shallowMerge
 csharp:
-  version: 5.0.0-beta.9
+  version: 5.0.0-beta.13
   additionalDependencies: []
   author: Shippo
+  baseErrorName: ShippoSDKException
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKException
   disableNamespacePascalCasingApr2024: true
   dotnetVersion: net6.0
+  enableCancellationToken: false
   enableSourceLink: true
   flattenGlobalSecurity: true
   flatteningOrder: ""
+  httpClientPrefix: Speakeasy
   imports:
     option: openapi
     paths:
@@ -32,15 +43,18 @@ csharp:
       shared: Models/Components
       webhooks: Models/Webhooks
   includeDebugSymbols: true
+  inferUnionDiscriminators: false
   inputModelSuffix: input
   license: MIT License
   maxMethodParams: 3
   methodArguments: infer-optional-args
+  multipartArrayFormat: legacy
   outputModelSuffix: output
   packageName: Shippo
   packageTags: USPS Fedex UPS API Shippo
   responseFormat: flat
   sourceDirectory: ""
+  useNodatime: true
 externalDocs:
   version: ""
   url: https://github.com/goshippo/shippo-csharp-sdk

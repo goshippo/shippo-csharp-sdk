@@ -56,7 +56,7 @@ namespace Shippo.Models.Components
         public bool? Async { get; set; }
 
         /// <summary>
-        /// List of &lt;a href=&quot;#tag/Carrier-Accounts/&quot;&gt;Carrier Accounts&lt;/a&gt; `object_id`s used to filter <br/>
+        /// List of &lt;a href=&quot;/shippoapi/public-api/carrier-accounts&quot;&gt;Carrier Accounts&lt;/a&gt; `object_id`s used to filter <br/>
         /// 
         /// <remarks>
         /// the returned rates.  If set, only rates from these carriers will be returned.
@@ -65,6 +65,17 @@ namespace Shippo.Models.Components
         [JsonProperty("carrier_accounts")]
         public List<string>? CarrierAccounts { get; set; }
 
+        /// <summary>
+        /// List of parcels to be shipped.<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 30 items |
+        /// </remarks>
+        /// </summary>
         [JsonProperty("parcels")]
         public List<Models.Components.Parcels> Parcels { get; set; } = default!;
     }

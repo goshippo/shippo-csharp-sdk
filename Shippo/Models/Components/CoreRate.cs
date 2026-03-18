@@ -71,7 +71,7 @@ namespace Shippo.Models.Components
         /// <remarks>
         /// A service level commonly defines the transit time of a Shipment (e.g., Express vs. Standard), <br/>
         /// along with other properties.  These names vary depending on the provider.&lt;br&gt;<br/>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;Service Levels&lt;/a&gt;.
+        /// See &lt;a href=&quot;/shippoapi/public-api/service-levels&quot;&gt;Service Levels&lt;/a&gt;.
         /// </remarks>
         /// </summary>
         [JsonProperty("servicelevel_name")]
@@ -81,7 +81,7 @@ namespace Shippo.Models.Components
         /// Token of the Rate&apos;s servicelevel, e.g. `usps_priority` or `fedex_ground`.<br/>
         /// 
         /// <remarks>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;servicelevels&lt;/a&gt;.
+        /// See &lt;a href=&quot;/shippoapi/public-api/service-levels&quot;&gt;servicelevels&lt;/a&gt;.
         /// </remarks>
         /// </summary>
         [JsonProperty("servicelevel_token")]

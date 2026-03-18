@@ -30,10 +30,15 @@ namespace Shippo.Models.Components
         public string? Prefix { get; set; }
 
         /// <summary>
-        /// Optional text to be printed on the shipping label for invoice number. Up to 40 characters. If <br/>
+        /// Optional text to be printed on the shipping label for invoice number. Up to 40 characters. If<br/>
         /// 
         /// <remarks>
-        /// provided, this will be used on the label instead of shipment.customs_declaration.invoice.
+        /// provided, this will be used on the label instead of shipment.customs_declaration.invoice.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 30 characters |
         /// </remarks>
         /// </summary>
         [JsonProperty("value")]

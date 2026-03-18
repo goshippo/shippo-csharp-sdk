@@ -17,7 +17,7 @@ namespace Shippo.Models.Components
     /// Indicates how the carrier should proceed in case the shipment can&apos;t be delivered.<br/>
     /// 
     /// <remarks>
-    /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-Non-Delivery-Option&quot;&gt;here&lt;/a&gt;
+    /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-non-delivery-option&quot;&gt;here&lt;/a&gt;
     /// </remarks>
     /// </summary>
     public enum CustomsDeclarationNonDeliveryOptionEnum

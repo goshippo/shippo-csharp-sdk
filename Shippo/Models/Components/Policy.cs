@@ -14,33 +14,26 @@ namespace Shippo.Models.Components
     using System;
     
     /// <summary>
-    /// |Token | Service name|<br/>
-    /// 
-    /// <remarks>
-    /// |:---|:---|<br/>
-    /// | sendle_parcel | Sendle Parcel|<br/>
-    /// | sendle_standard_dropoff | Sendle Standard Dropoff|<br/>
-    /// 
-    /// </remarks>
+    /// Policy to indicate if the Account needs multi-factor verification.
     /// </summary>
-    public enum ServiceLevelSendleEnum
+    public enum Policy
     {
-        [JsonProperty("sendle_parcel")]
-        SendleParcel,
-        [JsonProperty("sendle_standard_dropoff")]
-        SendleStandardDropoff,
+        [JsonProperty("required")]
+        Required,
+        [JsonProperty("not-required")]
+        NotRequired,
     }
 
-    public static class ServiceLevelSendleEnumExtension
+    public static class PolicyExtension
     {
-        public static string Value(this ServiceLevelSendleEnum value)
+        public static string Value(this Policy value)
         {
             return ((JsonPropertyAttribute)value.GetType().GetMember(value.ToString())[0].GetCustomAttributes(typeof(JsonPropertyAttribute), false)[0]).PropertyName ?? value.ToString();
         }
 
-        public static ServiceLevelSendleEnum ToEnum(this string value)
+        public static Policy ToEnum(this string value)
         {
-            foreach(var field in typeof(ServiceLevelSendleEnum).GetFields())
+            foreach(var field in typeof(Policy).GetFields())
             {
                 var attributes = field.GetCustomAttributes(typeof(JsonPropertyAttribute), false);
                 if (attributes.Length == 0)
@@ -53,14 +46,14 @@ namespace Shippo.Models.Components
                 {
                     var enumVal = field.GetValue(null);
 
-                    if (enumVal is ServiceLevelSendleEnum)
+                    if (enumVal is Policy)
                     {
-                        return (ServiceLevelSendleEnum)enumVal;
+                        return (Policy)enumVal;
                     }
                 }
             }
 
-            throw new Exception($"Unknown value {value} for enum ServiceLevelSendleEnum");
+            throw new Exception($"Unknown value {value} for enum Policy");
         }
     }
 

@@ -2,12 +2,14 @@
 
 |Token | Service name|
 |:---|:---|
-| veho_next_day | Veho Next Day |
+| veho_ground_plus | Veho Ground Plus |
+| veho_premium_economy | Veho Premium Economy
 
 
 
 ## Values
 
-| Name          | Value         |
-| ------------- | ------------- |
-| `VehoNextDay` | veho_next_day |
+| Name                 | Value                |
+| -------------------- | -------------------- |
+| `VehoGroundPlus`     | veho_ground_plus     |
+| `VehoPremiumEconomy` | veho_premium_economy |

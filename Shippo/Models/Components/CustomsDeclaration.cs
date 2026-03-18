@@ -33,7 +33,7 @@ namespace Shippo.Models.Components
         /// 
         /// <remarks>
         /// &lt;a href=&quot;https://www.cbsa-asfc.gc.ca/services/export/guide-eng.html&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt; More information on reporting commercial exports from Canada. &lt;/a&gt;<br/>
-        /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-B13A-Filing-Option&quot;&gt;here&lt;/a&gt;
+        /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-b13a-filing-option&quot;&gt;here&lt;/a&gt;
         /// </remarks>
         /// </summary>
         [JsonProperty("b13a_filing_option")]
@@ -87,7 +87,15 @@ namespace Shippo.Models.Components
         public string? ContentsExplanation { get; set; }
 
         /// <summary>
-        /// Disclaimer for the shipment and customs information that have been provided.
+        /// Disclaimer for the shipment and customs information that have been provided.<br/>
+        /// 
+        /// <remarks>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Max 554 characters |
+        /// </remarks>
         /// </summary>
         [JsonProperty("disclaimer")]
         public string? Disclaimer { get; set; }
@@ -160,7 +168,7 @@ namespace Shippo.Models.Components
         /// Type of goods of the shipment.  <br/>
         /// 
         /// <remarks>
-        /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-Contents-Type&quot;&gt;here&lt;/a&gt;
+        /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-contents-type&quot;&gt;here&lt;/a&gt;
         /// </remarks>
         /// </summary>
         [JsonProperty("contents_type")]
@@ -171,19 +179,25 @@ namespace Shippo.Models.Components
         /// 
         /// <remarks>
         /// other shipments from the US, `NOEEI_30_37_a` is applicable.<br/>
-        /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-EELPFC&quot;&gt;here&lt;/a&gt;
+        /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-eelpfc&quot;&gt;here&lt;/a&gt;
         /// </remarks>
         /// </summary>
         [JsonProperty("eel_pfc")]
         public string? EelPfc { get; set; }
 
         /// <summary>
-        /// The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only. <br/>
+        /// The incoterm reference of the shipment. FCA is available for DHL Express and FedEx only.<br/>
         /// 
         /// <remarks>
-        /// eDAP is available for DPD UK only. DAP is available for DHL Express and DPD UK.<br/>
+        /// eDAP is available for DPD UK only. DAP is available for DHL Express, FedEx, and DPD UK.<br/>
         /// If expecting DAP for other carriers, please use DDU.<br/>
-        /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-Incoterm&quot;&gt;here&lt;/a&gt;
+        /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-incoterm&quot;&gt;here&lt;/a&gt;<br/>
+        /// Carrier-specific restrictions are in the table below.<br/>
+        /// <br/>
+        /// **Carrier-Specific Constraints:**<br/>
+        /// | Carrier | Constraints |<br/>
+        /// |:---|:---|<br/>
+        /// | FedEx | Must be one of DDP, DDU, FCA, DAP |
         /// </remarks>
         /// </summary>
         [JsonProperty("incoterm")]
@@ -205,7 +219,7 @@ namespace Shippo.Models.Components
         /// Indicates how the carrier should proceed in case the shipment can&apos;t be delivered.<br/>
         /// 
         /// <remarks>
-        /// Allowed values available &lt;a href=&quot;#tag/Customs-Declaration-Non-Delivery-Option&quot;&gt;here&lt;/a&gt;
+        /// Allowed values available &lt;a href=&quot;/shippoapi/public-api/customs-declaration-non-delivery-option&quot;&gt;here&lt;/a&gt;
         /// </remarks>
         /// </summary>
         [JsonProperty("non_delivery_option")]

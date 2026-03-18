@@ -23,11 +23,7 @@ namespace Shippo
     using System;
 
     /// <summary>
-    /// A rate is the cost to ship a parcel from a carrier. The rate object details the service level including the cost and transit time. <br/>
-    /// 
-    /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Rate&quot;/&gt;
-    /// </remarks>
+    /// A rate is the cost to ship a parcel from a carrier. The rate object details the service level including the cost and transit time. 
     /// </summary>
     public interface IRates
     {
@@ -67,20 +63,16 @@ namespace Shippo
     }
 
     /// <summary>
-    /// A rate is the cost to ship a parcel from a carrier. The rate object details the service level including the cost and transit time. <br/>
-    /// 
-    /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Rate&quot;/&gt;
-    /// </remarks>
+    /// A rate is the cost to ship a parcel from a carrier. The rate object details the service level including the cost and transit time. 
     /// </summary>
     public class Rates: IRates
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

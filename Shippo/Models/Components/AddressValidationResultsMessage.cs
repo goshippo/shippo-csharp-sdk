@@ -16,13 +16,13 @@ namespace Shippo.Models.Components
     {
 
         /// <summary>
-        /// See &lt;a href=&quot;#tag/Address-Validation-Codes&quot;&gt;Address Validation Codes&lt;/a&gt;
+        /// See &lt;a href=&quot;/shippoapi/public-api/address-validation-codes&quot;&gt;Address Validation Codes&lt;/a&gt;
         /// </summary>
         [JsonProperty("code")]
         public string? Code { get; set; }
 
         /// <summary>
-        /// See &lt;a href=&quot;#tag/Address-Validation-Source&quot;&gt;Address Validation Source&lt;/a&gt;
+        /// See &lt;a href=&quot;/shippoapi/public-api/address-validation-source&quot;&gt;Address Validation Source&lt;/a&gt;
         /// </summary>
         [JsonProperty("source")]
         public string? Source { get; set; }

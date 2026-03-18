@@ -5,7 +5,6 @@
 
 Customs declarations are relevant information, including one or multiple customs items, you need to provide for 
 customs clearance for your international shipments.
-<SchemaDefinition schemaRef="#/components/schemas/CustomsDeclaration"/>
 
 ### Available Operations
 
@@ -15,7 +14,7 @@ customs clearance for your international shipments.
 
 ## List
 
-Returns a a list of all customs declaration objects
+Returns a list of all customs declaration objects
 
 ### Example Usage
 

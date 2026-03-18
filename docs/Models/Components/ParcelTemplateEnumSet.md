@@ -35,12 +35,6 @@ ParcelTemplateEnumSet.CreateParcelTemplateDHLeCommerceEnum(/* values here */);
 ParcelTemplateEnumSet.CreateParcelTemplateDPDUKEnum(/* values here */);
 ```
 
-### ParcelTemplateCouriersPleaseEnum
-
-```csharp
-ParcelTemplateEnumSet.CreateParcelTemplateCouriersPleaseEnum(/* values here */);
-```
-
 ### ParcelTemplateAramexAustraliaEnum
 
 ```csharp

@@ -27,13 +27,12 @@ namespace Shippo
     /// 
     /// <remarks>
     /// Merchants set up curated shipping options for customers in the checkout flow based on data in the shopping cart. The request must include the **to** address and item information. Optional fields are the **from** address and package information. If the optional fields are not included, the service will use the default address and/or package configured for rates at checkout. The response is a list of shipping options based on the Service Group configuration.<br/>
-    /// (see &lt;a href=&quot;#tag/Service-Groups&quot;&gt;Service Group configuration&lt;/a&gt; for details).<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/LiveRate&quot;/&gt;<br/>
+    /// (see &lt;a href=&quot;/shippoapi/public-api/service-groups&quot;&gt;Service Group configuration&lt;/a&gt; for details).<br/>
+    /// <br/>
     /// <br/>
     /// <br/>
     /// # Default Parcel Template<br/>
-    /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/UserParcelTemplate&quot;/&gt;
+    /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.
     /// </remarks>
     /// </summary>
     public interface IRatesAtCheckout
@@ -84,23 +83,22 @@ namespace Shippo
     /// 
     /// <remarks>
     /// Merchants set up curated shipping options for customers in the checkout flow based on data in the shopping cart. The request must include the **to** address and item information. Optional fields are the **from** address and package information. If the optional fields are not included, the service will use the default address and/or package configured for rates at checkout. The response is a list of shipping options based on the Service Group configuration.<br/>
-    /// (see &lt;a href=&quot;#tag/Service-Groups&quot;&gt;Service Group configuration&lt;/a&gt; for details).<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/LiveRate&quot;/&gt;<br/>
+    /// (see &lt;a href=&quot;/shippoapi/public-api/service-groups&quot;&gt;Service Group configuration&lt;/a&gt; for details).<br/>
+    /// <br/>
     /// <br/>
     /// <br/>
     /// # Default Parcel Template<br/>
-    /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/UserParcelTemplate&quot;/&gt;
+    /// Assign one of your user parcel templates to be the default used when generating Live Rates. This template will be used by default when generating Live Rates, unless you explicitly provide a parcel in the Live Rates request.
     /// </remarks>
     /// </summary>
     public class RatesAtCheckout: IRatesAtCheckout
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

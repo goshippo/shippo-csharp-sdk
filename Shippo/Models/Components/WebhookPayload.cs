@@ -61,6 +61,9 @@ namespace Shippo.Models.Components
     }
 
 
+    /// <summary>
+    /// The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.
+    /// </summary>
     [JsonConverter(typeof(WebhookPayload.WebhookPayloadConverter))]
     public class WebhookPayload {
         public WebhookPayload(WebhookPayloadType type) {

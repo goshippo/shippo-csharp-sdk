@@ -4,7 +4,6 @@
 ## Overview
 
 Refunds are reimbursements for successfully created but unused shipping labels or other charges.
-<SchemaDefinition schemaRef="#/components/schemas/Refund"/>
 
 ### Available Operations
 

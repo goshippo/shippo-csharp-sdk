@@ -23,15 +23,7 @@ namespace Shippo
     using System;
 
     /// <summary>
-    /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.<br/>
-    /// 
-    /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Webhook&quot;/&gt;<br/>
-    /// <br/>
-    /// # Webhook Payload<br/>
-    /// The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/WebhookPayload&quot;/&gt;
-    /// </remarks>
+    /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.
     /// </summary>
     public interface IWebhooks
     {
@@ -83,24 +75,16 @@ namespace Shippo
     }
 
     /// <summary>
-    /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.<br/>
-    /// 
-    /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Webhook&quot;/&gt;<br/>
-    /// <br/>
-    /// # Webhook Payload<br/>
-    /// The payload is the body of the POST request Shippo sends to the URL specified at the time of webhook registration.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/WebhookPayload&quot;/&gt;
-    /// </remarks>
+    /// Webhooks are a way for Shippo to notify your application when a specific event occurs. For example, when a label is purchased or when a shipment tracking status has changed. You can use webhooks to trigger actions in your application, such as sending an email or updating a database.
     /// </summary>
     public class Webhooks: IWebhooks
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

@@ -39,7 +39,7 @@ namespace Shippo.Models.Components
         public bool? Active { get; set; }
 
         /// <summary>
-        /// Carrier token, see &lt;a href=&quot;#tag/Carriers&quot;&gt;Carriers&lt;/a&gt;&lt;br&gt;<br/>
+        /// Carrier token, see &lt;a href=&quot;/shippoapi/public-api/carriers&quot;&gt;Carriers&lt;/a&gt;&lt;br&gt;<br/>
         /// 
         /// <remarks>
         /// Please check the &lt;a href=&quot;https://docs.goshippo.com/docs/carriers/carrieraccounts/&quot;&gt;carrier accounts tutorial&lt;/a&gt; page for all supported carriers.
@@ -52,7 +52,7 @@ namespace Shippo.Models.Components
         public CarrierAccountParameters? Parameters { get; set; }
 
         /// <summary>
-        /// Carrier name, see &lt;a href=&quot;#tag/Carriers&quot;&gt;Carriers&lt;/a&gt;&lt;br&gt;
+        /// Carrier name, see &lt;a href=&quot;/shippoapi/public-api/carriers&quot;&gt;Carriers&lt;/a&gt;&lt;br&gt;
         /// </summary>
         [JsonProperty("carrier_name")]
         public object? CarrierName { get; set; }

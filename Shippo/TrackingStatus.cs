@@ -27,15 +27,14 @@ namespace Shippo
     /// 
     /// <remarks>
     /// If you purchased your shipping label through Shippo, you can also get all the tracking details of your Shipment <br/>
-    /// from the &lt;a href=&quot;#tag/Transactions&quot;&gt;Transaction&lt;/a&gt; object.<br/>
+    /// from the &lt;a href=&quot;/shippoapi/public-api/transactions&quot;&gt;Transaction&lt;/a&gt; object.<br/>
     /// &lt;/br&gt;&lt;/br&gt;&lt;/p&gt;<br/>
     /// A tracking status of a package is an indication of current location of a package in the supply chain. For example,  sorting, warehousing, or out for delivery. Use the tracking status object to track the location of your shipments.<br/>
     /// <br/>
     /// When using your &lt;a href=&quot;https://docs.goshippo.com/docs/guides_general/authentication/&quot;&gt;Test&lt;/a&gt; token for tracking, you need to use Shippo&apos;s <br/>
     /// predefined tokens for testing different tracking statuses. You can find more information in our <br/>
     /// &lt;a href=&quot;https://docs.goshippo.com/docs/tracking/tracking/&quot;&gt;Tracking tutorial&lt;/a&gt; on how to do this, and what the <br/>
-    /// payloads look like.      <br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Track&quot;/&gt;
+    /// payloads look like.      
     /// </remarks>
     /// </summary>
     public interface ITrackingStatus
@@ -65,25 +64,24 @@ namespace Shippo
     /// 
     /// <remarks>
     /// If you purchased your shipping label through Shippo, you can also get all the tracking details of your Shipment <br/>
-    /// from the &lt;a href=&quot;#tag/Transactions&quot;&gt;Transaction&lt;/a&gt; object.<br/>
+    /// from the &lt;a href=&quot;/shippoapi/public-api/transactions&quot;&gt;Transaction&lt;/a&gt; object.<br/>
     /// &lt;/br&gt;&lt;/br&gt;&lt;/p&gt;<br/>
     /// A tracking status of a package is an indication of current location of a package in the supply chain. For example,  sorting, warehousing, or out for delivery. Use the tracking status object to track the location of your shipments.<br/>
     /// <br/>
     /// When using your &lt;a href=&quot;https://docs.goshippo.com/docs/guides_general/authentication/&quot;&gt;Test&lt;/a&gt; token for tracking, you need to use Shippo&apos;s <br/>
     /// predefined tokens for testing different tracking statuses. You can find more information in our <br/>
     /// &lt;a href=&quot;https://docs.goshippo.com/docs/tracking/tracking/&quot;&gt;Tracking tutorial&lt;/a&gt; on how to do this, and what the <br/>
-    /// payloads look like.      <br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Track&quot;/&gt;
+    /// payloads look like.      
     /// </remarks>
     /// </summary>
     public class TrackingStatus: ITrackingStatus
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

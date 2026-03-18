@@ -10,8 +10,23 @@
 namespace Shippo.Models.Components
 {
     using Newtonsoft.Json;
+    using NodaTime;
+    using Shippo.Models.Components;
     using Shippo.Utils;
     
+    /// <summary>
+    /// In the case of masked fields, they should be handled carefully.<br/>
+    /// 
+    /// <remarks>
+    /// <br/>
+    /// Fields also must consider: <br/>
+    /// - Not providing a *fields* in parameters will not result in a change to any configured value <br/>
+    /// - Providing a value in a *masked field* with ****** (exactly 6 asterisks) will not change the configured value <br/>
+    /// - Providing *field* with null will clear the configured value <br/>
+    /// - Providing *field* with any other value will change the configured value and may affect the behavior of the account.<br/>
+    /// 
+    /// </remarks>
+    /// </summary>
     public class FedExConnectExistingOwnAccountParameters
     {
 
@@ -62,5 +77,48 @@ namespace Shippo.Models.Components
         /// </summary>
         [JsonProperty("from_address_country_iso2")]
         public string FromAddressCountryIso2 { get; set; } = default!;
+
+        /// <summary>
+        /// Must be true. FedEx accounts are registered using the multi-factor registration workflow.
+        /// </summary>
+        [JsonProperty("use_multi_factor_registration")]
+        public bool UseMultiFactorRegistration { get; set; } = default!;
+
+        /// <summary>
+        /// Determines the verification option to use for the account registration (Enum: SMS, EMAIL, CALL, INVOICE).
+        /// </summary>
+        [JsonProperty("verification_option")]
+        public VerificationOption VerificationOption { get; set; } = default!;
+
+        /// <summary>
+        /// (optional) The PIN to verify the account.
+        /// </summary>
+        [JsonProperty("verification_pin")]
+        public string? VerificationPin { get; set; }
+
+        /// <summary>
+        /// (optional) The invoice number to verify the account.
+        /// </summary>
+        [JsonProperty("verification_invoice_number")]
+        public string? VerificationInvoiceNumber { get; set; }
+
+        /// <summary>
+        /// (optional) The invoice amount to verify the account.
+        /// </summary>
+        [JsonProperty("verification_invoice_amount")]
+        [JsonConverter(typeof(DecimalStrConverter))]
+        public decimal? VerificationInvoiceAmount { get; set; }
+
+        /// <summary>
+        /// (optional) The invoice date to verify the account. In the format `YYYY-MM-DD`.
+        /// </summary>
+        [JsonProperty("verification_invoice_date")]
+        public LocalDate? VerificationInvoiceDate { get; set; }
+
+        /// <summary>
+        /// (optional) The invoice currency to verify the account.
+        /// </summary>
+        [JsonProperty("verification_invoice_currency")]
+        public string? VerificationInvoiceCurrency { get; set; }
     }
 }

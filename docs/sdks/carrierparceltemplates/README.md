@@ -5,8 +5,6 @@
 
 A carrier parcel template represents a package used for shipping that has preset dimensions defined by a carrier. Some examples of a carrier parcel template include USPS Flat Rate Box and Fedex Small Pak. When using a carrier parcel template, the rates returned may be limited to the carrier that provides the box. You can create user parcel templates using a carrier parcel template. Shippo takes the dimensions of the carrier parcel template but you must configure the weight.
 
-<SchemaDefinition schemaRef="#/components/schemas/CarrierParcelTemplate"/>
-
 ### Available Operations
 
 * [List](#list) - List all carrier parcel templates

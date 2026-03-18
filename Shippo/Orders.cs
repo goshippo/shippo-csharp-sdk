@@ -23,21 +23,12 @@ namespace Shippo
     using System;
 
     /// <summary>
-    /// An order is a request from a customer to purchase goods from a merchant. <br/>
+    /// An order is a request from a customer to purchase goods from a merchant.<br/>
     /// 
     /// <remarks>
     /// Use the orders object to load orders from your system to the Shippo dashboard.<br/>
-    /// You can use the orders object to create, retrieve, list, and manage orders programmatically. <br/>
-    /// You can also retrieve shipping rates, purchase labels, and track shipments for each order.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Order&quot;/&gt;<br/>
-    /// <br/>
-    /// # Line Item<br/>
-    /// &lt;p style=&quot;text-align: center; background-color: #F2F3F4;&quot;&gt;<br/>
-    ///   &lt;/br&gt;Line Items, and their corresponding abstract Products and Variants, might be exposed as a separate resource <br/>
-    ///   in the future. Currently it&apos;s a nested object within the order resource.&lt;/br&gt;&lt;/br&gt;<br/>
-    /// &lt;/p&gt;<br/>
-    ///  A line item is an individual object in an order. For example, if your order contains a t-shirt, shorts, and a jacket, each item is represented by a line item.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/LineItem&quot;/&gt;
+    /// You can use the orders object to create, retrieve, list, and manage orders programmatically.<br/>
+    /// You can also retrieve shipping rates, purchase labels, and track shipments for each order.
     /// </remarks>
     /// </summary>
     public interface IOrders
@@ -72,31 +63,22 @@ namespace Shippo
     }
 
     /// <summary>
-    /// An order is a request from a customer to purchase goods from a merchant. <br/>
+    /// An order is a request from a customer to purchase goods from a merchant.<br/>
     /// 
     /// <remarks>
     /// Use the orders object to load orders from your system to the Shippo dashboard.<br/>
-    /// You can use the orders object to create, retrieve, list, and manage orders programmatically. <br/>
-    /// You can also retrieve shipping rates, purchase labels, and track shipments for each order.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/Order&quot;/&gt;<br/>
-    /// <br/>
-    /// # Line Item<br/>
-    /// &lt;p style=&quot;text-align: center; background-color: #F2F3F4;&quot;&gt;<br/>
-    ///   &lt;/br&gt;Line Items, and their corresponding abstract Products and Variants, might be exposed as a separate resource <br/>
-    ///   in the future. Currently it&apos;s a nested object within the order resource.&lt;/br&gt;&lt;/br&gt;<br/>
-    /// &lt;/p&gt;<br/>
-    ///  A line item is an individual object in an order. For example, if your order contains a t-shirt, shorts, and a jacket, each item is represented by a line item.<br/>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/LineItem&quot;/&gt;
+    /// You can use the orders object to create, retrieve, list, and manage orders programmatically.<br/>
+    /// You can also retrieve shipping rates, purchase labels, and track shipments for each order.
     /// </remarks>
     /// </summary>
     public class Orders: IOrders
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

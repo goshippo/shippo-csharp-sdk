@@ -23,11 +23,7 @@ namespace Shippo
     using System;
 
     /// <summary>
-    /// Customs declarations are relevant information, including one or multiple customs items, you need to provide for customs clearance for your international shipments.<br/>
-    /// 
-    /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CustomsItem&quot;/&gt;
-    /// </remarks>
+    /// Customs declarations are relevant information, including one or multiple customs items, you need to provide for customs clearance for your international shipments.
     /// </summary>
     public interface ICustomsItems
     {
@@ -61,20 +57,16 @@ namespace Shippo
     }
 
     /// <summary>
-    /// Customs declarations are relevant information, including one or multiple customs items, you need to provide for customs clearance for your international shipments.<br/>
-    /// 
-    /// <remarks>
-    /// &lt;SchemaDefinition schemaRef=&quot;#/components/schemas/CustomsItem&quot;/&gt;
-    /// </remarks>
+    /// Customs declarations are relevant information, including one or multiple customs items, you need to provide for customs clearance for your international shipments.
     /// </summary>
     public class CustomsItems: ICustomsItems
     {
         public SDKConfig SDKConfiguration { get; private set; }
         private const string _language = "csharp";
-        private const string _sdkVersion = "5.0.0-beta.9";
+        private const string _sdkVersion = "5.0.0-beta.13";
         private const string _sdkGenVersion = "2.463.0";
         private const string _openapiDocVersion = "2018-02-08";
-        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.9 2.463.0 2018-02-08 Shippo";
+        private const string _userAgent = "speakeasy-sdk/csharp 5.0.0-beta.13 2.463.0 2018-02-08 Shippo";
         private string _serverUrl = "";
         private ISpeakeasyHttpClient _client;
         private Func<Shippo.Models.Components.Security>? _securitySource;

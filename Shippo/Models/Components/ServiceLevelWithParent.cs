@@ -40,7 +40,7 @@ namespace Shippo.Models.Components
         /// Token of the Rate&apos;s servicelevel, e.g. `usps_priority` or `fedex_ground`. <br/>
         /// 
         /// <remarks>
-        /// See &lt;a href=&quot;#tag/Service-Levels&quot;&gt;servicelevels&lt;/a&gt;.
+        /// See &lt;a href=&quot;/shippoapi/public-api/service-levels&quot;&gt;servicelevels&lt;/a&gt;.
         /// </remarks>
         /// </summary>
         [JsonProperty("token")]

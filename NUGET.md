@@ -45,8 +45,8 @@ When custom error responses are specified for an operation, the SDK may also thr
 | Error Type                                                                   | Status Code | Content Type     |
 | ---------------------------------------------------------------------------- | ----------- | ---------------- |
 | Shippo.Models.Errors.InitiateOauth2SigninResponseBody                        | 400         | application/json |
-| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 401         | application/json |
-| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 404         | application/json |
+| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseResponseBody | 401         | application/json |
+| Shippo.Models.Errors.InitiateOauth2SigninCarrierAccountsResponseBody         | 404         | application/json |
 | Shippo.Models.Errors.SDKException                                            | 4XX, 5XX    | \*/\*            |
 
 ### Example
@@ -81,12 +81,12 @@ catch (Exception ex)
         // Handle exception data
         throw;
     }
-    else if (ex is InitiateOauth2SigninCarrierAccountsResponseBody)
+    else if (ex is InitiateOauth2SigninCarrierAccountsResponseResponseBody)
     {
         // Handle exception data
         throw;
     }
-    else if (ex is InitiateOauth2SigninCarrierAccountsResponseResponseBody)
+    else if (ex is InitiateOauth2SigninCarrierAccountsResponseBody)
     {
         // Handle exception data
         throw;
