@@ -5,8 +5,8 @@ management:
   docVersion: "2018-02-08"
   speakeasyVersion: 1.447.0
   generationVersion: 2.463.0
-  releaseVersion: 5.0.0-beta.12
-  configChecksum: e1c0d5beaad7ac850a2e498752d4a4bc
+  releaseVersion: 5.0.0-beta.13
+  configChecksum: 00ff0d72fd1606a35d6635f4dc777ac2
   repoURL: https://github.com/goshippo/shippo-csharp-sdk.git
   published: true
 features:

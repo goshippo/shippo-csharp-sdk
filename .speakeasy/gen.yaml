@@ -21,14 +21,14 @@ generation:
   schemas:
     allOfMergeStrategy: shallowMerge
 csharp:
-  version: 5.0.0-beta.12
+  version: 5.0.0-beta.13
   additionalDependencies: []
   author: Shippo
   baseErrorName: ShippoSDKException
   clientServerStatusCodesAsErrors: true
   defaultErrorName: SDKException
   disableNamespacePascalCasingApr2024: true
-  dotnetVersion: net8.0
+  dotnetVersion: net6.0
   enableCancellationToken: false
   enableSourceLink: true
   flattenGlobalSecurity: true
