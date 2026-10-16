@@ -113,7 +113,7 @@ Based on:
 ## 2026-03-18 14:54:48
 ### Changes
 Based on:
-- OpenAPI Doc
+- OpenAPI Doc  
 - Speakeasy CLI 1.447.0 (2.463.0) https://github.com/speakeasy-api/speakeasy
 ### Generated
 - [csharp v5.0.0-beta.13] .
