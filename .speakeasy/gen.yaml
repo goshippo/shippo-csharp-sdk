@@ -46,7 +46,7 @@ csharp:
   inferUnionDiscriminators: false
   inputModelSuffix: input
   license: MIT License
-  maxMethodParams: 3
+  maxMethodParams: 4
   methodArguments: infer-optional-args
   multipartArrayFormat: legacy
   outputModelSuffix: output
